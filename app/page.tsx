@@ -58,10 +58,10 @@ import Link from "next/link"
 
 export default function MetadotsLanding() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
             <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
           </div>
@@ -106,7 +106,7 @@ export default function MetadotsLanding() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl animate-ping delay-2000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             <div className="space-y-8 animate-fade-in-up">
               <div className="space-y-6">
@@ -266,7 +266,7 @@ export default function MetadotsLanding() {
           ></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="text-center space-y-6 mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <BarChart3 className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -438,7 +438,7 @@ export default function MetadotsLanding() {
           <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping delay-2000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="text-center space-y-6 mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <BarChart3 className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -869,7 +869,7 @@ export default function MetadotsLanding() {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="text-center space-y-6 mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <Play className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -1245,7 +1245,7 @@ export default function MetadotsLanding() {
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="text-center space-y-6 mb-16">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <Star className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -1359,7 +1359,7 @@ export default function MetadotsLanding() {
 
       {/* Enhanced Technology Stack */}
       <section className="py-20 md:py-32 bg-gradient-to-b from-slate-50 to-white">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center space-y-6 mb-16">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <Code className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -1500,7 +1500,7 @@ export default function MetadotsLanding() {
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="text-center space-y-6 mb-20">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <Users className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -1673,7 +1673,7 @@ export default function MetadotsLanding() {
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="text-center space-y-6 mb-16">
             <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
               <MessageSquare className="w-5 h-5 mr-2" aria-hidden="true" />
@@ -1874,7 +1874,7 @@ export default function MetadotsLanding() {
           <div className="absolute bottom-20 right-20 w-32 h-32 bg-purple-500 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           {/* Main Footer Content */}
           <div className="py-16">
             <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">

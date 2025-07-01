@@ -90,6 +90,29 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+  }
+  html {
+    scroll-behavior: smooth;
+  }
+  .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100%;
+  }
+  
+  /* Ensure proper centering for all sections */
+  section {
+    width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Fix any potential horizontal scroll issues */
+  .min-h-screen {
+    overflow-x: hidden;
   }
 }
 

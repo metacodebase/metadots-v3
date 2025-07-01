@@ -135,7 +135,7 @@ export default function BlogDetailPage() {
     <div className="min-h-screen bg-white">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
             <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
           </div>
@@ -162,7 +162,7 @@ export default function BlogDetailPage() {
 
       {/* Back Navigation */}
       <div className="border-b bg-slate-50">
-        <div className="container px-4 md:px-6 py-4">
+        <div className="container py-4">
           <Button asChild variant="ghost" className="text-slate-600 hover:text-slate-900">
             <Link href="/blogs">
               <ArrowLeft className="w-4 h-4 mr-2" />
@@ -174,7 +174,7 @@ export default function BlogDetailPage() {
 
       {/* Article Header */}
       <section className="py-12 bg-gradient-to-br from-slate-50 to-white">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="max-w-4xl mx-auto">
             {/* Category and Meta */}
             <div className="flex items-center space-x-4 mb-6">
@@ -243,7 +243,7 @@ export default function BlogDetailPage() {
 
       {/* Article Content */}
       <section className="py-12">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="grid lg:grid-cols-4 gap-12">
               {/* Main Content */}
@@ -410,7 +410,7 @@ export default function BlogDetailPage() {
 
       {/* Related Articles */}
       <section className="py-20 bg-slate-50">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="max-w-6xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold text-slate-900 mb-4">Related Articles</h2>
@@ -478,7 +478,7 @@ export default function BlogDetailPage() {
 
       {/* Comments Section */}
       <section className="py-20 bg-white">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="max-w-4xl mx-auto">
             <div className="mb-12">
               <h2 className="text-3xl font-bold text-slate-900 mb-4">Comments ({blogPost.stats.comments})</h2>
@@ -560,7 +560,7 @@ export default function BlogDetailPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center space-y-8 max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-white">Ready to Transform Your Business with AI?</h2>
             <p className="text-xl text-white/80 leading-relaxed">

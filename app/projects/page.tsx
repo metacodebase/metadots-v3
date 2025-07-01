@@ -139,10 +139,10 @@ const categories = ["All", "AI/ML", "E-commerce", "FinTech", "Healthcare", "IoT"
 
 export default function ProjectsPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
             <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
           </div>
@@ -176,7 +176,7 @@ export default function ProjectsPage() {
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl animate-ping delay-2000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             {/* Content Side */}
             <div className="space-y-8">
@@ -307,7 +307,7 @@ export default function ProjectsPage() {
 
       {/* Filters and Search */}
       <section className="py-12 bg-white border-b">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
@@ -342,7 +342,7 @@ export default function ProjectsPage() {
 
       {/* Featured Projects */}
       <section className="py-20 bg-gradient-to-b from-white to-slate-50">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Projects</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -452,7 +452,7 @@ export default function ProjectsPage() {
 
       {/* All Projects Grid */}
       <section className="py-20 bg-white">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">All Projects</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -545,7 +545,7 @@ export default function ProjectsPage() {
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center space-y-8 max-w-3xl mx-auto">
             <h2 className="text-4xl font-bold text-white">Ready to Start Your Project?</h2>
             <p className="text-xl text-white/80 leading-relaxed">

@@ -239,10 +239,10 @@ const benefits = [
 
 export default function CareersPage() {
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+        <div className="container flex h-16 items-center justify-between">
           <div className="flex items-center space-x-2">
             <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
           </div>
@@ -274,7 +274,7 @@ export default function CareersPage() {
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
         </div>
 
-        <div className="container px-4 md:px-6 relative z-10">
+        <div className="container relative z-10">
           <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
             {/* Content Side */}
             <div className="space-y-8">
@@ -413,7 +413,7 @@ export default function CareersPage() {
 
       {/* Why Work With Us */}
       <section className="py-20 bg-white">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Work With Us?</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -442,7 +442,7 @@ export default function CareersPage() {
 
       {/* Job Search and Filters */}
       <section className="py-12 bg-slate-50 border-b">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
             <div className="relative flex-1 max-w-md">
@@ -477,7 +477,7 @@ export default function CareersPage() {
 
       {/* Featured Positions */}
       <section className="py-20 bg-gradient-to-b from-white to-slate-50">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Positions</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
@@ -567,7 +567,7 @@ export default function CareersPage() {
 
       {/* All Positions */}
       <section className="py-20 bg-white">
-        <div className="container px-4 md:px-6">
+        <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">All Open Positions</h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">

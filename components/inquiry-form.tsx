@@ -71,7 +71,7 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
           w-full max-w-none md:max-w-[70vw]
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
-        style={{ width: '100vw', maxWidth: '100vw', maxWidth: '70vw' }}
+        style={{ width: '100vw', maxWidth: '70vw' }}
       >
         <div className="relative flex-1 flex flex-col overflow-y-auto">
           {/* Close Button */}

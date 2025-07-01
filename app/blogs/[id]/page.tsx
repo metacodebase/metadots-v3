@@ -19,6 +19,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import Footer from "@/components/footer"
 
 // This would typically come from a database or API
 const blogPost = {
@@ -584,6 +585,7 @@ export default function BlogDetailPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

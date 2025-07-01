@@ -20,6 +20,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import Footer from "@/components/footer"
 
 const teamMembers = [
   {
@@ -676,6 +677,7 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

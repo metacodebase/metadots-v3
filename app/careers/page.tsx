@@ -25,6 +25,7 @@ import {
 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import Footer from "@/components/footer"
 
 const jobOpenings = [
   {
@@ -653,6 +654,7 @@ export default function CareersPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Search, Filter, Star, ExternalLink, Github, Calendar, Users, BarChart3 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
+import Footer from "@/components/footer"
 
 const projects = [
   {
@@ -569,6 +570,7 @@ export default function ProjectsPage() {
           </div>
         </div>
       </section>
+      <Footer />
     </div>
   )
 }

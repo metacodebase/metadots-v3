@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
+import { ThemeProvider } from "@/components/theme-provider"
+import { InquiryFormProvider } from "@/components/inquiry-form-provider"
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'v0 App',
-  description: 'Created with v0',
-  generator: 'v0.dev',
+  title: 'Metadots - AI Solutions & Technology',
+  description: 'Transforming businesses through innovative technology solutions. We don\'t just build software—we architect the future of digital experiences.',
+  generator: 'Next.js',
 }
 
 export default function RootLayout({
@@ -14,7 +16,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <InquiryFormProvider>
+            {children}
+          </InquiryFormProvider>
+        </ThemeProvider>
+      </body>
     </html>
   )
 }

@@ -23,9 +23,12 @@ import {
   PenTool,
   Settings,
 } from "lucide-react"
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { useInquiryForm } from "@/components/inquiry-form-provider"
 
 const jobOpenings = [
   {
@@ -239,6 +242,8 @@ const benefits = [
 ]
 
 export default function CareersPage() {
+  const { openInquiryForm } = useInquiryForm()
+  
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -555,11 +560,11 @@ export default function CareersPage() {
 
                     {/* Actions */}
                     <div className="flex gap-3">
-                      <Button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                      <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
                         Apply Now
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
-                      <Button variant="outline">Learn More</Button>
+                      <Button variant="outline" onClick={openInquiryForm}>Learn More</Button>
                     </div>
                   </CardHeader>
                 </Card>
@@ -642,11 +647,11 @@ export default function CareersPage() {
 
                   {/* Actions */}
                   <div className="flex gap-3">
-                    <Button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                    <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
                       Apply Now
                       <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
-                    <Button variant="outline">Learn More</Button>
+                    <Button variant="outline" onClick={openInquiryForm}>Learn More</Button>
                   </div>
                 </CardHeader>
               </Card>

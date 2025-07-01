@@ -18,9 +18,12 @@ import {
   Search,
   Settings,
 } from "lucide-react"
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { useInquiryForm } from "@/components/inquiry-form-provider"
 
 const teamMembers = [
   {
@@ -144,6 +147,8 @@ const workflowSteps = [
 ]
 
 export default function AboutPage() {
+  const { openInquiryForm } = useInquiryForm()
+  
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -459,7 +464,7 @@ export default function AboutPage() {
                             <Clock className="w-4 h-4" />
                             <span className="text-sm">{step.duration}</span>
                           </div>
-                          <Button variant="ghost" className="text-white hover:bg-white/10">
+                          <Button variant="ghost" onClick={openInquiryForm} className="text-white hover:bg-white/10">
                             Learn More
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
@@ -486,13 +491,14 @@ export default function AboutPage() {
               Let's discuss how our proven process can help bring your vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8">
+              <Button size="lg" onClick={openInquiryForm} className="bg-white text-slate-900 hover:bg-white/90 px-8">
                 Start Your Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
+                onClick={openInquiryForm}
                 className="border-white/30 text-white hover:bg-white/10 px-8 bg-transparent"
               >
                 <MessageSquare className="mr-2 h-5 w-5" />

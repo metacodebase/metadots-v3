@@ -17,9 +17,12 @@ import {
   MessageSquare,
   ThumbsUp,
 } from "lucide-react"
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { useInquiryForm } from "@/components/inquiry-form-provider"
 
 // This would typically come from a database or API
 const blogPost = {
@@ -132,6 +135,8 @@ const relatedPosts = [
 ]
 
 export default function BlogDetailPage() {
+  const { openInquiryForm } = useInquiryForm()
+  
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -570,13 +575,14 @@ export default function BlogDetailPage() {
               Let's discuss how we can help you implement cutting-edge AI solutions that drive real business value.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8">
+              <Button size="lg" onClick={openInquiryForm} className="bg-white text-slate-900 hover:bg-white/90 px-8">
                 Start Your AI Journey
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
+                onClick={openInquiryForm}
                 className="border-white/30 text-white hover:bg-white/10 px-8 bg-transparent"
               >
                 Schedule Consultation

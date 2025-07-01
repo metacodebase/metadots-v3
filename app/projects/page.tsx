@@ -3,9 +3,12 @@ import { Input } from "@/components/ui/input"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 import { ArrowRight, Search, Filter, Star, ExternalLink, Github, Calendar, Users, BarChart3 } from "lucide-react"
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { useInquiryForm } from "@/components/inquiry-form-provider"
 
 const projects = [
   {
@@ -139,6 +142,8 @@ const projects = [
 const categories = ["All", "AI/ML", "E-commerce", "FinTech", "Healthcare", "IoT", "Real Estate"]
 
 export default function ProjectsPage() {
+  const { openInquiryForm } = useInquiryForm()
+  
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -166,7 +171,7 @@ export default function ProjectsPage() {
               Careers
             </Link>
           </nav>
-          <Button className="bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
+                          <Button onClick={openInquiryForm} className="bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
         </div>
       </header>
 
@@ -214,13 +219,14 @@ export default function ProjectsPage() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
+                <Button size="lg" onClick={openInquiryForm} className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
                   Explore Projects
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
+                  onClick={openInquiryForm}
                   className="border-white/30 text-white hover:bg-white/10 px-8 py-4 bg-transparent"
                 >
                   View Case Studies
@@ -435,7 +441,7 @@ export default function ProjectsPage() {
 
                     {/* Actions */}
                     <div className="flex gap-3">
-                      <Button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                      <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
                         View Case Study
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
@@ -555,13 +561,14 @@ export default function ProjectsPage() {
               Let's discuss how we can transform your ideas into reality with cutting-edge technology solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8">
+              <Button size="lg" onClick={openInquiryForm} className="bg-white text-slate-900 hover:bg-white/90 px-8">
                 Start a Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
+                onClick={openInquiryForm}
                 className="border-white/30 text-white hover:bg-white/10 px-8 bg-transparent"
               >
                 Schedule Consultation

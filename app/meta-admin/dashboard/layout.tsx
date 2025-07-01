@@ -15,37 +15,37 @@ import Link from "next/link"
 const sidebarNavItems = [
   {
     title: "Dashboard",
-    href: "/meta-admin",
+    href: "/meta-admin/dashboard",
     icon: "dashboard",
   },
   {
     title: "Users",
-    href: "/meta-admin/users",
+    href: "/meta-admin/dashboard/users",
     icon: "users",
   },
   {
     title: "Blogs",
-    href: "/meta-admin/blogs",
+    href: "/meta-admin/dashboard/blogs",
     icon: "file-text",
   },
   {
     title: "Projects",
-    href: "/meta-admin/projects",
+    href: "/meta-admin/dashboard/projects",
     icon: "folder-open",
   },
   {
     title: "Podcasts",
-    href: "/meta-admin/podcasts",
+    href: "/meta-admin/dashboard/podcasts",
     icon: "headphones",
   },
   {
     title: "Case Studies",
-    href: "/meta-admin/case-studies",
+    href: "/meta-admin/dashboard/case-studies",
     icon: "book-open",
   },
   {
     title: "Settings",
-    href: "/meta-admin/settings",
+    href: "/meta-admin/dashboard/settings",
     icon: "settings",
   },
 ]

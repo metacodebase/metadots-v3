@@ -53,10 +53,8 @@ import {
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
-import { useInquiryForm } from "@/components/inquiry-form-provider"
 
 export default function MetadotsLanding() {
-  const { openInquiryForm } = useInquiryForm()
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -91,7 +89,7 @@ export default function MetadotsLanding() {
             </Link>
           </nav>
           <div className="flex items-center space-x-4">
-            <Button onClick={openInquiryForm} className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
+            <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
             <Button variant="ghost" size="icon" className="md:hidden">
               <Menu className="h-5 w-5" />
             </Button>
@@ -131,7 +129,6 @@ export default function MetadotsLanding() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  onClick={openInquiryForm}
                   className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                 >
                   Start Building
@@ -143,7 +140,6 @@ export default function MetadotsLanding() {
                 <Button
                   size="lg"
                   variant="outline"
-                  onClick={openInquiryForm}
                   className="group text-lg px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
@@ -370,7 +366,6 @@ export default function MetadotsLanding() {
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={openInquiryForm}
                       className="border-white/30 text-white hover:bg-white/10 px-6 py-3 bg-transparent"
                     >
                       Schedule AI Consultation
@@ -1556,7 +1551,7 @@ export default function MetadotsLanding() {
                   ))}
                 </div>
 
-                <Button onClick={openInquiryForm} className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white">
+                <Button className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white">
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Button>
@@ -1595,7 +1590,7 @@ export default function MetadotsLanding() {
                   ))}
                 </div>
 
-                <Button onClick={openInquiryForm} className="w-full mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white">
+                <Button className="w-full mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white">
                   Get Quote
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Button>
@@ -1634,7 +1629,7 @@ export default function MetadotsLanding() {
                   ))}
                 </div>
 
-                <Button onClick={openInquiryForm} className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
+                <Button className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
                   Book Consultation
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Button>
@@ -1855,7 +1850,6 @@ export default function MetadotsLanding() {
                     {/* Submit Button */}
                     <Button 
                       type="button"
-                      onClick={openInquiryForm}
                       className="w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                     >
                       <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" />

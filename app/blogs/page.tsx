@@ -1,5 +1,3 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -8,7 +6,6 @@ import { ArrowRight, Search, Filter, Calendar, Clock, Eye, Heart, Share2, BookOp
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
-import { useInquiryForm } from "@/components/inquiry-form-provider"
 
 const blogPosts = [
   {
@@ -173,8 +170,6 @@ const categories = [
 ]
 
 export default function BlogsPage() {
-  const { openInquiryForm } = useInquiryForm()
-  
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -588,7 +583,7 @@ export default function BlogsPage() {
                   placeholder="Enter your email"
                   className="border-0 bg-white/20 text-white placeholder:text-white/60 flex-1"
                 />
-                <Button onClick={openInquiryForm} className="bg-white text-slate-900 hover:bg-white/90 px-6">Subscribe</Button>
+                <Button className="bg-white text-slate-900 hover:bg-white/90 px-6">Subscribe</Button>
               </div>
             </div>
             <p className="text-white/60 text-sm">Join 10,000+ developers. No spam, unsubscribe anytime.</p>

@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { ThemeProvider } from "@/components/theme-provider"
 import { InquiryFormProvider } from "@/components/inquiry-form-provider"
+import { AuthProvider } from "@/contexts/AuthContext"
+import { Toaster } from "@/components/ui/sonner"
 import './globals.css'
 
 export const metadata: Metadata = {
@@ -23,10 +25,13 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <InquiryFormProvider>
-            {children}
-          </InquiryFormProvider>
+          <AuthProvider>
+            <InquiryFormProvider>
+              {children}
+            </InquiryFormProvider>
+          </AuthProvider>
         </ThemeProvider>
+        <Toaster />
       </body>
     </html>
   )

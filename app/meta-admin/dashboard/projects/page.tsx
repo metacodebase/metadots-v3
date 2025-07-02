@@ -1,7 +1,10 @@
+"use client";
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Badge } from "@/components/ui/badge"
+import { AdminRoute } from "@/components/AdminRoute"
 import { 
   FolderOpen, 
   Plus, 
@@ -86,7 +89,7 @@ const projects = [
   },
 ]
 
-export default function ProjectsPage() {
+function ProjectsContent() {
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -276,4 +279,12 @@ export default function ProjectsPage() {
       </div>
     </div>
   )
+}
+
+export default function ProjectsPage() {
+  return (
+    <AdminRoute>
+      <ProjectsContent />
+    </AdminRoute>
+  );
 } 

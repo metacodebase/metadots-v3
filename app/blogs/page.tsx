@@ -428,7 +428,7 @@ export default function BlogsPage() {
                       <div className="flex items-center space-x-4">
                         <div className="flex items-center space-x-1">
                           <Calendar className="w-4 h-4" />
-                          <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+                          <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                         </div>
                         <div className="flex items-center space-x-1">
                           <Clock className="w-4 h-4" />
@@ -528,7 +528,7 @@ export default function BlogsPage() {
                     <div className="flex items-center space-x-3">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
-                        <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+                        <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <Clock className="w-3 h-3" />

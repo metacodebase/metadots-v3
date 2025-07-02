@@ -186,7 +186,7 @@ export default function BlogDetailPage() {
               <div className="flex items-center space-x-4 text-sm text-slate-600">
                 <div className="flex items-center space-x-1">
                   <Calendar className="w-4 h-4" />
-                  <span>{new Date(blogPost.publishedAt).toLocaleDateString()}</span>
+                  <span>{new Date(blogPost.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                 </div>
                 <div className="flex items-center space-x-1">
                   <Clock className="w-4 h-4" />
@@ -454,7 +454,7 @@ export default function BlogDetailPage() {
                     <div className="flex items-center justify-between text-xs text-slate-600 mb-4">
                       <div className="flex items-center space-x-1">
                         <Calendar className="w-3 h-3" />
-                        <span>{new Date(post.publishedAt).toLocaleDateString()}</span>
+                        <span>{new Date(post.publishedAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
                       </div>
                       <div className="flex items-center space-x-1">
                         <Clock className="w-3 h-3" />

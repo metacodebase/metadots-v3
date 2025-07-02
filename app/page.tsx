@@ -917,9 +917,9 @@ export default function MetadotsLanding() {
                               className="bg-white/60 rounded-full animate-pulse"
                               style={{
                                 width: "3px",
-                                height: `${Math.random() * 40 + 10}px`,
+                                height: `${(i % 8) * 4 + 10}px`,
                                 animationDelay: `${i * 50}ms`,
-                                animationDuration: `${1000 + Math.random() * 1000}ms`,
+                                animationDuration: `${1000 + (i % 10) * 100}ms`,
                               }}
                             ></div>
                           ))}

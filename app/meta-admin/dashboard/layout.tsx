@@ -1,3 +1,5 @@
+"use client";
+
 import { Sidebar } from "@/components/ui/sidebar"
 import { Button } from "@/components/ui/button"
 import { 
@@ -11,42 +13,51 @@ import {
   Menu
 } from "lucide-react"
 import Link from "next/link"
+import { useAuth } from "@/contexts/AuthContext"
+import { useMemo } from "react"
 
-const sidebarNavItems = [
+const allNavItems = [
   {
     title: "Dashboard",
     href: "/meta-admin/dashboard",
     icon: "dashboard",
+    roles: ["admin", "author"], // Both admin and author can see dashboard
   },
   {
     title: "Users",
     href: "/meta-admin/dashboard/users",
     icon: "users",
+    roles: ["admin"], // Only admin can see users
   },
   {
     title: "Blogs",
     href: "/meta-admin/dashboard/blogs",
     icon: "file-text",
+    roles: ["admin", "author"], // Both admin and author can see blogs
   },
   {
     title: "Projects",
     href: "/meta-admin/dashboard/projects",
     icon: "folder-open",
+    roles: ["admin"], // Only admin can see projects
   },
   {
     title: "Podcasts",
     href: "/meta-admin/dashboard/podcasts",
     icon: "headphones",
+    roles: ["admin"], // Only admin can see podcasts
   },
   {
     title: "Case Studies",
     href: "/meta-admin/dashboard/case-studies",
     icon: "book-open",
+    roles: ["admin", "author"], // Both admin and author can see case studies
   },
   {
     title: "Settings",
     href: "/meta-admin/dashboard/settings",
     icon: "settings",
+    roles: ["admin"], // Only admin can see settings
   },
 ]
 
@@ -55,13 +66,27 @@ export default function AdminLayout({
 }: {
   children: React.ReactNode
 }) {
+  const { user, logout } = useAuth();
+  
+  // Filter navigation items based on user role
+  const sidebarNavItems = useMemo(() => {
+    if (!user) return [];
+    return allNavItems.filter(item => item.roles.includes(user.role));
+  }, [user]);
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
       <div className="w-64 bg-white shadow-lg flex flex-col">
         <div className="p-6 border-b">
           <h1 className="text-2xl font-bold text-gray-800">Meta Admin</h1>
-          <p className="text-sm text-gray-600">Admin Dashboard</p>
+          <p className="text-sm text-gray-600">
+            {user?.role === 'admin' ? 'Admin Dashboard' : 'Author Dashboard'}
+          </p>
         </div>
         
         <nav className="p-4 flex-1">
@@ -87,7 +112,11 @@ export default function AdminLayout({
         </nav>
         
         <div className="mt-auto p-4 border-t">
-          <Button variant="outline" className="w-full">
+          <div className="mb-3 text-sm text-gray-600">
+            <div className="font-medium">{user?.name}</div>
+            <div className="text-xs capitalize">{user?.role}</div>
+          </div>
+          <Button variant="outline" className="w-full" onClick={handleLogout}>
             <LogOut className="w-4 h-4 mr-2" />
             Logout
           </Button>
@@ -107,9 +136,11 @@ export default function AdminLayout({
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-600">
-                Admin User
+                {user?.name}
               </div>
-              <div className="w-8 h-8 bg-gray-300 rounded-full"></div>
+              <div className="w-8 h-8 bg-gray-300 rounded-full flex items-center justify-center text-white font-medium">
+                {user?.name?.charAt(0).toUpperCase()}
+              </div>
             </div>
           </div>
         </header>

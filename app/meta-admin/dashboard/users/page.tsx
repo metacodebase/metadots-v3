@@ -1,6 +1,6 @@
 "use client";
 
-import { ProtectedRoute } from '@/components/ProtectedRoute';
+import { AdminRoute } from '@/components/AdminRoute';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
@@ -239,13 +239,13 @@ function UsersContent() {
               <h1 className="text-xl font-semibold text-gray-900 dark:text-white">
                 Users Management
               </h1>
-            </div>
+        </div>
             <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
               <DialogTrigger asChild>
-                <Button>
+        <Button>
                   <Plus className="h-4 w-4 mr-2" />
-                  Add User
-                </Button>
+          Add User
+        </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
@@ -329,7 +329,7 @@ function UsersContent() {
           </Alert>
         )}
 
-        <Card>
+      <Card>
           <CardHeader>
             <CardTitle>Users</CardTitle>
             <CardDescription>Manage user accounts and permissions</CardDescription>
@@ -350,7 +350,7 @@ function UsersContent() {
             {isLoading ? (
               <div className="flex items-center justify-center py-8">
                 <Loader2 className="h-8 w-8 animate-spin" />
-              </div>
+                        </div>
             ) : (
               <Table>
                 <TableHeader>
@@ -375,7 +375,7 @@ function UsersContent() {
                             ? 'bg-blue-100 text-blue-800'
                             : 'bg-gray-100 text-gray-800'
                         }`}>
-                          {user.role}
+                        {user.role}
                         </span>
                       </TableCell>
                       <TableCell>
@@ -388,12 +388,12 @@ function UsersContent() {
                         </span>
                       </TableCell>
                       <TableCell>
-                        <div className="flex items-center space-x-2">
+                      <div className="flex items-center space-x-2">
                           <Dialog open={showEditDialog === user._id} onOpenChange={(open) => !open && setShowEditDialog(null)}>
                             <DialogTrigger asChild>
                               <Button variant="ghost" size="sm" onClick={() => openEditDialog(user)}>
                                 <Edit className="h-4 w-4" />
-                              </Button>
+                        </Button>
                             </DialogTrigger>
                             <DialogContent>
                               <DialogHeader>
@@ -411,8 +411,8 @@ function UsersContent() {
                                     onChange={(e) => setEditFormData({ ...editFormData, name: e.target.value })}
                                     required
                                   />
-                                </div>
-                                <div>
+          </div>
+              <div>
                                   <Label htmlFor="edit-email">Email</Label>
                                   <Input
                                     id="edit-email"
@@ -421,8 +421,8 @@ function UsersContent() {
                                     onChange={(e) => setEditFormData({ ...editFormData, email: e.target.value })}
                                     required
                                   />
-                                </div>
-                                <div>
+            </div>
+              <div>
                                   <Label htmlFor="edit-password">Password (leave blank to keep current)</Label>
                                   <Input
                                     id="edit-password"
@@ -430,8 +430,8 @@ function UsersContent() {
                                     value={editFormData.password}
                                     onChange={(e) => setEditFormData({ ...editFormData, password: e.target.value })}
                                   />
-                                </div>
-                                <div>
+            </div>
+              <div>
                                   <Label htmlFor="edit-role">Role</Label>
                                   <Select value={editFormData.role} onValueChange={(value: 'admin' | 'author' | 'user') => setEditFormData({ ...editFormData, role: value })}>
                                     <SelectTrigger>
@@ -443,7 +443,7 @@ function UsersContent() {
                                       <SelectItem value="user">User</SelectItem>
                                     </SelectContent>
                                   </Select>
-                                </div>
+              </div>
                                 <div className="flex items-center space-x-2">
                                   <input
                                     type="checkbox"
@@ -453,7 +453,7 @@ function UsersContent() {
                                     className="rounded border-gray-300"
                                   />
                                   <Label htmlFor="edit-active">Active</Label>
-                                </div>
+            </div>
                                 <div className="flex justify-end space-x-2">
                                   <Button type="button" variant="outline" onClick={() => setShowEditDialog(null)}>
                                     Cancel
@@ -461,7 +461,7 @@ function UsersContent() {
                                   <Button type="submit">
                                     Update User
                                   </Button>
-                                </div>
+              </div>
                               </form>
                             </DialogContent>
                           </Dialog>
@@ -477,7 +477,7 @@ function UsersContent() {
                               <Trash2 className="h-4 w-4" />
                             )}
                           </Button>
-                        </div>
+              </div>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -493,8 +493,8 @@ function UsersContent() {
 
 export default function Users() {
   return (
-    <ProtectedRoute>
+    <AdminRoute>
       <UsersContent />
-    </ProtectedRoute>
+    </AdminRoute>
   );
 } 

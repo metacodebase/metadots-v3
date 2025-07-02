@@ -193,3 +193,139 @@ body {
 .animate-fade-in-right {
   animation: fade-in-right 0.8s ease-out forwards;
 }
+
+/* TipTap Editor Styles */
+.ProseMirror {
+  outline: none;
+  min-height: 300px;
+  padding: 1rem;
+  font-family: 'Lato', sans-serif;
+  line-height: 1.6;
+}
+
+.ProseMirror h1,
+.ProseMirror h2,
+.ProseMirror h3,
+.ProseMirror h4,
+.ProseMirror h5,
+.ProseMirror h6 {
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.ProseMirror h1 {
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.ProseMirror h2 {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.ProseMirror h3 {
+  font-size: 1.25rem;
+  line-height: 1.4;
+}
+
+.ProseMirror p {
+  margin-bottom: 1rem;
+}
+
+.ProseMirror ul,
+.ProseMirror ol {
+  margin: 1rem 0;
+  padding-left: 1.5rem;
+}
+
+.ProseMirror li {
+  margin-bottom: 0.5rem;
+}
+
+.ProseMirror blockquote {
+  border-left: 4px solid #e5e7eb;
+  padding-left: 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: #6b7280;
+}
+
+.ProseMirror code {
+  background-color: #f3f4f6;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+  font-size: 0.875rem;
+}
+
+.ProseMirror pre {
+  background-color: #f3f4f6;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+}
+
+.ProseMirror pre code {
+  background-color: transparent;
+  padding: 0;
+}
+
+.ProseMirror table {
+  border-collapse: collapse;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.ProseMirror table td,
+.ProseMirror table th {
+  border: 1px solid #e5e7eb;
+  padding: 0.5rem;
+  text-align: left;
+}
+
+.ProseMirror table th {
+  background-color: #f9fafb;
+  font-weight: 600;
+}
+
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 1rem 0;
+}
+
+.ProseMirror a {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+.ProseMirror a:hover {
+  color: #1d4ed8;
+}
+
+.ProseMirror mark {
+  background-color: #fef3c7;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.ProseMirror .is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}
+
+/* Placeholder styles */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}

@@ -2,144 +2,31 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Search, Filter, Star, ExternalLink, Github, Calendar, Users, BarChart3 } from "lucide-react"
+import { ArrowRight, Search, Filter, Star, ExternalLink, Github, Calendar, Users, BarChart3, Menu } from "lucide-react"
+import { connectMongo } from "@/lib/mongodb"
+import Project from "@/models/Project"
 
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
 
-const projects = [
-  {
-    id: 1,
-    title: "AI-Powered Analytics Platform",
-    description:
-      "Revolutionary analytics platform that processes 10M+ data points daily, featuring real-time AI insights, predictive modeling, and automated reporting.",
-    category: "AI/ML",
-    tags: ["React", "Node.js", "Python", "TensorFlow", "AWS", "PostgreSQL"],
-    image: "/placeholder.svg?height=300&width=500",
-    featured: true,
-    metrics: {
-      efficiency: "340%",
-      dataPoints: "10M+",
-      uptime: "99.9%",
-    },
-    client: "TechCorp Enterprise",
-    duration: "8 months",
-    team: "12 developers",
-    rating: 5.0,
-    status: "Live",
-    color: "from-blue-500 to-indigo-600",
-  },
-  {
-    id: 2,
-    title: "Enterprise E-commerce Platform",
-    description:
-      "AI-powered e-commerce solution with smart recommendations, real-time inventory, and advanced analytics for global retail operations.",
-    category: "E-commerce",
-    tags: ["Next.js", "Stripe", "Redis", "MongoDB", "Docker"],
-    image: "/placeholder.svg?height=300&width=500",
-    featured: true,
-    metrics: {
-      performance: "95%",
-      conversion: "23%",
-      revenue: "$2.4M",
-    },
-    client: "GlobalShop Inc",
-    duration: "6 months",
-    team: "8 developers",
-    rating: 4.9,
-    status: "Live",
-    color: "from-emerald-500 to-teal-600",
-  },
-  {
-    id: 3,
-    title: "Digital Banking Solution",
-    description:
-      "Secure banking platform with blockchain integration, real-time fraud detection, and AI-powered financial insights.",
-    category: "FinTech",
-    tags: ["React Native", "Blockchain", "Node.js", "PostgreSQL", "AWS"],
-    image: "/placeholder.svg?height=300&width=500",
-    featured: false,
-    metrics: {
-      security: "99%",
-      transactions: "1M+",
-      users: "50K+",
-    },
-    client: "SecureBank Pro",
-    duration: "12 months",
-    team: "15 developers",
-    rating: 4.8,
-    status: "Live",
-    color: "from-blue-600 to-purple-700",
-  },
-  {
-    id: 4,
-    title: "AI Healthcare Platform",
-    description:
-      "Comprehensive healthcare management with AI diagnostics, telemedicine, and patient monitoring systems.",
-    category: "Healthcare",
-    tags: ["Vue.js", "Python", "TensorFlow", "Docker", "PostgreSQL"],
-    image: "/placeholder.svg?height=300&width=500",
-    featured: false,
-    metrics: {
-      accuracy: "98.7%",
-      patients: "10K+",
-      diagnoses: "50K+",
-    },
-    client: "MedTech Solutions",
-    duration: "10 months",
-    team: "10 developers",
-    rating: 5.0,
-    status: "Live",
-    color: "from-rose-500 to-pink-600",
-  },
-  {
-    id: 5,
-    title: "Smart IoT Management System",
-    description:
-      "Comprehensive IoT platform for managing smart devices, real-time monitoring, and predictive maintenance.",
-    category: "IoT",
-    tags: ["React", "Node.js", "MongoDB", "MQTT", "AWS IoT"],
-    image: "/placeholder.svg?height=300&width=500",
-    featured: false,
-    metrics: {
-      devices: "100K+",
-      uptime: "99.8%",
-      efficiency: "45%",
-    },
-    client: "SmartCity Corp",
-    duration: "9 months",
-    team: "11 developers",
-    rating: 4.7,
-    status: "Live",
-    color: "from-purple-500 to-indigo-600",
-  },
-  {
-    id: 6,
-    title: "Real Estate Management Platform",
-    description:
-      "Complete property management solution with virtual tours, AI-powered valuations, and automated workflows.",
-    category: "Real Estate",
-    tags: ["Next.js", "Three.js", "PostgreSQL", "Stripe", "AWS"],
-    image: "/placeholder.svg?height=300&width=500",
-    featured: false,
-    metrics: {
-      properties: "25K+",
-      users: "15K+",
-      revenue: "$1.8M",
-    },
-    client: "PropertyPro Ltd",
-    duration: "7 months",
-    team: "9 developers",
-    rating: 4.6,
-    status: "Live",
-    color: "from-orange-500 to-red-600",
-  },
-]
+
 
 const categories = ["All", "AI/ML", "E-commerce", "FinTech", "Healthcare", "IoT", "Real Estate"]
 
-export default function ProjectsPage() {
+async function getData() {
+  await connectMongo()
+  
+  // Get all published projects
+  const projects = await Project.find({ status: "published" }).sort({ createdAt: -1 })
+  
+  return {
+    projects: projects ? JSON.parse(JSON.stringify(projects)) : []
+  }
+}
+
+export default async function ProjectsPage() {
+  const { projects } = await getData()
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -151,10 +38,13 @@ export default function ProjectsPage() {
             </Link>
           </div>
           <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Home
+            <Link href="#services" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
+              Services
             </Link>
-            <Link href="#" className="text-sm font-medium text-blue-600">
+            <Link href="#portfolio" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
+              Portfolio
+            </Link>
+            <Link href="/projects" className="text-sm font-medium text-blue-600">
               Projects
             </Link>
             <Link href="/blogs" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
@@ -166,7 +56,16 @@ export default function ProjectsPage() {
             <Link href="/careers" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
               Careers
             </Link>
+            <Link href="#contact" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
+              Contact
+            </Link>
           </nav>
+          <div className="flex items-center space-x-4">
+            <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
+            <Button variant="ghost" size="icon" className="md:hidden">
+              <Menu className="h-5 w-5" />
+            </Button>
+          </div>
         </div>
       </header>
 
@@ -355,10 +254,10 @@ export default function ProjectsPage() {
 
           <div className="grid gap-8 lg:grid-cols-2">
             {projects
-              .filter((project) => project.featured)
-              .map((project) => (
+              .filter((project: any) => project.featured)
+              .map((project: any) => (
                 <Card
-                  key={project.id}
+                  key={project._id}
                   className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
                 >
                   <div className="relative">
@@ -380,7 +279,7 @@ export default function ProjectsPage() {
                     <div className="absolute top-4 right-4">
                       <div className="flex items-center space-x-1 bg-white/90 rounded-full px-2 py-1">
                         <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span className="text-xs font-medium">{project.rating}</span>
+                        <span className="text-xs font-medium">{project.rating || 5.0}</span>
                       </div>
                     </div>
                   </div>
@@ -400,7 +299,7 @@ export default function ProjectsPage() {
                     {/* Tech Stack */}
                     <div className="mb-6">
                       <div className="flex flex-wrap gap-2">
-                        {project.tags.map((tag) => (
+                        {project.technologies && project.technologies.map((tag: string) => (
                           <span
                             key={tag}
                             className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
@@ -413,7 +312,7 @@ export default function ProjectsPage() {
 
                     {/* Metrics */}
                     <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
-                      {Object.entries(project.metrics).map(([key, value]) => (
+                      {project.metrics && Object.entries(project.metrics).map(([key, value]: [string, any]) => (
                         <div key={key} className="text-center">
                           <div className="text-lg font-bold text-blue-600">{value}</div>
                           <div className="text-xs text-slate-600 capitalize">{key.replace(/([A-Z])/g, " $1")}</div>
@@ -425,11 +324,11 @@ export default function ProjectsPage() {
                     <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-slate-600">
                       <div className="flex items-center gap-2">
                         <Users className="w-4 h-4" />
-                        <span>{project.team}</span>
+                        <span>{project.teamSize || "8 developers"}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
-                        <span>{project.duration}</span>
+                        <span>{project.duration || "6 months"}</span>
                       </div>
                     </div>
 
@@ -464,9 +363,9 @@ export default function ProjectsPage() {
           </div>
 
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
+            {projects.map((project: any) => (
               <Card
-                key={project.id}
+                key={project._id}
                 className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white"
               >
                 <div className="relative">
@@ -480,12 +379,12 @@ export default function ProjectsPage() {
                     />
                   </div>
                   <div className="absolute top-3 left-3">
-                    <Badge className={`bg-gradient-to-r ${project.color} text-white`}>{project.category}</Badge>
+                    <Badge className={`bg-gradient-to-r ${project.color || "from-blue-500 to-indigo-600"} text-white`}>{project.category}</Badge>
                   </div>
                   <div className="absolute top-3 right-3">
                     <div className="flex items-center space-x-1 bg-white/90 rounded-full px-2 py-1">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                      <span className="text-xs font-medium">{project.rating}</span>
+                      <span className="text-xs font-medium">{project.rating || 5.0}</span>
                     </div>
                   </div>
                 </div>
@@ -500,9 +399,9 @@ export default function ProjectsPage() {
 
                   {/* Quick Metrics */}
                   <div className="grid grid-cols-3 gap-2 mb-4 text-xs">
-                    {Object.entries(project.metrics)
+                    {project.metrics && Object.entries(project.metrics)
                       .slice(0, 3)
-                      .map(([key, value]) => (
+                      .map(([key, value]: [string, any]) => (
                         <div key={key} className="text-center p-2 bg-slate-50 rounded">
                           <div className="font-bold text-blue-600">{value}</div>
                           <div className="text-slate-600 capitalize">{key}</div>
@@ -512,14 +411,14 @@ export default function ProjectsPage() {
 
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-1 mb-4">
-                    {project.tags.slice(0, 3).map((tag) => (
+                    {project.technologies && project.technologies.slice(0, 3).map((tag: string) => (
                       <span key={tag} className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
                         {tag}
                       </span>
                     ))}
-                    {project.tags.length > 3 && (
+                    {project.technologies && project.technologies.length > 3 && (
                       <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
-                        +{project.tags.length - 3} more
+                        +{project.technologies.length - 3} more
                       </span>
                     )}
                   </div>

@@ -157,7 +157,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex items-center space-x-6">
-              <p className="text-slate-400 text-sm">© 2024 Metadots. All rights reserved.</p>
+              <p className="text-slate-400 text-sm">© 2025 Metadots. All rights reserved.</p>
               <div className="flex items-center space-x-4 text-slate-500">
                 <div className="flex items-center space-x-1">
                   <Activity className="w-3 h-3 text-green-400 animate-pulse" aria-hidden="true" />

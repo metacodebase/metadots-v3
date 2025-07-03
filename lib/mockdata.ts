@@ -762,6 +762,7 @@ async function seedMockData() {
       await Project.create({
         ...projectData,
         author,
+        status: "published",
         publishedAt: new Date()
       });
     }
@@ -772,6 +773,7 @@ async function seedMockData() {
       await CaseStudy.create({
         ...caseStudyData,
         author,
+        status: "published",
         publishedAt: new Date(),
         content: caseStudyData.content + " This is a detailed case study content that would normally be much longer and include comprehensive information about the project, challenges faced, solutions implemented, and results achieved. It would include technical details, methodologies used, and lessons learned throughout the project lifecycle.",
         process: [
@@ -798,6 +800,7 @@ async function seedMockData() {
       await Podcast.create({
         ...podcastData,
         author,
+        status: "published",
         publishedAt: new Date()
       });
     }
@@ -808,6 +811,7 @@ async function seedMockData() {
       await Blog.create({
         ...blogData,
         author,
+        status: "published",
         publishedAt: new Date(),
         content: blogData.content + " This is extended content that would normally be much longer and include detailed explanations, code examples, best practices, and real-world scenarios. The content would be comprehensive and provide valuable insights for readers interested in the topic.",
         seo: {
@@ -824,6 +828,7 @@ async function seedMockData() {
       await Review.create({
         ...reviewData,
         author,
+        status: "published",
         publishedAt: new Date()
       });
     }

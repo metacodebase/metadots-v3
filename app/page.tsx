@@ -1,9 +1,13 @@
-"use client"
-
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
+import { connectMongo } from "@/lib/mongodb"
+import Project from "@/models/Project"
+import CaseStudy from "@/models/CaseStudy"
+import FeaturedProject from "@/components/FeaturedProject"
+import ProjectCard from "@/components/ProjectCard"
+import CaseStudyCard from "@/components/CaseStudyCard"
 import {
   ArrowRight,
   Code,
@@ -54,7 +58,24 @@ import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
 
-export default function MetadotsLanding() {
+async function getData() {
+  await connectMongo()
+  
+  // Get featured project
+  const featuredProject = await Project.findOne({ featured: true, status: "published" })
+  
+  // Get 3 featured case studies
+  const featuredCaseStudies = await CaseStudy.find({ featured: true, status: "published" }).limit(3)
+  
+  return {
+    featuredProject,
+    featuredCaseStudies
+  }
+}
+
+export default async function MetadotsLanding() {
+  const { featuredProject, featuredCaseStudies } = await getData()
+  
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -456,404 +477,29 @@ export default function MetadotsLanding() {
           </div>
 
           {/* Featured Project - Large Card */}
-          <div className="mb-16">
-            <Card className="group relative overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-[1.02] bg-gradient-to-br from-white to-blue-50/30">
-              <div className="grid lg:grid-cols-2 gap-0">
-                <div className="relative overflow-hidden">
-                  <div className="aspect-[4/3] bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 relative">
-                    {/* Animated Dashboard Mockup */}
-                    <div className="absolute inset-4 bg-white/10 backdrop-blur-sm rounded-2xl border border-white/20 p-6">
-                      <div className="space-y-4">
-                        <div className="flex items-center justify-between">
-                          <div className="flex space-x-2">
-                            <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
-                            <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-100"></div>
-                            <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse delay-200"></div>
-                          </div>
-                          <Badge className="bg-white/20 text-white backdrop-blur">Live Dashboard</Badge>
-                        </div>
+          {featuredProject && <FeaturedProject project={featuredProject} />}
 
-                        {/* Animated Charts */}
-                        <div className="grid grid-cols-3 gap-3">
-                          <div className="bg-white/10 rounded-lg p-3 backdrop-blur">
-                            <div className="text-white text-sm font-medium mb-2">Revenue</div>
-                            <div className="text-white text-lg font-bold">$2.4M</div>
-                            <div className="flex items-end space-x-1 mt-2">
-                              {[40, 60, 30, 80, 50, 90, 70].map((height, i) => (
-                                <div
-                                  key={i}
-                                  className="bg-green-400 rounded-sm animate-pulse"
-                                  style={{
-                                    width: "4px",
-                                    height: `${height}%`,
-                                    animationDelay: `${i * 200}ms`,
-                                  }}
-                                ></div>
-                              ))}
-                            </div>
-                          </div>
-                          <div className="bg-white/10 rounded-lg p-3 backdrop-blur">
-                            <div className="text-white text-sm font-medium mb-2">Users</div>
-                            <div className="text-white text-lg font-bold">45.2K</div>
-                            <div className="w-full bg-white/20 rounded-full h-2 mt-2">
-                              <div
-                                className="bg-blue-400 h-2 rounded-full animate-pulse"
-                                style={{ width: "78%" }}
-                              ></div>
-                            </div>
-                          </div>
-                          <div className="bg-white/10 rounded-lg p-3 backdrop-blur">
-                            <div className="text-white text-sm font-medium mb-2">Growth</div>
-                            <div className="text-white text-lg font-bold">+24%</div>
-                            <div className="text-green-400 text-xs mt-1 animate-pulse flex items-center">
-                              <TrendingUp className="w-3 h-3 mr-1" aria-hidden="true" />
-                              +12% this month
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
 
-                    {/* Floating Elements */}
-                    <div className="absolute -top-2 -right-2 w-16 h-16 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-2xl shadow-xl flex items-center justify-center animate-float">
-                      <Zap className="w-8 h-8 text-white" aria-hidden="true" />
-                    </div>
-                  </div>
-                </div>
 
-                <div className="p-8 lg:p-12 flex flex-col justify-center">
-                  <div className="space-y-6">
-                    <div className="flex items-center space-x-3">
-                      <Badge className="bg-blue-100 text-blue-700 px-3 py-1">Featured Project</Badge>
-                      <Badge className="bg-green-100 text-green-700 px-3 py-1">Award Winner</Badge>
-                    </div>
-
-                    <h3 className="text-3xl font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                      AI-Powered Analytics Platform
-                    </h3>
-
-                    <p className="text-lg text-slate-600 leading-relaxed">
-                      Revolutionary analytics platform that processes 10M+ data points daily, featuring real-time AI
-                      insights, predictive modeling, and automated reporting. Increased client efficiency by 340%.
-                    </p>
-
-                    {/* Tech Stack */}
-                    <div className="space-y-3">
-                      <div className="text-sm font-medium text-slate-700">Technology Stack:</div>
-                      <div className="flex flex-wrap gap-2">
-                        {["React", "Node.js", "Python", "TensorFlow", "AWS", "PostgreSQL"].map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Metrics */}
-                    <div className="grid grid-cols-3 gap-4 py-4">
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-blue-600">340%</div>
-                        <div className="text-sm text-slate-600">Efficiency Gain</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-green-600">10M+</div>
-                        <div className="text-sm text-slate-600">Data Points/Day</div>
-                      </div>
-                      <div className="text-center">
-                        <div className="text-2xl font-bold text-purple-600">99.9%</div>
-                        <div className="text-sm text-slate-600">Uptime</div>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-col sm:flex-row gap-4">
-                      <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                        View Case Study
-                        <ArrowRight
-                          className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
-                          aria-hidden="true"
-                        />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        className="border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 bg-transparent"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
-                        Live Demo
-                      </Button>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Card>
-          </div>
-
-          {/* Project Grid */}
+          {/* Case Studies Grid */}
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* E-commerce Project */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-white">
-              <div className="relative">
-                <div className="aspect-video bg-gradient-to-br from-emerald-400 via-teal-500 to-cyan-600 relative overflow-hidden">
-                  {/* Animated E-commerce Interface */}
-                  <div className="absolute inset-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="text-white text-sm font-medium">ShopFlow Pro</div>
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-white/20 rounded p-2">
-                          <div className="w-full h-8 bg-white/30 rounded mb-1"></div>
-                          <div className="text-white text-xs">$299</div>
-                        </div>
-                        <div className="bg-white/20 rounded p-2">
-                          <div className="w-full h-8 bg-white/30 rounded mb-1"></div>
-                          <div className="text-white text-xs">$199</div>
-                        </div>
-                      </div>
-                      <div className="bg-white/20 rounded p-2">
-                        <div className="flex justify-between text-white text-xs">
-                          <span>Sales Today</span>
-                          <span className="animate-pulse">$12,450</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Floating Cart Icon */}
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl shadow-lg flex items-center justify-center animate-bounce-subtle">
-                    <Smartphone className="w-6 h-6 text-white" aria-hidden="true" />
-                  </div>
-                </div>
-
-                {/* Hover Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <div className="p-4 text-white">
-                    <div className="text-sm font-medium">E-commerce Platform</div>
-                    <div className="text-xs opacity-80">Next.js • Stripe • AI Recommendations</div>
-                  </div>
-                </div>
-              </div>
-
-              <CardHeader className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <Badge className="bg-emerald-100 text-emerald-700">E-commerce</Badge>
-                  <div className="flex items-center text-sm text-slate-500">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" aria-hidden="true" />
-                    4.9
-                  </div>
-                </div>
-                <CardTitle className="text-xl mb-3 group-hover:text-emerald-600 transition-colors">
-                  Enterprise E-commerce Platform
-                </CardTitle>
-                <CardDescription className="text-base leading-relaxed mb-4">
-                  AI-powered e-commerce solution with smart recommendations, real-time inventory, and advanced
-                  analytics.
-                </CardDescription>
-
-                {/* Progress Indicators */}
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-600">Performance</span>
-                    <span className="text-emerald-600 font-medium">95%</span>
-                  </div>
-                  <div className="w-full bg-slate-200 rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-emerald-500 to-teal-500 h-2 rounded-full transition-all duration-1000 group-hover:w-[95%]"
-                      style={{ width: "0%" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <Button
-                  variant="ghost"
-                  className="w-full justify-between text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50 transition-all duration-300 group/btn"
-                >
-                  View Case Study
-                  <ArrowRight
-                    className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform"
-                    aria-hidden="true"
-                  />
-                </Button>
-              </CardHeader>
-            </Card>
-
-            {/* FinTech Project */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-white">
-              <div className="relative">
-                <div className="aspect-video bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 relative overflow-hidden">
-                  {/* Animated Banking Interface */}
-                  <div className="absolute inset-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="text-white text-sm font-medium">SecureBank Pro</div>
-                        <div className="flex space-x-1">
-                          <div className="w-1 h-4 bg-blue-400 rounded animate-pulse"></div>
-                          <div className="w-1 h-6 bg-indigo-400 rounded animate-pulse delay-100"></div>
-                          <div className="w-1 h-3 bg-purple-400 rounded animate-pulse delay-200"></div>
-                        </div>
-                      </div>
-                      <div className="bg-white/20 rounded p-3">
-                        <div className="text-white text-lg font-bold">$1,234,567</div>
-                        <div className="text-white/80 text-xs">Total Balance</div>
-                        <div className="text-green-400 text-xs mt-1 animate-pulse">+$12,450 today</div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-white/10 rounded p-2 text-center">
-                          <div className="text-white text-sm font-medium">Transfers</div>
-                          <div className="text-white/80 text-xs">1,247</div>
-                        </div>
-                        <div className="bg-white/10 rounded p-2 text-center">
-                          <div className="text-white text-sm font-medium">Security</div>
-                          <div className="text-green-400 text-xs">100%</div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Security Badge */}
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-br from-green-400 to-emerald-500 rounded-xl shadow-lg flex items-center justify-center animate-pulse">
-                    <Shield className="w-6 h-6 text-white" aria-hidden="true" />
-                  </div>
-                </div>
-              </div>
-
-              <CardHeader className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <Badge className="bg-blue-100 text-blue-700">FinTech</Badge>
-                  <div className="flex items-center text-sm text-slate-500">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" aria-hidden="true" />
-                    4.8
-                  </div>
-                </div>
-                <CardTitle className="text-xl mb-3 group-hover:text-blue-600 transition-colors">
-                  Digital Banking Solution
-                </CardTitle>
-                <CardDescription className="text-base leading-relaxed mb-4">
-                  Secure banking platform with blockchain integration, real-time fraud detection, and AI-powered
-                  insights.
-                </CardDescription>
-
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-600">Security Score</span>
-                    <span className="text-blue-600 font-medium">99%</span>
-                  </div>
-                  <div className="w-full bg-slate-200 rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full transition-all duration-1000 group-hover:w-[99%]"
-                      style={{ width: "0%" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <Button
-                  variant="ghost"
-                  className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 transition-all duration-300 group/btn"
-                >
-                  View Case Study
-                  <ArrowRight
-                    className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform"
-                    aria-hidden="true"
-                  />
-                </Button>
-              </CardHeader>
-            </Card>
-
-            {/* Healthcare Project */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-white">
-              <div className="relative">
-                <div className="aspect-video bg-gradient-to-br from-rose-400 via-pink-500 to-purple-600 relative overflow-hidden">
-                  {/* Animated Healthcare Interface */}
-                  <div className="absolute inset-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20 p-4">
-                    <div className="space-y-3">
-                      <div className="flex items-center justify-between">
-                        <div className="text-white text-sm font-medium">HealthCare AI</div>
-                        <div className="w-2 h-2 bg-green-400 rounded-full animate-ping"></div>
-                      </div>
-                      <div className="grid grid-cols-2 gap-2">
-                        <div className="bg-white/20 rounded p-2">
-                          <div className="text-white text-xs">Patients Today</div>
-                          <div className="text-white text-lg font-bold animate-pulse">247</div>
-                        </div>
-                        <div className="bg-white/20 rounded p-2">
-                          <div className="text-white text-xs">AI Diagnoses</div>
-                          <div className="text-white text-lg font-bold animate-pulse">98.7%</div>
-                        </div>
-                      </div>
-                      <div className="bg-white/10 rounded p-2">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-6 h-6 bg-white/30 rounded-full"></div>
-                          <div>
-                            <div className="text-white text-xs">Dr. Sarah Johnson</div>
-                            <div className="text-white/80 text-xs">Cardiology • Online</div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Medical Cross */}
-                  <div className="absolute -top-2 -right-2 w-12 h-12 bg-gradient-to-br from-red-400 to-pink-500 rounded-xl shadow-lg flex items-center justify-center animate-pulse">
-                    <Heart className="w-6 h-6 text-white" aria-hidden="true" />
-                  </div>
-                </div>
-              </div>
-
-              <CardHeader className="p-6">
-                <div className="flex items-center justify-between mb-3">
-                  <Badge className="bg-rose-100 text-rose-700">Healthcare</Badge>
-                  <div className="flex items-center text-sm text-slate-500">
-                    <Star className="w-4 h-4 fill-yellow-400 text-yellow-400 mr-1" aria-hidden="true" />
-                    5.0
-                  </div>
-                </div>
-                <CardTitle className="text-xl mb-3 group-hover:text-rose-600 transition-colors">
-                  AI Healthcare Platform
-                </CardTitle>
-                <CardDescription className="text-base leading-relaxed mb-4">
-                  Comprehensive healthcare management with AI diagnostics, telemedicine, and patient monitoring systems.
-                </CardDescription>
-
-                <div className="space-y-2 mb-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-600">Accuracy Rate</span>
-                    <span className="text-rose-600 font-medium">98.7%</span>
-                  </div>
-                  <div className="w-full bg-slate-200 rounded-full h-2">
-                    <div
-                      className="bg-gradient-to-r from-rose-500 to-pink-500 h-2 rounded-full transition-all duration-1000 group-hover:w-[98.7%]"
-                      style={{ width: "0%" }}
-                    ></div>
-                  </div>
-                </div>
-
-                <Button
-                  variant="ghost"
-                  className="w-full justify-between text-rose-600 hover:text-rose-700 hover:bg-rose-50 transition-all duration-300 group/btn"
-                >
-                  View Case Study
-                  <ArrowRight
-                    className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform"
-                    aria-hidden="true"
-                  />
-                </Button>
-              </CardHeader>
-            </Card>
+            {featuredCaseStudies.map((caseStudy) => (
+              <CaseStudyCard key={caseStudy._id} caseStudy={caseStudy} />
+            ))}
           </div>
 
-          {/* View All Projects Button */}
+          {/* View All Case Studies Button */}
           <div className="text-center mt-16">
-            <Button
-              size="lg"
-              className="group bg-gradient-to-r from-slate-900 to-slate-700 hover:from-slate-800 hover:to-slate-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4"
-            >
-              <BarChart3 className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" aria-hidden="true" />
-              Explore All Projects
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
-            </Button>
+            <Link href="/case-studies">
+              <Button
+                size="lg"
+                className="group bg-gradient-to-r from-slate-900 to-slate-700 hover:from-slate-800 hover:to-slate-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4"
+              >
+                <BarChart3 className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform" aria-hidden="true" />
+                Explore All Case Studies
+                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>

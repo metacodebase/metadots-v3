@@ -114,12 +114,6 @@ export default function AdminLogin() {
               {isLoading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
-          
-          <div className="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>Default credentials:</p>
-            <p>Email: admin@metadots.com</p>
-            <p>Password: admin123</p>
-          </div>
         </CardContent>
       </Card>
     </div>

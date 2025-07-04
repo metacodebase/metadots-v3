@@ -198,7 +198,7 @@ export default async function MetadotsLanding() {
                   className="group text-lg px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" aria-hidden="true" />
-                  Watch Demo
+                  Free AI Audit
                 </Button>
               </div>
 
@@ -328,9 +328,9 @@ export default async function MetadotsLanding() {
               AI-Powered Innovation
             </div>
             <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              <span className="block text-slate-900">We Create</span>
+              <span className="block text-slate-900">Deep Domain Expertise</span>
               <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
-                Intelligent Impact
+                in Leading Industries
               </span>
             </h2>
             <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
@@ -1035,27 +1035,25 @@ export default async function MetadotsLanding() {
               </CardHeader>
             </Card>
 
-            {/* Consulting & Strategy */}
+            {/* Forward Deployed Engineers */}
             <Card className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
               <CardHeader className="p-8 text-center">
                 <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Lightbulb className="h-10 w-10 text-white" aria-hidden="true" />
+                  <Users className="h-10 w-10 text-white" aria-hidden="true" />
                 </div>
                 <CardTitle className="text-2xl text-white mb-4 group-hover:text-purple-400 transition-colors">
-                  Consulting & Strategy
+                  Forward Deployed Engineers
                 </CardTitle>
                 <CardDescription className="text-white/70 text-base leading-relaxed mb-6">
-                  Strategic guidance and technical consulting to help you make informed decisions about your technology
-                  roadmap and digital transformation.
+                  Our engineers work directly with your team, ensuring rapid delivery, deep integration, and hands-on support for mission-critical projects.
                 </CardDescription>
-
                 {/* Features */}
                 <div className="space-y-3 text-left">
                   {[
-                    "Technology roadmap planning",
-                    "Architecture design & review",
-                    "Performance optimization",
-                    "Digital transformation strategy",
+                    "Onsite & remote collaboration",
+                    "Rapid prototyping & delivery",
+                    "Seamless integration with your team",
+                    "Continuous support & optimization",
                   ].map((feature, index) => (
                     <div key={index} className="flex items-center space-x-3">
                       <div
@@ -1066,9 +1064,8 @@ export default async function MetadotsLanding() {
                     </div>
                   ))}
                 </div>
-
                 <Button className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white">
-                  Book Consultation
+                  Meet Our Engineers
                   <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </Button>
               </CardHeader>
@@ -1131,48 +1128,46 @@ export default async function MetadotsLanding() {
           <div className="grid gap-12 lg:grid-cols-5">
             {/* Contact Info */}
             <div className="lg:col-span-2 space-y-8">
+              {/* Address Card (restored design) */}
+              <Card className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white mb-6">
+                <CardHeader className="p-6 flex items-start space-x-4">
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
+                    <MapPin className="h-7 w-7 text-white" aria-hidden="true" />
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-lg text-slate-900 mb-1">Visit Our Office</h3>
+                    <p className="text-slate-600 leading-relaxed">17 J3 Johar Town, Lahore 54000, Punjab - Pakistan</p>
+                  </div>
+                </CardHeader>
+              </Card>
+              {/* Contact Info Card (phones and email) */}
               <div className="space-y-6">
-                {[
-                  {
-                    icon: MapPin,
-                    title: "Visit Our Office",
-                    content: "17 J3 Johar Town Lahore\nPakistan",
-                    color: "from-blue-500 to-blue-600",
-                  },
-                  {
-                    icon: Phone,
-                    title: "Call Us",
-                    content: "+92 316 29 15 134\nMon-Fri 9AM-6PM PKT",
-                    color: "from-green-500 to-green-600",
-                  },
-                  {
-                    icon: Mail,
-                    title: "Email Us",
-                    content: "iqrar@metadots.co\nWe reply within 24 hours",
-                    color: "from-purple-500 to-purple-600",
-                  },
-                ].map((contact, index) => (
-                  <Card
-                    key={index}
-                    className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white"
-                  >
-                    <CardHeader className="p-6">
-                      <div className="flex items-start space-x-4">
-                        <div
-                          className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${contact.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                        >
-                          <contact.icon className="h-7 w-7 text-white" aria-hidden="true" />
-                        </div>
-                        <div className="flex-1">
-                          <h3 className="font-semibold text-lg text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
-                            {contact.title}
-                          </h3>
-                          <p className="text-slate-600 whitespace-pre-line leading-relaxed">{contact.content}</p>
-                        </div>
+                <h2 className="text-3xl font-bold text-slate-900 mb-4">Contact Us</h2>
+                <Card className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white">
+                  <CardHeader className="p-6 space-y-4">
+                    {/* Phone UK */}
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                        <Phone className="h-5 w-5 text-white" aria-hidden="true" />
                       </div>
-                    </CardHeader>
-                  </Card>
-                ))}
+                      <span className="text-slate-700 text-base">+44 7400 926311 <span className="text-xs text-slate-400 ml-2">Mon-Fri 9AM-6PM PKT</span></span>
+                    </div>
+                    {/* Phone US */}
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                        <Phone className="h-5 w-5 text-white" aria-hidden="true" />
+                      </div>
+                      <span className="text-slate-700 text-base">+1 (585) 928-3494 <span className="text-xs text-slate-400 ml-2">Mon-Fri 9AM-6PM EST</span></span>
+                    </div>
+                    {/* Email */}
+                    <div className="flex items-center space-x-4">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
+                        <Mail className="h-5 w-5 text-white" aria-hidden="true" />
+                      </div>
+                      <span className="text-slate-700 text-base">sales@metadots.co <span className="text-xs text-slate-400 ml-2">We reply within 24 hours</span></span>
+                    </div>
+                  </CardHeader>
+                </Card>
               </div>
 
               {/* Quick Stats */}

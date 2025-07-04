@@ -4,6 +4,7 @@ import { InquiryFormProvider } from "@/components/inquiry-form-provider"
 import { AuthProvider } from "@/contexts/AuthContext"
 import { Toaster } from "@/components/ui/sonner"
 import './globals.css'
+import Head from "next/head"
 
 export const metadata: Metadata = {
   title: 'Metadots - AI Solutions & Technology',
@@ -18,6 +19,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
       <body>
         <ThemeProvider
           attribute="class"

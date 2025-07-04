@@ -138,15 +138,19 @@ export default function Footer() {
               <div className="space-y-3 pt-4">
                 <div className="flex items-center space-x-3 text-slate-400">
                   <MapPin className="w-4 h-4" aria-hidden="true" />
-                  <span className="text-sm">17 J3 Johar Town Lahore</span>
+                  <span className="text-sm">17 J3 Johar Town, Lahore 54000, Punjab - Pakistan</span>
                 </div>
                 <div className="flex items-center space-x-3 text-slate-400">
                   <Phone className="w-4 h-4" aria-hidden="true" />
-                  <span className="text-sm">+92 316 29 15 134</span>
+                  <span className="text-sm">+44 7400 926311</span>
+                </div>
+                <div className="flex items-center space-x-3 text-slate-400">
+                  <Phone className="w-4 h-4" aria-hidden="true" />
+                  <span className="text-sm">+1 (585) 928-3494</span>
                 </div>
                 <div className="flex items-center space-x-3 text-slate-400">
                   <Mail className="w-4 h-4" aria-hidden="true" />
-                  <span className="text-sm">iqrar@metadots.co</span>
+                  <span className="text-sm">sales@metadots.co</span>
                 </div>
               </div>
             </div>

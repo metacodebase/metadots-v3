@@ -69,29 +69,41 @@ import Link from "next/link"
 import Footer from "@/components/footer"
 
 async function getData() {
-  await connectMongo()
-  
-  // Get featured project
-  const featuredProject = await Project.findOne({ featured: true, status: "published" })
-  
-  // Get 3 featured case studies
-  const featuredCaseStudies = await CaseStudy.find({ featured: true, status: "published" }).limit(3)
-  
-  // Get 3 featured podcasts
-  const featuredPodcasts = await Podcast.find({ featured: true, status: "published" }).limit(3)
-  
-  // Get 3 featured blogs
-  const featuredBlogs = await Blog.find({ featured: true, status: "published" }).limit(3)
-  
-  // Get 3 featured reviews
-  const featuredReviews = await Review.find({ featured: true, status: "published" }).limit(3)
-  
-  return {
-    featuredProject: featuredProject ? JSON.parse(JSON.stringify(featuredProject)) : null,
-    featuredCaseStudies: featuredCaseStudies ? JSON.parse(JSON.stringify(featuredCaseStudies)) : [],
-    featuredPodcasts: featuredPodcasts ? JSON.parse(JSON.stringify(featuredPodcasts)) : [],
-    featuredBlogs: featuredBlogs ? JSON.parse(JSON.stringify(featuredBlogs)) : [],
-    featuredReviews: featuredReviews ? JSON.parse(JSON.stringify(featuredReviews)) : []
+  try {
+    await connectMongo()
+    
+    // Get featured project
+    const featuredProject = await Project.findOne({ featured: true, status: "published" })
+    
+    // Get 3 featured case studies
+    const featuredCaseStudies = await CaseStudy.find({ featured: true, status: "published" }).limit(3)
+    
+    // Get 3 featured podcasts
+    const featuredPodcasts = await Podcast.find({ featured: true, status: "published" }).limit(3)
+    
+    // Get 3 featured blogs
+    const featuredBlogs = await Blog.find({ featured: true, status: "published" }).limit(3)
+    
+    // Get 3 featured reviews
+    const featuredReviews = await Review.find({ featured: true, status: "published" }).limit(3)
+    
+    return {
+      featuredProject: featuredProject ? JSON.parse(JSON.stringify(featuredProject)) : null,
+      featuredCaseStudies: featuredCaseStudies ? JSON.parse(JSON.stringify(featuredCaseStudies)) : [],
+      featuredPodcasts: featuredPodcasts ? JSON.parse(JSON.stringify(featuredPodcasts)) : [],
+      featuredBlogs: featuredBlogs ? JSON.parse(JSON.stringify(featuredBlogs)) : [],
+      featuredReviews: featuredReviews ? JSON.parse(JSON.stringify(featuredReviews)) : []
+    }
+  } catch (error) {
+    console.error('Error fetching data for homepage:', error);
+    // Return empty data instead of failing the entire page
+    return {
+      featuredProject: null,
+      featuredCaseStudies: [],
+      featuredPodcasts: [],
+      featuredBlogs: [],
+      featuredReviews: []
+    }
   }
 }
 
@@ -328,63 +340,79 @@ export default async function MetadotsLanding() {
           </div>
 
           {/* AI Services Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-16">
-            {/* LLM Integration */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-indigo-50">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-8">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Zap className="h-8 w-8 text-white" aria-hidden="true" />
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
+            {/* Healthcare */}
+            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-pink-50 to-red-100 p-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-pink-600/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <CardHeader className="relative z-10 p-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Heart className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-2xl mb-4 group-hover:text-blue-600 transition-colors">
-                  LLM Integration
+                <CardTitle className="text-lg mb-2 group-hover:text-pink-600 transition-colors">
+                  Healthcare
                 </CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Seamlessly integrate GPT-4, Claude, and custom language models into your applications. From chatbots
-                  to content generation, we make AI accessible and powerful.
+                <CardDescription className="text-sm leading-relaxed">
+                  AI-powered diagnostics, patient management, and predictive analytics to improve outcomes and streamline healthcare operations.
                 </CardDescription>
-                <div className="mt-6 flex items-center text-blue-600 font-medium group-hover:translate-x-2 transition-transform">
-                  Explore LLM Solutions <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <div className="mt-4 flex items-center text-pink-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
+                  Explore Healthcare AI <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </div>
               </CardHeader>
             </Card>
 
-            {/* Computer Vision */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-purple-50 to-pink-50">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/5 to-pink-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-8">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Eye className="h-8 w-8 text-white" aria-hidden="true" />
-                </div>
-                <CardTitle className="text-2xl mb-4 group-hover:text-purple-600 transition-colors">
-                  Computer Vision
-                </CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Advanced image recognition, object detection, and visual AI solutions. Transform visual data into
-                  actionable insights with cutting-edge ML models.
-                </CardDescription>
-                <div className="mt-6 flex items-center text-purple-600 font-medium group-hover:translate-x-2 transition-transform">
-                  Discover Vision AI <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                </div>
-              </CardHeader>
-            </Card>
-
-            {/* Intelligent Automation */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-green-50 to-emerald-50">
+            {/* Finance */}
+            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-green-50 to-emerald-100 p-2">
               <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-emerald-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-8">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Workflow className="h-8 w-8 text-white" aria-hidden="true" />
+              <CardHeader className="relative z-10 p-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <BarChart3 className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-2xl mb-4 group-hover:text-green-600 transition-colors">
-                  Smart Automation
+                <CardTitle className="text-lg mb-2 group-hover:text-green-600 transition-colors">
+                  Finance
                 </CardTitle>
-                <CardDescription className="text-base leading-relaxed">
-                  Intelligent process automation that learns and adapts. Reduce manual work by 80% with AI-driven
-                  workflows and decision engines.
+                <CardDescription className="text-sm leading-relaxed">
+                  Fraud detection, risk assessment, and automated financial insights for smarter, faster decision-making in finance.
                 </CardDescription>
-                <div className="mt-6 flex items-center text-green-600 font-medium group-hover:translate-x-2 transition-transform">
-                  Automate Processes <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                <div className="mt-4 flex items-center text-green-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
+                  Explore Finance AI <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </div>
+              </CardHeader>
+            </Card>
+
+            {/* Legal */}
+            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-indigo-100 p-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <CardHeader className="relative z-10 p-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <Shield className="h-6 w-6 text-white" aria-hidden="true" />
+                </div>
+                <CardTitle className="text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                  Legal
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  Contract analysis, legal research, and compliance automation to empower law firms and legal departments.
+                </CardDescription>
+                <div className="mt-4 flex items-center text-blue-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
+                  Explore Legal AI <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                </div>
+              </CardHeader>
+            </Card>
+
+            {/* EdTech */}
+            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-yellow-50 to-orange-100 p-2">
+              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <CardHeader className="relative z-10 p-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
+                  <BookOpen className="h-6 w-6 text-white" aria-hidden="true" />
+                </div>
+                <CardTitle className="text-lg mb-2 group-hover:text-yellow-600 transition-colors">
+                  EdTech
+                </CardTitle>
+                <CardDescription className="text-sm leading-relaxed">
+                  Personalized learning, automated grading, and intelligent content delivery for next-generation education platforms.
+                </CardDescription>
+                <div className="mt-4 flex items-center text-yellow-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
+                  Explore EdTech AI <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
                 </div>
               </CardHeader>
             </Card>

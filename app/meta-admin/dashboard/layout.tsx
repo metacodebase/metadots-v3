@@ -11,7 +11,8 @@ import {
   Settings,
   LogOut,
   Menu,
-  Star
+  Star,
+  Briefcase
 } from "lucide-react"
 import Link from "next/link"
 import { useAuth } from "@/contexts/AuthContext"
@@ -59,6 +60,12 @@ const allNavItems = [
     href: "/meta-admin/dashboard/reviews",
     icon: "star",
     roles: ["admin"], // Only admin can see reviews
+  },
+  {
+    title: "Jobs",
+    href: "/meta-admin/dashboard/jobs",
+    icon: "briefcase",
+    roles: ["admin", "author"], // Both admin and author can see jobs
   },
   {
     title: "Settings",
@@ -111,6 +118,7 @@ export default function AdminLayout({
                   {item.icon === "headphones" && <Headphones className="w-5 h-5 mr-3" />}
                   {item.icon === "book-open" && <BookOpen className="w-5 h-5 mr-3" />}
                   {item.icon === "star" && <Star className="w-5 h-5 mr-3" />}
+                  {item.icon === "briefcase" && <Briefcase className="w-5 h-5 mr-3" />}
                   {item.icon === "settings" && <Settings className="w-5 h-5 mr-3" />}
                   {item.title}
                 </Link>

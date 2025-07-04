@@ -16,25 +16,30 @@ interface BlogDetailPageProps {
 }
 
 async function getData(slug: string) {
-  await connectMongo()
-  
-  // Get the specific blog by slug
-  const blog = await Blog.findOne({ slug, status: "published" })
-  
-  if (!blog) {
+  try {
+    await connectMongo()
+    
+    // Get the specific blog by slug
+    const blog = await Blog.findOne({ slug, status: "published" })
+    
+    if (!blog) {
+      notFound()
+    }
+    
+    // Get related blogs (same category, excluding current blog)
+    const relatedBlogs = await Blog.find({ 
+      category: blog.category, 
+      _id: { $ne: blog._id },
+      status: "published" 
+    }).limit(3)
+    
+    return {
+      blog: JSON.parse(JSON.stringify(blog)),
+      relatedBlogs: JSON.parse(JSON.stringify(relatedBlogs))
+    }
+  } catch (error) {
+    console.error('Error fetching blog:', error);
     notFound()
-  }
-  
-  // Get related blogs (same category, excluding current blog)
-  const relatedBlogs = await Blog.find({ 
-    category: blog.category, 
-    _id: { $ne: blog._id },
-    status: "published" 
-  }).limit(3)
-  
-  return {
-    blog: JSON.parse(JSON.stringify(blog)),
-    relatedBlogs: JSON.parse(JSON.stringify(relatedBlogs))
   }
 }
 

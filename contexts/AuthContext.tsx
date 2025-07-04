@@ -63,9 +63,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
           return true;
         }
       }
+      // If invalid, clear user/token
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_user');
       return false;
     } catch (error) {
       console.error('Token validation error:', error);
+      setUser(null);
+      setToken(null);
+      localStorage.removeItem('admin_token');
+      localStorage.removeItem('admin_user');
       return false;
     }
   }, []);

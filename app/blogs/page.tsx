@@ -22,13 +22,20 @@ const categories = [
 ]
 
 async function getData() {
-  await connectMongo()
-  
-  // Get all published blogs
-  const blogs = await Blog.find({ status: "published" }).sort({ createdAt: -1 })
-  
-  return {
-    blogs: blogs ? JSON.parse(JSON.stringify(blogs)) : []
+  try {
+    await connectMongo()
+    
+    // Get all published blogs
+    const blogs = await Blog.find({ status: "published" }).sort({ createdAt: -1 })
+    
+    return {
+      blogs: blogs ? JSON.parse(JSON.stringify(blogs)) : []
+    }
+  } catch (error) {
+    console.error('Error fetching blogs:', error);
+    return {
+      blogs: []
+    }
   }
 }
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -22,12 +24,41 @@ import {
   Lightbulb,
   PenTool,
   Settings,
+  Loader2,
 } from "lucide-react"
 
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
 import { useInquiryForm } from "@/components/inquiry-form-provider"
+import { useEffect, useState } from "react"
+
+interface Job {
+  _id: string;
+  title: string;
+  slug: string;
+  department: string;
+  location: string;
+  type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Freelance';
+  experience: string;
+  salary: string;
+  description: string;
+  requirements: string[];
+  benefits: string[];
+  tags: string[];
+  icon: string;
+  color: string;
+  featured: boolean;
+  status: 'draft' | 'published' | 'archived' | 'closed';
+  stats: {
+    views: number;
+    applications: number;
+    shares: number;
+    saves: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+}
 
 const jobOpenings = [
   {
@@ -242,7 +273,59 @@ const benefits = [
 
 export default function CareersPage() {
   const { openInquiryForm } = useInquiryForm()
+  const [jobs, setJobs] = useState<Job[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [departmentFilter, setDepartmentFilter] = useState('All');
+  const [departments, setDepartments] = useState<string[]>(["All", "Engineering", "AI Research", "Mobile", "Infrastructure", "Design", "Data"]);
+
+  useEffect(() => {
+    const fetchJobs = async () => {
+      try {
+        setIsLoading(true);
+        const params = new URLSearchParams();
+        if (searchTerm) params.append('search', searchTerm);
+        if (departmentFilter !== 'All') params.append('department', departmentFilter);
+
+        const response = await fetch(`/api/jobs?${params}`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch jobs');
+        }
+
+        const data = await response.json();
+        setJobs(data.jobs);
+        setDepartments(data.departments || departments);
+      } catch (error) {
+        console.error('Error fetching jobs:', error);
+        // Fallback to empty array if API fails
+        setJobs([]);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchJobs();
+  }, [searchTerm, departmentFilter]);
   
+  const renderIcon = (iconName: string) => {
+    switch (iconName) {
+      case 'Code':
+        return <Code className="w-8 h-8 text-white" />;
+      case 'Lightbulb':
+        return <Lightbulb className="w-8 h-8 text-white" />;
+      case 'Smartphone':
+        return <Smartphone className="w-8 h-8 text-white" />;
+      case 'Settings':
+        return <Settings className="w-8 h-8 text-white" />;
+      case 'PenTool':
+        return <PenTool className="w-8 h-8 text-white" />;
+      case 'Database':
+        return <Database className="w-8 h-8 text-white" />;
+      default:
+        return <Briefcase className="w-8 h-8 text-white" />;
+    }
+  };
+
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -309,7 +392,7 @@ export default function CareersPage() {
                   <div className="text-sm text-white/70">Team Members</div>
                 </div>
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <div className="text-3xl font-bold text-white">6</div>
+                  <div className="text-3xl font-bold text-white">{jobs.length}</div>
                   <div className="text-sm text-white/70">Open Positions</div>
                 </div>
               </div>
@@ -341,33 +424,19 @@ export default function CareersPage() {
 
                   {/* Open Positions */}
                   <div className="space-y-3">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <Code className="w-4 h-4 text-blue-400" />
-                          <span className="text-white text-sm">Senior Developer</span>
+                    {jobs.slice(0, 3).map((job, index) => (
+                      <div key={job._id} className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center space-x-3">
+                            {renderIcon(job.icon)}
+                            <span className="text-white text-sm">{job.title}</span>
+                          </div>
+                          <Badge className={`${job.featured ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'} text-xs`}>
+                            {job.featured ? 'Featured' : 'New'}
+                          </Badge>
                         </div>
-                        <Badge className="bg-green-500/20 text-green-400 text-xs">New</Badge>
                       </div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <Lightbulb className="w-4 h-4 text-purple-400" />
-                          <span className="text-white text-sm">AI Engineer</span>
-                        </div>
-                        <Badge className="bg-blue-500/20 text-blue-400 text-xs">Hot</Badge>
-                      </div>
-                    </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center space-x-3">
-                          <PenTool className="w-4 h-4 text-pink-400" />
-                          <span className="text-white text-sm">UX Designer</span>
-                        </div>
-                        <Badge className="bg-orange-500/20 text-orange-400 text-xs">Remote</Badge>
-                      </div>
-                    </div>
+                    ))}
                   </div>
 
                   {/* Team Stats */}
@@ -454,7 +523,12 @@ export default function CareersPage() {
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input placeholder="Search positions..." className="pl-10 h-12 border-slate-200 focus:border-blue-500" />
+              <Input 
+                placeholder="Search positions..." 
+                className="pl-10 h-12 border-slate-200 focus:border-blue-500"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
 
             {/* Department Filters */}
@@ -462,11 +536,12 @@ export default function CareersPage() {
               {departments.map((department) => (
                 <Button
                   key={department}
-                  variant={department === "All" ? "default" : "outline"}
+                  variant={department === departmentFilter ? "default" : "outline"}
                   size="sm"
                   className={
-                    department === "All" ? "bg-blue-600 hover:bg-blue-700" : "hover:bg-blue-50 hover:text-blue-600"
+                    department === departmentFilter ? "bg-blue-600 hover:bg-blue-700" : "hover:bg-blue-50 hover:text-blue-600"
                   }
+                  onClick={() => setDepartmentFilter(department)}
                 >
                   {department}
                 </Button>
@@ -493,11 +568,118 @@ export default function CareersPage() {
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
-            {jobOpenings
-              .filter((job) => job.featured)
-              .map((job) => (
+            {isLoading ? (
+              <div className="col-span-2 flex items-center justify-center h-32">
+                <Loader2 className="w-8 h-8 animate-spin" />
+              </div>
+            ) : jobs.filter((job) => job.featured).length === 0 ? (
+              <div className="col-span-2 text-center py-12">
+                <p className="text-gray-500">No featured positions available at the moment.</p>
+              </div>
+            ) : (
+              jobs
+                .filter((job) => job.featured)
+                .map((job) => (
+                  <Card
+                    key={job._id}
+                    className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
+                  >
+                    <CardHeader className="p-8">
+                      <div className="flex items-start justify-between mb-6">
+                        <div className="flex items-center space-x-4">
+                          <div
+                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                          >
+                            {renderIcon(job.icon)}
+                          </div>
+                          <div>
+                            <CardTitle className="text-2xl mb-2 group-hover:text-blue-600 transition-colors">
+                              {job.title}
+                            </CardTitle>
+                            <div className="flex items-center space-x-4 text-sm text-slate-600">
+                              <Badge className="bg-blue-100 text-blue-700">{job.department}</Badge>
+                              <Badge className="bg-green-100 text-green-700">Featured</Badge>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <CardDescription className="text-base leading-relaxed mb-6">{job.description}</CardDescription>
+
+                      {/* Job Details */}
+                      <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
+                        <div className="flex items-center space-x-2 text-sm">
+                          <MapPin className="w-4 h-4 text-slate-500" />
+                          <span>{job.location}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                          <Clock className="w-4 h-4 text-slate-500" />
+                          <span>{job.type}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                          <Briefcase className="w-4 h-4 text-slate-500" />
+                          <span>{job.experience}</span>
+                        </div>
+                        <div className="flex items-center space-x-2 text-sm">
+                          <DollarSign className="w-4 h-4 text-slate-500" />
+                          <span>{job.salary}</span>
+                        </div>
+                      </div>
+
+                      {/* Tech Stack */}
+                      <div className="mb-6">
+                        <div className="text-sm font-medium text-slate-700 mb-3">Required Skills</div>
+                        <div className="flex flex-wrap gap-2">
+                          {job.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+
+                      {/* Actions */}
+                      <div className="flex gap-3">
+                        <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                          Apply Now
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                        <Button variant="outline" onClick={openInquiryForm}>Learn More</Button>
+                      </div>
+                    </CardHeader>
+                  </Card>
+                ))
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* All Positions */}
+      <section className="py-20 bg-white">
+        <div className="container">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">All Open Positions</h2>
+            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+              Explore all the opportunities available at Metadots
+            </p>
+          </div>
+
+          <div className="grid gap-8 lg:grid-cols-2">
+            {isLoading ? (
+              <div className="col-span-2 flex items-center justify-center h-32">
+                <Loader2 className="w-8 h-8 animate-spin" />
+              </div>
+            ) : jobs.length === 0 ? (
+              <div className="col-span-2 text-center py-12">
+                <p className="text-gray-500">No positions available at the moment. Please check back later.</p>
+              </div>
+            ) : (
+              jobs.map((job) => (
                 <Card
-                  key={job.id}
+                  key={job._id}
                   className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
                 >
                   <CardHeader className="p-8">
@@ -506,7 +688,7 @@ export default function CareersPage() {
                         <div
                           className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
                         >
-                          <job.icon className="w-8 h-8 text-white" />
+                          {renderIcon(job.icon)}
                         </div>
                         <div>
                           <CardTitle className="text-2xl mb-2 group-hover:text-blue-600 transition-colors">
@@ -514,7 +696,6 @@ export default function CareersPage() {
                           </CardTitle>
                           <div className="flex items-center space-x-4 text-sm text-slate-600">
                             <Badge className="bg-blue-100 text-blue-700">{job.department}</Badge>
-                            <Badge className="bg-green-100 text-green-700">Featured</Badge>
                           </div>
                         </div>
                       </div>
@@ -567,94 +748,8 @@ export default function CareersPage() {
                     </div>
                   </CardHeader>
                 </Card>
-              ))}
-          </div>
-        </div>
-      </section>
-
-      {/* All Positions */}
-      <section className="py-20 bg-white">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">All Open Positions</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Explore all the opportunities available at Metadots
-            </p>
-          </div>
-
-          <div className="grid gap-8 lg:grid-cols-2">
-            {jobOpenings.map((job) => (
-              <Card
-                key={job.id}
-                className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
-              >
-                <CardHeader className="p-8">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center space-x-4">
-                      <div
-                        className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                      >
-                        <job.icon className="w-8 h-8 text-white" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-2xl mb-2 group-hover:text-blue-600 transition-colors">
-                          {job.title}
-                        </CardTitle>
-                        <div className="flex items-center space-x-4 text-sm text-slate-600">
-                          <Badge className="bg-blue-100 text-blue-700">{job.department}</Badge>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <CardDescription className="text-base leading-relaxed mb-6">{job.description}</CardDescription>
-
-                  {/* Job Details */}
-                  <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
-                    <div className="flex items-center space-x-2 text-sm">
-                      <MapPin className="w-4 h-4 text-slate-500" />
-                      <span>{job.location}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <Clock className="w-4 h-4 text-slate-500" />
-                      <span>{job.type}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <Briefcase className="w-4 h-4 text-slate-500" />
-                      <span>{job.experience}</span>
-                    </div>
-                    <div className="flex items-center space-x-2 text-sm">
-                      <DollarSign className="w-4 h-4 text-slate-500" />
-                      <span>{job.salary}</span>
-                    </div>
-                  </div>
-
-                  {/* Tech Stack */}
-                  <div className="mb-6">
-                    <div className="text-sm font-medium text-slate-700 mb-3">Required Skills</div>
-                    <div className="flex flex-wrap gap-2">
-                      {job.tags.map((tag) => (
-                        <span
-                          key={tag}
-                          className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Actions */}
-                  <div className="flex gap-3">
-                    <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                      Apply Now
-                      <ArrowRight className="ml-2 h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" onClick={openInquiryForm}>Learn More</Button>
-                  </div>
-                </CardHeader>
-              </Card>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>

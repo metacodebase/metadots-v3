@@ -15,13 +15,20 @@ import Footer from "@/components/footer"
 const categories = ["All", "AI/ML", "E-commerce", "FinTech", "Healthcare", "IoT", "Real Estate"]
 
 async function getData() {
-  await connectMongo()
-  
-  // Get all published projects
-  const projects = await Project.find({ status: "published" }).sort({ createdAt: -1 })
-  
-  return {
-    projects: projects ? JSON.parse(JSON.stringify(projects)) : []
+  try {
+    await connectMongo()
+    
+    // Get all published projects
+    const projects = await Project.find({ status: "published" }).sort({ createdAt: -1 })
+    
+    return {
+      projects: projects ? JSON.parse(JSON.stringify(projects)) : []
+    }
+  } catch (error) {
+    console.error('Error fetching projects:', error);
+    return {
+      projects: []
+    }
   }
 }
 

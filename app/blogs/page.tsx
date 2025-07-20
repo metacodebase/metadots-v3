@@ -1,15 +1,43 @@
+"use client";
+
+import { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Search, Filter, Calendar, Clock, Eye, Heart, Share2, BookOpen, Menu } from "lucide-react"
-import { connectMongo } from "@/lib/mongodb"
-import Blog from "@/models/Blog"
+import { ArrowRight, Search, Filter, Calendar, Clock, Eye, Heart, Share2, BookOpen, Menu, Loader2 } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
 
-
+interface Blog {
+  _id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  featuredImage?: string;
+  category: string;
+  tags: string[];
+  author: {
+    id: string;
+    name: string;
+    role: string;
+    avatar?: string;
+  };
+  status: 'draft' | 'published' | 'scheduled' | 'archived';
+  featured: boolean;
+  publishedAt?: string;
+  readTime: string;
+  stats: {
+    views: number;
+    likes: number;
+    shares: number;
+    comments: number;
+  };
+  createdAt: string;
+  updatedAt: string;
+  color?: string;
+}
 
 const categories = [
   "All",
@@ -19,28 +47,108 @@ const categories = [
   "Mobile Development",
   "Database",
   "Cybersecurity",
-]
+  "DevOps",
+  "UI/UX Design"
+];
 
-async function getData() {
-  try {
-    await connectMongo()
-    
-    // Get all published blogs
-    const blogs = await Blog.find({ status: "published" }).sort({ createdAt: -1 })
-    
-    return {
-      blogs: blogs ? JSON.parse(JSON.stringify(blogs)) : []
+const ITEMS_PER_PAGE = 9;
+
+export default function BlogsPage() {
+  const [blogs, setBlogs] = useState<Blog[]>([]);
+  const [filteredBlogs, setFilteredBlogs] = useState<Blog[]>([]);
+  const [displayedBlogs, setDisplayedBlogs] = useState<Blog[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [hasMore, setHasMore] = useState(true);
+
+  // Fetch blogs
+  const fetchBlogs = async () => {
+    try {
+      setIsLoading(true);
+      const response = await fetch('/api/blogs');
+      if (response.ok) {
+        const data = await response.json();
+        const sortedBlogs = data.blogs.sort((a: Blog, b: Blog) => 
+          new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        setBlogs(sortedBlogs);
+        setFilteredBlogs(sortedBlogs);
+        setDisplayedBlogs(sortedBlogs.slice(0, ITEMS_PER_PAGE));
+        setHasMore(sortedBlogs.length > ITEMS_PER_PAGE);
+      }
+    } catch (error) {
+      console.error('Error fetching blogs:', error);
+    } finally {
+      setIsLoading(false);
     }
-  } catch (error) {
-    console.error('Error fetching blogs:', error);
-    return {
-      blogs: []
+  };
+
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
+  // Filter blogs based on search and category
+  useEffect(() => {
+    let filtered = blogs;
+
+    // Filter by category
+    if (selectedCategory !== 'All') {
+      filtered = filtered.filter(blog => blog.category === selectedCategory);
     }
+
+    // Filter by search term
+    if (searchTerm) {
+      filtered = filtered.filter(blog =>
+        blog.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        blog.tags.some(tag => tag.toLowerCase().includes(searchTerm.toLowerCase()))
+      );
+    }
+
+    setFilteredBlogs(filtered);
+    setCurrentPage(1);
+    setDisplayedBlogs(filtered.slice(0, ITEMS_PER_PAGE));
+    setHasMore(filtered.length > ITEMS_PER_PAGE);
+  }, [blogs, searchTerm, selectedCategory]);
+
+  // Load more blogs
+  const loadMore = () => {
+    if (isLoadingMore || !hasMore) return;
+
+    setIsLoadingMore(true);
+    const nextPage = currentPage + 1;
+    const startIndex = (nextPage - 1) * ITEMS_PER_PAGE;
+    const endIndex = startIndex + ITEMS_PER_PAGE;
+    const newBlogs = filteredBlogs.slice(startIndex, endIndex);
+
+    setDisplayedBlogs(prev => [...prev, ...newBlogs]);
+    setCurrentPage(nextPage);
+    setHasMore(endIndex < filteredBlogs.length);
+    setIsLoadingMore(false);
+  };
+
+  // Get featured blogs
+  const featuredBlogs = blogs.filter(blog => blog.featured).slice(0, 2);
+
+  // Get non-featured blogs for the grid
+  const gridBlogs = displayedBlogs.filter(blog => !blog.featured);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-white w-full overflow-x-hidden">
+        <div className="flex items-center justify-center min-h-screen">
+          <div className="text-center">
+            <Loader2 className="h-8 w-8 animate-spin mx-auto mb-4 text-blue-600" />
+            <p className="text-gray-600">Loading blogs...</p>
+          </div>
+        </div>
+      </div>
+    );
   }
-}
 
-export default async function BlogsPage() {
-  const { blogs } = await getData()
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
@@ -142,7 +250,7 @@ export default async function BlogsPage() {
                   {/* Blog Stats */}
                   <div className="grid grid-cols-3 gap-3">
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-white">50+</div>
+                      <div className="text-lg font-bold text-white">{blogs.length}+</div>
                       <div className="text-xs text-white/60">Articles</div>
                     </div>
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
@@ -160,8 +268,12 @@ export default async function BlogsPage() {
                     <div className="flex items-center space-x-3 mb-3">
                       <div className="w-8 h-8 bg-gradient-to-br from-blue-400 to-purple-500 rounded-lg"></div>
                       <div>
-                        <div className="text-white text-sm font-medium">AI in Business</div>
-                        <div className="text-white/60 text-xs">8 min read • 2.3K views</div>
+                        <div className="text-white text-sm font-medium">
+                          {blogs[0]?.title || "Latest Article"}
+                        </div>
+                        <div className="text-white/60 text-xs">
+                          {blogs[0]?.readTime || "5 min read"} • {blogs[0]?.stats?.views || "1.2K"} views
+                        </div>
                       </div>
                     </div>
                     <div className="space-y-2">
@@ -206,7 +318,12 @@ export default async function BlogsPage() {
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input placeholder="Search articles..." className="pl-10 h-12 border-slate-200 focus:border-blue-500" />
+              <Input 
+                placeholder="Search articles..." 
+                className="pl-10 h-12 border-slate-200 focus:border-blue-500"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
             </div>
 
             {/* Category Filters */}
@@ -214,10 +331,11 @@ export default async function BlogsPage() {
               {categories.map((category) => (
                 <Button
                   key={category}
-                  variant={category === "All" ? "default" : "outline"}
+                  variant={selectedCategory === category ? "default" : "outline"}
                   size="sm"
+                  onClick={() => setSelectedCategory(category)}
                   className={
-                    category === "All" ? "bg-blue-600 hover:bg-blue-700" : "hover:bg-blue-50 hover:text-blue-600"
+                    selectedCategory === category ? "bg-blue-600 hover:bg-blue-700" : "hover:bg-blue-50 hover:text-blue-600"
                   }
                 >
                   {category}
@@ -225,29 +343,27 @@ export default async function BlogsPage() {
               ))}
             </div>
 
-            {/* Sort */}
-            <Button variant="outline" className="flex items-center gap-2 bg-transparent">
-              <Filter className="w-4 h-4" />
-              Latest First
-            </Button>
+            {/* Results Count */}
+            <div className="text-sm text-slate-600">
+              {filteredBlogs.length} article{filteredBlogs.length !== 1 ? 's' : ''} found
+            </div>
           </div>
         </div>
       </section>
 
       {/* Featured Articles */}
-      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
-        <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Articles</h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Our most popular and impactful articles that are shaping the tech industry
-            </p>
-          </div>
+      {featuredBlogs.length > 0 && (
+        <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+          <div className="container">
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Articles</h2>
+              <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+                Our most popular and impactful articles that are shaping the tech industry
+              </p>
+            </div>
 
-          <div className="grid gap-8 lg:grid-cols-2">
-            {blogs
-              .filter((blog: any) => blog.featured)
-              .map((blog: any) => (
+            <div className="grid gap-8 lg:grid-cols-2">
+              {featuredBlogs.map((blog) => (
                 <Card
                   key={blog._id}
                   className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
@@ -347,9 +463,10 @@ export default async function BlogsPage() {
                   </CardHeader>
                 </Card>
               ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* All Articles Grid */}
       <section className="py-20 bg-white">
@@ -361,92 +478,142 @@ export default async function BlogsPage() {
             </p>
           </div>
 
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {blogs.map((blog: any) => (
-              <Card
-                key={blog._id}
-                className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white"
-              >
-                <div className="relative">
-                  <div className="aspect-video overflow-hidden">
-                    <Image
-                      src={blog.featuredImage || "/placeholder.svg"}
-                      alt={blog.title}
-                      width={400}
-                      height={240}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                    />
-                  </div>
-                  <div className="absolute top-3 left-3">
-                    <Badge className={`bg-gradient-to-r ${blog.color || "from-blue-500 to-indigo-600"} text-white text-xs`}>{blog.category}</Badge>
-                  </div>
-                </div>
-
-                <CardHeader className="p-6">
-                  <div className="flex items-center space-x-3 mb-3">
-                    <Image
-                      src={blog.author?.avatar || "/placeholder.svg"}
-                      alt={blog.author?.name || "Author"}
-                      width={32}
-                      height={32}
-                      className="rounded-full"
-                    />
-                    <div>
-                      <div className="font-medium text-sm text-slate-900">{blog.author?.name || "Metadots Team"}</div>
-                      <div className="text-xs text-slate-600">{blog.author?.role || "Tech Writer"}</div>
-                    </div>
-                  </div>
-
-                  <CardTitle className="text-lg mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
-                    {blog.title}
-                  </CardTitle>
-
-                  <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
-                    {blog.excerpt}
-                  </CardDescription>
-
-                  {/* Meta */}
-                  <div className="flex items-center justify-between text-xs text-slate-600 mb-4">
-                    <div className="flex items-center space-x-3">
-                      <div className="flex items-center space-x-1">
-                        <Calendar className="w-3 h-3" />
-                        <span>{new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
-                      </div>
-                      <div className="flex items-center space-x-1">
-                        <Clock className="w-3 h-3" />
-                        <span>{blog.readTime || "5 min read"}</span>
-                      </div>
-                    </div>
-                    <div className="flex items-center space-x-2">
-                      <div className="flex items-center space-x-1">
-                        <Eye className="w-3 h-3" />
-                        <span>{blog.stats?.views || "1.2K"}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <Button
-                    asChild
-                    variant="ghost"
-                    className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 group/btn"
+          {gridBlogs.length === 0 ? (
+            <div className="text-center py-12">
+              <BookOpen className="h-12 w-12 text-gray-400 mx-auto mb-4" />
+              <h3 className="text-lg font-medium text-gray-900 mb-2">No articles found</h3>
+              <p className="text-gray-600 mb-4">
+                {searchTerm || selectedCategory !== 'All' 
+                  ? "Try adjusting your search or filter criteria."
+                  : "No articles are available at the moment."
+                }
+              </p>
+              {(searchTerm || selectedCategory !== 'All') && (
+                <Button 
+                  onClick={() => {
+                    setSearchTerm('');
+                    setSelectedCategory('All');
+                  }}
+                  variant="outline"
+                >
+                  Clear Filters
+                </Button>
+              )}
+            </div>
+          ) : (
+            <>
+              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                {gridBlogs.map((blog) => (
+                  <Card
+                    key={blog._id}
+                    className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white"
                   >
-                    <Link href={`/blogs/${blog.slug}`}>
-                      Read More
-                      <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </Link>
-                  </Button>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
+                    <div className="relative">
+                      <div className="aspect-video overflow-hidden">
+                        <Image
+                          src={blog.featuredImage || "/placeholder.svg"}
+                          alt={blog.title}
+                          width={400}
+                          height={240}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        />
+                      </div>
+                      <div className="absolute top-3 left-3">
+                        <Badge className={`bg-gradient-to-r ${blog.color || "from-blue-500 to-indigo-600"} text-white text-xs`}>{blog.category}</Badge>
+                      </div>
+                    </div>
 
-          {/* Load More */}
-          <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="px-8 bg-transparent">
-              Load More Articles
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
+                    <CardHeader className="p-6">
+                      <div className="flex items-center space-x-3 mb-3">
+                        <Image
+                          src={blog.author?.avatar || "/placeholder.svg"}
+                          alt={blog.author?.name || "Author"}
+                          width={32}
+                          height={32}
+                          className="rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium text-sm text-slate-900">{blog.author?.name || "Metadots Team"}</div>
+                          <div className="text-xs text-slate-600">{blog.author?.role || "Tech Writer"}</div>
+                        </div>
+                      </div>
+
+                      <CardTitle className="text-lg mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                        {blog.title}
+                      </CardTitle>
+
+                      <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
+                        {blog.excerpt}
+                      </CardDescription>
+
+                      {/* Meta */}
+                      <div className="flex items-center justify-between text-xs text-slate-600 mb-4">
+                        <div className="flex items-center space-x-3">
+                          <div className="flex items-center space-x-1">
+                            <Calendar className="w-3 h-3" />
+                            <span>{new Date(blog.createdAt).toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}</span>
+                          </div>
+                          <div className="flex items-center space-x-1">
+                            <Clock className="w-3 h-3" />
+                            <span>{blog.readTime || "5 min read"}</span>
+                          </div>
+                        </div>
+                        <div className="flex items-center space-x-2">
+                          <div className="flex items-center space-x-1">
+                            <Eye className="w-3 h-3" />
+                            <span>{blog.stats?.views || "1.2K"}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <Button
+                        asChild
+                        variant="ghost"
+                        className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 group/btn"
+                      >
+                        <Link href={`/blogs/${blog.slug}`}>
+                          Read More
+                          <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Link>
+                      </Button>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+
+              {/* Load More */}
+              {hasMore && (
+                <div className="text-center mt-12">
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
+                    className="px-8 bg-transparent"
+                    onClick={loadMore}
+                    disabled={isLoadingMore}
+                  >
+                    {isLoadingMore ? (
+                      <>
+                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                        Loading...
+                      </>
+                    ) : (
+                      <>
+                        Load More Articles
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </>
+                    )}
+                  </Button>
+                </div>
+              )}
+
+              {/* End of results */}
+              {!hasMore && displayedBlogs.length > 0 && (
+                <div className="text-center mt-12">
+                  <p className="text-gray-600">You've reached the end of all articles.</p>
+                </div>
+              )}
+            </>
+          )}
         </div>
       </section>
 

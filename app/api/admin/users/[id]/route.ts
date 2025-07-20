@@ -24,7 +24,7 @@ async function getUser(req: NextRequest, user: any, { params }: { params: { id: 
 // PUT /api/admin/users/[id] - Update user (admin only)
 async function updateUser(req: NextRequest, user: any, { params }: { params: { id: string } }) {
   try {
-    const { email, password, name, role, isActive } = await req.json();
+    const { email, password, name, designation, role, isActive } = await req.json();
 
     await connectMongo();
 
@@ -55,6 +55,7 @@ async function updateUser(req: NextRequest, user: any, { params }: { params: { i
     const updateData: any = {};
     if (email) updateData.email = email;
     if (name) updateData.name = name;
+    if (designation !== undefined) updateData.designation = designation;
     if (role) updateData.role = role;
     if (typeof isActive === 'boolean') {
       updateData.isActive = isActive;

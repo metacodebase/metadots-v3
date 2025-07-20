@@ -14,6 +14,7 @@ interface BlogCardProps {
     author: {
       name: string
       role: string
+      designation?: string
     }
     publishedAt?: string
     readTime: string
@@ -116,7 +117,7 @@ export default function BlogCard({ blog, isOpen, onToggle }: BlogCardProps) {
                 </div>
                 <div>
                   <div className="text-white text-sm font-medium">{blog.author.name}</div>
-                  <div className="text-white/60 text-xs">{blog.author.role}</div>
+                  <div className="text-white/60 text-xs">{blog.author.designation || blog.author.role}</div>
                 </div>
               </div>
               <div className="flex items-center space-x-2 text-white/60 text-sm">

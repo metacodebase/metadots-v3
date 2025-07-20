@@ -31,6 +31,7 @@ async function seedProd() {
       email: "admin@metadots.co",
       password: "Meta@£12Admin",
       name: "Admin User",
+      designation: "CEO",
       role: "admin",
       isActive: true
     };
@@ -40,6 +41,7 @@ async function seedProd() {
       email: adminUser.email,
       password: hashedPassword,
       name: adminUser.name,
+      designation: adminUser.designation,
       role: adminUser.role,
       isActive: adminUser.isActive
     });

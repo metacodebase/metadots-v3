@@ -29,6 +29,7 @@ interface Blog {
     id: string;
     name: string;
     role: string;
+    designation?: string;
   };
   status: 'draft' | 'published' | 'scheduled' | 'archived';
   featured: boolean;
@@ -612,7 +613,7 @@ function BlogsContent() {
                       </td>
                       <td className="py-4 px-4">
                         <div className="text-sm text-gray-900">{blog.author.name}</div>
-                        <div className="text-xs text-gray-500">{blog.author.role}</div>
+                        <div className="text-xs text-gray-500">{blog.author.designation || blog.author.role}</div>
                       </td>
                       <td className="py-4 px-4">
                         <Badge variant="outline">

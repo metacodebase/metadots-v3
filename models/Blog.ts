@@ -9,10 +9,11 @@ export interface IBlog extends Document {
   category: string;
   tags: string[];
   author: {
-    id: string;
+    id: mongoose.Types.ObjectId;
     name: string;
     avatar?: string;
     role: string;
+    designation?: string;
   };
   status: 'draft' | 'published' | 'scheduled' | 'archived';
   featured: boolean;
@@ -73,7 +74,8 @@ const BlogSchema = new Schema<IBlog>({
   }],
   author: {
     id: {
-      type: String,
+      type: Schema.Types.ObjectId,
+      ref: 'User',
       required: true
     },
     name: {
@@ -86,6 +88,10 @@ const BlogSchema = new Schema<IBlog>({
     role: {
       type: String,
       required: true
+    },
+    designation: {
+      type: String,
+      trim: true
     }
   },
   status: {

@@ -2,6 +2,7 @@ import { config } from "dotenv";
 config({ path: ".env.local" });
 import { connectMongo } from "./mongodb";
 import Blog from "../models/Blog";
+import User from "../models/User";
 import mongoose from "mongoose";
 
 const DEFAULT_IMAGE = "/placeholder.svg?height=400&width=600";
@@ -9,11 +10,19 @@ const DEFAULT_IMAGE = "/placeholder.svg?height=400&width=600";
 async function seedBlogs() {
   await connectMongo();
 
+  // Get admin user for author field
+  const adminUser = await User.findOne({ role: 'admin' });
+  if (!adminUser) {
+    console.error('No admin user found. Please create an admin user first.');
+    return;
+  }
+
   const author = {
-    id: "author-1",
-    name: "Metadots Team",
+    id: adminUser._id,
+    name: adminUser.name,
     avatar: "/placeholder.svg?height=40&width=40",
-    role: "Tech Writer"
+    role: adminUser.role,
+    designation: adminUser.designation
   };
 
   const blogs = [

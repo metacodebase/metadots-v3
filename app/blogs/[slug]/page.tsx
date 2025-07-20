@@ -19,8 +19,9 @@ async function getData(slug: string) {
   try {
     await connectMongo()
     
-    // Get the specific blog by slug
+    // Get the specific blog by slug with populated author data
     const blog = await Blog.findOne({ slug, status: "published" })
+      .populate('author.id', 'name email designation role')
     
     if (!blog) {
       notFound()
@@ -31,7 +32,9 @@ async function getData(slug: string) {
       category: blog.category, 
       _id: { $ne: blog._id },
       status: "published" 
-    }).limit(3)
+    })
+    .populate('author.id', 'name email designation role')
+    .limit(3)
     
     return {
       blog: JSON.parse(JSON.stringify(blog)),
@@ -45,6 +48,19 @@ async function getData(slug: string) {
 
 export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const { blog, relatedBlogs } = await getData(params.slug)
+  
+  // Helper function to get author info
+  const getAuthorInfo = (blog: any) => {
+    const authorName = typeof blog.author.id === 'object' && blog.author.id 
+      ? blog.author.id.name 
+      : blog.author.name || 'Metadots Team';
+    
+    const authorDesignation = typeof blog.author.id === 'object' && blog.author.id 
+      ? blog.author.id.designation 
+      : blog.author.designation || blog.author.role || 'Tech Writer';
+    
+    return { name: authorName, designation: authorDesignation };
+  };
   
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
@@ -130,8 +146,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 className="rounded-full"
               />
               <div>
-                <div className="font-semibold text-lg text-slate-900">{blog.author?.name || "Metadots Team"}</div>
-                <div className="text-slate-600">{blog.author?.role || "Tech Writer"}</div>
+                <div className="font-semibold text-lg text-slate-900">{getAuthorInfo(blog).name}</div>
+                <div className="text-slate-600">{getAuthorInfo(blog).designation}</div>
               </div>
             </div>
 

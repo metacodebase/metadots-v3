@@ -13,7 +13,7 @@ export async function GET(
     const blog = await Blog.findOne({ 
       slug: params.slug, 
       status: 'published' 
-    });
+    }).populate('author.id', 'name email designation role');
 
     if (!blog) {
       return NextResponse.json(
@@ -36,6 +36,7 @@ export async function GET(
     .sort({ publishedAt: -1 })
     .limit(3)
     .select('-content')
+    .populate('author.id', 'name email designation role')
     .lean();
 
     return NextResponse.json({

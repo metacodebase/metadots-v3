@@ -33,7 +33,8 @@ async function seedMockData() {
   const author = {
     id: adminUser._id,
     name: adminUser.name,
-    role: adminUser.role
+    role: adminUser.role,
+    designation: adminUser.designation
   };
 
   // Seed Projects (10 items, 1 featured)

@@ -19,10 +19,17 @@ interface Blog {
   category: string;
   tags: string[];
   author: {
-    id: string;
+    id: string | {
+      _id: string;
+      name: string;
+      email: string;
+      designation?: string;
+      role: string;
+    };
     name: string;
     role: string;
     avatar?: string;
+    designation?: string;
   };
   status: 'draft' | 'published' | 'scheduled' | 'archived';
   featured: boolean;
@@ -128,6 +135,19 @@ export default function BlogsPage() {
     setCurrentPage(nextPage);
     setHasMore(endIndex < filteredBlogs.length);
     setIsLoadingMore(false);
+  };
+
+  // Helper function to get author info
+  const getAuthorInfo = (blog: Blog) => {
+    const authorName = typeof blog.author.id === 'object' && blog.author.id 
+      ? blog.author.id.name 
+      : blog.author.name || 'Metadots Team';
+    
+    const authorDesignation = typeof blog.author.id === 'object' && blog.author.id 
+      ? blog.author.id.designation 
+      : blog.author.designation || blog.author.role || 'Tech Writer';
+    
+    return { name: authorName, designation: authorDesignation };
   };
 
   // Get featured blogs
@@ -395,9 +415,9 @@ export default function BlogsPage() {
                         height={40}
                         className="rounded-full"
                       />
-                      <div>
-                        <div className="font-medium text-slate-900">{blog.author?.name || "Metadots Team"}</div>
-                        <div className="text-sm text-slate-600">{blog.author?.role || "Tech Writer"}</div>
+                                                                    <div>
+                        <div className="font-medium text-slate-900">{getAuthorInfo(blog).name}</div>
+                        <div className="text-sm text-slate-600">{getAuthorInfo(blog).designation}</div>
                       </div>
                     </div>
 
@@ -533,8 +553,8 @@ export default function BlogsPage() {
                           className="rounded-full"
                         />
                         <div>
-                          <div className="font-medium text-sm text-slate-900">{blog.author?.name || "Metadots Team"}</div>
-                          <div className="text-xs text-slate-600">{blog.author?.role || "Tech Writer"}</div>
+                          <div className="font-medium text-sm text-slate-900">{getAuthorInfo(blog).name}</div>
+                          <div className="text-xs text-slate-600">{getAuthorInfo(blog).designation}</div>
                         </div>
                       </div>
 

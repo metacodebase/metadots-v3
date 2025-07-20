@@ -19,6 +19,7 @@ interface User {
   _id: string;
   name: string;
   email: string;
+  designation?: string;
   role: 'admin' | 'author' | 'user';
   isActive: boolean;
   createdAt: string;
@@ -41,6 +42,7 @@ function UsersContent() {
     name: '',
     email: '',
     password: '',
+    designation: '',
     role: 'user' as 'admin' | 'author' | 'user',
     isActive: true
   });
@@ -49,6 +51,7 @@ function UsersContent() {
     name: '',
     email: '',
     password: '',
+    designation: '',
     role: 'user' as 'admin' | 'author' | 'user',
     isActive: true
   });
@@ -129,7 +132,7 @@ function UsersContent() {
       }
       toast.success('User created successfully');
       setShowCreateDialog(false);
-      setFormData({ name: '', email: '', password: '', role: 'user', isActive: true });
+      setFormData({ name: '', email: '', password: '', designation: '', role: 'user', isActive: true });
       fetchUsers();
     } catch (error) {
       console.error('Error creating user:', error);
@@ -168,7 +171,7 @@ function UsersContent() {
       }
       toast.success('User updated successfully');
       setShowEditDialog(null);
-      setEditFormData({ name: '', email: '', password: '', role: 'user', isActive: true });
+      setEditFormData({ name: '', email: '', password: '', designation: '', role: 'user', isActive: true });
       fetchUsers();
     } catch (error) {
       console.error('Error updating user:', error);
@@ -211,6 +214,7 @@ function UsersContent() {
       name: user.name,
       email: user.email,
       password: '',
+      designation: user.designation || '',
       role: user.role,
       isActive: user.isActive
     });
@@ -282,6 +286,15 @@ function UsersContent() {
                       value={formData.password}
                       onChange={(e) => setFormData({ ...formData, password: e.target.value })}
                       required
+                    />
+                  </div>
+                  <div>
+                    <Label htmlFor="designation">Designation</Label>
+                    <Input
+                      id="designation"
+                      value={formData.designation}
+                      onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
+                      placeholder="e.g., CEO, Senior Developer, Tech Writer"
                     />
                   </div>
                   <div>
@@ -422,17 +435,26 @@ function UsersContent() {
                                     required
                                   />
             </div>
+                            <div>
+                <Label htmlFor="edit-password">Password (leave blank to keep current)</Label>
+                <Input
+                  id="edit-password"
+                  type="password"
+                  value={editFormData.password}
+                  onChange={(e) => setEditFormData({ ...editFormData, password: e.target.value })}
+                />
+              </div>
               <div>
-                                  <Label htmlFor="edit-password">Password (leave blank to keep current)</Label>
-                                  <Input
-                                    id="edit-password"
-                                    type="password"
-                                    value={editFormData.password}
-                                    onChange={(e) => setEditFormData({ ...editFormData, password: e.target.value })}
-                                  />
-            </div>
+                <Label htmlFor="edit-designation">Designation</Label>
+                <Input
+                  id="edit-designation"
+                  value={editFormData.designation}
+                  onChange={(e) => setEditFormData({ ...editFormData, designation: e.target.value })}
+                  placeholder="e.g., CEO, Senior Developer, Tech Writer"
+                />
+              </div>
               <div>
-                                  <Label htmlFor="edit-role">Role</Label>
+                <Label htmlFor="edit-role">Role</Label>
                                   <Select value={editFormData.role} onValueChange={(value: 'admin' | 'author' | 'user') => setEditFormData({ ...editFormData, role: value })}>
                                     <SelectTrigger>
                                       <SelectValue />

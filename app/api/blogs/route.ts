@@ -36,12 +36,13 @@ export async function GET(request: NextRequest) {
     // Calculate pagination
     const skip = (page - 1) * limit;
 
-    // Get blogs with pagination
+    // Get blogs with pagination and populate author data
     const blogs = await Blog.find(query)
       .sort({ publishedAt: -1 })
       .skip(skip)
       .limit(limit)
       .select('-content') // Exclude full content for list view
+      .populate('author.id', 'name email designation role')
       .lean();
 
     // Get total count for pagination
@@ -58,6 +59,7 @@ export async function GET(request: NextRequest) {
     .sort({ publishedAt: -1 })
     .limit(3)
     .select('-content')
+    .populate('author.id', 'name email designation role')
     .lean() : [];
 
     return NextResponse.json({

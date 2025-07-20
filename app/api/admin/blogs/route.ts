@@ -215,9 +215,10 @@ export async function POST(request: NextRequest) {
       category,
       tags: Array.isArray(tags) ? tags : [],
       author: {
-        id: user._id.toString(),
+        id: user._id,
         name: user.name,
-        role: user.role
+        role: user.role,
+        designation: user.designation
       },
       status,
       featured,

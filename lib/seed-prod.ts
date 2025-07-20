@@ -15,8 +15,8 @@ async function seedProd() {
 
     // Create only admin user
     const adminUser = {
-      email: "admin@metadots.com",
-      password: "admin123",
+      email: "admin@metadots.co",
+      password: "Meta@£12Admin",
       name: "Admin User",
       role: "admin",
       isActive: true

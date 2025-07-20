@@ -182,7 +182,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           {/* Article Content */}
           <div className="prose prose-lg max-w-none mb-12">
             <div 
-              className="text-slate-700 leading-relaxed"
+              className="text-slate-700 leading-relaxed blog-content"
               dangerouslySetInnerHTML={{ __html: blog.content }}
             />
           </div>

@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from 'react';
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader } from "@/components/ui/card"
@@ -12,9 +15,88 @@ import {
   Target,
   MessageSquare,
   Lock,
+  Loader2,
 } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
 
 export default function ContactSection() {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    company: '',
+    projectType: '',
+    budgetRange: '',
+    projectDetails: ''
+  });
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (!formData.firstName || !formData.lastName || !formData.email || !formData.projectType || !formData.projectDetails) {
+      toast({
+        title: "Missing Information",
+        description: "Please fill in all required fields.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          source: window.location.pathname === '/' ? 'homepage' : 'contact-page'
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        toast({
+          title: "Message Sent!",
+          description: data.message,
+        });
+        
+        // Reset form
+        setFormData({
+          firstName: '',
+          lastName: '',
+          email: '',
+          company: '',
+          projectType: '',
+          budgetRange: '',
+          projectDetails: ''
+        });
+      } else {
+        throw new Error(data.error || 'Failed to send message');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: error instanceof Error ? error.message : 'Failed to send message. Please try again.',
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
   return (
     <section
       id="contact"
@@ -124,21 +206,29 @@ export default function ContactSection() {
                   <p className="text-slate-600">Tell us about your vision and we'll make it happen</p>
                 </div>
 
-                <form className="space-y-6">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name Fields */}
                   <div className="grid gap-4 sm:grid-cols-2">
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-slate-700">First Name *</label>
                       <Input
+                        name="firstName"
+                        value={formData.firstName}
+                        onChange={handleInputChange}
                         placeholder="John"
                         className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                        required
                       />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-slate-700">Last Name *</label>
                       <Input
+                        name="lastName"
+                        value={formData.lastName}
+                        onChange={handleInputChange}
                         placeholder="Doe"
                         className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                        required
                       />
                     </div>
                   </div>
@@ -148,14 +238,21 @@ export default function ContactSection() {
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-slate-700">Email Address *</label>
                       <Input
+                        name="email"
                         type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
                         placeholder="john@company.com"
                         className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                        required
                       />
                     </div>
                     <div className="space-y-2">
                       <label className="text-sm font-medium text-slate-700">Company</label>
                       <Input
+                        name="company"
+                        value={formData.company}
+                        onChange={handleInputChange}
                         placeholder="Your Company"
                         className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
                       />
@@ -165,27 +262,38 @@ export default function ContactSection() {
                   {/* Project Type */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Project Type *</label>
-                    <select className="w-full h-12 px-3 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 bg-white">
-                      <option>Select project type</option>
-                      <option>Web Application</option>
-                      <option>Mobile App</option>
-                      <option>AI/ML Solution</option>
-                      <option>E-commerce Platform</option>
-                      <option>Custom Software</option>
-                      <option>Consulting</option>
+                    <select 
+                      name="projectType"
+                      value={formData.projectType}
+                      onChange={handleInputChange}
+                      className="w-full h-12 px-3 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 bg-white"
+                      required
+                    >
+                      <option value="">Select project type</option>
+                      <option value="Web Application">Web Application</option>
+                      <option value="Mobile App">Mobile App</option>
+                      <option value="AI/ML Solution">AI/ML Solution</option>
+                      <option value="E-commerce Platform">E-commerce Platform</option>
+                      <option value="Custom Software">Custom Software</option>
+                      <option value="Consulting">Consulting</option>
                     </select>
                   </div>
 
                   {/* Budget Range */}
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Budget Range</label>
-                    <select className="w-full h-12 px-3 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 bg-white">
-                      <option>Select budget range</option>
-                      <option>$10K - $25K</option>
-                      <option>$25K - $50K</option>
-                      <option>$50K - $100K</option>
-                      <option>$100K+</option>
-                      <option>Let's discuss</option>
+                    <select 
+                      name="budgetRange"
+                      value={formData.budgetRange}
+                      onChange={handleInputChange}
+                      className="w-full h-12 px-3 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 bg-white"
+                    >
+                      <option value="">Select budget range</option>
+                      <option value="$10K - $25K">$10K - $25K</option>
+                      <option value="$25K - $50K">$25K - $50K</option>
+                      <option value="$50K - $100K">$50K - $100K</option>
+                      <option value="$100K+">$100K+</option>
+                      <option value="Let's discuss">Let's discuss</option>
                     </select>
                   </div>
 
@@ -193,19 +301,33 @@ export default function ContactSection() {
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-slate-700">Project Details *</label>
                     <textarea
+                      name="projectDetails"
+                      value={formData.projectDetails}
+                      onChange={handleInputChange}
                       className="min-h-[120px] w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 resize-none"
                       placeholder="Tell us about your project goals, timeline, and any specific requirements..."
+                      required
                     />
                   </div>
 
                   {/* Submit Button */}
                   <Button 
-                    type="button"
-                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" />
-                    Send Message
-                    <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="mr-2 h-5 w-5 animate-spin" aria-hidden="true" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" />
+                        Send Message
+                        <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+                      </>
+                    )}
                   </Button>
 
                   <p className="text-center text-sm text-slate-500">

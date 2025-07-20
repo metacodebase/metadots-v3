@@ -32,6 +32,7 @@ async function seedProd() {
       password: "Meta@£12Admin",
       name: "Admin User",
       designation: "CEO",
+      avatar: "/placeholder.svg?height=40&width=40",
       role: "admin",
       isActive: true
     };
@@ -42,6 +43,7 @@ async function seedProd() {
       password: hashedPassword,
       name: adminUser.name,
       designation: adminUser.designation,
+      avatar: adminUser.avatar,
       role: adminUser.role,
       isActive: adminUser.isActive
     });

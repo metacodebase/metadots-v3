@@ -42,7 +42,7 @@ export async function GET(request: NextRequest) {
       .skip(skip)
       .limit(limit)
       .select('-content') // Exclude full content for list view
-      .populate('author.id', 'name email designation role')
+      .populate('author.id', 'name email designation role avatar')
       .lean();
 
     // Get total count for pagination
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
     .sort({ publishedAt: -1 })
     .limit(3)
     .select('-content')
-    .populate('author.id', 'name email designation role')
+    .populate('author.id', 'name email designation role avatar')
     .lean() : [];
 
     return NextResponse.json({

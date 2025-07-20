@@ -8,11 +8,13 @@ import { Label } from '@/components/ui/label';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { Plus, Search, Edit, Trash2, ArrowLeft, Loader2 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { useState, useEffect, useCallback } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Alert, AlertDescription } from '@/components/ui/alert';
+import { ImageUpload } from '@/components/ui/image-upload';
 import { toast } from 'sonner';
 
 interface User {
@@ -20,6 +22,7 @@ interface User {
   name: string;
   email: string;
   designation?: string;
+  avatar?: string;
   role: 'admin' | 'author' | 'user';
   isActive: boolean;
   createdAt: string;
@@ -43,6 +46,7 @@ function UsersContent() {
     email: '',
     password: '',
     designation: '',
+    avatar: '',
     role: 'user' as 'admin' | 'author' | 'user',
     isActive: true
   });
@@ -52,6 +56,7 @@ function UsersContent() {
     email: '',
     password: '',
     designation: '',
+    avatar: '',
     role: 'user' as 'admin' | 'author' | 'user',
     isActive: true
   });
@@ -132,7 +137,7 @@ function UsersContent() {
       }
       toast.success('User created successfully');
       setShowCreateDialog(false);
-      setFormData({ name: '', email: '', password: '', designation: '', role: 'user', isActive: true });
+      setFormData({ name: '', email: '', password: '', designation: '', avatar: '', role: 'user', isActive: true });
       fetchUsers();
     } catch (error) {
       console.error('Error creating user:', error);
@@ -171,7 +176,7 @@ function UsersContent() {
       }
       toast.success('User updated successfully');
       setShowEditDialog(null);
-      setEditFormData({ name: '', email: '', password: '', designation: '', role: 'user', isActive: true });
+      setEditFormData({ name: '', email: '', password: '', designation: '', avatar: '', role: 'user', isActive: true });
       fetchUsers();
     } catch (error) {
       console.error('Error updating user:', error);
@@ -215,6 +220,7 @@ function UsersContent() {
       email: user.email,
       password: '',
       designation: user.designation || '',
+      avatar: user.avatar || '',
       role: user.role,
       isActive: user.isActive
     });
@@ -251,7 +257,7 @@ function UsersContent() {
           Add User
         </Button>
               </DialogTrigger>
-              <DialogContent>
+              <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
                 <DialogHeader>
                   <DialogTitle>Create New User</DialogTitle>
                   <DialogDescription>
@@ -295,6 +301,14 @@ function UsersContent() {
                       value={formData.designation}
                       onChange={(e) => setFormData({ ...formData, designation: e.target.value })}
                       placeholder="e.g., CEO, Senior Developer, Tech Writer"
+                    />
+                  </div>
+                  <div>
+                    <Label>Profile Photo</Label>
+                    <ImageUpload
+                      value={formData.avatar}
+                      onChange={(url) => setFormData({ ...formData, avatar: url })}
+                      placeholder="Upload profile photo"
                     />
                   </div>
                   <div>
@@ -378,7 +392,23 @@ function UsersContent() {
                 <TableBody>
                   {filteredUsers.map((user) => (
                     <TableRow key={user._id}>
-                      <TableCell className="font-medium">{user.name || 'N/A'}</TableCell>
+                      <TableCell>
+                        <div className="flex items-center space-x-3">
+                          <Image
+                            src={user.avatar || "/placeholder.svg"}
+                            alt={user.name}
+                            width={32}
+                            height={32}
+                            className="rounded-full"
+                          />
+                          <div>
+                            <div className="font-medium">{user.name || 'N/A'}</div>
+                            {user.designation && (
+                              <div className="text-xs text-gray-500">{user.designation}</div>
+                            )}
+                          </div>
+                        </div>
+                      </TableCell>
                       <TableCell>{user.email || 'N/A'}</TableCell>
                       <TableCell>
                         <span className={`px-2 py-1 rounded-full text-xs ${
@@ -408,7 +438,7 @@ function UsersContent() {
                                 <Edit className="h-4 w-4" />
                         </Button>
                             </DialogTrigger>
-                            <DialogContent>
+                            <DialogContent className="max-w-md max-h-[90vh] overflow-y-auto">
                               <DialogHeader>
                                 <DialogTitle>Edit User</DialogTitle>
                                 <DialogDescription>
@@ -451,6 +481,14 @@ function UsersContent() {
                   value={editFormData.designation}
                   onChange={(e) => setEditFormData({ ...editFormData, designation: e.target.value })}
                   placeholder="e.g., CEO, Senior Developer, Tech Writer"
+                />
+              </div>
+              <div>
+                <Label>Profile Photo</Label>
+                <ImageUpload
+                  value={editFormData.avatar}
+                  onChange={(url) => setEditFormData({ ...editFormData, avatar: url })}
+                  placeholder="Upload profile photo"
                 />
               </div>
               <div>

@@ -34,7 +34,8 @@ async function seedMockData() {
     id: adminUser._id,
     name: adminUser.name,
     role: adminUser.role,
-    designation: adminUser.designation
+    designation: adminUser.designation,
+    avatar: adminUser.avatar
   };
 
   // Seed Projects (10 items, 1 featured)

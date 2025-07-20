@@ -21,7 +21,7 @@ async function getData(slug: string) {
     
     // Get the specific blog by slug with populated author data
     const blog = await Blog.findOne({ slug, status: "published" })
-      .populate('author.id', 'name email designation role')
+      .populate('author.id', 'name email designation role avatar')
     
     if (!blog) {
       notFound()
@@ -33,7 +33,7 @@ async function getData(slug: string) {
       _id: { $ne: blog._id },
       status: "published" 
     })
-    .populate('author.id', 'name email designation role')
+    .populate('author.id', 'name email designation role avatar')
     .limit(3)
     
     return {
@@ -59,7 +59,11 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       ? blog.author.id.designation 
       : blog.author.designation || blog.author.role || 'Tech Writer';
     
-    return { name: authorName, designation: authorDesignation };
+    const authorAvatar = typeof blog.author.id === 'object' && blog.author.id 
+      ? blog.author.id.avatar 
+      : blog.author.avatar;
+    
+    return { name: authorName, designation: authorDesignation, avatar: authorAvatar };
   };
   
   return (
@@ -139,8 +143,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
             {/* Author Info */}
             <div className="flex items-center space-x-4 mb-8">
               <Image
-                src={blog.author?.avatar || "/placeholder.svg"}
-                alt={blog.author?.name || "Author"}
+                src={getAuthorInfo(blog).avatar || "/placeholder.svg"}
+                alt={getAuthorInfo(blog).name}
                 width={56}
                 height={56}
                 className="rounded-full"

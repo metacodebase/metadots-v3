@@ -20,7 +20,7 @@ async function seedBlogs() {
   const author = {
     id: adminUser._id,
     name: adminUser.name,
-    avatar: "/placeholder.svg?height=40&width=40",
+    avatar: adminUser.avatar || "/placeholder.svg?height=40&width=40",
     role: adminUser.role,
     designation: adminUser.designation
   };

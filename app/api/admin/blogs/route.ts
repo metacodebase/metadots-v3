@@ -218,7 +218,8 @@ export async function POST(request: NextRequest) {
         id: user._id,
         name: user.name,
         role: user.role,
-        designation: user.designation
+        designation: user.designation,
+        avatar: user.avatar
       },
       status,
       featured,

@@ -25,6 +25,7 @@ interface Blog {
       email: string;
       designation?: string;
       role: string;
+      avatar?: string;
     };
     name: string;
     role: string;
@@ -147,7 +148,11 @@ export default function BlogsPage() {
       ? blog.author.id.designation 
       : blog.author.designation || blog.author.role || 'Tech Writer';
     
-    return { name: authorName, designation: authorDesignation };
+    const authorAvatar = typeof blog.author.id === 'object' && blog.author.id 
+      ? blog.author.id.avatar 
+      : blog.author.avatar;
+    
+    return { name: authorName, designation: authorDesignation, avatar: authorAvatar };
   };
 
   // Get featured blogs
@@ -409,8 +414,8 @@ export default function BlogsPage() {
                   <CardHeader className="p-8">
                     <div className="flex items-center space-x-4 mb-4">
                       <Image
-                        src={blog.author?.avatar || "/placeholder.svg"}
-                        alt={blog.author?.name || "Author"}
+                        src={getAuthorInfo(blog).avatar || "/placeholder.svg"}
+                        alt={getAuthorInfo(blog).name}
                         width={40}
                         height={40}
                         className="rounded-full"
@@ -546,8 +551,8 @@ export default function BlogsPage() {
                     <CardHeader className="p-6">
                       <div className="flex items-center space-x-3 mb-3">
                         <Image
-                          src={blog.author?.avatar || "/placeholder.svg"}
-                          alt={blog.author?.name || "Author"}
+                          src={getAuthorInfo(blog).avatar || "/placeholder.svg"}
+                          alt={getAuthorInfo(blog).name}
                           width={32}
                           height={32}
                           className="rounded-full"

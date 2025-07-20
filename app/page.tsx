@@ -64,6 +64,76 @@ import {
   Hexagon,
   Circle,
 } from "lucide-react"
+import { 
+  SiReact, 
+  SiNextdotjs, 
+  SiTypescript, 
+  SiJavascript, 
+  SiVuedotjs, 
+  SiAngular, 
+  SiSvelte, 
+  SiTailwindcss, 
+  SiBootstrap, 
+  SiNodedotjs, 
+  SiPython, 
+  SiGo, 
+  SiRust, 
+  SiPhp, 
+  SiLaravel, 
+  SiDjango, 
+  SiExpress, 
+  SiNestjs, 
+  SiPostgresql, 
+  SiMongodb, 
+  SiRedis, 
+  SiMysql, 
+  SiGraphql, 
+  SiAmazon, 
+  SiGooglecloud, 
+  SiDocker, 
+  SiKubernetes, 
+  SiTerraform, 
+  SiGithub, 
+  SiGitlab, 
+  SiBitbucket, 
+  SiVercel, 
+  SiNetlify, 
+  SiFirebase, 
+  SiSupabase, 
+  SiPrisma, 
+  SiSequelize, 
+  SiJest, 
+  SiCypress, 
+  SiWebpack, 
+  SiVite, 
+  SiNpm, 
+  SiYarn, 
+  SiPnpm,
+  SiFigma,
+  SiAdobe,
+  SiSketch,
+  SiInvision,
+  SiHeroku,
+  SiDigitalocean,
+  SiCloudflare,
+  SiAlgolia,
+  SiStripe,
+  SiTwilio,
+  SiSlack,
+  SiDiscord,
+  SiNotion,
+  SiLinear,
+  SiJira,
+  SiTrello,
+  SiAsana,
+  SiAirtable,
+  SiZapier,
+  SiFlutter,
+  SiIonic,
+  SiExpo,
+  SiElectron,
+  SiTauri
+} from "react-icons/si"
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
@@ -577,7 +647,7 @@ export default async function MetadotsLanding() {
       </section>
 
       {/* Enhanced Podcast & Blog Section */}
-      {(featuredPodcasts && featuredPodcasts.length > 0) || (featuredBlogs && featuredBlogs.length > 0) ? (
+      {featuredPodcasts && featuredPodcasts.length > 0 ? (
         <section
           id="blog"
           className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden"
@@ -607,22 +677,20 @@ export default async function MetadotsLanding() {
 
             <div className="grid gap-12 lg:grid-cols-2">
               {/* Enhanced Podcast Section */}
-              {featuredPodcasts && featuredPodcasts.length > 0 && (
-                <div className="space-y-8">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
-                      <Headphones className="w-6 h-6 text-white" aria-hidden="true" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-white">Latest Episodes</h3>
+              <div className="space-y-8">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+                    <Headphones className="w-6 h-6 text-white" aria-hidden="true" />
                   </div>
-
-                  {/* First podcast - always open */}
-                  <FeaturedPodcast podcast={featuredPodcasts[0]} />
-
-                  {/* Other podcasts - collapsible */}
-                  <PodcastToggleWrapper podcasts={featuredPodcasts.slice(1)} />
+                  <h3 className="text-3xl font-bold text-white">Latest Episodes</h3>
                 </div>
-              )}
+
+                {/* First podcast - always open */}
+                <FeaturedPodcast podcast={featuredPodcasts[0]} />
+
+                {/* Other podcasts - collapsible */}
+                <PodcastToggleWrapper podcasts={featuredPodcasts.slice(1)} />
+              </div>
 
               {/* Enhanced Blog Section */}
               {featuredBlogs && featuredBlogs.length > 0 && (
@@ -837,35 +905,48 @@ export default async function MetadotsLanding() {
           </div>
 
           {/* Technology Categories */}
-          <div className="space-y-12">
-            {/* Frontend Technologies */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-center text-slate-800">Frontend & Mobile</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <div className="space-y-16">
+            {/* Frontend & UI Technologies */}
+            <div className="space-y-8">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-slate-800 mb-4">Frontend & UI Technologies</h3>
+                <p className="text-slate-600 max-w-2xl mx-auto">Modern frameworks and libraries for building responsive, interactive user interfaces</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
                 {[
-                  { name: "React", icon: Atom, color: "from-blue-400 to-blue-600" },
-                  { name: "Next.js", icon: Triangle, color: "from-slate-700 to-slate-900" },
-                  { name: "TypeScript", icon: Code, color: "from-blue-500 to-blue-700" },
-                  { name: "Flutter", icon: Lightbulb, color: "from-blue-300 to-blue-500" },
-                  { name: "React Native", icon: Smartphone, color: "from-purple-400 to-purple-600" },
-                  { name: "Vue.js", icon: Hexagon, color: "from-green-400 to-green-600" },
-                ].map((tech, index) => (
+                  { name: "React", icon: SiReact, color: "from-blue-400 to-blue-600", delay: 0 },
+                  { name: "Next.js", icon: SiNextdotjs, color: "from-slate-700 to-slate-900", delay: 100 },
+                  { name: "TypeScript", icon: SiTypescript, color: "from-blue-500 to-blue-700", delay: 200 },
+                  { name: "JavaScript", icon: SiJavascript, color: "from-yellow-400 to-yellow-600", delay: 300 },
+                  { name: "Vue.js", icon: SiVuedotjs, color: "from-green-400 to-green-600", delay: 400 },
+                  { name: "Angular", icon: SiAngular, color: "from-red-500 to-red-700", delay: 500 },
+                  { name: "Svelte", icon: SiSvelte, color: "from-orange-400 to-orange-600", delay: 600 },
+                  { name: "Tailwind CSS", icon: SiTailwindcss, color: "from-cyan-400 to-cyan-600", delay: 700 },
+                  { name: "Bootstrap", icon: SiBootstrap, color: "from-purple-500 to-purple-700", delay: 800 },
+                  { name: "Material UI", icon: SiBootstrap, color: "from-blue-600 to-blue-800", delay: 900 },
+                  { name: "React Native", icon: SiReact, color: "from-blue-400 to-blue-600", delay: 1000 },
+                  { name: "Flutter", icon: SiFlutter, color: "from-blue-300 to-blue-500", delay: 1100 },
+                  { name: "Ionic", icon: SiIonic, color: "from-blue-500 to-blue-700", delay: 1200 },
+                  { name: "Expo", icon: SiExpo, color: "from-slate-700 to-slate-900", delay: 1300 },
+                  { name: "Electron", icon: SiElectron, color: "from-blue-400 to-blue-600", delay: 1400 },
+                  { name: "Tauri", icon: SiTauri, color: "from-purple-500 to-purple-700", delay: 1500 },
+                ].map((tech) => (
                   <Card
                     key={tech.name}
                     className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
-                    style={{ animationDelay: `${index * 100}ms` }}
+                    style={{ animationDelay: `${tech.delay}ms` }}
                   >
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                     ></div>
-                    <CardHeader className="p-6 text-center relative z-10">
-                      <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="p-4 text-center relative z-10">
+                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
                         <tech.icon
-                          className="w-10 h-10 text-slate-600 group-hover:text-blue-600 transition-colors"
+                          className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
                         {tech.name}
                       </h4>
                     </CardHeader>
@@ -874,34 +955,50 @@ export default async function MetadotsLanding() {
               </div>
             </div>
 
-            {/* Backend Technologies */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-center text-slate-800">Backend & Database</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {/* Backend & Database Technologies */}
+            <div className="space-y-8">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-slate-800 mb-4">Backend & Database</h3>
+                <p className="text-slate-600 max-w-2xl mx-auto">Robust server-side technologies and data management solutions</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
                 {[
-                  { name: "Node.js", icon: Circle, color: "from-green-500 to-green-700" },
-                  { name: "Python", icon: Code, color: "from-yellow-400 to-yellow-600" },
-                  { name: "PostgreSQL", icon: Database, color: "from-blue-600 to-blue-800" },
-                  { name: "MongoDB", icon: Database, color: "from-green-600 to-green-800" },
-                  { name: "Redis", icon: Server, color: "from-red-500 to-red-700" },
-                  { name: "GraphQL", icon: Hexagon, color: "from-pink-500 to-pink-700" },
-                ].map((tech, index) => (
+                  { name: "Node.js", icon: SiNodedotjs, color: "from-green-500 to-green-700", delay: 0 },
+                  { name: "Python", icon: SiPython, color: "from-yellow-400 to-yellow-600", delay: 100 },
+                  { name: "Java", icon: SiPython, color: "from-red-500 to-red-700", delay: 200 },
+                  { name: "Go", icon: SiGo, color: "from-blue-500 to-blue-700", delay: 300 },
+                  { name: "Rust", icon: SiRust, color: "from-orange-500 to-orange-700", delay: 400 },
+                  { name: "PHP", icon: SiPhp, color: "from-purple-500 to-purple-700", delay: 500 },
+                  { name: "Laravel", icon: SiLaravel, color: "from-red-400 to-red-600", delay: 600 },
+                  { name: "Django", icon: SiDjango, color: "from-green-600 to-green-800", delay: 700 },
+                  { name: "Express.js", icon: SiExpress, color: "from-gray-600 to-gray-800", delay: 800 },
+                  { name: "NestJS", icon: SiNestjs, color: "from-red-500 to-red-700", delay: 900 },
+                  { name: "PostgreSQL", icon: SiPostgresql, color: "from-blue-600 to-blue-800", delay: 1000 },
+                  { name: "MongoDB", icon: SiMongodb, color: "from-green-600 to-green-800", delay: 1100 },
+                  { name: "Redis", icon: SiRedis, color: "from-red-500 to-red-700", delay: 1200 },
+                  { name: "MySQL", icon: SiMysql, color: "from-blue-500 to-blue-700", delay: 1300 },
+                  { name: "GraphQL", icon: SiGraphql, color: "from-pink-500 to-pink-700", delay: 1400 },
+                  { name: "Prisma", icon: SiPrisma, color: "from-slate-700 to-slate-900", delay: 1500 },
+                  { name: "Sequelize", icon: SiSequelize, color: "from-blue-400 to-blue-600", delay: 1600 },
+                  { name: "Firebase", icon: SiFirebase, color: "from-orange-400 to-orange-600", delay: 1700 },
+                  { name: "Supabase", icon: SiSupabase, color: "from-green-500 to-green-700", delay: 1800 },
+                ].map((tech) => (
                   <Card
                     key={tech.name}
                     className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
-                    style={{ animationDelay: `${index * 100 + 600}ms` }}
+                    style={{ animationDelay: `${tech.delay}ms` }}
                   >
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                     ></div>
-                    <CardHeader className="p-6 text-center relative z-10">
-                      <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="p-4 text-center relative z-10">
+                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
                         <tech.icon
-                          className="w-10 h-10 text-slate-600 group-hover:text-blue-600 transition-colors"
+                          className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
                         {tech.name}
                       </h4>
                     </CardHeader>
@@ -911,33 +1008,132 @@ export default async function MetadotsLanding() {
             </div>
 
             {/* Cloud & DevOps */}
-            <div className="space-y-6">
-              <h3 className="text-2xl font-bold text-center text-slate-800">Cloud & DevOps</h3>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            <div className="space-y-8">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-slate-800 mb-4">Cloud & DevOps</h3>
+                <p className="text-slate-600 max-w-2xl mx-auto">Scalable cloud infrastructure and development operations tools</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
                 {[
-                  { name: "AWS", icon: Cloud, color: "from-orange-400 to-orange-600" },
-                  { name: "Docker", icon: Container, color: "from-blue-400 to-blue-600" },
-                  { name: "Kubernetes", icon: Settings, color: "from-blue-600 to-blue-800" },
-                  { name: "Vercel", icon: Triangle, color: "from-slate-800 to-slate-900" },
-                  { name: "GitHub", icon: GitBranch, color: "from-gray-700 to-gray-900" },
-                  { name: "Terraform", icon: Layers, color: "from-purple-500 to-purple-700" },
-                ].map((tech, index) => (
+                  { name: "AWS", icon: SiAmazon, color: "from-orange-400 to-orange-600", delay: 0 },
+                  { name: "Google Cloud", icon: SiGooglecloud, color: "from-blue-500 to-blue-700", delay: 100 },
+                  { name: "Azure", icon: SiGooglecloud, color: "from-blue-600 to-blue-800", delay: 200 },
+                  { name: "Docker", icon: SiDocker, color: "from-blue-400 to-blue-600", delay: 300 },
+                  { name: "Kubernetes", icon: SiKubernetes, color: "from-blue-600 to-blue-800", delay: 400 },
+                  { name: "Terraform", icon: SiTerraform, color: "from-purple-500 to-purple-700", delay: 500 },
+                  { name: "GitHub", icon: SiGithub, color: "from-gray-700 to-gray-900", delay: 600 },
+                  { name: "GitLab", icon: SiGitlab, color: "from-orange-500 to-orange-700", delay: 700 },
+                  { name: "Vercel", icon: SiVercel, color: "from-slate-800 to-slate-900", delay: 800 },
+                  { name: "Netlify", icon: SiNetlify, color: "from-green-500 to-green-700", delay: 900 },
+                  { name: "Heroku", icon: SiHeroku, color: "from-purple-500 to-purple-700", delay: 1000 },
+                  { name: "DigitalOcean", icon: SiDigitalocean, color: "from-blue-400 to-blue-600", delay: 1100 },
+                  { name: "Cloudflare", icon: SiCloudflare, color: "from-orange-400 to-orange-600", delay: 1200 },
+                  { name: "Algolia", icon: SiAlgolia, color: "from-blue-500 to-blue-700", delay: 1300 },
+                  { name: "Stripe", icon: SiStripe, color: "from-purple-500 to-purple-700", delay: 1400 },
+                  { name: "Twilio", icon: SiTwilio, color: "from-red-500 to-red-700", delay: 1500 },
+                ].map((tech) => (
                   <Card
                     key={tech.name}
                     className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
-                    style={{ animationDelay: `${index * 100 + 1200}ms` }}
+                    style={{ animationDelay: `${tech.delay}ms` }}
                   >
                     <div
                       className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
                     ></div>
-                    <CardHeader className="p-6 text-center relative z-10">
-                      <div className="mb-3 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="p-4 text-center relative z-10">
+                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
                         <tech.icon
-                          className="w-10 h-10 text-slate-600 group-hover:text-blue-600 transition-colors"
+                          className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors">
+                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
+                        {tech.name}
+                      </h4>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Testing & Quality Assurance */}
+            <div className="space-y-8">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-slate-800 mb-4">Testing & Quality Assurance</h3>
+                <p className="text-slate-600 max-w-2xl mx-auto">Comprehensive testing frameworks and quality assurance tools</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+                {[
+                  { name: "Jest", icon: SiJest, color: "from-red-500 to-red-700", delay: 0 },
+                  { name: "Cypress", icon: SiCypress, color: "from-green-500 to-green-700", delay: 100 },
+                  { name: "Playwright", icon: SiCypress, color: "from-blue-500 to-blue-700", delay: 200 },
+                  { name: "Webpack", icon: SiWebpack, color: "from-blue-400 to-blue-600", delay: 300 },
+                  { name: "Vite", icon: SiVite, color: "from-purple-500 to-purple-700", delay: 400 },
+                  { name: "NPM", icon: SiNpm, color: "from-red-500 to-red-700", delay: 500 },
+                  { name: "Yarn", icon: SiYarn, color: "from-blue-500 to-blue-700", delay: 600 },
+                  { name: "PNPM", icon: SiPnpm, color: "from-orange-500 to-orange-700", delay: 700 },
+                ].map((tech) => (
+                  <Card
+                    key={tech.name}
+                    className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
+                    style={{ animationDelay: `${tech.delay}ms` }}
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                    ></div>
+                    <CardHeader className="p-4 text-center relative z-10">
+                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                        <tech.icon
+                          className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
+                        {tech.name}
+                      </h4>
+                    </CardHeader>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Design & Collaboration Tools */}
+            <div className="space-y-8">
+              <div className="text-center">
+                <h3 className="text-3xl font-bold text-slate-800 mb-4">Design & Collaboration</h3>
+                <p className="text-slate-600 max-w-2xl mx-auto">Professional design tools and team collaboration platforms</p>
+              </div>
+              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+                {[
+                  { name: "Figma", icon: SiFigma, color: "from-purple-500 to-purple-700", delay: 0 },
+                  { name: "Adobe", icon: SiAdobe, color: "from-red-500 to-red-700", delay: 100 },
+                  { name: "Sketch", icon: SiSketch, color: "from-yellow-400 to-yellow-600", delay: 200 },
+                  { name: "Slack", icon: SiSlack, color: "from-purple-500 to-purple-700", delay: 300 },
+                  { name: "Discord", icon: SiDiscord, color: "from-indigo-500 to-indigo-700", delay: 400 },
+                  { name: "Notion", icon: SiNotion, color: "from-gray-700 to-gray-900", delay: 500 },
+                  { name: "Linear", icon: SiLinear, color: "from-blue-500 to-blue-700", delay: 600 },
+                  { name: "Jira", icon: SiJira, color: "from-blue-500 to-blue-700", delay: 700 },
+                  { name: "Trello", icon: SiTrello, color: "from-blue-500 to-blue-700", delay: 800 },
+                  { name: "Asana", icon: SiAsana, color: "from-red-500 to-red-700", delay: 900 },
+                  { name: "Airtable", icon: SiAirtable, color: "from-blue-500 to-blue-700", delay: 1000 },
+                  { name: "Zapier", icon: SiZapier, color: "from-orange-500 to-orange-700", delay: 1100 },
+                ].map((tech) => (
+                  <Card
+                    key={tech.name}
+                    className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
+                    style={{ animationDelay: `${tech.delay}ms` }}
+                  >
+                    <div
+                      className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}
+                    ></div>
+                    <CardHeader className="p-4 text-center relative z-10">
+                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                        <tech.icon
+                          className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
                         {tech.name}
                       </h4>
                     </CardHeader>

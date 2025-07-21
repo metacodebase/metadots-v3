@@ -456,6 +456,20 @@ function ProjectsContent() {
                 <Label htmlFor="featured">Featured Project</Label>
               </div>
               <div>
+                <Label htmlFor="status">Status *</Label>
+                <select
+                  id="status"
+                  className="w-full border rounded px-3 py-2"
+                  value={formData.status}
+                  onChange={(e) => setFormData({ ...formData, status: e.target.value as "draft" | "published" | "archived" })}
+                  required
+                >
+                  <option value="draft">Draft</option>
+                  <option value="published">Published</option>
+                  <option value="archived">Archived</option>
+                </select>
+              </div>
+              <div>
                 <Label>Project Image</Label>
                 <ImageUpload
                   value={formData.image}
@@ -691,6 +705,20 @@ function ProjectsContent() {
                                   className="rounded border-gray-300"
                                 />
                                 <Label htmlFor="edit-featured">Featured Project</Label>
+                              </div>
+                              <div>
+                                <Label htmlFor="edit-status">Status *</Label>
+                                <select
+                                  id="edit-status"
+                                  className="w-full border rounded px-3 py-2"
+                                  value={editFormData.status}
+                                  onChange={(e) => setEditFormData({ ...editFormData, status: e.target.value as "draft" | "published" | "archived" })}
+                                  required
+                                >
+                                  <option value="draft">Draft</option>
+                                  <option value="published">Published</option>
+                                  <option value="archived">Archived</option>
+                                </select>
                               </div>
                               <div>
                                 <Label>Project Image</Label>

@@ -1,17 +1,122 @@
 import { Button } from "@/components/ui/button"
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { ArrowLeft, Calendar, Clock, Eye, Heart, Share2, BookOpen, Menu } from "lucide-react"
+import { ArrowLeft, Calendar, Clock, Share2, Menu } from "lucide-react"
 import { connectMongo } from "@/lib/mongodb"
 import Blog from "@/models/Blog"
 import { notFound } from "next/navigation"
 import Image from "next/image"
 import Link from "next/link"
 import Footer from "@/components/footer"
+import { Metadata } from "next"
 
 interface BlogDetailPageProps {
   params: {
     slug: string
+  }
+}
+
+// Generate metadata for the page
+export async function generateMetadata({ params }: BlogDetailPageProps): Promise<Metadata> {
+  try {
+    await connectMongo()
+    
+    const blog = await Blog.findOne({ slug: params.slug, status: "published" })
+      .populate('author.id', 'name email designation role avatar')
+    
+    if (!blog) {
+      return {
+        title: 'Blog Not Found | Metadots',
+        description: 'The requested blog post could not be found.',
+      }
+    }
+
+    const authorName = (blog.author.id as any)?.name || blog.author.name || 'Metadots Team';
+    const description = blog.excerpt || blog.content.substring(0, 160) + '...';
+    const imageUrl = blog.featuredImage || 'https://metadots.com/images/metadots-og-image.jpg';
+    const url = `https://metadots.com/blogs/${blog.slug}`;
+
+    return {
+      title: `${blog.title} | Metadots Blog`,
+      description: description,
+      keywords: blog.tags?.join(', ') || 'technology, AI, software development, metadots',
+      authors: [{ name: authorName }],
+      creator: authorName,
+      publisher: 'Metadots',
+      category: blog.category,
+      classification: 'Technology',
+      formatDetection: {
+        email: false,
+        address: false,
+        telephone: false,
+      },
+      metadataBase: new URL('https://metadots.com'),
+      alternates: {
+        canonical: url,
+      },
+      other: {
+        'article:published_time': (blog.publishedAt || blog.createdAt).toISOString(),
+        'article:modified_time': blog.updatedAt.toISOString(),
+        'article:author': authorName,
+        'article:section': blog.category,
+        'article:tag': blog.tags?.join(', ') || '',
+        'twitter:label1': 'Reading time',
+        'twitter:data1': blog.readTime || '5 min read',
+        'twitter:label2': 'Category',
+        'twitter:data2': blog.category,
+      },
+      openGraph: {
+        title: blog.title,
+        description: description,
+        url: url,
+        siteName: 'Metadots',
+        images: [
+          {
+            url: imageUrl,
+            width: 1200,
+            height: 630,
+            alt: blog.title,
+            type: 'image/jpeg',
+          },
+        ],
+        locale: 'en_US',
+        type: 'article',
+        publishedTime: (blog.publishedAt || blog.createdAt).toISOString(),
+        modifiedTime: blog.updatedAt.toISOString(),
+        authors: [authorName],
+        tags: blog.tags || [],
+      },
+      twitter: {
+        card: 'summary_large_image',
+        title: blog.title,
+        description: description,
+        images: [imageUrl],
+        creator: '@metadots',
+        site: '@metadots',
+      },
+      robots: {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          'max-video-preview': -1,
+          'max-image-preview': 'large',
+          'max-snippet': -1,
+        },
+      },
+      verification: {
+        google: 'your-google-verification-code',
+        yandex: 'your-yandex-verification-code',
+        yahoo: 'your-yahoo-verification-code',
+      },
+    }
+  } catch (error) {
+    console.error('Error generating metadata:', error);
+    return {
+      title: 'Blog | Metadots',
+      description: 'Latest insights on technology, AI, and software development from Metadots.',
+    }
   }
 }
 
@@ -51,23 +156,52 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   
   // Helper function to get author info
   const getAuthorInfo = (blog: any) => {
-    const authorName = typeof blog.author.id === 'object' && blog.author.id 
-      ? blog.author.id.name 
-      : blog.author.name || 'Metadots Team';
-    
-    const authorDesignation = typeof blog.author.id === 'object' && blog.author.id 
-      ? blog.author.id.designation 
-      : blog.author.designation || blog.author.role || 'Tech Writer';
-    
-    const authorAvatar = typeof blog.author.id === 'object' && blog.author.id 
-      ? blog.author.id.avatar 
-      : blog.author.avatar;
+    const authorName = (blog.author.id as any)?.name || blog.author.name || 'Metadots Team';
+    const authorDesignation = (blog.author.id as any)?.designation || blog.author.designation || blog.author.role || 'Tech Writer';
+    const authorAvatar = (blog.author.id as any)?.avatar || blog.author.avatar;
     
     return { name: authorName, designation: authorDesignation, avatar: authorAvatar };
   };
   
+  // Generate structured data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": blog.title,
+    "description": blog.excerpt,
+    "image": blog.featuredImage || "https://metadots.com/images/metadots-og-image.jpg",
+    "author": {
+      "@type": "Person",
+      "name": getAuthorInfo(blog).name
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Metadots",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://metadots.com/images/metadots-logo.svg"
+      }
+    },
+    "datePublished": blog.publishedAt || blog.createdAt,
+    "dateModified": blog.updatedAt,
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://metadots.com/blogs/${blog.slug}`
+    },
+    "keywords": blog.tags?.join(', ') || "technology, AI, software development",
+    "articleSection": blog.category,
+    "wordCount": blog.content.length
+  };
+  
   return (
-    <div className="min-h-screen bg-white w-full overflow-x-hidden">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
+      <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
         <div className="container flex h-16 items-center justify-between">
@@ -171,16 +305,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <span>{blog.readTime || "5 min read"}</span>
                 </div>
               </div>
-              <div className="flex items-center space-x-4">
-                <div className="flex items-center space-x-2">
-                  <Eye className="w-4 h-4" />
-                  <span>{blog.stats?.views || "1.2K"} views</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Heart className="w-4 h-4" />
-                  <span>{blog.stats?.likes || "45"} likes</span>
-                </div>
-              </div>
             </div>
           </div>
 
@@ -231,9 +355,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               <Button variant="outline" className="flex items-center space-x-2">
                 <Share2 className="w-4 h-4" />
                 <span>Share</span>
-              </Button>
-              <Button variant="outline" size="icon">
-                <Heart className="w-4 h-4" />
               </Button>
             </div>
           </div>
@@ -340,5 +461,6 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
       <Footer />
     </div>
+    </>
   )
 } 

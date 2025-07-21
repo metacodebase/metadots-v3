@@ -647,72 +647,84 @@ export default async function MetadotsLanding() {
       </section>
 
       {/* Enhanced Podcast & Blog Section */}
-      {featuredPodcasts && featuredPodcasts.length > 0 ? (
-        <section
-          id="blog"
-          className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden"
-        >
-          {/* Animated Background */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+      <section
+        id="blog"
+        className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden"
+      >
+        {/* Animated Background */}
+        <div className="absolute inset-0">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        </div>
+
+        <div className="container relative z-10">
+          <div className="text-center space-y-6 mb-20">
+            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg animate-bounce-subtle">
+              <Play className="w-5 h-5 mr-2" aria-hidden="true" />
+              Content & Insights
+            </div>
+            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white">
+              <span className="block">Podcast &</span>
+              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
+                Blog Hub
+              </span>
+            </h2>
+            <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+              Dive deep into the latest tech trends, AI innovations, and industry insights through our premium content
+            </p>
           </div>
 
-          <div className="container relative z-10">
-            <div className="text-center space-y-6 mb-20">
-              <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg animate-bounce-subtle">
-                <Play className="w-5 h-5 mr-2" aria-hidden="true" />
-                Content & Insights
+          <div className="grid gap-12 lg:grid-cols-2">
+            {/* Enhanced Podcast Section */}
+            <div className="space-y-8">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+                  <Headphones className="w-6 h-6 text-white" aria-hidden="true" />
+                </div>
+                <h3 className="text-3xl font-bold text-white">Latest Episodes</h3>
               </div>
-              <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white">
-                <span className="block">Podcast &</span>
-                <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient">
-                  Blog Hub
-                </span>
-              </h2>
-              <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
-                Dive deep into the latest tech trends, AI innovations, and industry insights through our premium content
-              </p>
+
+              {/* First podcast - always open */}
+              {featuredPodcasts && featuredPodcasts.length > 0 ? (
+                <FeaturedPodcast podcast={featuredPodcasts[0]} />
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-white/60 text-lg">No podcasts available yet</p>
+                </div>
+              )}
+
+              {/* Other podcasts - collapsible */}
+              {featuredPodcasts && featuredPodcasts.length > 1 && (
+                <PodcastToggleWrapper podcasts={featuredPodcasts.slice(1)} />
+              )}
             </div>
 
-            <div className="grid gap-12 lg:grid-cols-2">
-              {/* Enhanced Podcast Section */}
-              <div className="space-y-8">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
-                    <Headphones className="w-6 h-6 text-white" aria-hidden="true" />
-                  </div>
-                  <h3 className="text-3xl font-bold text-white">Latest Episodes</h3>
+            {/* Enhanced Blog Section */}
+            <div className="space-y-8">
+              <div className="flex items-center space-x-4">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
+                  <BookOpen className="w-6 h-6 text-white" aria-hidden="true" />
                 </div>
-
-                {/* First podcast - always open */}
-                <FeaturedPodcast podcast={featuredPodcasts[0]} />
-
-                {/* Other podcasts - collapsible */}
-                <PodcastToggleWrapper podcasts={featuredPodcasts.slice(1)} />
+                <h3 className="text-3xl font-bold text-white">Latest Articles</h3>
               </div>
 
-              {/* Enhanced Blog Section */}
-              {featuredBlogs && featuredBlogs.length > 0 && (
-                <div className="space-y-8">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-                      <BookOpen className="w-6 h-6 text-white" aria-hidden="true" />
-                    </div>
-                    <h3 className="text-3xl font-bold text-white">Latest Articles</h3>
-                  </div>
-
-                  {/* First blog - always open */}
-                  <FeaturedBlog blog={featuredBlogs[0]} />
-
-                  {/* Other blogs - collapsible */}
-                  <BlogToggleWrapper blogs={featuredBlogs.slice(1)} />
+              {/* First blog - always open */}
+              {featuredBlogs && featuredBlogs.length > 0 ? (
+                <FeaturedBlog blog={featuredBlogs[0]} />
+              ) : (
+                <div className="text-center py-12">
+                  <p className="text-white/60 text-lg">No blogs available yet</p>
                 </div>
+              )}
+
+              {/* Other blogs - collapsible */}
+              {featuredBlogs && featuredBlogs.length > 1 && (
+                <BlogToggleWrapper blogs={featuredBlogs.slice(1)} />
               )}
             </div>
           </div>
-        </section>
-      ) : null}
+        </div>
+      </section>
 
 
 

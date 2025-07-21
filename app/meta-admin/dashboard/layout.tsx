@@ -110,7 +110,7 @@ export default function AdminLayout({
           </p>
         </div>
         
-        <nav className="p-4 flex-1">
+        <nav className="p-4 flex-1 overflow-y-auto">
           <ul className="space-y-2">
             {sidebarNavItems.map((item) => (
               <li key={item.href}>

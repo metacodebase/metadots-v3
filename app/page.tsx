@@ -156,7 +156,9 @@ async function getData() {
     const featuredBlogs = await Blog.find({ featured: true, status: "published" }).limit(3)
     
     // Get 3 featured reviews
-    const featuredReviews = await Review.find({ featured: true, status: "published" }).limit(3)
+    const featuredReviews = await Review.find({ featured: true, status: "published" })
+      .sort({ featured: -1, createdAt: -1 })
+      .limit(3)
     
     return {
       featuredProject: featuredProject ? JSON.parse(JSON.stringify(featuredProject)) : null,

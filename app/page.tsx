@@ -160,12 +160,158 @@ async function getData() {
       .sort({ featured: -1, createdAt: -1 })
       .limit(3)
     
+    // Helper function to safely serialize data
+    const safeSerialize = (data: any) => {
+      if (!data) return null;
+      try {
+        // Ensure all nested objects have default values
+        if (data.metrics && typeof data.metrics === 'object') {
+          data.metrics = {
+            efficiency: data.metrics.efficiency || '',
+            dataPoints: data.metrics.dataPoints || '',
+            uptime: data.metrics.uptime || '',
+            performance: data.metrics.performance || '',
+            conversion: data.metrics.conversion || '',
+            revenue: data.metrics.revenue || '',
+            security: data.metrics.security || '',
+            transactions: data.metrics.transactions || '',
+            users: data.metrics.users || '',
+            accuracy: data.metrics.accuracy || '',
+            patients: data.metrics.patients || '',
+            diagnoses: data.metrics.diagnoses || '',
+            devices: data.metrics.devices || '',
+            properties: data.metrics.properties || ''
+          };
+        }
+        
+        // Handle CaseStudy results object
+        if (data.results && typeof data.results === 'object') {
+          data.results = {
+            efficiency: data.results.efficiency || '',
+            dataPoints: data.results.dataPoints || '',
+            uptime: data.results.uptime || '',
+            costReduction: data.results.costReduction || '',
+            timeToInsight: data.results.timeToInsight || '',
+            userSatisfaction: data.results.userSatisfaction || ''
+          };
+        }
+        
+        if (data.author && typeof data.author === 'object') {
+          data.author = {
+            id: data.author.id || '',
+            name: data.author.name || '',
+            role: data.author.role || '',
+            avatar: data.author.avatar || '',
+            designation: data.author.designation || ''
+          };
+        }
+        
+        if (data.stats && typeof data.stats === 'object') {
+          data.stats = {
+            views: data.stats.views || 0,
+            likes: data.stats.likes || 0,
+            shares: data.stats.shares || 0,
+            downloads: data.stats.downloads || 0
+          };
+        }
+        
+        // Ensure arrays are properly handled
+        if (data.technologies && Array.isArray(data.technologies)) {
+          data.technologies = data.technologies.map((tech: any) => ({
+            name: tech.name || '',
+            icon: tech.icon || '',
+            category: tech.category || ''
+          }));
+        }
+        
+        if (data.keyFeatures && Array.isArray(data.keyFeatures)) {
+          data.keyFeatures = data.keyFeatures.map((feature: any) => feature || '');
+        }
+        
+        if (data.process && Array.isArray(data.process)) {
+          data.process = data.process.map((phase: any) => ({
+            phase: phase.phase || '',
+            duration: phase.duration || '',
+            description: phase.description || ''
+          }));
+        }
+        
+        if (data.testimonials && Array.isArray(data.testimonials)) {
+          data.testimonials = data.testimonials.map((testimonial: any) => ({
+            name: testimonial.name || '',
+            role: testimonial.role || '',
+            content: testimonial.content || '',
+            avatar: testimonial.avatar || ''
+          }));
+        }
+        
+        // Handle Blog-specific fields
+        if (data.seo && typeof data.seo === 'object') {
+          data.seo = {
+            metaTitle: data.seo.metaTitle || '',
+            metaDescription: data.seo.metaDescription || '',
+            keywords: Array.isArray(data.seo.keywords) ? data.seo.keywords : []
+          };
+        }
+        
+        // Handle Podcast-specific fields
+        if (data.plays !== undefined) {
+          data.plays = data.plays || 0;
+        }
+        
+        if (data.date) {
+          data.date = data.date;
+        }
+        
+        if (data.link) {
+          data.link = data.link || '';
+        }
+        
+        // Ensure all string fields have default values
+        const stringFields = ['title', 'description', 'content', 'excerpt', 'name', 'podcastName', 'clientName', 'clientRole', 'clientCompany', 'review', 'slug', 'subtitle', 'client', 'industry', 'duration', 'team', 'budget', 'challenge', 'solution'];
+        stringFields.forEach(field => {
+          if (data[field] === undefined || data[field] === null) {
+            data[field] = '';
+          }
+        });
+        
+        // Ensure all number fields have default values
+        const numberFields = ['rating', 'plays'];
+        numberFields.forEach(field => {
+          if (data[field] === undefined || data[field] === null) {
+            data[field] = 0;
+          }
+        });
+        
+        // Ensure all boolean fields have default values
+        const booleanFields = ['featured'];
+        booleanFields.forEach(field => {
+          if (data[field] === undefined || data[field] === null) {
+            data[field] = false;
+          }
+        });
+        
+        // Ensure all array fields have default values
+        const arrayFields = ['tags', 'gallery', 'keyFeatures'];
+        arrayFields.forEach(field => {
+          if (!Array.isArray(data[field])) {
+            data[field] = [];
+          }
+        });
+        
+        return JSON.parse(JSON.stringify(data));
+      } catch (err) {
+        console.error('Error serializing data:', err);
+        return null;
+      }
+    };
+    
     return {
-      featuredProject: featuredProject ? JSON.parse(JSON.stringify(featuredProject)) : null,
-      featuredCaseStudies: featuredCaseStudies ? JSON.parse(JSON.stringify(featuredCaseStudies)) : [],
-      featuredPodcasts: featuredPodcasts ? JSON.parse(JSON.stringify(featuredPodcasts)) : [],
-      featuredBlogs: featuredBlogs ? JSON.parse(JSON.stringify(featuredBlogs)) : [],
-      featuredReviews: featuredReviews ? JSON.parse(JSON.stringify(featuredReviews)) : []
+      featuredProject: featuredProject ? safeSerialize(featuredProject) : null,
+      featuredCaseStudies: featuredCaseStudies ? featuredCaseStudies.map(safeSerialize).filter(Boolean) : [],
+      featuredPodcasts: featuredPodcasts ? featuredPodcasts.map(safeSerialize).filter(Boolean) : [],
+      featuredBlogs: featuredBlogs ? featuredBlogs.map(safeSerialize).filter(Boolean) : [],
+      featuredReviews: featuredReviews ? featuredReviews.map(safeSerialize).filter(Boolean) : []
     }
   } catch (error) {
     console.error('Error fetching data for homepage:', error);

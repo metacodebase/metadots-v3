@@ -1,9 +1,14 @@
 "use client";
 
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import {
   ArrowRight,
   MapPin,
@@ -25,13 +30,14 @@ import {
   PenTool,
   Settings,
   Loader2,
-} from "lucide-react"
+  Menu,
+} from "lucide-react";
 
-import Image from "next/image"
-import Link from "next/link"
-import Footer from "@/components/footer"
-import { useInquiryForm } from "@/components/inquiry-form-provider"
-import { useEffect, useState } from "react"
+import Image from "next/image";
+import Link from "next/link";
+import Footer from "@/components/footer";
+import { useInquiryForm } from "@/components/inquiry-form-provider";
+import { useEffect, useState } from "react";
 
 interface Job {
   _id: string;
@@ -39,7 +45,7 @@ interface Job {
   slug: string;
   department: string;
   location: string;
-  type: 'Full-time' | 'Part-time' | 'Contract' | 'Internship' | 'Freelance';
+  type: "Full-time" | "Part-time" | "Contract" | "Internship" | "Freelance";
   experience: string;
   salary: string;
   description: string;
@@ -49,7 +55,7 @@ interface Job {
   icon: string;
   color: string;
   featured: boolean;
-  status: 'draft' | 'published' | 'archived' | 'closed';
+  status: "draft" | "published" | "archived" | "closed";
   stats: {
     views: number;
     applications: number;
@@ -185,7 +191,8 @@ const jobOpenings = [
     type: "Full-time",
     experience: "3+ years",
     salary: "$90k - $140k",
-    description: "Create intuitive and beautiful user experiences that delight our users and drive business success.",
+    description:
+      "Create intuitive and beautiful user experiences that delight our users and drive business success.",
     requirements: [
       "3+ years of UX/UI design experience",
       "Proficiency in Figma, Sketch, and design systems",
@@ -200,7 +207,13 @@ const jobOpenings = [
       "Flexible work environment",
       "Health and wellness benefits",
     ],
-    tags: ["Figma", "UX Research", "Design Systems", "Prototyping", "User Testing"],
+    tags: [
+      "Figma",
+      "UX Research",
+      "Design Systems",
+      "Prototyping",
+      "User Testing",
+    ],
     icon: PenTool,
     color: "from-pink-500 to-rose-600",
     featured: false,
@@ -234,15 +247,24 @@ const jobOpenings = [
     color: "from-teal-500 to-cyan-600",
     featured: false,
   },
-]
+];
 
-const departments = ["All", "Engineering", "AI Research", "Mobile", "Infrastructure", "Design", "Data"]
+const departments = [
+  "All",
+  "Engineering",
+  "AI Research",
+  "Mobile",
+  "Infrastructure",
+  "Design",
+  "Data",
+];
 
 const benefits = [
   {
     icon: Heart,
     title: "Health & Wellness",
-    description: "Comprehensive health, dental, and vision insurance plus wellness programs",
+    description:
+      "Comprehensive health, dental, and vision insurance plus wellness programs",
   },
   {
     icon: Coffee,
@@ -252,7 +274,8 @@ const benefits = [
   {
     icon: TrendingUp,
     title: "Growth & Learning",
-    description: "Professional development budget and conference attendance support",
+    description:
+      "Professional development budget and conference attendance support",
   },
   {
     icon: Award,
@@ -262,41 +285,51 @@ const benefits = [
   {
     icon: Users,
     title: "Amazing Team",
-    description: "Work with talented, passionate people who care about making an impact",
+    description:
+      "Work with talented, passionate people who care about making an impact",
   },
   {
     icon: Globe,
     title: "Global Impact",
     description: "Build products that are used by millions of people worldwide",
   },
-]
+];
 
 export default function CareersPage() {
-  const { openInquiryForm } = useInquiryForm()
+  const { openInquiryForm } = useInquiryForm();
   const [jobs, setJobs] = useState<Job[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchTerm, setSearchTerm] = useState('');
-  const [departmentFilter, setDepartmentFilter] = useState('All');
-  const [departments, setDepartments] = useState<string[]>(["All", "Engineering", "AI Research", "Mobile", "Infrastructure", "Design", "Data"]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [departmentFilter, setDepartmentFilter] = useState("All");
+  const [departments, setDepartments] = useState<string[]>([
+    "All",
+    "Engineering",
+    "AI Research",
+    "Mobile",
+    "Infrastructure",
+    "Design",
+    "Data",
+  ]);
 
   useEffect(() => {
     const fetchJobs = async () => {
       try {
         setIsLoading(true);
         const params = new URLSearchParams();
-        if (searchTerm) params.append('search', searchTerm);
-        if (departmentFilter !== 'All') params.append('department', departmentFilter);
+        if (searchTerm) params.append("search", searchTerm);
+        if (departmentFilter !== "All")
+          params.append("department", departmentFilter);
 
         const response = await fetch(`/api/jobs?${params}`);
         if (!response.ok) {
-          throw new Error('Failed to fetch jobs');
+          throw new Error("Failed to fetch jobs");
         }
 
         const data = await response.json();
         setJobs(data.jobs);
         setDepartments(data.departments || departments);
       } catch (error) {
-        console.error('Error fetching jobs:', error);
+        console.error("Error fetching jobs:", error);
         // Fallback to empty array if API fails
         setJobs([]);
       } finally {
@@ -306,20 +339,20 @@ export default function CareersPage() {
 
     fetchJobs();
   }, [searchTerm, departmentFilter]);
-  
+
   const renderIcon = (iconName: string) => {
     switch (iconName) {
-      case 'Code':
+      case "Code":
         return <Code className="w-8 h-8 text-white" />;
-      case 'Lightbulb':
+      case "Lightbulb":
         return <Lightbulb className="w-8 h-8 text-white" />;
-      case 'Smartphone':
+      case "Smartphone":
         return <Smartphone className="w-8 h-8 text-white" />;
-      case 'Settings':
+      case "Settings":
         return <Settings className="w-8 h-8 text-white" />;
-      case 'PenTool':
+      case "PenTool":
         return <PenTool className="w-8 h-8 text-white" />;
-      case 'Database':
+      case "Database":
         return <Database className="w-8 h-8 text-white" />;
       default:
         return <Briefcase className="w-8 h-8 text-white" />;
@@ -328,35 +361,6 @@ export default function CareersPage() {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
-              <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Home
-            </Link>
-            <Link href="/projects" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Projects
-            </Link>
-            <Link href="/blogs" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Blog
-            </Link>
-            <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              About
-            </Link>
-            <Link href="#" className="text-sm font-medium text-blue-600">
-              Careers
-            </Link>
-          </nav>
-          <Button className="bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -380,8 +384,9 @@ export default function CareersPage() {
                   </span>
                 </h1>
                 <p className="text-xl text-white/80 max-w-2xl leading-relaxed">
-                  Join a team of passionate innovators, engineers, and designers who are transforming businesses through
-                  cutting-edge technology.
+                  Join a team of passionate innovators, engineers, and designers
+                  who are transforming businesses through cutting-edge
+                  technology.
                 </p>
               </div>
 
@@ -392,17 +397,23 @@ export default function CareersPage() {
                   <div className="text-sm text-white/70">Team Members</div>
                 </div>
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <div className="text-3xl font-bold text-white">{jobs.length}</div>
+                  <div className="text-3xl font-bold text-white">
+                    {jobs.length}
+                  </div>
                   <div className="text-sm text-white/70">Open Positions</div>
                 </div>
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-white/90 px-8">
                   View Open Roles
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
-                <Button variant="outline" className="border-white/30 text-white hover:bg-white/10 bg-transparent">
+                <Button
+                  variant="outline"
+                  className="border-white/30 text-white hover:text-whtie hover:bg-white/10 bg-transparent">
                   Learn About Culture
                 </Button>
               </div>
@@ -419,20 +430,31 @@ export default function CareersPage() {
                       <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-100"></div>
                       <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse delay-200"></div>
                     </div>
-                    <Badge className="bg-white/20 text-white backdrop-blur-sm">Careers Hub</Badge>
+                    <Badge className="bg-white/20 text-white backdrop-blur-sm">
+                      Careers Hub
+                    </Badge>
                   </div>
 
                   {/* Open Positions */}
                   <div className="space-y-3">
                     {jobs.slice(0, 3).map((job, index) => (
-                      <div key={job._id} className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                      <div
+                        key={job._id}
+                        className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
                             {renderIcon(job.icon)}
-                            <span className="text-white text-sm">{job.title}</span>
+                            <span className="text-white text-sm">
+                              {job.title}
+                            </span>
                           </div>
-                          <Badge className={`${job.featured ? 'bg-green-500/20 text-green-400' : 'bg-blue-500/20 text-blue-400'} text-xs`}>
-                            {job.featured ? 'Featured' : 'New'}
+                          <Badge
+                            className={`${
+                              job.featured
+                                ? "bg-green-500/20 text-green-400"
+                                : "bg-blue-500/20 text-blue-400"
+                            } text-xs`}>
+                            {job.featured ? "Featured" : "New"}
                           </Badge>
                         </div>
                       </div>
@@ -455,7 +477,9 @@ export default function CareersPage() {
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                     <div className="flex items-center space-x-2 mb-3">
                       <Heart className="w-4 h-4 text-red-400" />
-                      <span className="text-white font-medium text-sm">Benefits & Perks</span>
+                      <span className="text-white font-medium text-sm">
+                        Benefits & Perks
+                      </span>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
                       <div className="bg-white/5 rounded p-2 text-center">
@@ -491,9 +515,12 @@ export default function CareersPage() {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">Why Work With Us?</h2>
+            <h2 className="text-4xl font-bold text-slate-900 mb-4">
+              Why Work With Us?
+            </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              We've created an environment where talented people can do their best work and grow their careers
+              We've created an environment where talented people can do their
+              best work and grow their careers
             </p>
           </div>
 
@@ -501,14 +528,17 @@ export default function CareersPage() {
             {benefits.map((benefit, index) => (
               <Card
                 key={index}
-                className="group text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white"
-              >
+                className="group text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white">
                 <CardHeader className="p-8">
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                     <benefit.icon className="w-8 h-8 text-white" />
                   </div>
-                  <CardTitle className="text-xl mb-4">{benefit.title}</CardTitle>
-                  <CardDescription className="text-base leading-relaxed">{benefit.description}</CardDescription>
+                  <CardTitle className="text-xl mb-4">
+                    {benefit.title}
+                  </CardTitle>
+                  <CardDescription className="text-base leading-relaxed">
+                    {benefit.description}
+                  </CardDescription>
                 </CardHeader>
               </Card>
             ))}
@@ -517,15 +547,15 @@ export default function CareersPage() {
       </section>
 
       {/* Job Search and Filters */}
-      <section className="py-12 bg-slate-50 border-b">
+      <section className="py-12 bg-slate-100">
         <div className="container">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input 
-                placeholder="Search positions..." 
-                className="pl-10 h-12 border-slate-200 focus:border-blue-500"
+            <div className="relative flex-1 max-w-md ">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400  w-4 h-4" />
+              <Input
+                placeholder="Search positions..."
+                className="pl-10 h-12 border-slate-200 focus:border-blue-500 bg-white"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -536,20 +566,25 @@ export default function CareersPage() {
               {departments.map((department) => (
                 <Button
                   key={department}
-                  variant={department === departmentFilter ? "default" : "outline"}
+                  variant={
+                    department === departmentFilter ? "default" : "outline"
+                  }
                   size="sm"
                   className={
-                    department === departmentFilter ? "bg-blue-600 hover:bg-blue-700" : "hover:bg-blue-50 hover:text-blue-600"
+                    department === departmentFilter
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "hover:bg-blue-50 hover:text-blue-600"
                   }
-                  onClick={() => setDepartmentFilter(department)}
-                >
+                  onClick={() => setDepartmentFilter(department)}>
                   {department}
                 </Button>
               ))}
             </div>
 
             {/* Sort */}
-            <Button variant="outline" className="flex items-center gap-2 bg-transparent">
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 bg-transparent hover:text-white">
               <Filter className="w-4 h-4" />
               Sort by Latest
             </Button>
@@ -561,7 +596,9 @@ export default function CareersPage() {
       <section className="py-20 bg-gradient-to-b from-white to-slate-50">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Positions</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+              Featured Positions
+            </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               High-impact roles that are critical to our mission and growth
             </p>
@@ -574,7 +611,9 @@ export default function CareersPage() {
               </div>
             ) : jobs.filter((job) => job.featured).length === 0 ? (
               <div className="col-span-2 text-center py-12">
-                <p className="text-gray-500">No featured positions available at the moment.</p>
+                <p className="text-gray-500">
+                  No featured positions available at the moment.
+                </p>
               </div>
             ) : (
               jobs
@@ -582,14 +621,12 @@ export default function CareersPage() {
                 .map((job) => (
                   <Card
                     key={job._id}
-                    className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
-                  >
+                    className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
                     <CardHeader className="p-8">
                       <div className="flex items-start justify-between mb-6">
                         <div className="flex items-center space-x-4">
                           <div
-                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                          >
+                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                             {renderIcon(job.icon)}
                           </div>
                           <div>
@@ -597,14 +634,20 @@ export default function CareersPage() {
                               {job.title}
                             </CardTitle>
                             <div className="flex items-center space-x-4 text-sm text-slate-600">
-                              <Badge className="bg-blue-100 text-blue-700">{job.department}</Badge>
-                              <Badge className="bg-green-100 text-green-700">Featured</Badge>
+                              <Badge className="bg-blue-100 text-blue-700">
+                                {job.department}
+                              </Badge>
+                              <Badge className="bg-green-100 text-green-700">
+                                Featured
+                              </Badge>
                             </div>
                           </div>
                         </div>
                       </div>
 
-                      <CardDescription className="text-base leading-relaxed mb-6">{job.description}</CardDescription>
+                      <CardDescription className="text-base leading-relaxed mb-6">
+                        {job.description}
+                      </CardDescription>
 
                       {/* Job Details */}
                       <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
@@ -628,13 +671,14 @@ export default function CareersPage() {
 
                       {/* Tech Stack */}
                       <div className="mb-6">
-                        <div className="text-sm font-medium text-slate-700 mb-3">Required Skills</div>
+                        <div className="text-sm font-medium text-slate-700 mb-3">
+                          Required Skills
+                        </div>
                         <div className="flex flex-wrap gap-2">
                           {job.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
-                            >
+                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
                               {tag}
                             </span>
                           ))}
@@ -643,11 +687,15 @@ export default function CareersPage() {
 
                       {/* Actions */}
                       <div className="flex gap-3">
-                        <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                        <Button
+                          onClick={openInquiryForm}
+                          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
                           Apply Now
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
-                        <Button variant="outline" onClick={openInquiryForm}>Learn More</Button>
+                        <Button variant="outline" onClick={openInquiryForm}>
+                          Learn More
+                        </Button>
                       </div>
                     </CardHeader>
                   </Card>
@@ -661,7 +709,9 @@ export default function CareersPage() {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">All Open Positions</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+              All Open Positions
+            </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Explore all the opportunities available at Metadots
             </p>
@@ -674,20 +724,20 @@ export default function CareersPage() {
               </div>
             ) : jobs.length === 0 ? (
               <div className="col-span-2 text-center py-12">
-                <p className="text-gray-500">No positions available at the moment. Please check back later.</p>
+                <p className="text-gray-500">
+                  No positions available at the moment. Please check back later.
+                </p>
               </div>
             ) : (
               jobs.map((job) => (
                 <Card
                   key={job._id}
-                  className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
-                >
+                  className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
                   <CardHeader className="p-8">
                     <div className="flex items-start justify-between mb-6">
                       <div className="flex items-center space-x-4">
                         <div
-                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
-                        >
+                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
                           {renderIcon(job.icon)}
                         </div>
                         <div>
@@ -695,13 +745,17 @@ export default function CareersPage() {
                             {job.title}
                           </CardTitle>
                           <div className="flex items-center space-x-4 text-sm text-slate-600">
-                            <Badge className="bg-blue-100 text-blue-700">{job.department}</Badge>
+                            <Badge className="bg-blue-100 text-blue-700">
+                              {job.department}
+                            </Badge>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <CardDescription className="text-base leading-relaxed mb-6">{job.description}</CardDescription>
+                    <CardDescription className="text-base leading-relaxed mb-6">
+                      {job.description}
+                    </CardDescription>
 
                     {/* Job Details */}
                     <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
@@ -725,13 +779,14 @@ export default function CareersPage() {
 
                     {/* Tech Stack */}
                     <div className="mb-6">
-                      <div className="text-sm font-medium text-slate-700 mb-3">Required Skills</div>
+                      <div className="text-sm font-medium text-slate-700 mb-3">
+                        Required Skills
+                      </div>
                       <div className="flex flex-wrap gap-2">
                         {job.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
-                          >
+                            className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
                             {tag}
                           </span>
                         ))}
@@ -740,11 +795,15 @@ export default function CareersPage() {
 
                     {/* Actions */}
                     <div className="flex gap-3">
-                      <Button onClick={openInquiryForm} className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                      <Button
+                        onClick={openInquiryForm}
+                        className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
                         Apply Now
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
-                      <Button variant="outline" onClick={openInquiryForm}>Learn More</Button>
+                      <Button variant="outline" onClick={openInquiryForm}>
+                        Learn More
+                      </Button>
                     </div>
                   </CardHeader>
                 </Card>
@@ -755,5 +814,5 @@ export default function CareersPage() {
       </section>
       <Footer />
     </div>
-  )
+  );
 }

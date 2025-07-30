@@ -1,81 +1,65 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { ArrowRight, Search, Filter, Star, ExternalLink, Github, Calendar, Users, BarChart3, Menu } from "lucide-react"
-import { connectMongo } from "@/lib/mongodb"
-import Project from "@/models/Project"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  ArrowRight,
+  Search,
+  Filter,
+  Star,
+  ExternalLink,
+  Github,
+  Calendar,
+  Users,
+  BarChart3,
+  Menu,
+} from "lucide-react";
+import { connectMongo } from "@/lib/mongodb";
+import Project from "@/models/Project";
 
-import Image from "next/image"
-import Link from "next/link"
-import Footer from "@/components/footer"
+import Image from "next/image";
+import Link from "next/link";
+import Footer from "@/components/footer";
 
-
-
-const categories = ["All", "AI/ML", "E-commerce", "FinTech", "Healthcare", "IoT", "Real Estate"]
+const categories = [
+  "All",
+  "AI/ML",
+  "E-commerce",
+  "FinTech",
+  "Healthcare",
+  "IoT",
+  "Real Estate",
+];
 
 async function getData() {
   try {
-    await connectMongo()
-    
+    await connectMongo();
+
     // Get all published projects
-    const projects = await Project.find({ status: "published" }).sort({ createdAt: -1 })
-    
+    const projects = await Project.find({ status: "published" }).sort({
+      createdAt: -1,
+    });
+
     return {
-      projects: projects ? JSON.parse(JSON.stringify(projects)) : []
-    }
+      projects: projects ? JSON.parse(JSON.stringify(projects)) : [],
+    };
   } catch (error) {
-    console.error('Error fetching projects:', error);
+    console.error("Error fetching projects:", error);
     return {
-      projects: []
-    }
+      projects: [],
+    };
   }
 }
 
 export default async function ProjectsPage() {
-  const { projects } = await getData()
+  const { projects } = await getData();
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
-              <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="#services" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Services
-            </Link>
-            <Link href="#portfolio" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Portfolio
-            </Link>
-            <Link href="/projects" className="text-sm font-medium text-blue-600">
-              Projects
-            </Link>
-            <Link href="/blogs" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Blog
-            </Link>
-            <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              About
-            </Link>
-            <Link href="/careers" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Careers
-            </Link>
-            <Link href="#contact" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Contact
-            </Link>
-          </nav>
-          <div className="flex items-center space-x-4">
-            <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         {/* Animated Background Elements */}
@@ -101,8 +85,9 @@ export default async function ProjectsPage() {
                   </span>
                 </h1>
                 <p className="text-xl text-white/80 max-w-2xl leading-relaxed">
-                  Explore our comprehensive portfolio of cutting-edge projects that have revolutionized businesses
-                  across industries. From AI-powered platforms to enterprise solutions.
+                  Explore our comprehensive portfolio of cutting-edge projects
+                  that have revolutionized businesses across industries. From
+                  AI-powered platforms to enterprise solutions.
                 </p>
               </div>
 
@@ -110,25 +95,30 @@ export default async function ProjectsPage() {
               <div className="grid grid-cols-2 gap-6">
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
                   <div className="text-3xl font-bold text-white">500+</div>
-                  <div className="text-sm text-white/70">Projects Delivered</div>
+                  <div className="text-sm text-white/70">
+                    Projects Delivered
+                  </div>
                 </div>
                 <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
                   <div className="text-3xl font-bold text-white">98%</div>
-                  <div className="text-sm text-white/70">Client Satisfaction</div>
+                  <div className="text-sm text-white/70">
+                    Client Satisfaction
+                  </div>
                 </div>
               </div>
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
                   Explore Projects
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
                 <Button
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 px-8 py-4 bg-transparent"
-                >
+                  className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 py-4 bg-transparent">
                   View Case Studies
                 </Button>
               </div>
@@ -147,27 +137,41 @@ export default async function ProjectsPage() {
                         <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-100"></div>
                         <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse delay-200"></div>
                       </div>
-                      <Badge className="bg-white/20 text-white backdrop-blur-sm">Project Dashboard</Badge>
+                      <Badge className="bg-white/20 text-white backdrop-blur-sm">
+                        Project Dashboard
+                      </Badge>
                     </div>
 
                     {/* Project Cards */}
                     <div className="grid grid-cols-2 gap-4">
                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/80 text-sm">AI Platform</span>
+                          <span className="text-white/80 text-sm">
+                            AI Platform
+                          </span>
                           <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                         </div>
-                        <div className="text-2xl font-bold text-white">94.7%</div>
-                        <div className="text-xs text-white/60">Success Rate</div>
+                        <div className="text-2xl font-bold text-white">
+                          94.7%
+                        </div>
+                        <div className="text-xs text-white/60">
+                          Success Rate
+                        </div>
                       </div>
 
                       <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
                         <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/80 text-sm">E-commerce</span>
+                          <span className="text-white/80 text-sm">
+                            E-commerce
+                          </span>
                           <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
                         </div>
-                        <div className="text-2xl font-bold text-white">$2.4M</div>
-                        <div className="text-xs text-white/60">Revenue Generated</div>
+                        <div className="text-2xl font-bold text-white">
+                          $2.4M
+                        </div>
+                        <div className="text-xs text-white/60">
+                          Revenue Generated
+                        </div>
                       </div>
                     </div>
 
@@ -181,8 +185,7 @@ export default async function ProjectsPage() {
                         <div className="w-full bg-white/20 rounded-full h-2">
                           <div
                             className="bg-gradient-to-r from-blue-400 to-purple-400 h-2 rounded-full"
-                            style={{ width: "87%" }}
-                          ></div>
+                            style={{ width: "87%" }}></div>
                         </div>
                       </div>
                       <div>
@@ -193,8 +196,7 @@ export default async function ProjectsPage() {
                         <div className="w-full bg-white/20 rounded-full h-2">
                           <div
                             className="bg-gradient-to-r from-green-400 to-emerald-400 h-2 rounded-full"
-                            style={{ width: "98%" }}
-                          ></div>
+                            style={{ width: "98%" }}></div>
                         </div>
                       </div>
                     </div>
@@ -221,7 +223,10 @@ export default async function ProjectsPage() {
             {/* Search */}
             <div className="relative flex-1 max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
-              <Input placeholder="Search projects..." className="pl-10 h-12 border-slate-200 focus:border-blue-500" />
+              <Input
+                placeholder="Search projects..."
+                className="pl-10 h-12 border-slate-200 focus:border-blue-500"
+              />
             </div>
 
             {/* Category Filters */}
@@ -232,16 +237,19 @@ export default async function ProjectsPage() {
                   variant={category === "All" ? "default" : "outline"}
                   size="sm"
                   className={
-                    category === "All" ? "bg-blue-600 hover:bg-blue-700" : "hover:bg-blue-50 hover:text-blue-600"
-                  }
-                >
+                    category === "All"
+                      ? "bg-blue-600 hover:bg-blue-700"
+                      : "hover:bg-blue-50 hover:text-blue-600"
+                  }>
                   {category}
                 </Button>
               ))}
             </div>
 
             {/* Sort */}
-            <Button variant="outline" className="flex items-center gap-2 bg-transparent">
+            <Button
+              variant="outline"
+              className="flex items-center gap-2 bg-transparent">
               <Filter className="w-4 h-4" />
               Sort by Latest
             </Button>
@@ -253,9 +261,12 @@ export default async function ProjectsPage() {
       <section className="py-20 bg-gradient-to-b from-white to-slate-50">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">Featured Projects</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+              Featured Projects
+            </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Our most impactful and innovative solutions that have set new industry standards
+              Our most impactful and innovative solutions that have set new
+              industry standards
             </p>
           </div>
 
@@ -265,8 +276,7 @@ export default async function ProjectsPage() {
               .map((project: any) => (
                 <Card
                   key={project._id}
-                  className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white"
-                >
+                  className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
                   <div className="relative">
                     <div className="aspect-video overflow-hidden">
                       <Image
@@ -278,15 +288,21 @@ export default async function ProjectsPage() {
                       />
                     </div>
                     <div className="absolute top-4 left-4 flex gap-2">
-                      <Badge className="bg-white/90 text-slate-700">{project.category}</Badge>
+                      <Badge className="bg-white/90 text-slate-700">
+                        {project.category}
+                      </Badge>
                       {project.featured && (
-                        <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">Featured</Badge>
+                        <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                          Featured
+                        </Badge>
                       )}
                     </div>
                     <div className="absolute top-4 right-4">
                       <div className="flex items-center space-x-1 bg-white/90 rounded-full px-2 py-1">
                         <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                        <span className="text-xs font-medium">{project.rating || 5.0}</span>
+                        <span className="text-xs font-medium">
+                          {project.rating || 5.0}
+                        </span>
                       </div>
                     </div>
                   </div>
@@ -306,25 +322,32 @@ export default async function ProjectsPage() {
                     {/* Tech Stack */}
                     <div className="mb-6">
                       <div className="flex flex-wrap gap-2">
-                        {project.technologies && project.technologies.map((tag: string) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                        {project.technologies &&
+                          project.technologies.map((tag: string) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+                              {tag}
+                            </span>
+                          ))}
                       </div>
                     </div>
 
                     {/* Metrics */}
                     <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
-                      {project.metrics && Object.entries(project.metrics).map(([key, value]: [string, any]) => (
-                        <div key={key} className="text-center">
-                          <div className="text-lg font-bold text-blue-600">{value}</div>
-                          <div className="text-xs text-slate-600 capitalize">{key.replace(/([A-Z])/g, " $1")}</div>
-                        </div>
-                      ))}
+                      {project.metrics &&
+                        Object.entries(project.metrics).map(
+                          ([key, value]: [string, any]) => (
+                            <div key={key} className="text-center">
+                              <div className="text-lg font-bold text-blue-600">
+                                {value}
+                              </div>
+                              <div className="text-xs text-slate-600 capitalize">
+                                {key.replace(/([A-Z])/g, " $1")}
+                              </div>
+                            </div>
+                          )
+                        )}
                     </div>
 
                     {/* Project Info */}
@@ -363,9 +386,12 @@ export default async function ProjectsPage() {
       <section className="py-20 bg-white">
         <div className="container">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">All Projects</h2>
+            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+              All Projects
+            </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Comprehensive showcase of our diverse portfolio across multiple industries and technologies
+              Comprehensive showcase of our diverse portfolio across multiple
+              industries and technologies
             </p>
           </div>
 
@@ -373,8 +399,7 @@ export default async function ProjectsPage() {
             {projects.map((project: any) => (
               <Card
                 key={project._id}
-                className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white"
-              >
+                className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white">
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
@@ -386,12 +411,19 @@ export default async function ProjectsPage() {
                     />
                   </div>
                   <div className="absolute top-3 left-3">
-                    <Badge className={`bg-gradient-to-r ${project.color || "from-blue-500 to-indigo-600"} text-white`}>{project.category}</Badge>
+                    <Badge
+                      className={`bg-gradient-to-r ${
+                        project.color || "from-blue-500 to-indigo-600"
+                      } text-white`}>
+                      {project.category}
+                    </Badge>
                   </div>
                   <div className="absolute top-3 right-3">
                     <div className="flex items-center space-x-1 bg-white/90 rounded-full px-2 py-1">
                       <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
-                      <span className="text-xs font-medium">{project.rating || 5.0}</span>
+                      <span className="text-xs font-medium">
+                        {project.rating || 5.0}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -406,34 +438,44 @@ export default async function ProjectsPage() {
 
                   {/* Quick Metrics */}
                   <div className="grid grid-cols-3 gap-2 mb-4 text-xs">
-                    {project.metrics && Object.entries(project.metrics)
-                      .slice(0, 3)
-                      .map(([key, value]: [string, any]) => (
-                        <div key={key} className="text-center p-2 bg-slate-50 rounded">
-                          <div className="font-bold text-blue-600">{value}</div>
-                          <div className="text-slate-600 capitalize">{key}</div>
-                        </div>
-                      ))}
+                    {project.metrics &&
+                      Object.entries(project.metrics)
+                        .slice(0, 3)
+                        .map(([key, value]: [string, any]) => (
+                          <div
+                            key={key}
+                            className="text-center p-2 bg-slate-50 rounded">
+                            <div className="font-bold text-blue-600">
+                              {value}
+                            </div>
+                            <div className="text-slate-600 capitalize">
+                              {key}
+                            </div>
+                          </div>
+                        ))}
                   </div>
 
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-1 mb-4">
-                    {project.technologies && project.technologies.slice(0, 3).map((tag: string) => (
-                      <span key={tag} className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
-                        {tag}
-                      </span>
-                    ))}
-                    {project.technologies && project.technologies.length > 3 && (
-                      <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
-                        +{project.technologies.length - 3} more
-                      </span>
-                    )}
+                    {project.technologies &&
+                      project.technologies.slice(0, 3).map((tag: string) => (
+                        <span
+                          key={tag}
+                          className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
+                          {tag}
+                        </span>
+                      ))}
+                    {project.technologies &&
+                      project.technologies.length > 3 && (
+                        <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
+                          +{project.technologies.length - 3} more
+                        </span>
+                      )}
                   </div>
 
                   <Button
                     variant="ghost"
-                    className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 group/btn"
-                  >
+                    className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 group/btn">
                     View Details
                     <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                   </Button>
@@ -456,20 +498,24 @@ export default async function ProjectsPage() {
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
         <div className="container">
           <div className="text-center space-y-8 max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-white">Ready to Start Your Project?</h2>
+            <h2 className="text-4xl font-bold text-white">
+              Ready to Start Your Project?
+            </h2>
             <p className="text-xl text-white/80 leading-relaxed">
-              Let's discuss how we can transform your ideas into reality with cutting-edge technology solutions.
+              Let's discuss how we can transform your ideas into reality with
+              cutting-edge technology solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-white text-slate-900 hover:bg-white/90 px-8">
+              <Button
+                size="lg"
+                className="bg-white text-slate-900 hover:bg-white/90 px-8">
                 Start a Project
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="border-white/30 text-white hover:bg-white/10 px-8 bg-transparent"
-              >
+                className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
                 Schedule Consultation
               </Button>
             </div>
@@ -478,5 +524,5 @@ export default async function ProjectsPage() {
       </section>
       <Footer />
     </div>
-  )
+  );
 }

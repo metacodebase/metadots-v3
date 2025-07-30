@@ -1,55 +1,15 @@
 "use client";
 
-import { Button } from "@/components/ui/button"
-import { Menu } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import Footer from "@/components/footer"
-import ContactSection from "@/components/contact-section"
+import { Button } from "@/components/ui/button";
+import { Menu } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import Footer from "@/components/footer";
+import ContactSection from "@/components/contact-section";
 
 export default function ContactUsPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60">
-        <div className="container flex h-16 items-center justify-between">
-          <div className="flex items-center space-x-2">
-            <Link href="/" className="hover:opacity-80 transition-opacity">
-              <Image src="/images/metadots-logo.svg" alt="Metadots" width={140} height={32} className="h-8 w-auto" />
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center space-x-8">
-            <Link href="/#services" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Services
-            </Link>
-            <Link href="/#portfolio" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Portfolio
-            </Link>
-            <Link href="/projects" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Projects
-            </Link>
-            <Link href="/blogs" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Blog
-            </Link>
-            <Link href="/about" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              About
-            </Link>
-            <Link href="/careers" className="text-sm font-medium text-gray-600 hover:text-blue-600 transition-colors">
-              Careers
-            </Link>
-            <Link href="/contact-us" className="text-sm font-medium text-blue-600">
-              Contact
-            </Link>
-          </nav>
-          <div className="flex items-center space-x-4">
-            <Button className="hidden md:inline-flex bg-blue-600 hover:bg-blue-700">Get a Quote</Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section */}
       <section className="py-20 md:py-32 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
         {/* Animated Background Elements */}
@@ -73,7 +33,8 @@ export default function ContactUsPage() {
                 </span>
               </h1>
               <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
-                Let's discuss your vision and turn it into reality. Our team is ready to help you build something amazing.
+                Let's discuss your vision and turn it into reality. Our team is
+                ready to help you build something amazing.
               </p>
             </div>
 
@@ -81,16 +42,20 @@ export default function ContactUsPage() {
               <Button
                 size="lg"
                 className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
-                onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
-              >
+                onClick={() =>
+                  document
+                    .getElementById("contact")
+                    ?.scrollIntoView({ behavior: "smooth" })
+                }>
                 Start Your Project
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">→</span>
+                <span className="ml-2 group-hover:translate-x-1 transition-transform">
+                  →
+                </span>
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="group text-lg px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
-              >
+                className="group text-lg px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
                 <span className="mr-2">📧</span>
                 Send Email
               </Button>
@@ -102,21 +67,27 @@ export default function ContactUsPage() {
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
                   📞
                 </div>
-                <div className="text-sm text-slate-600 font-medium mt-2">Call Us</div>
+                <div className="text-sm text-slate-600 font-medium mt-2">
+                  Call Us
+                </div>
                 <div className="text-xs text-slate-500">+44 7400 926311</div>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
                   📧
                 </div>
-                <div className="text-sm text-slate-600 font-medium mt-2">Email Us</div>
+                <div className="text-sm text-slate-600 font-medium mt-2">
+                  Email Us
+                </div>
                 <div className="text-xs text-slate-500">sales@metadots.co</div>
               </div>
               <div className="text-center group cursor-pointer">
                 <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
                   🏢
                 </div>
-                <div className="text-sm text-slate-600 font-medium mt-2">Visit Us</div>
+                <div className="text-sm text-slate-600 font-medium mt-2">
+                  Visit Us
+                </div>
                 <div className="text-xs text-slate-500">Lahore, Pakistan</div>
               </div>
             </div>
@@ -129,5 +100,5 @@ export default function ContactUsPage() {
 
       <Footer />
     </div>
-  )
-} 
+  );
+}

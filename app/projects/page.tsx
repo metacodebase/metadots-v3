@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import cn from "classnames";
 import {
   Card,
   CardDescription,
@@ -61,7 +62,7 @@ export default async function ProjectsPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -78,9 +79,9 @@ export default async function ProjectsPage() {
                   <BarChart3 className="w-4 h-4 mr-2" aria-hidden="true" />
                   Our Portfolio
                 </div>
-                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-white">
+                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-white leading-tight">
                   <span className="block">Transformative</span>
-                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent pb-2 ">
                     Digital Solutions
                   </span>
                 </h1>
@@ -109,18 +110,22 @@ export default async function ProjectsPage() {
 
               {/* CTA Buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
-                  Explore Projects
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 py-4 bg-transparent">
-                  View Case Studies
-                </Button>
+                <Link href="/contact-us">
+                  <Button
+                    size="lg"
+                    className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
+                    Explore Projects
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/contact-us">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 py-4 bg-transparent">
+                    View Case Studies
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -219,40 +224,42 @@ export default async function ProjectsPage() {
       {/* Filters and Search */}
       <section className="py-12 bg-white border-b">
         <div className="container">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+          <div className="flex  gap-6 items-center justify-between">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
               <Input
                 placeholder="Search projects..."
-                className="pl-10 h-12 border-slate-200 focus:border-blue-500"
+                className="pl-10 h-12 border-slate-300 focus:border-blue-500"
               />
             </div>
 
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={category === "All" ? "default" : "outline"}
-                  size="sm"
-                  className={
-                    category === "All"
-                      ? "bg-blue-600 hover:bg-blue-700"
-                      : "hover:bg-blue-50 hover:text-blue-600"
-                  }>
-                  {category}
-                </Button>
-              ))}
-            </div>
 
             {/* Sort */}
             <Button
               variant="outline"
-              className="flex items-center gap-2 bg-transparent">
+              className="flex items-center gap-2 bg-transparent hover:text-white !w-auto">
               <Filter className="w-4 h-4" />
-              Sort by Latest
+              <span className="md:block hidden">Sort by Latest</span>
             </Button>
+          </div>
+
+          <div className="flex items-center gap-2 flex-wrap mt-5">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={category === "All" ? "default" : "outline"}
+                size="sm"
+                className={cn(
+                  "!px-4 !py-2 !w-auto", // Add padding to maintain button size based on content
+                  category === "All"
+                    ? "bg-blue-700 hover:bg-blue-700"
+                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 hover:text-white"
+                )}>
+                {category}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
@@ -486,10 +493,15 @@ export default async function ProjectsPage() {
 
           {/* Load More */}
           <div className="text-center mt-12">
-            <Button size="lg" variant="outline" className="px-8 bg-transparent">
-              Load More Projects
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
+            <Link href="/contact-us">
+              <Button
+                size="lg"
+                variant="outline"
+                className="px-8 bg-transparent hover:text-white">
+                Load More Projects
+                <ArrowRight className="ml-2 h-4 w-4" />
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
@@ -506,18 +518,22 @@ export default async function ProjectsPage() {
               cutting-edge technology solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-slate-900 hover:bg-white/90 px-8">
-                Start a Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
-                Schedule Consultation
-              </Button>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                  Start a Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
+                  Schedule Consultation
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

@@ -1,28 +1,6 @@
 export default function BlogSkeleton() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      {/* Header Skeleton */}
-      <header className="bg-white border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            {/* Logo Skeleton */}
-            <div className="h-8 w-32 bg-gray-200 rounded animate-pulse"></div>
-
-            {/* Navigation Skeleton */}
-            <nav className="hidden md:flex space-x-8">
-              {[...Array(7)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-4 w-16 bg-gray-200 rounded animate-pulse"></div>
-              ))}
-            </nav>
-
-            {/* CTA Button Skeleton */}
-            <div className="h-10 w-28 bg-blue-200 rounded-lg animate-pulse"></div>
-          </div>
-        </div>
-      </header>
-
       {/* Hero Section Skeleton */}
       <div className="bg-gradient-to-br from-blue-900 via-blue-800 to-purple-900 min-h-screen relative overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">

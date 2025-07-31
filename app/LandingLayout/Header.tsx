@@ -1,16 +1,34 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { AlignJustify, Menu, X } from "lucide-react";
+import { AlignJustify, X } from "lucide-react";
 import { Drawer } from "antd";
 import Image from "next/image";
 import Link from "next/link";
 
 const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [currentHash, setCurrentHash] = useState("");
   const pathname = usePathname();
+
+  // Handle hash changes for client-side navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      setCurrentHash(window.location.hash);
+    };
+
+    // Set initial hash
+    setCurrentHash(window.location.hash);
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashChange);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashChange);
+    };
+  }, []);
 
   const navigationLinks = [
     { href: "/#services", label: "Services" },
@@ -26,7 +44,7 @@ const Header = () => {
     // Handle hash links (for home page sections)
     if (href.startsWith("/#")) {
       const hash = href.substring(1); // Remove the leading slash to get just the hash
-      return pathname === "/" && window.location.hash === hash;
+      return pathname === "/" && currentHash === hash;
     }
     // Handle regular page links
     return pathname === href;
@@ -38,6 +56,10 @@ const Header = () => {
 
   const handleLinkClick = () => {
     setDrawerOpen(false);
+  };
+
+  const handleMenuClick = () => {
+    setDrawerOpen(true);
   };
 
   return (
@@ -53,6 +75,7 @@ const Header = () => {
                 width={140}
                 height={32}
                 className="h-8 w-auto"
+                priority
               />
             </Link>
           </div>
@@ -85,8 +108,9 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-[#000]"
-              onClick={() => setDrawerOpen(true)}>
+              className="md:hidden text-[#000] hover:bg-transparent hover:text-blue-600"
+              onClick={handleMenuClick}
+              aria-label="Open navigation menu">
               <AlignJustify className="h-5 w-5" />
             </Button>
           </div>
@@ -96,7 +120,7 @@ const Header = () => {
       {/* Mobile Drawer */}
       <Drawer
         title={
-          <div className="flex items-center justify-between">
+          <div className="flex items-center">
             <Image
               src="/images/metadots-logo.svg"
               alt="Metadots"
@@ -106,18 +130,28 @@ const Header = () => {
             />
           </div>
         }
+        extra={
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleDrawerClose}
+            className="hover:bg-gray-100 p-1"
+            aria-label="Close navigation menu">
+            <X className="h-5 w-5" />
+          </Button>
+        }
         placement="right"
         onClose={handleDrawerClose}
         open={drawerOpen}
         width={300}
+        closable={false}
         styles={{
           body: { padding: 0 },
           header: {
             borderBottom: "1px solid #e5e7eb",
             padding: "16px 24px",
           },
-        }}
-        closeIcon={<X className="h-5 w-5" />}>
+        }}>
         <div className="flex flex-col h-full">
           {/* Navigation Links */}
           <nav className="flex-1 px-6 py-4">

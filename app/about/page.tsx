@@ -162,7 +162,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -205,18 +205,22 @@ export default function AboutPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-white text-slate-900 hover:bg-white/90 px-8">
-                  Our Story
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="border-white/30 text-white hover:text-white hover:bg-white/10 bg-transparent">
-                  Meet the Team
-                </Button>
+                <Link href="/contact-us">
+                  <Button
+                    size="lg"
+                    className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                    Our Story
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/contact-us">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white/30 text-white hover:text-white hover:bg-white/10 bg-transparent">
+                    Meet the Team
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -519,19 +523,23 @@ export default function AboutPage() {
               life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-slate-900 hover:bg-white/90 px-8">
-                Start Your Journey
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
-                <MessageSquare className="mr-2 h-5 w-5" />
-                Schedule a Call
-              </Button>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                  Start Your Journey
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
+                  <MessageSquare className="mr-2 h-5 w-5" />
+                  Schedule a Call
+                </Button>
+              </Link>
             </div>
           </div>
         </div>
@@ -741,18 +749,22 @@ export default function AboutPage() {
               innovative technology solutions.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-white text-slate-900 hover:bg-white/90 px-8">
-                Start a Project
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
-                Schedule Consultation
-              </Button>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                  Start a Project
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
+              <Link href="/contact-us">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 bg-transparent">
+                  Schedule Consultation
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

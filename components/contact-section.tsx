@@ -18,6 +18,7 @@ import {
   Loader2,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
+import { Select } from "antd";
 
 export default function ContactSection() {
   const { toast } = useToast();
@@ -31,6 +32,43 @@ export default function ContactSection() {
     budgetRange: "",
     projectDetails: "",
   });
+  const projectTypeOptions = [
+    { value: "Web Application", label: "Web Application" },
+    { value: "Mobile App", label: "Mobile App" },
+    { value: "AI/ML Solution", label: "AI/ML Solution" },
+    { value: "E-commerce Platform", label: "E-commerce Platform" },
+    { value: "Custom Software", label: "Custom Software" },
+    { value: "Consulting", label: "Consulting" },
+  ];
+
+  // Budget Range options
+  const budgetRangeOptions = [
+    { value: "$10K - $25K", label: "$10K - $25K" },
+    { value: "$25K - $50K", label: "$25K - $50K" },
+    { value: "$50K - $100K", label: "$50K - $100K" },
+    { value: "$100K+", label: "$100K+" },
+    { value: "Let's discuss", label: "Let's discuss" },
+  ];
+
+  // Handle change for Project Type
+  const handleProjectTypeChange = (value: string) => {
+    handleInputChange({
+      target: {
+        name: "projectType",
+        value: value,
+      },
+    } as React.ChangeEvent<HTMLSelectElement>);
+  };
+
+  // Handle change for Budget Range
+  const handleBudgetRangeChange = (value: string) => {
+    handleInputChange({
+      target: {
+        name: "budgetRange",
+        value: value,
+      },
+    } as React.ChangeEvent<HTMLSelectElement>);
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -332,22 +370,15 @@ export default function ContactSection() {
                     <label className="text-sm font-medium text-slate-700">
                       Project Type *
                     </label>
-                    <select
-                      name="projectType"
-                      value={formData.projectType}
-                      onChange={handleInputChange}
-                      className="w-full h-12 px-3 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 bg-white"
-                      required>
-                      <option value="">Select project type</option>
-                      <option value="Web Application">Web Application</option>
-                      <option value="Mobile App">Mobile App</option>
-                      <option value="AI/ML Solution">AI/ML Solution</option>
-                      <option value="E-commerce Platform">
-                        E-commerce Platform
-                      </option>
-                      <option value="Custom Software">Custom Software</option>
-                      <option value="Consulting">Consulting</option>
-                    </select>
+                    <Select
+                      className="custom-antd-select"
+                      placeholder="Select project type"
+                      value={formData.projectType || undefined}
+                      onChange={handleProjectTypeChange}
+                      options={projectTypeOptions}
+                      style={{ width: "100%" }}
+                      size="large"
+                    />
                   </div>
 
                   {/* Budget Range */}
@@ -355,18 +386,15 @@ export default function ContactSection() {
                     <label className="text-sm font-medium text-slate-700">
                       Budget Range
                     </label>
-                    <select
-                      name="budgetRange"
-                      value={formData.budgetRange}
-                      onChange={handleInputChange}
-                      className="w-full h-12 px-3 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 bg-white">
-                      <option value="">Select budget range</option>
-                      <option value="$10K - $25K">$10K - $25K</option>
-                      <option value="$25K - $50K">$25K - $50K</option>
-                      <option value="$50K - $100K">$50K - $100K</option>
-                      <option value="$100K+">$100K+</option>
-                      <option value="Let's discuss">Let's discuss</option>
-                    </select>
+                    <Select
+                      className="custom-antd-select"
+                      placeholder="Select budget range"
+                      value={formData.budgetRange || undefined}
+                      onChange={handleBudgetRangeChange}
+                      options={budgetRangeOptions}
+                      style={{ width: "100%" }}
+                      size="large"
+                    />
                   </div>
 
                   {/* Message */}
@@ -378,7 +406,7 @@ export default function ContactSection() {
                       name="projectDetails"
                       value={formData.projectDetails}
                       onChange={handleInputChange}
-                      className="min-h-[120px] w-full rounded-md border border-slate-200 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 resize-none"
+                      className="min-h-[120px] w-full rounded-md border border-slate-200 text-black bg-white px-3 py-2 outline-none  text-sm focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 resize-none"
                       placeholder="Tell us about your project goals, timeline, and any specific requirements..."
                       required
                     />

@@ -388,7 +388,7 @@ export default async function MetadotsLanding() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Enhanced Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-20 md:py-32">
+      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-20">
         {/* Animated Background Elements */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
@@ -420,7 +420,7 @@ export default async function MetadotsLanding() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
                   size="lg"
-                  className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-lg px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
                   asChild>
                   <Link href="/contact-us">
                     Start Building
@@ -433,7 +433,7 @@ export default async function MetadotsLanding() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group text-lg px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="group  px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
                   asChild>
                   <Link href="/contact-us">
                     <Play
@@ -620,7 +620,7 @@ export default async function MetadotsLanding() {
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Heart className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-pink-600 transition-colors">
+                <CardTitle className="text-lg mb-2 group-hover:text-pink-600 text-pink-400 transition-colors">
                   Healthcare
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
@@ -647,7 +647,7 @@ export default async function MetadotsLanding() {
                     aria-hidden="true"
                   />
                 </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-green-600 transition-colors">
+                <CardTitle className="text-lg mb-2 group-hover:text-green-600 text-green-400 transition-colors">
                   Finance
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
@@ -670,7 +670,7 @@ export default async function MetadotsLanding() {
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <Shield className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-blue-600 transition-colors">
+                <CardTitle className="text-lg mb-2 group-hover:text-blue-600 text-blue-400 transition-colors">
                   Legal
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
@@ -693,7 +693,7 @@ export default async function MetadotsLanding() {
                 <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
                   <BookOpen className="h-6 w-6 text-white" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-yellow-600 transition-colors">
+                <CardTitle className="text-lg mb-2 group-hover:text-yellow-600 text-yellow-400 transition-colors">
                   EdTech
                 </CardTitle>
                 <CardDescription className="text-sm leading-relaxed">
@@ -859,7 +859,7 @@ export default async function MetadotsLanding() {
 
           {/* View All Case Studies Button */}
           <div className="text-center mt-16">
-            <Link href="/case-studies">
+            <Link href="/contact-us">
               <Button
                 size="lg"
                 className="group bg-gradient-to-r from-slate-900 to-slate-700 hover:from-slate-800 hover:to-slate-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4">
@@ -1138,7 +1138,7 @@ export default async function MetadotsLanding() {
             <h3 className="text-xl font-semibold text-slate-700">
               Trusted by industry leaders
             </h3>
-            <div className="flex items-center justify-center space-x-12 opacity-60">
+            <div className="flex items-center justify-center  flex-wrap gap-8 md:gap-12 opacity-60">
               {[
                 "TechCorp",
                 "StartupXYZ",
@@ -1148,7 +1148,7 @@ export default async function MetadotsLanding() {
               ].map((company, index) => (
                 <div
                   key={company}
-                  className="text-2xl font-bold text-slate-400 hover:text-slate-600 transition-colors cursor-pointer transform hover:scale-110 duration-300"
+                  className="text-sm md:text-2xl font-bold text-slate-400 hover:text-slate-600 transition-colors cursor-pointer transform hover:scale-110 duration-300"
                   style={{ animationDelay: `${index * 200}ms` }}>
                   {company}
                 </div>
@@ -1847,14 +1847,16 @@ export default async function MetadotsLanding() {
                   ))}
                 </div>
 
-                <Button
-                  className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
-                  asChild>
-                  <Link href="/contact-us">
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </Button>
+                <div className="mt-6 text-left">
+                  <Button
+                    className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
+                    asChild>
+                    <Link href="/contact-us">
+                      Learn More
+                      <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
             </Card>
 
@@ -1889,15 +1891,16 @@ export default async function MetadotsLanding() {
                     </div>
                   ))}
                 </div>
-
-                <Button
-                  className="w-full mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
-                  asChild>
-                  <Link href="/contact-us">
-                    Get Quote
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </Button>
+                <div className="mt-6 text-left">
+                  <Button
+                    className="w-full mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                    asChild>
+                    <Link href="/contact-us">
+                      Get Quote
+                      <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
             </Card>
 
@@ -1931,14 +1934,16 @@ export default async function MetadotsLanding() {
                     </div>
                   ))}
                 </div>
-                <Button
-                  className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
-                  asChild>
-                  <Link href="/contact-us">
-                    Meet Our Engineers
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </Button>
+                <div className="mt-6 text-left">
+                  <Button
+                    className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                    asChild>
+                    <Link href="/contact-us">
+                      Meet Our Engineers
+                      <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
+                    </Link>
+                  </Button>
+                </div>
               </CardHeader>
             </Card>
           </div>

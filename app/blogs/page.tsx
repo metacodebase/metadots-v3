@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import cn from "classnames";
+
 import {
   Card,
   CardDescription,
@@ -199,7 +201,7 @@ export default function BlogsPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -214,9 +216,9 @@ export default function BlogsPage() {
                   <BookOpen className="w-4 h-4 mr-2" aria-hidden="true" />
                   Tech Insights & Tutorials
                 </div>
-                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-white">
+                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-white leading-tight">
                   <span className="block">Latest</span>
-                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent pb-2">
                     Tech Insights
                   </span>
                 </h1>
@@ -237,7 +239,7 @@ export default function BlogsPage() {
                     placeholder="Enter your email"
                     className="border-0 bg-white/20 text-white placeholder:text-white/60 flex-1"
                   />
-                  <Button className="bg-white text-slate-900 hover:bg-white/90 px-6">
+                  <Button className="bg-white text-slate-900 hover:bg-white/90 px-6 !w-auto">
                     Subscribe
                   </Button>
                 </div>
@@ -334,7 +336,7 @@ export default function BlogsPage() {
         <div className="container">
           <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
             {/* Search */}
-            <div className="relative flex-1 max-w-md">
+            <div className="relative flex-1 w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
               <Input
                 placeholder="Search articles..."
@@ -345,30 +347,29 @@ export default function BlogsPage() {
             </div>
 
             {/* Category Filters */}
-            <div className="flex flex-wrap gap-2">
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={
-                    selectedCategory === category ? "default" : "outline"
-                  }
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className={
-                    selectedCategory === category
-                      ? "bg-blue-600 hover:bg-blue-700"
-                      : "hover:bg-blue-50 hover:text-blue-600"
-                  }>
-                  {category}
-                </Button>
-              ))}
-            </div>
 
             {/* Results Count */}
             <div className="text-sm text-slate-600">
               {filteredBlogs.length} article
               {filteredBlogs.length !== 1 ? "s" : ""} found
             </div>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap mt-5">
+            {categories.map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                size="sm"
+                onClick={() => setSelectedCategory(category)}
+                className={cn(
+                  "!px-4 !py-2 !w-auto", // Add padding to maintain button size based on content
+                  category === "All"
+                    ? "bg-blue-700 hover:bg-blue-700"
+                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 hover:text-white"
+                )}>
+                {category}
+              </Button>
+            ))}
           </div>
         </div>
       </section>
@@ -697,7 +698,7 @@ export default function BlogsPage() {
                   placeholder="Enter your email"
                   className="border-0 bg-white/20 text-white placeholder:text-white/60 flex-1"
                 />
-                <Button className="bg-white text-slate-900 hover:bg-white/90 px-6">
+                <Button className="bg-white text-slate-900 hover:bg-white/90 px-6 !w-auto">
                   Subscribe
                 </Button>
               </div>

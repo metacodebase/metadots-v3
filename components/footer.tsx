@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   ArrowRight,
   Linkedin,
@@ -10,9 +10,9 @@ import {
   Phone,
   Mail,
   Activity,
-} from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function Footer() {
   return (
@@ -38,8 +38,9 @@ export default function Footer() {
                   className="h-10 w-auto brightness-0 invert"
                 />
                 <p className="text-slate-300 max-w-md leading-relaxed">
-                  Transforming businesses through innovative technology solutions. We don't just build software—we
-                  architect the future of digital experiences.
+                  Transforming businesses through innovative technology
+                  solutions. We don't just build software—we architect the
+                  future of digital experiences.
                 </p>
               </div>
 
@@ -48,15 +49,30 @@ export default function Footer() {
                 <h4 className="font-semibold text-lg">Connect With Us</h4>
                 <div className="flex space-x-4">
                   {[
-                    { name: "LinkedIn", icon: Linkedin, color: "hover:bg-blue-600" },
-                    { name: "Twitter", icon: Twitter, color: "hover:bg-blue-400" },
-                    { name: "GitHub", icon: Github, color: "hover:bg-slate-600" },
-                    { name: "Dribbble", icon: Dribbble, color: "hover:bg-pink-500" },
+                    {
+                      name: "LinkedIn",
+                      icon: Linkedin,
+                      color: "hover:bg-blue-600",
+                    },
+                    {
+                      name: "Twitter",
+                      icon: Twitter,
+                      color: "hover:bg-blue-400",
+                    },
+                    {
+                      name: "GitHub",
+                      icon: Github,
+                      color: "hover:bg-slate-600",
+                    },
+                    {
+                      name: "Dribbble",
+                      icon: Dribbble,
+                      color: "hover:bg-pink-500",
+                    },
                   ].map((social, index) => (
                     <div
                       key={social.name}
-                      className={`w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center ${social.color} transition-all duration-300 cursor-pointer transform hover:scale-110 shadow-lg hover:shadow-xl`}
-                    >
+                      className={`w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center ${social.color} transition-all duration-300 cursor-pointer transform hover:scale-110 shadow-lg hover:shadow-xl`}>
                       <social.icon className="w-5 h-5" aria-hidden="true" />
                       <span className="sr-only">{social.name}</span>
                     </div>
@@ -94,8 +110,7 @@ export default function Footer() {
                   <li key={service}>
                     <Link
                       href="#"
-                      className="text-slate-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
-                    >
+                      className="text-slate-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
                       <ArrowRight
                         className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         aria-hidden="true"
@@ -122,8 +137,7 @@ export default function Footer() {
                   <li key={item.name}>
                     <Link
                       href={item.href}
-                      className="text-slate-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
-                    >
+                      className="text-slate-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group">
                       <ArrowRight
                         className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                         aria-hidden="true"
@@ -138,7 +152,9 @@ export default function Footer() {
               <div className="space-y-3 pt-4">
                 <div className="flex items-center space-x-3 text-slate-400">
                   <MapPin className="w-4 h-4" aria-hidden="true" />
-                  <span className="text-sm">17 J3 Johar Town, Lahore 54000, Punjab - Pakistan</span>
+                  <span className="text-sm">
+                    17 J3 Johar Town, Lahore 54000, Punjab - Pakistan
+                  </span>
                 </div>
                 <div className="flex items-center space-x-3 text-slate-400">
                   <Phone className="w-4 h-4" aria-hidden="true" />
@@ -160,24 +176,35 @@ export default function Footer() {
         {/* Bottom Footer */}
         <div className="border-t border-slate-800 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="flex items-center space-x-6">
-              <p className="text-slate-400 text-sm">© 2025 Metadots. All rights reserved.</p>
+            <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
+              <p className="text-slate-400 text-sm">
+                © 2025 Metadots. All rights reserved.
+              </p>
               <div className="flex items-center space-x-4 text-slate-500">
                 <div className="flex items-center space-x-1">
-                  <Activity className="w-3 h-3 text-green-400 animate-pulse" aria-hidden="true" />
+                  <Activity
+                    className="w-3 h-3 text-green-400 animate-pulse"
+                    aria-hidden="true"
+                  />
                   <span className="text-xs">All systems operational</span>
                 </div>
               </div>
             </div>
 
             <div className="flex items-center space-x-6">
-              <Link href="#" className="text-slate-400 hover:text-white text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-slate-400 hover:text-white text-xs md:text-sm transition-colors">
                 Terms of Service
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-white text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-slate-400 hover:text-white text-xs md:text-sm transition-colors">
                 Privacy Policy
               </Link>
-              <Link href="#" className="text-slate-400 hover:text-white text-sm transition-colors">
+              <Link
+                href="#"
+                className="text-slate-400 hover:text-white text-xs md:text-sm transition-colors">
                 Cookie Policy
               </Link>
             </div>
@@ -185,5 +212,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
-} 
+  );
+}

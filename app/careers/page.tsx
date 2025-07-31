@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import cn from "classnames";
 import {
   Card,
   CardDescription,
@@ -362,7 +363,7 @@ export default function CareersPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
       {/* Hero Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
           <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
@@ -405,17 +406,22 @@ export default function CareersPage() {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4">
-                <Button
-                  size="lg"
-                  className="bg-white text-slate-900 hover:bg-white/90 px-8">
-                  View Open Roles
-                  <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-                <Button
-                  variant="outline"
-                  className="border-white/30 text-white hover:text-whtie hover:bg-white/10 bg-transparent">
-                  Learn About Culture
-                </Button>
+                <Link href="/contact-us">
+                  <Button
+                    size="lg"
+                    className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                    View Open Roles
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Button>
+                </Link>
+                <Link href="/contact-us">
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    className="border-white/30 text-white hover:text-whtie hover:bg-white/10 bg-transparent">
+                    Learn About Culture
+                  </Button>
+                </Link>
               </div>
             </div>
 
@@ -549,9 +555,9 @@ export default function CareersPage() {
       {/* Job Search and Filters */}
       <section className="py-12 bg-slate-100">
         <div className="container">
-          <div className="flex flex-col lg:flex-row gap-6 items-center justify-between">
+          <div className="flex  gap-6 items-center justify-between">
             {/* Search */}
-            <div className="relative flex-1 max-w-md ">
+            <div className="relative flex-1 w-full md:max-w-md">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400  w-4 h-4" />
               <Input
                 placeholder="Search positions..."
@@ -562,32 +568,33 @@ export default function CareersPage() {
             </div>
 
             {/* Department Filters */}
-            <div className="flex flex-wrap gap-2">
-              {departments.map((department) => (
-                <Button
-                  key={department}
-                  variant={
-                    department === departmentFilter ? "default" : "outline"
-                  }
-                  size="sm"
-                  className={
-                    department === departmentFilter
-                      ? "bg-blue-600 hover:bg-blue-700"
-                      : "hover:bg-blue-50 hover:text-blue-600"
-                  }
-                  onClick={() => setDepartmentFilter(department)}>
-                  {department}
-                </Button>
-              ))}
-            </div>
 
             {/* Sort */}
             <Button
               variant="outline"
-              className="flex items-center gap-2 bg-transparent hover:text-white">
+              className="flex items-center gap-2 bg-transparent hover:text-white !w-auto">
               <Filter className="w-4 h-4" />
-              Sort by Latest
+              <span className="md:block hidden">Sort by Latest</span>
             </Button>
+          </div>
+          <div className="flex items-center gap-2 flex-wrap mt-5">
+            {departments.map((department) => (
+              <Button
+                key={department}
+                variant={
+                  department === departmentFilter ? "default" : "outline"
+                }
+                size="sm"
+                className={cn(
+                  "!px-4 !py-2 !w-auto",
+                  department === departmentFilter
+                    ? "bg-blue-600 hover:bg-blue-700"
+                    : "hover:bg-blue-50 hover:text-blue-600"
+                )}
+                onClick={() => setDepartmentFilter(department)}>
+                {department}
+              </Button>
+            ))}
           </div>
         </div>
       </section>

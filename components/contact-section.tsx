@@ -257,7 +257,7 @@ export default function ContactSection() {
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { label: "Response Time", value: "< 24hrs", icon: Clock },
+                    { label: "Response Time", value: "24hrs", icon: Clock },
                     {
                       label: "Project Success",
                       value: "98%",

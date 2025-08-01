@@ -375,7 +375,89 @@ async function getData() {
     };
   }
 }
+interface AIService {
+  id: string;
+  title: string;
+  description: string;
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  colors: {
+    background: string;
+    hoverBackground: string;
+    iconGradient: string;
+    titleColor: string;
+    titleHoverColor: string;
+    linkColor: string;
+  };
+  linkText: string;
+}
 
+// Array of AI services data
+const aiServices: AIService[] = [
+  {
+    id: "healthcare",
+    title: "Healthcare",
+    description:
+      "AI-powered diagnostics, patient management, and predictive analytics to improve outcomes and streamline healthcare operations.",
+    icon: Heart,
+    colors: {
+      background: "from-pink-50 to-red-100",
+      hoverBackground: "from-pink-600/5 to-red-600/5",
+      iconGradient: "from-pink-500 to-red-600",
+      titleColor: "text-pink-400",
+      titleHoverColor: "group-hover:text-pink-600",
+      linkColor: "text-pink-600",
+    },
+    linkText: "Explore Healthcare AI",
+  },
+  {
+    id: "finance",
+    title: "Finance",
+    description:
+      "Fraud detection, risk assessment, and automated financial insights for smarter, faster decision-making in finance.",
+    icon: BarChart3,
+    colors: {
+      background: "from-green-50 to-emerald-100",
+      hoverBackground: "from-green-600/5 to-emerald-600/5",
+      iconGradient: "from-green-500 to-emerald-600",
+      titleColor: "text-green-400",
+      titleHoverColor: "group-hover:text-green-600",
+      linkColor: "text-green-600",
+    },
+    linkText: "Explore Finance AI",
+  },
+  {
+    id: "legal",
+    title: "Legal",
+    description:
+      "Contract analysis, legal research, and compliance automation to empower law firms and legal departments.",
+    icon: Shield,
+    colors: {
+      background: "from-blue-50 to-indigo-100",
+      hoverBackground: "from-blue-600/5 to-indigo-600/5",
+      iconGradient: "from-blue-500 to-indigo-600",
+      titleColor: "text-blue-400",
+      titleHoverColor: "group-hover:text-blue-600",
+      linkColor: "text-blue-600",
+    },
+    linkText: "Explore Legal AI",
+  },
+  {
+    id: "edtech",
+    title: "EdTech",
+    description:
+      "Personalized learning, automated grading, and intelligent content delivery for next-generation education platforms.",
+    icon: BookOpen,
+    colors: {
+      background: "from-yellow-50 to-orange-100",
+      hoverBackground: "from-yellow-400/5 to-orange-400/5",
+      iconGradient: "from-yellow-400 to-orange-500",
+      titleColor: "text-yellow-400",
+      titleHoverColor: "group-hover:text-yellow-600",
+      linkColor: "text-yellow-600",
+    },
+    linkText: "Explore EdTech AI",
+  },
+];
 export default async function MetadotsLanding() {
   const {
     featuredProject,
@@ -613,101 +695,48 @@ export default async function MetadotsLanding() {
 
           {/* AI Services Grid */}
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
-            {/* Healthcare */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-pink-50 to-red-100 p-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-pink-600/5 to-red-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-pink-500 to-red-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Heart className="h-6 w-6 text-white" aria-hidden="true" />
-                </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-pink-600 text-pink-400 transition-colors">
-                  Healthcare
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  AI-powered diagnostics, patient management, and predictive
-                  analytics to improve outcomes and streamline healthcare
-                  operations.
-                </CardDescription>
-                <div className="mt-4 flex items-center text-pink-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
-                  <Link href="/contact-us" className="flex items-center">
-                    Explore Healthcare AI{" "}
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              </CardHeader>
-            </Card>
+            {aiServices.map((service) => {
+              const IconComponent = service.icon;
 
-            {/* Finance */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-green-50 to-emerald-100 p-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-green-600/5 to-emerald-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <BarChart3
-                    className="h-6 w-6 text-white"
-                    aria-hidden="true"
-                  />
-                </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-green-600 text-green-400 transition-colors">
-                  Finance
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Fraud detection, risk assessment, and automated financial
-                  insights for smarter, faster decision-making in finance.
-                </CardDescription>
-                <div className="mt-4 flex items-center text-green-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
-                  <Link href="/contact-us" className="flex items-center">
-                    Explore Finance AI{" "}
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              </CardHeader>
-            </Card>
+              return (
+                <Card
+                  key={service.id}
+                  className={`group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br ${service.colors.background} p-2`}>
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br ${service.colors.hoverBackground} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
-            {/* Legal */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-blue-50 to-indigo-100 p-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-600/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Shield className="h-6 w-6 text-white" aria-hidden="true" />
-                </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-blue-600 text-blue-400 transition-colors">
-                  Legal
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Contract analysis, legal research, and compliance automation
-                  to empower law firms and legal departments.
-                </CardDescription>
-                <div className="mt-4 flex items-center text-blue-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
-                  <Link href="/contact-us" className="flex items-center">
-                    Explore Legal AI{" "}
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              </CardHeader>
-            </Card>
+                  <CardHeader className="relative z-10 p-4 flex flex-col gap-4 justify-between h-full">
+                    <div>
+                      <div
+                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${service.colors.iconGradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                        <IconComponent
+                          className="h-6 w-6 text-white"
+                          aria-hidden="true"
+                        />
+                      </div>
+                      <CardTitle
+                        className={`text-lg mb-2 ${service.colors.titleHoverColor} ${service.colors.titleColor} transition-colors`}>
+                        {service.title}
+                      </CardTitle>
+                      <CardDescription className="text-sm leading-relaxed">
+                        {service.description}
+                      </CardDescription>
+                    </div>
 
-            {/* EdTech */}
-            <Card className="group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br from-yellow-50 to-orange-100 p-2">
-              <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/5 to-orange-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <CardHeader className="relative z-10 p-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <BookOpen className="h-6 w-6 text-white" aria-hidden="true" />
-                </div>
-                <CardTitle className="text-lg mb-2 group-hover:text-yellow-600 text-yellow-400 transition-colors">
-                  EdTech
-                </CardTitle>
-                <CardDescription className="text-sm leading-relaxed">
-                  Personalized learning, automated grading, and intelligent
-                  content delivery for next-generation education platforms.
-                </CardDescription>
-                <div className="mt-4 flex items-center text-yellow-600 font-medium group-hover:translate-x-2 transition-transform text-sm">
-                  <Link href="/contact-us" className="flex items-center">
-                    Explore EdTech AI{" "}
-                    <ArrowRight className="ml-2 h-4 w-4" aria-hidden="true" />
-                  </Link>
-                </div>
-              </CardHeader>
-            </Card>
+                    <div
+                      className={`mt-4 flex items-center ${service.colors.linkColor} font-medium group-hover:translate-x-2 transition-transform text-sm`}>
+                      <Link href="/contact-us" className="flex items-center">
+                        {service.linkText}{" "}
+                        <ArrowRight
+                          className="ml-2 h-4 w-4"
+                          aria-hidden="true"
+                        />
+                      </Link>
+                    </div>
+                  </CardHeader>
+                </Card>
+              );
+            })}
           </div>
 
           {/* Interactive AI Demo Section */}
@@ -821,7 +850,7 @@ export default async function MetadotsLanding() {
       {/* Enhanced Portfolio Highlights */}
       <section
         id="portfolio"
-        className="py-20 md:py-32 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
+        className="py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 left-10 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>

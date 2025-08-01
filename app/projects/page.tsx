@@ -269,7 +269,10 @@ export default async function ProjectsPage() {
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              Featured Projects
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+                Featured
+              </span>{" "}
+              Projects
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Our most impactful and innovative solutions that have set new
@@ -317,7 +320,7 @@ export default async function ProjectsPage() {
                   <CardHeader className="p-8">
                     <div className="flex items-start justify-between mb-4">
                       <div className="flex-1">
-                        <CardTitle className="text-2xl mb-3 group-hover:text-blue-600 transition-colors">
+                        <CardTitle className="text-2xl mb-3 text-blue-600 transition-colors">
                           {project.title}
                         </CardTitle>
                         <CardDescription className="text-base leading-relaxed mb-4">
@@ -341,7 +344,7 @@ export default async function ProjectsPage() {
                     </div>
 
                     {/* Metrics */}
-                    <div className="grid grid-cols-3 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
+                    <div className="flex items-center justify-between gap-4 mb-6 p-4 ">
                       {project.metrics &&
                         Object.entries(project.metrics).map(
                           ([key, value]: [string, any]) => (
@@ -358,13 +361,17 @@ export default async function ProjectsPage() {
                     </div>
 
                     {/* Project Info */}
-                    <div className="grid grid-cols-2 gap-4 mb-6 text-sm text-slate-600">
+                    <div className="flex items-center justify-between mb-6 pb-2 text-sm text-slate-600">
                       <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4" />
+                        <div className="text-blue-600">
+                          <Users className="w-4 h-4" />
+                        </div>
                         <span>{project.teamSize || "8 developers"}</span>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
+                        <div className="text-blue-600">
+                          <Calendar className="w-4 h-4" />
+                        </div>
                         <span>{project.duration || "6 months"}</span>
                       </div>
                     </div>
@@ -375,10 +382,14 @@ export default async function ProjectsPage() {
                         View Case Study
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
-                      <Button variant="outline" size="icon">
+                      <Button
+                        className=" bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 !w-auto px-5 py-2"
+                        size="icon">
                         <ExternalLink className="h-4 w-4" />
                       </Button>
-                      <Button variant="outline" size="icon">
+                      <Button
+                        className=" bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 !w-auto px-5 py-2"
+                        size="icon">
                         <Github className="h-4 w-4" />
                       </Button>
                     </div>
@@ -394,7 +405,10 @@ export default async function ProjectsPage() {
         <div className="container">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              All Projects
+              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
+                All
+              </span>{" "}
+              Projects
             </h2>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
               Comprehensive showcase of our diverse portfolio across multiple
@@ -435,57 +449,60 @@ export default async function ProjectsPage() {
                   </div>
                 </div>
 
-                <CardHeader className="p-6">
-                  <CardTitle className="text-lg mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
-                    {project.title}
-                  </CardTitle>
-                  <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
-                    {project.description}
-                  </CardDescription>
-
-                  {/* Quick Metrics */}
-                  <div className="grid grid-cols-3 gap-2 mb-4 text-xs">
-                    {project.metrics &&
-                      Object.entries(project.metrics)
-                        .slice(0, 3)
-                        .map(([key, value]: [string, any]) => (
-                          <div
-                            key={key}
-                            className="text-center p-2 bg-slate-50 rounded">
-                            <div className="font-bold text-blue-600">
-                              {value}
-                            </div>
-                            <div className="text-slate-600 capitalize">
-                              {key}
-                            </div>
-                          </div>
-                        ))}
+                <CardHeader className="p-6 ">
+                  <div className="flex flex-col justify-between h-full gap-2">
+                    <div>
+                      <CardTitle className="text-lg mb-2 text-blue-600 transition-colors line-clamp-2">
+                        {project.title}
+                      </CardTitle>
+                      <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
+                        {project.description}
+                      </CardDescription>
+                    </div>
+                    {/* Tech Tags */}
+                    <div className="h-[120px]">
+                      <div className="flex flex-wrap gap-1 mb-4">
+                        {project.technologies &&
+                          project.technologies
+                            .slice(0, 3)
+                            .map((tag: string) => (
+                              <span
+                                key={tag}
+                                className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
+                                {tag}
+                              </span>
+                            ))}
+                        {project.technologies &&
+                          project.technologies.length > 3 && (
+                            <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
+                              +{project.technologies.length - 3} more
+                            </span>
+                          )}
+                      </div>
+                      {/* Quick Metrics */}
+                      <div className="grid grid-cols-3 gap-2 py-2 text-xs">
+                        {project.metrics &&
+                          Object.entries(project.metrics)
+                            .slice(0, 3)
+                            .map(([key, value]: [string, any]) => (
+                              <div
+                                key={key}
+                                className="text-center p-2 bg-slate-50 rounded">
+                                <div className="font-bold text-blue-600">
+                                  {value}
+                                </div>
+                                <div className="text-slate-600 capitalize">
+                                  {key}
+                                </div>
+                              </div>
+                            ))}
+                      </div>
+                    </div>
+                    <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                      View Details
+                      <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                    </Button>
                   </div>
-
-                  {/* Tech Tags */}
-                  <div className="flex flex-wrap gap-1 mb-4">
-                    {project.technologies &&
-                      project.technologies.slice(0, 3).map((tag: string) => (
-                        <span
-                          key={tag}
-                          className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
-                          {tag}
-                        </span>
-                      ))}
-                    {project.technologies &&
-                      project.technologies.length > 3 && (
-                        <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
-                          +{project.technologies.length - 3} more
-                        </span>
-                      )}
-                  </div>
-
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 group/btn">
-                    View Details
-                    <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                  </Button>
                 </CardHeader>
               </Card>
             ))}

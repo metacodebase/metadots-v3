@@ -364,8 +364,8 @@ export default function BlogsPage() {
                 className={cn(
                   "!px-4 !py-2 !w-auto", // Add padding to maintain button size based on content
                   category === "All"
-                    ? "bg-blue-700 hover:bg-blue-700"
-                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 hover:text-white"
+                    ? "bg-blue-700 hover:bg-blue-700 text-white"
+                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 text-black hover:text-white focus:bg-blue-700 focus:text-white"
                 )}>
                 {category}
               </Button>

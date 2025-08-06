@@ -3,7 +3,9 @@ import mongoose, { Schema, Document } from 'mongoose';
 export interface IReview extends Document {
   clientName: string;
   clientRole: string;
+  clientDesignation?: string;
   clientCompany: string;
+  clientAvatar?: string;
   image?: string;
   review: string;
   rating: number;
@@ -13,6 +15,8 @@ export interface IReview extends Document {
     id: mongoose.Types.ObjectId;
     name: string;
     role: string;
+    designation?: string;
+    avatar?: string;
   };
   publishedAt?: Date;
   stats: {
@@ -37,11 +41,20 @@ const ReviewSchema = new Schema<IReview>({
     trim: true,
     maxlength: 100
   },
+  clientDesignation: {
+    type: String,
+    trim: true,
+    maxlength: 100
+  },
   clientCompany: {
     type: String,
     required: true,
     trim: true,
     maxlength: 100
+  },
+  clientAvatar: {
+    type: String,
+    trim: true
   },
   image: {
     type: String,
@@ -80,6 +93,14 @@ const ReviewSchema = new Schema<IReview>({
     role: {
       type: String,
       required: true
+    },
+    designation: {
+      type: String,
+      trim: true
+    },
+    avatar: {
+      type: String,
+      trim: true
     }
   },
   publishedAt: Date,

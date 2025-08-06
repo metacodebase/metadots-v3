@@ -226,6 +226,12 @@ async function getData() {
           };
         }
 
+        // Handle Review client data including designation and profile picture
+        if (data.clientName) {
+          data.clientDesignation = data.clientDesignation || data.clientRole || "";
+          data.clientAvatar = data.clientAvatar || data.image || "";
+        }
+
         if (data.stats && typeof data.stats === "object") {
           data.stats = {
             views: data.stats.views || 0,
@@ -1057,24 +1063,36 @@ export default async function MetadotsLanding() {
 
                       {/* Client Info */}
                       <div className="flex items-center space-x-4">
-                        <div
-                          className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${
-                            index === 0
-                              ? "from-blue-500 to-indigo-600"
-                              : index === 1
-                              ? "from-purple-500 to-pink-600"
-                              : "from-green-500 to-emerald-600"
-                          } flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          <span className="text-white font-bold text-lg">
-                            {review.clientName.charAt(0).toUpperCase()}
-                          </span>
-                        </div>
+                        {review.clientAvatar ? (
+                          <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <Image
+                              src={review.clientAvatar}
+                              alt={review.clientName}
+                              width={56}
+                              height={56}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${
+                              index === 0
+                                ? "from-blue-500 to-indigo-600"
+                                : index === 1
+                                ? "from-purple-500 to-pink-600"
+                                : "from-green-500 to-emerald-600"
+                            } flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <span className="text-white font-bold text-lg">
+                              {review.clientName.charAt(0).toUpperCase()}
+                            </span>
+                          </div>
+                        )}
                         <div>
                           <div className="font-semibold text-slate-900 text-lg">
                             {review.clientName}
                           </div>
                           <div className="text-slate-600">
-                            {review.clientRole}, {review.clientCompany}
+                            {review.clientDesignation || review.clientRole}, {review.clientCompany}
                           </div>
                         </div>
                       </div>
@@ -1083,32 +1101,38 @@ export default async function MetadotsLanding() {
                 ))
               : [
                   {
-                    name: "Sarah Johnson",
-                    role: "CEO, TechCorp",
-                    content:
+                    clientName: "Sarah Johnson",
+                    clientDesignation: "CEO",
+                    clientCompany: "TechCorp",
+                    clientAvatar: null,
+                    review:
                       "Metadots transformed our digital presence completely. Their team's expertise and dedication exceeded our expectations. The AI solutions they implemented increased our efficiency by 300%.",
                     rating: 5,
-                    avatar: "SJ",
+                    avatarInitials: "SJ",
                     color: "from-blue-500 to-indigo-600",
                     delay: "0",
                   },
                   {
-                    name: "Michael Chen",
-                    role: "Founder, StartupXYZ",
-                    content:
+                    clientName: "Michael Chen",
+                    clientDesignation: "Founder",
+                    clientCompany: "StartupXYZ",
+                    clientAvatar: null,
+                    review:
                       "The mobile app they developed for us has significantly improved our customer engagement and business growth. ROI increased by 250% within the first quarter.",
                     rating: 5,
-                    avatar: "MC",
+                    avatarInitials: "MC",
                     color: "from-purple-500 to-pink-600",
                     delay: "200",
                   },
                   {
-                    name: "Emily Rodriguez",
-                    role: "CTO, InnovateLab",
-                    content:
+                    clientName: "Emily Rodriguez",
+                    clientDesignation: "CTO",
+                    clientCompany: "InnovateLab",
+                    clientAvatar: null,
+                    review:
                       "Professional, reliable, and innovative. Metadots delivered exactly what we needed on time and within budget. Their AI integration saved us 40 hours per week.",
                     rating: 5,
-                    avatar: "ER",
+                    avatarInitials: "ER",
                     color: "from-green-500 to-emerald-600",
                     delay: "400",
                   },
@@ -1136,24 +1160,36 @@ export default async function MetadotsLanding() {
                           "
                         </div>
                         <CardDescription className="text-base leading-relaxed text-slate-700 relative z-10 italic">
-                          {testimonial.content}
+                          {testimonial.review}
                         </CardDescription>
                       </div>
 
                       {/* Client Info */}
                       <div className="flex items-center space-x-4">
-                        <div
-                          className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          <span className="text-white font-bold text-lg">
-                            {testimonial.avatar}
-                          </span>
-                        </div>
+                        {testimonial.clientAvatar ? (
+                          <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-300">
+                            <Image
+                              src={testimonial.clientAvatar}
+                              alt={testimonial.clientName}
+                              width={56}
+                              height={56}
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                        ) : (
+                          <div
+                            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <span className="text-white font-bold text-lg">
+                              {testimonial.avatarInitials}
+                            </span>
+                          </div>
+                        )}
                         <div>
                           <div className="font-semibold text-slate-900 text-lg">
-                            {testimonial.name}
+                            {testimonial.clientName}
                           </div>
                           <div className="text-slate-600">
-                            {testimonial.role}
+                            {testimonial.clientDesignation}, {testimonial.clientCompany}
                           </div>
                         </div>
                       </div>

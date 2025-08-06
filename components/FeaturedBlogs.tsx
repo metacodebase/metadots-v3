@@ -15,6 +15,8 @@ interface FeaturedBlogsProps {
     author: {
       name: string
       role: string
+      designation?: string
+      avatar?: string
     }
     publishedAt?: string
     readTime: string

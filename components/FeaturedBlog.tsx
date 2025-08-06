@@ -10,6 +10,7 @@ import {
 import { Badge } from "@/components/ui/badge";
 import { Calendar, Clock, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 interface FeaturedBlogProps {
   blog: {
@@ -22,6 +23,7 @@ interface FeaturedBlogProps {
       name: string;
       role: string;
       designation?: string;
+      avatar?: string;
     };
     publishedAt?: string;
     readTime: string;
@@ -96,11 +98,23 @@ export default function FeaturedBlog({ blog }: FeaturedBlogProps) {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-                  <span className="text-white text-sm font-bold">
-                    {blog.author.name.charAt(0).toUpperCase()}
-                  </span>
-                </div>
+                {blog.author.avatar ? (
+                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                    <Image
+                      src={blog.author.avatar}
+                      alt={blog.author.name}
+                      width={32}
+                      height={32}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                ) : (
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
+                    <span className="text-white text-sm font-bold">
+                      {blog.author.name.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                )}
                 <div>
                   <div className="text-white text-sm font-medium">
                     {blog.author.name}

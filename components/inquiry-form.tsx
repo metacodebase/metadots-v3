@@ -1,17 +1,33 @@
-"use client"
+"use client";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Label } from "@/components/ui/label"
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { X, Send, User, Mail, Phone, Building, Globe, MessageSquare, ArrowRight } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Label } from "@/components/ui/label";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import {
+  X,
+  Send,
+  User,
+  Mail,
+  Phone,
+  Building,
+  Globe,
+  MessageSquare,
+  ArrowRight,
+} from "lucide-react";
 
 interface InquiryFormProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
@@ -22,25 +38,27 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
     company: "",
     website: "",
     message: "",
-  })
+  });
 
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    
+    e.preventDefault();
+    setIsSubmitting(true);
+
     // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
-    
+    await new Promise((resolve) => setTimeout(resolve, 2000));
+
     // Reset form
     setFormData({
       fullName: "",
@@ -49,38 +67,36 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
       company: "",
       website: "",
       message: "",
-    })
-    
-    setIsSubmitting(false)
-    onClose()
-  }
+    });
+
+    setIsSubmitting(false);
+    onClose();
+  };
 
   return (
     <>
       {/* Backdrop */}
       {isOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 transition-opacity duration-300"
           onClick={onClose}
         />
       )}
-      
+
       {/* Right-side Drawer */}
       <div
         className={`fixed top-0 right-0 h-full z-[60] bg-white shadow-2xl transition-transform duration-300 ease-in-out flex flex-col
           w-full max-w-none md:max-w-[70vw]
           ${isOpen ? "translate-x-0" : "translate-x-full"}
         `}
-        style={{ width: '100vw', maxWidth: '70vw' }}
-      >
+        style={{ width: "100vw", maxWidth: "70vw" }}>
         <div className="relative flex-1 flex flex-col overflow-y-auto">
           {/* Close Button */}
           <Button
             variant="ghost"
             size="icon"
             onClick={onClose}
-            className="absolute top-4 right-4 z-10 hover:bg-slate-200 rounded-full w-10 h-10"
-          >
+            className="absolute top-4 right-4 z-10 hover:bg-slate-200 rounded-full w-10 h-10">
             <X className="h-5 w-5" />
           </Button>
 
@@ -91,9 +107,12 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                 <MessageSquare className="w-4 h-4 mr-2" />
                 Let's Build Something Amazing
               </div>
-              <h2 className="text-3xl font-bold text-slate-900">Project Inquiry</h2>
+              <h2 className="text-3xl font-bold text-slate-900">
+                Project Inquiry
+              </h2>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Tell us about your vision and we'll help you bring it to life with cutting-edge technology solutions
+                Tell us about your vision and we'll help you bring it to life
+                with cutting-edge technology solutions
               </p>
             </div>
           </div>
@@ -110,7 +129,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Full Name */}
                   <div className="space-y-3">
-                    <Label htmlFor="fullName" className="text-sm font-medium text-slate-700">
+                    <Label
+                      htmlFor="fullName"
+                      className="text-sm font-medium text-slate-700">
                       Full Name *
                     </Label>
                     <div className="relative">
@@ -130,7 +151,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
 
                   {/* Email */}
                   <div className="space-y-3">
-                    <Label htmlFor="email" className="text-sm font-medium text-slate-700">
+                    <Label
+                      htmlFor="email"
+                      className="text-sm font-medium text-slate-700">
                       Email Address *
                     </Label>
                     <div className="relative">
@@ -159,7 +182,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Phone */}
                   <div className="space-y-3">
-                    <Label htmlFor="phone" className="text-sm font-medium text-slate-700">
+                    <Label
+                      htmlFor="phone"
+                      className="text-sm font-medium text-slate-700">
                       Phone Number *
                     </Label>
                     <div className="relative">
@@ -179,7 +204,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
 
                   {/* Website */}
                   <div className="space-y-3">
-                    <Label htmlFor="website" className="text-sm font-medium text-slate-700">
+                    <Label
+                      htmlFor="website"
+                      className="text-sm font-medium text-slate-700">
                       Website <span className="text-slate-400">(Optional)</span>
                     </Label>
                     <div className="relative">
@@ -205,7 +232,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                   Company Information
                 </h3>
                 <div className="space-y-3">
-                  <Label htmlFor="company" className="text-sm font-medium text-slate-700">
+                  <Label
+                    htmlFor="company"
+                    className="text-sm font-medium text-slate-700">
                     Company Name *
                   </Label>
                   <div className="relative">
@@ -231,7 +260,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                   Project Details
                 </h3>
                 <div className="space-y-3">
-                  <Label htmlFor="message" className="text-sm font-medium text-slate-700">
+                  <Label
+                    htmlFor="message"
+                    className="text-sm font-medium text-slate-700">
                     Tell us about your project *
                   </Label>
                   <div className="relative">
@@ -254,8 +285,7 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                 <Button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-16 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl"
-                >
+                  className="w-full h-16 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-semibold text-lg shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl">
                   {isSubmitting ? (
                     <>
                       <div className="animate-spin rounded-full h-5 w-5 border-b-2 border-white mr-3"></div>
@@ -263,9 +293,9 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
                     </>
                   ) : (
                     <>
-                      <Send className="mr-3 h-5 w-5" />
+                      <Send className=" h-5 w-5" />
                       Send Project Inquiry
-                      <ArrowRight className="ml-3 h-5 w-5" />
+                      <ArrowRight className="h-5 w-5" />
                     </>
                   )}
                 </Button>
@@ -293,5 +323,5 @@ export default function InquiryForm({ isOpen, onClose }: InquiryFormProps) {
         </div>
       </div>
     </>
-  )
-} 
+  );
+}

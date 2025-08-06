@@ -6,10 +6,12 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import ContactSection from "@/components/contact-section";
+import Header from "../LandingLayout/Header";
 
 export default function ContactUsPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
+      <Header />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
         {/* Animated Background Elements */}

@@ -39,6 +39,7 @@ import Link from "next/link";
 import Footer from "@/components/footer";
 import { useInquiryForm } from "@/components/inquiry-form-provider";
 import { useEffect, useState } from "react";
+import Header from "../LandingLayout/Header";
 
 interface Job {
   _id: string;
@@ -362,6 +363,7 @@ export default function CareersPage() {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
+      <Header />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -582,16 +584,16 @@ export default function CareersPage() {
               <Button
                 key={department}
                 variant={
-                  department === departmentFilter ? "default" : "outline"
+                  departmentFilter === department ? "default" : "outline"
                 }
                 size="sm"
+                onClick={() => setDepartmentFilter(department)}
                 className={cn(
-                  "!px-4 !py-2 !w-auto",
-                  department === departmentFilter
-                    ? "bg-blue-600 hover:bg-blue-700"
-                    : "hover:bg-blue-50 hover:text-blue-600"
-                )}
-                onClick={() => setDepartmentFilter(department)}>
+                  "!px-4 !py-2 !w-auto", // Add padding to maintain button size based on content
+                  department === "All"
+                    ? "bg-blue-700 hover:bg-blue-700 text-white"
+                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 text-black hover:text-white focus:bg-blue-700 focus:text-white"
+                )}>
                 {department}
               </Button>
             ))}
@@ -808,7 +810,10 @@ export default function CareersPage() {
                         Apply Now
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </Button>
-                      <Button variant="outline" onClick={openInquiryForm}>
+                      <Button
+                        variant="outline"
+                        onClick={openInquiryForm}
+                        className="text-white hover:text-white px-6 !w-auto">
                         Learn More
                       </Button>
                     </div>

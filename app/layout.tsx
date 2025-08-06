@@ -32,7 +32,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <AuthProvider>
             <InquiryFormProvider>
-              <Header />
+              {/* <Header /> */}
               {children}
             </InquiryFormProvider>
           </AuthProvider>

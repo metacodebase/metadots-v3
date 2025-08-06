@@ -143,6 +143,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import ContactSection from "@/components/contact-section";
+import Header from "./LandingLayout/Header";
 
 async function getData() {
   try {
@@ -228,7 +229,8 @@ async function getData() {
 
         // Handle Review client data including designation and profile picture
         if (data.clientName) {
-          data.clientDesignation = data.clientDesignation || data.clientRole || "";
+          data.clientDesignation =
+            data.clientDesignation || data.clientRole || "";
           data.clientAvatar = data.clientAvatar || data.image || "";
         }
 
@@ -475,6 +477,8 @@ export default async function MetadotsLanding() {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
+      <Header />
+
       {/* Enhanced Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-20">
         {/* Animated Background Elements */}
@@ -1053,7 +1057,7 @@ export default async function MetadotsLanding() {
 
                       {/* Quote */}
                       <div className="relative mb-6">
-                        <div className="absolute -top-2 -left-2 text-6xl text-blue-100 font-serif">
+                        <div className="absolute -top-2 -left-2 text-3xl text-blue-100 font-serif">
                           "
                         </div>
                         <CardDescription className="text-base leading-relaxed text-slate-700 relative z-10 italic">
@@ -1092,7 +1096,8 @@ export default async function MetadotsLanding() {
                             {review.clientName}
                           </div>
                           <div className="text-slate-600">
-                            {review.clientDesignation || review.clientRole}, {review.clientCompany}
+                            {review.clientDesignation || review.clientRole},{" "}
+                            {review.clientCompany}
                           </div>
                         </div>
                       </div>
@@ -1189,7 +1194,8 @@ export default async function MetadotsLanding() {
                             {testimonial.clientName}
                           </div>
                           <div className="text-slate-600">
-                            {testimonial.clientDesignation}, {testimonial.clientCompany}
+                            {testimonial.clientDesignation},{" "}
+                            {testimonial.clientCompany}
                           </div>
                         </div>
                       </div>

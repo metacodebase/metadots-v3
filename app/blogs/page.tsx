@@ -29,6 +29,7 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import BlogSkeleton from "./BlogSkeleton";
+import Header from "../LandingLayout/Header";
 
 interface Blog {
   _id: string;
@@ -200,6 +201,8 @@ export default function BlogsPage() {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
+      <Header />
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">
@@ -440,11 +443,11 @@ export default function BlogsPage() {
                       </div>
                     </div>
 
-                    <CardTitle className="text-2xl mb-3 text-blue-600 transition-colors line-clamp-2">
+                    <CardTitle className="text-2xl mb-3 text-blue-600 transition-colors line-clamp-3">
                       {blog.title}
                     </CardTitle>
 
-                    <CardDescription className="text-base leading-relaxed mb-6 line-clamp-3">
+                    <CardDescription className="text-base leading-relaxed mb-6 line-clamp-3 h-16">
                       {blog.excerpt}
                     </CardDescription>
 
@@ -503,7 +506,10 @@ export default function BlogsPage() {
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Link>
                       </Button>
-                      <Button variant="outline" size="icon">
+                      <Button
+                        variant="outline"
+                        size="icon"
+                        className="text-white hover:text-white px-6 !w-auto">
                         <Share2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -636,7 +642,7 @@ export default function BlogsPage() {
                       <Button
                         asChild
                         variant="ghost"
-                        className="w-full justify-between text-blue-600 hover:text-blue-700 hover:bg-blue-50 group/btn">
+                        className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                         <Link href={`/blogs/${blog.slug}`}>
                           Read More
                           <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />

@@ -108,10 +108,10 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="md:hidden text-[#000] hover:bg-transparent hover:text-blue-600"
+              className="md:hidden text-[#000] hover:bg-transparent hover:text-black "
               onClick={handleMenuClick}
               aria-label="Open navigation menu">
-              <AlignJustify className="h-5 w-5" />
+              <AlignJustify className="h-5 w-5 focus:text-black" />
             </Button>
           </div>
         </div>
@@ -135,7 +135,7 @@ const Header = () => {
             variant="ghost"
             size="icon"
             onClick={handleDrawerClose}
-            className="hover:bg-gray-100 p-1"
+            className="hover:bg-transparent hover:text-black p-1"
             aria-label="Close navigation menu">
             <X className="h-5 w-5" />
           </Button>

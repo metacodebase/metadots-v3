@@ -1,10 +1,10 @@
 "use client";
 
-import { useState, useRef } from 'react';
-import { Button } from './button';
-import { Input } from './input';
-import { Label } from './label';
-import { Upload, X, Image as ImageIcon } from 'lucide-react';
+import { useState, useRef } from "react";
+import { Button } from "./button";
+import { Input } from "./input";
+import { Label } from "./label";
+import { Upload, X, Image as ImageIcon } from "lucide-react";
 
 interface ImageUploadProps {
   value?: string;
@@ -13,10 +13,15 @@ interface ImageUploadProps {
   className?: string;
 }
 
-export function ImageUpload({ value, onChange, placeholder = "Upload or paste image URL", className = "" }: ImageUploadProps) {
+export function ImageUpload({
+  value,
+  onChange,
+  placeholder = "Upload or paste image URL",
+  className = "",
+}: ImageUploadProps) {
   const [isDragOver, setIsDragOver] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
-  const [urlInput, setUrlInput] = useState('');
+  const [urlInput, setUrlInput] = useState("");
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -32,7 +37,7 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
   const handleDrop = (e: React.DragEvent) => {
     e.preventDefault();
     setIsDragOver(false);
-    
+
     const files = e.dataTransfer.files;
     if (files.length > 0) {
       handleFileUpload(files[0]);
@@ -47,13 +52,13 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
   };
 
   const handleFileUpload = async (file: File) => {
-    if (!file.type.startsWith('image/')) {
-      alert('Please select an image file');
+    if (!file.type.startsWith("image/")) {
+      alert("Please select an image file");
       return;
     }
 
     setIsUploading(true);
-    
+
     try {
       // For now, we'll use a simple base64 conversion
       // In production, you'd upload to a cloud service like Cloudinary, AWS S3, etc.
@@ -65,8 +70,8 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
       };
       reader.readAsDataURL(file);
     } catch (error) {
-      console.error('Error uploading image:', error);
-      alert('Error uploading image');
+      console.error("Error uploading image:", error);
+      alert("Error uploading image");
       setIsUploading(false);
     }
   };
@@ -74,12 +79,12 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
   const handleUrlSubmit = () => {
     if (urlInput.trim()) {
       onChange(urlInput.trim());
-      setUrlInput('');
+      setUrlInput("");
     }
   };
 
   const removeImage = () => {
-    onChange('');
+    onChange("");
   };
 
   return (
@@ -87,9 +92,9 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
       {/* Current Image Preview */}
       {value && (
         <div className="relative">
-          <img 
-            src={value} 
-            alt="Preview" 
+          <img
+            src={value}
+            alt="Preview"
             className="w-full h-48 object-cover rounded-lg border"
           />
           <Button
@@ -97,8 +102,7 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
             variant="destructive"
             size="sm"
             onClick={removeImage}
-            className="absolute top-2 right-2"
-          >
+            className="absolute top-2 right-2 bg-blue-700 hover:bg-blue-800 text-white !w-auto">
             <X className="h-4 w-4" />
           </Button>
         </div>
@@ -106,33 +110,33 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
 
       {/* Upload Area */}
       <div
-        className={`border-2 border-dashed rounded-lg p-6 text-center transition-colors ${
-          isDragOver 
-            ? 'border-blue-500 bg-blue-50' 
-            : 'border-gray-300 hover:border-gray-400'
+        className={`p-6 text-center transition-colors ${
+          isDragOver
+            ? "border-blue-500 bg-blue-50"
+            : "border-gray-300 hover:border-gray-400"
         }`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <Upload className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+        onDrop={handleDrop}>
+        <Upload className="mx-auto h-12 w-12 text-blue-700 mb-4" />
         <p className="text-sm text-gray-600 mb-2">
-          {isDragOver ? 'Drop image here' : 'Drag and drop an image here, or click to select'}
+          {isDragOver
+            ? "Drop image here"
+            : "Drag and drop an image here, or click to select"}
         </p>
         <Button
           type="button"
-          variant="outline"
+          className="bg-blue-700 hover:bg-blue-800 "
           onClick={() => fileInputRef.current?.click()}
-          disabled={isUploading}
-        >
-          {isUploading ? 'Uploading...' : 'Select Image'}
+          disabled={isUploading}>
+          {isUploading ? "Uploading..." : "Select Image"}
         </Button>
         <input
           ref={fileInputRef}
           type="file"
           accept="image/*"
           onChange={handleFileSelect}
-          className="hidden"
+          className="hidden w-full"
         />
       </div>
 
@@ -142,17 +146,17 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
         <div className="flex space-x-2">
           <Input
             type="url"
+            className="border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
             placeholder="https://example.com/image.jpg"
             value={urlInput}
             onChange={(e) => setUrlInput(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleUrlSubmit()}
+            onKeyPress={(e) => e.key === "Enter" && handleUrlSubmit()}
           />
           <Button
             type="button"
-            variant="outline"
+            className="!w-auto bg-blue-700 hover:bg-blue-800 text-white"
             onClick={handleUrlSubmit}
-            disabled={!urlInput.trim()}
-          >
+            disabled={!urlInput.trim()}>
             Add
           </Button>
         </div>
@@ -164,4 +168,4 @@ export function ImageUpload({ value, onChange, placeholder = "Upload or paste im
       </p>
     </div>
   );
-} 
+}

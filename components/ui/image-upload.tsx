@@ -88,14 +88,14 @@ export function ImageUpload({
   };
 
   return (
-    <div className={`space-y-4 ${className}`}>
+    <div className={`space-y-4 w-full ${className}`}>
       {/* Current Image Preview */}
       {value && (
-        <div className="relative">
+        <div className="relative w-full">
           <img
             src={value}
             alt="Preview"
-            className="w-full h-48 object-cover rounded-lg border"
+            className="!w-full h-48 object-cover rounded-lg border"
           />
           <Button
             type="button"

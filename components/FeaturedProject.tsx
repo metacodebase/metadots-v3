@@ -40,7 +40,7 @@ interface FeaturedProjectProps {
 export default function FeaturedProject({ project }: FeaturedProjectProps) {
   return (
     <div className="mb-16">
-      <Card className="group relative overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-[1.02] bg-gradient-to-br from-white to-blue-200/30">
+      <Card className="group relative overflow-hidden border-0 shadow-2xl hover:shadow-3xl transition-all duration-700 transform hover:scale-[1.02] !bg-white">
         <div className="grid lg:grid-cols-2 gap-0">
           <div className="relative overflow-hidden">
             <div className="aspect-[4/3] relative">
@@ -136,7 +136,7 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-slate-300 hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 bg-transparent text-white">
+                  className="border-slate-300 border-whtie hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 bg-transparent text-black">
                   <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
                   Book a Call
                 </Button>

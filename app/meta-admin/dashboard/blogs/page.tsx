@@ -373,242 +373,229 @@ function BlogsContent() {
   });
 
   return (
-    <div className="min-h-screen bg-white rounded-lg">
-      <div className="bg-white shadow-sm">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <h1 className="text-xl font-semibold text-gray-900">
-                Blog Posts
-              </h1>
-            </div>
-            <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-              <DialogTrigger asChild>
-                <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-4 px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-auto">
-                  <Plus className="h-4 w-4 mr-2" />
-                  New Blog Post
-                </Button>
-              </DialogTrigger>
+    <div className="h-full bg-white rounded-lg md:overflow-auto">
+      <div className="px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex items-center space-x-4">
+            <h1 className="text-xl font-semibold text-gray-900">Blog Posts</h1>
+          </div>
+          <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+            <DialogTrigger asChild>
+              <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-4 px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-auto">
+                <Plus className="h-4 w-4 mr-2" />
+                New Blog Post
+              </Button>
+            </DialogTrigger>
 
-              <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
-                <DialogHeader>
-                  <DialogTitle className="text-xl font-semibold">
-                    Create New Blog Post
-                  </DialogTitle>
-                  <DialogDescription className="text-gray-600">
-                    Create a new blog post with rich content and media
-                  </DialogDescription>
-                </DialogHeader>
+            <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
+              <DialogHeader>
+                <DialogTitle className="text-xl font-semibold">
+                  Create New Blog Post
+                </DialogTitle>
+                <DialogDescription className="text-gray-600">
+                  Create a new blog post with rich content and media
+                </DialogDescription>
+              </DialogHeader>
 
-                <form
-                  onSubmit={handleCreateBlog}
-                  className="space-y-6 !w-full max-w-2xl">
+              <form onSubmit={handleCreateBlog} className="space-y-6 !w-full">
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="title"
+                    className="block text-sm font-semibold text-gray-700">
+                    Title *
+                  </Label>
+                  <Input
+                    id="title"
+                    value={formData.title}
+                    onChange={(e) =>
+                      setFormData({ ...formData, title: e.target.value })
+                    }
+                    placeholder="Enter blog title"
+                    required
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full"
+                  />
+                  <div className="text-xs text-gray-500 mt-1">
+                    {formData.title.length}/200 characters (SEO meta title will
+                    be truncated to 60 characters)
+                  </div>
+                </div>
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="category"
+                    className="block text-sm font-semibold text-gray-700">
+                    Category *
+                  </Label>
+                  <Select
+                    value={formData.category}
+                    onValueChange={(value) =>
+                      setFormData({ ...formData, category: value })
+                    }>
+                    <SelectTrigger className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full">
+                      <SelectValue placeholder="Select category" />
+                    </SelectTrigger>
+                    <SelectContent className="!bg-white">
+                      {categories.map((category) => (
+                        <SelectItem key={category} value={category}>
+                          {category}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="excerpt"
+                    className="block text-sm font-semibold text-gray-700">
+                    Excerpt *
+                  </Label>
+                  <Textarea
+                    id="excerpt"
+                    value={formData.excerpt}
+                    onChange={(e) =>
+                      setFormData({ ...formData, excerpt: e.target.value })
+                    }
+                    placeholder="Brief description of the blog post"
+                    rows={3}
+                    required
+                    className=" bg-white  border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 "
+                  />
+                  <div className="text-xs text-gray-500 mt-1">
+                    {formData.excerpt.length}/500 characters (SEO meta
+                    description will be truncated to 160 characters)
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="block text-sm font-semibold text-gray-700">
+                    Featured Image
+                  </Label>
+                  <ImageUpload
+                    value={formData.featuredImage}
+                    onChange={(url) =>
+                      setFormData({ ...formData, featuredImage: url })
+                    }
+                    className="mt-2 !w-full p-4 border rounded-md bg-white border-blue-500"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="content"
+                    className="block text-sm font-semibold text-gray-700">
+                    Content *
+                  </Label>
+                  <RichTextEditor
+                    content={formData.content}
+                    onChange={(content) =>
+                      setFormData({ ...formData, content })
+                    }
+                    placeholder="Write your blog content here..."
+                  />
+                </div>
+
+                <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
-                      htmlFor="title"
+                      htmlFor="tags"
                       className="block text-sm font-semibold text-gray-700">
-                      Title *
+                      Tags (comma-separated)
                     </Label>
                     <Input
-                      id="title"
-                      value={formData.title}
+                      id="tags"
+                      value={formData.tags}
                       onChange={(e) =>
-                        setFormData({ ...formData, title: e.target.value })
+                        setFormData({ ...formData, tags: e.target.value })
                       }
-                      placeholder="Enter blog title"
-                      required
+                      placeholder="nextjs, react, javascript"
                       className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full"
                     />
-                    <div className="text-xs text-gray-500 mt-1">
-                      {formData.title.length}/200 characters (SEO meta title
-                      will be truncated to 60 characters)
-                    </div>
                   </div>
                   <div className="space-y-2">
                     <Label
-                      htmlFor="category"
+                      htmlFor="status"
                       className="block text-sm font-semibold text-gray-700">
-                      Category *
+                      Status
                     </Label>
                     <Select
-                      value={formData.category}
-                      onValueChange={(value) =>
-                        setFormData({ ...formData, category: value })
-                      }>
+                      value={formData.status}
+                      onValueChange={(
+                        value: "draft" | "published" | "scheduled" | "archived"
+                      ) => setFormData({ ...formData, status: value })}>
                       <SelectTrigger className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full">
-                        <SelectValue placeholder="Select category" />
+                        <SelectValue />
                       </SelectTrigger>
                       <SelectContent className="!bg-white">
-                        {categories.map((category) => (
-                          <SelectItem key={category} value={category}>
-                            {category}
-                          </SelectItem>
-                        ))}
+                        <SelectItem value="draft">Draft</SelectItem>
+                        <SelectItem value="published">Published</SelectItem>
+                        <SelectItem value="scheduled">Scheduled</SelectItem>
+                        <SelectItem value="archived">Archived</SelectItem>
                       </SelectContent>
                     </Select>
                   </div>
+                </div>
 
+                {formData.status === "scheduled" && (
                   <div className="space-y-2">
                     <Label
-                      htmlFor="excerpt"
+                      htmlFor="scheduledAt"
                       className="block text-sm font-semibold text-gray-700">
-                      Excerpt *
+                      Schedule Date & Time
                     </Label>
-                    <Textarea
-                      id="excerpt"
-                      value={formData.excerpt}
+                    <Input
+                      id="scheduledAt"
+                      type="datetime-local"
+                      value={formData.scheduledAt}
                       onChange={(e) =>
-                        setFormData({ ...formData, excerpt: e.target.value })
+                        setFormData({
+                          ...formData,
+                          scheduledAt: e.target.value,
+                        })
                       }
-                      placeholder="Brief description of the blog post"
-                      rows={3}
                       required
-                      className="border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
-                    />
-                    <div className="text-xs text-gray-500 mt-1">
-                      {formData.excerpt.length}/500 characters (SEO meta
-                      description will be truncated to 160 characters)
-                    </div>
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="block text-sm font-semibold text-gray-700">
-                      Featured Image
-                    </Label>
-                    <ImageUpload
-                      value={formData.featuredImage}
-                      onChange={(url) =>
-                        setFormData({ ...formData, featuredImage: url })
-                      }
-                      className="mt-2 w-full p-4 border rounded-md bg-white border-blue-500"
+                      className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full"
                     />
                   </div>
+                )}
 
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="content"
-                      className="block text-sm font-semibold text-gray-700">
-                      Content *
-                    </Label>
-                    <RichTextEditor
-                      content={formData.content}
-                      onChange={(content) =>
-                        setFormData({ ...formData, content })
-                      }
-                      placeholder="Write your blog content here..."
-                    />
-                  </div>
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="featured"
+                    checked={formData.featured}
+                    onChange={(e) =>
+                      setFormData({ ...formData, featured: e.target.checked })
+                    }
+                    className="rounded border-gray-300"
+                  />
+                  <Label htmlFor="featured" className="text-sm text-gray-700">
+                    Featured Post
+                  </Label>
+                </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="tags"
-                        className="block text-sm font-semibold text-gray-700">
-                        Tags (comma-separated)
-                      </Label>
-                      <Input
-                        id="tags"
-                        value={formData.tags}
-                        onChange={(e) =>
-                          setFormData({ ...formData, tags: e.target.value })
-                        }
-                        placeholder="nextjs, react, javascript"
-                        className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="status"
-                        className="block text-sm font-semibold text-gray-700">
-                        Status
-                      </Label>
-                      <Select
-                        value={formData.status}
-                        onValueChange={(
-                          value:
-                            | "draft"
-                            | "published"
-                            | "scheduled"
-                            | "archived"
-                        ) => setFormData({ ...formData, status: value })}>
-                        <SelectTrigger className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full">
-                          <SelectValue />
-                        </SelectTrigger>
-                        <SelectContent className="!bg-white">
-                          <SelectItem value="draft">Draft</SelectItem>
-                          <SelectItem value="published">Published</SelectItem>
-                          <SelectItem value="scheduled">Scheduled</SelectItem>
-                          <SelectItem value="archived">Archived</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                  </div>
-
-                  {formData.status === "scheduled" && (
-                    <div className="space-y-2">
-                      <Label
-                        htmlFor="scheduledAt"
-                        className="block text-sm font-semibold text-gray-700">
-                        Schedule Date & Time
-                      </Label>
-                      <Input
-                        id="scheduledAt"
-                        type="datetime-local"
-                        value={formData.scheduledAt}
-                        onChange={(e) =>
-                          setFormData({
-                            ...formData,
-                            scheduledAt: e.target.value,
-                          })
-                        }
-                        required
-                        className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 w-full"
-                      />
-                    </div>
-                  )}
-
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      id="featured"
-                      checked={formData.featured}
-                      onChange={(e) =>
-                        setFormData({ ...formData, featured: e.target.checked })
-                      }
-                      className="rounded border-gray-300"
-                    />
-                    <Label htmlFor="featured" className="text-sm text-gray-700">
-                      Featured Post
-                    </Label>
-                  </div>
-
-                  <div className="flex justify-end space-x-4">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setShowCreateDialog(false)}
-                      className="text-white hover:text-white !w-auto px-4">
-                      Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      disabled={isCreating}
-                      className="bg-blue-700 text-white hover:bg-blue-800 !w-auto px-4">
-                      {isCreating ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        "Create Blog Post"
-                      )}
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
-          </div>
+                <div className="flex justify-end space-x-4">
+                  <Button
+                    type="button"
+                    onClick={() => setShowCreateDialog(false)}
+                    className="text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={isCreating}
+                    className="bg-blue-700 text-white hover:bg-blue-800 !w-auto px-4">
+                    {isCreating ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      "Create Blog Post"
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
         </div>
-      </div>
 
-      <div className="px-4 sm:px-6 lg:px-8 py-8">
         {/* Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
           <Card className="hover:shadow-lg transition-shadow cursor-pointer bg-[#f6f8fa] border-none text-blue-700">
@@ -974,7 +961,7 @@ function BlogsContent() {
                                       }
                                       rows={3}
                                       required
-                                      className="border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                                      className=" bg-white  border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300 "
                                     />
                                     <div className="text-xs text-gray-500 mt-1">
                                       {editFormData.excerpt.length}/500
@@ -1111,7 +1098,7 @@ function BlogsContent() {
                                           featured: e.target.checked,
                                         })
                                       }
-                                      className="rounded border-gray-300"
+                                      className=""
                                     />
                                     <Label
                                       htmlFor="edit-featured"

@@ -76,7 +76,7 @@ function DashboardContent() {
   ];
 
   return (
-    <div className="min-h-screen bg-white rounded-lg">
+    <div className="h-full bg-white rounded-lg md:overflow-auto">
       {/* <div className="bg-white dark:bg-gray-800 shadow-sm border-b">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">

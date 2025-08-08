@@ -14,11 +14,14 @@ import {
   Star,
   Briefcase,
   MessageSquare,
+  LayoutDashboard,
+  X,
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useAuth } from "@/contexts/AuthContext";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
+import { Drawer } from "antd";
 
 const allNavItems = [
   {
@@ -90,6 +93,7 @@ export default function AdminLayout({
 }) {
   const { user, logout } = useAuth();
   const pathname = usePathname();
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   // Filter navigation items based on user role
   const sidebarNavItems = useMemo(() => {
@@ -109,11 +113,88 @@ export default function AdminLayout({
     return pathname === href;
   };
 
+  const handleDrawerClose = () => {
+    setDrawerOpen(false);
+  };
+
+  const handleLinkClick = () => {
+    setDrawerOpen(false);
+  };
+
+  const handleMenuClick = () => {
+    setDrawerOpen(true);
+  };
+
+  const renderIcon = (icon: string, isActive: boolean) => {
+    switch (icon) {
+      case "dashboard":
+        return (
+          <LayoutDashboard
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "users":
+        return (
+          <Users
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "file-text":
+        return (
+          <FileText
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "folder-open":
+        return (
+          <FolderOpen
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "headphones":
+        return (
+          <Headphones
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "book-open":
+        return (
+          <BookOpen
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "star":
+        return (
+          <Star className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`} />
+        );
+      case "briefcase":
+        return (
+          <Briefcase
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "message-square":
+        return (
+          <MessageSquare
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      case "settings":
+        return (
+          <Settings
+            className={`w-5 h-5 mr-3 ${isActive ? "text-blue-700" : ""}`}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   return (
-    <div className="flex h-screen bg-gray-100">
-      {/* Sidebar */}
-      <div className="w-64 bg-white shadow-lg flex flex-col">
-        <div className="px-6 py-4 ">
+    <div className="md:flex h-full md:h-screen bg-gray-100">
+      {/* Desktop Sidebar - Hidden on mobile */}
+      <div className="hidden md:flex w-64 bg-white shadow-lg  flex-col">
+        <div className="px-6 py-4">
           <h1 className="text-2xl font-bold text-gray-800">Meta Admin</h1>
           <p className="text-sm text-gray-600">
             {user?.role === "admin" ? "Admin Dashboard" : "Author Dashboard"}
@@ -124,7 +205,6 @@ export default function AdminLayout({
           <ul className="space-y-2">
             {sidebarNavItems.map((item) => {
               const isActive = isActiveLink(item.href);
-
               return (
                 <li key={item.href}>
                   <Link
@@ -134,76 +214,7 @@ export default function AdminLayout({
                         ? "bg-blue-100 text-blue-700 border-r-2 border-blue-700"
                         : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
                     }`}>
-                    {item.icon === "dashboard" && (
-                      <div
-                        className={`w-5 h-5 mr-3 rounded ${
-                          isActive ? "bg-blue-600" : "bg-blue-500"
-                        }`}
-                      />
-                    )}
-                    {item.icon === "users" && (
-                      <Users
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "file-text" && (
-                      <FileText
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "folder-open" && (
-                      <FolderOpen
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "headphones" && (
-                      <Headphones
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "book-open" && (
-                      <BookOpen
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "star" && (
-                      <Star
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "briefcase" && (
-                      <Briefcase
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "message-square" && (
-                      <MessageSquare
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
-                    {item.icon === "settings" && (
-                      <Settings
-                        className={`w-5 h-5 mr-3 ${
-                          isActive ? "text-blue-700" : ""
-                        }`}
-                      />
-                    )}
+                    {renderIcon(item.icon, isActive)}
                     <span
                       className={`font-medium ${
                         isActive ? "text-blue-700" : ""
@@ -223,7 +234,7 @@ export default function AdminLayout({
             <div className="text-xs capitalize">{user?.role}</div>
           </div>
           <Button
-            className="!w-full group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+            className="!w-full group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
             onClick={handleLogout}>
             Logout
             <LogOut className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -232,15 +243,20 @@ export default function AdminLayout({
       </div>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
+      <div className="flex-1 flex flex-col h-screen md:h-full md:overflow-hidden">
         {/* Header */}
-        <header className="bg-white shadow-sm  px-6 py-4">
+        <header className="bg-white shadow-sm px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              {/* <Button className="bg-blue-600" size="sm">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden text-black hover:bg-transparent hover:text-black"
+                onClick={handleMenuClick}
+                aria-label="Open navigation menu">
                 <Menu className="w-5 h-5" />
-              </Button> */}
-              {/* <h2 className="text-lg font-semibold text-gray-800">Dashboard</h2> */}
+              </Button>
+              <h2 className="text-lg font-semibold text-gray-800">Dashboard</h2>
             </div>
             <div className="flex items-center space-x-4">
               <div className="text-sm text-gray-600">{user?.name}</div>
@@ -252,10 +268,94 @@ export default function AdminLayout({
         </header>
 
         {/* Page Content */}
-        <main className="flex-1 overflow-auto bg-[#f6f8fa]  !text-black p-6">
+        <main className="flex-1 md:overflow-auto bg-[#f6f8fa] !text-black p-6  md:h-[calc(100vh-64px)]">
           {children}
         </main>
       </div>
+
+      {/* Mobile Drawer */}
+      <Drawer
+        title={
+          <div className="flex items-center">
+            <h1 className="text-2xl font-bold text-gray-800">Meta Admin</h1>
+          </div>
+        }
+        extra={
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={handleDrawerClose}
+            className="hover:bg-transparent hover:text-black p-1"
+            aria-label="Close navigation menu">
+            <X className="h-5 w-5" />
+          </Button>
+        }
+        placement="left"
+        onClose={handleDrawerClose}
+        open={drawerOpen}
+        width={280}
+        closable={false}
+        styles={{
+          body: { padding: 0 },
+          header: {
+            borderBottom: "1px solid #e5e7eb",
+            padding: "16px 24px",
+          },
+        }}>
+        <div className="flex flex-col h-full">
+          <div className="px-6 py-4">
+            <p className="text-sm text-gray-600">
+              {user?.role === "admin" ? "Admin Dashboard" : "Author Dashboard"}
+            </p>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex-1 px-4 py-4 overflow-y-auto">
+            <ul className="space-y-2">
+              {sidebarNavItems.map((item) => {
+                const isActive = isActiveLink(item.href);
+                return (
+                  <li key={item.href}>
+                    <Link
+                      href={item.href}
+                      onClick={handleLinkClick}
+                      className={`flex items-center px-4 py-3 rounded-lg transition-colors ${
+                        isActive
+                          ? "bg-blue-100 text-blue-700"
+                          : "text-gray-700 hover:bg-blue-50 hover:text-blue-600"
+                      }`}>
+                      {renderIcon(item.icon, isActive)}
+                      <span
+                        className={`font-medium ${
+                          isActive ? "text-blue-700" : ""
+                        }`}>
+                        {item.title}
+                      </span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
+
+          {/* User Info and Logout */}
+          <div className="mt-auto p-4 border-t">
+            <div className="mb-3 text-sm text-gray-600">
+              <div className="font-medium">{user?.name}</div>
+              <div className="text-xs capitalize">{user?.role}</div>
+            </div>
+            <Button
+              className="!w-full group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+              onClick={() => {
+                handleLinkClick();
+                handleLogout();
+              }}>
+              Logout
+              <LogOut className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Button>
+          </div>
+        </div>
+      </Drawer>
     </div>
   );
 }

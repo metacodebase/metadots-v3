@@ -290,188 +290,184 @@ function UsersContent() {
   }, [token, fetchUsers]);
 
   return (
-    <div className="min-h-screen bg-white rounded-lg">
-      <div className="bg-white  shadow-sm">
-        <div className="px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center space-x-4">
-              <Link href="/meta-admin/dashboard"></Link>
-              <h1 className="text-xl font-semibold text-gray-900">
-                Users Management
-              </h1>
-            </div>
-            <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
-              <DialogTrigger asChild>
-                <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-4 px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-auto">
-                  <Plus className="h-4 w-4 mr-2" />
-                  Add User
-                </Button>
-              </DialogTrigger>
-
-              <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
-                <DialogHeader>
-                  <DialogTitle className="text-xl font-semibold">
-                    Create New User
-                  </DialogTitle>
-                  <DialogDescription className="text-gray-600">
-                    Add a new user to the system
-                  </DialogDescription>
-                </DialogHeader>
-
-                <form onSubmit={handleCreateUser} className="space-y-6">
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="name"
-                      className="block text-sm font-semibold text-gray-700">
-                      Name
-                    </Label>
-                    <Input
-                      id="name"
-                      value={formData.name}
-                      onChange={(e) =>
-                        setFormData({ ...formData, name: e.target.value })
-                      }
-                      required
-                      placeholder="e.g., John Doe"
-                      className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="email"
-                      className="block text-sm font-semibold text-gray-700">
-                      Email
-                    </Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={formData.email}
-                      onChange={(e) =>
-                        setFormData({ ...formData, email: e.target.value })
-                      }
-                      placeholder="Enter the user's email"
-                      className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="password"
-                      className="block text-sm font-semibold text-gray-700">
-                      Password
-                    </Label>
-                    <Input
-                      id="password"
-                      type="password"
-                      value={formData.password}
-                      onChange={(e) =>
-                        setFormData({ ...formData, password: e.target.value })
-                      }
-                      required
-                      placeholder="Enter a secure password"
-                      className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="designation"
-                      className="block text-sm font-semibold text-gray-700">
-                      Designation
-                    </Label>
-                    <Input
-                      id="designation"
-                      value={formData.designation}
-                      onChange={(e) =>
-                        setFormData({
-                          ...formData,
-                          designation: e.target.value,
-                        })
-                      }
-                      placeholder="e.g., CEO, Senior Developer, Tech Writer"
-                      className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label className="block text-sm font-semibold text-gray-700">
-                      Profile Photo
-                    </Label>
-                    <ImageUpload
-                      value={formData.avatar}
-                      onChange={(url) =>
-                        setFormData({ ...formData, avatar: url })
-                      }
-                      placeholder="Upload profile photo"
-                      className="mt-2 w-full p-4 border rounded-md bg-white border-blue-500 "
-                    />
-                  </div>
-
-                  <div className="space-y-2">
-                    <Label
-                      htmlFor="role"
-                      className="block text-sm font-semibold text-gray-700">
-                      Role
-                    </Label>
-                    <Select
-                      value={formData.role}
-                      onValueChange={(value: "admin" | "author" | "user") =>
-                        setFormData({ ...formData, role: value })
-                      }>
-                      <SelectTrigger>
-                        <SelectValue />
-                      </SelectTrigger>
-                      <SelectContent className="!bg-whtie">
-                        <SelectItem value="admin">Admin</SelectItem>
-                        <SelectItem value="author">Author</SelectItem>
-                        <SelectItem value="user">User</SelectItem>
-                      </SelectContent>
-                    </Select>
-                  </div>
-
-                  <div className="flex items-center space-x-2">
-                    <input
-                      type="checkbox"
-                      id="active"
-                      checked={formData.isActive}
-                      onChange={(e) =>
-                        setFormData({ ...formData, isActive: e.target.checked })
-                      }
-                      className="rounded border-gray-300"
-                    />
-                    <Label htmlFor="active" className="text-sm text-gray-700">
-                      Active
-                    </Label>
-                  </div>
-
-                  <div className="flex justify-end space-x-4">
-                    <Button
-                      type="button"
-                      variant="outline"
-                      onClick={() => setShowCreateDialog(false)}
-                      className="text-white hover:text-white !w-auto px-4">
-                      Cancel
-                    </Button>
-                    <Button
-                      type="submit"
-                      disabled={isCreating}
-                      className="bg-blue-700 text-white hover:bg-blue-800 !w-auto px-4">
-                      {isCreating ? (
-                        <Loader2 className="h-4 w-4 animate-spin" />
-                      ) : (
-                        "Create User"
-                      )}
-                    </Button>
-                  </div>
-                </form>
-              </DialogContent>
-            </Dialog>
-          </div>
-        </div>
-      </div>
-
+    <div className="h-full bg-white rounded-lg md:overflow-auto">
       <div className="px-4 sm:px-6 lg:px-8 py-8">
+        <div className="flex justify-between items-center h-16">
+          <div className="flex items-center space-x-4">
+            <Link href="/meta-admin/dashboard"></Link>
+            <h1 className="text-xl font-semibold text-gray-900">
+              Users Management
+            </h1>
+          </div>
+          <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
+            <DialogTrigger asChild>
+              <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-4 px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-auto">
+                <Plus className="h-4 w-4 mr-2" />
+                Add User
+              </Button>
+            </DialogTrigger>
+
+            <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
+              <DialogHeader>
+                <DialogTitle className="text-xl font-semibold">
+                  Create New User
+                </DialogTitle>
+                <DialogDescription className="text-gray-600">
+                  Add a new user to the system
+                </DialogDescription>
+              </DialogHeader>
+
+              <form onSubmit={handleCreateUser} className="space-y-6">
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="name"
+                    className="block text-sm font-semibold text-gray-700">
+                    Name
+                  </Label>
+                  <Input
+                    id="name"
+                    value={formData.name}
+                    onChange={(e) =>
+                      setFormData({ ...formData, name: e.target.value })
+                    }
+                    required
+                    placeholder="e.g., John Doe"
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="email"
+                    className="block text-sm font-semibold text-gray-700">
+                    Email
+                  </Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) =>
+                      setFormData({ ...formData, email: e.target.value })
+                    }
+                    placeholder="Enter the user's email"
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="password"
+                    className="block text-sm font-semibold text-gray-700">
+                    Password
+                  </Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={formData.password}
+                    onChange={(e) =>
+                      setFormData({ ...formData, password: e.target.value })
+                    }
+                    required
+                    placeholder="Enter a secure password"
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="designation"
+                    className="block text-sm font-semibold text-gray-700">
+                    Designation
+                  </Label>
+                  <Input
+                    id="designation"
+                    value={formData.designation}
+                    onChange={(e) =>
+                      setFormData({
+                        ...formData,
+                        designation: e.target.value,
+                      })
+                    }
+                    placeholder="e.g., CEO, Senior Developer, Tech Writer"
+                    className="h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300"
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label className="block text-sm font-semibold text-gray-700">
+                    Profile Photo
+                  </Label>
+                  <ImageUpload
+                    value={formData.avatar}
+                    onChange={(url) =>
+                      setFormData({ ...formData, avatar: url })
+                    }
+                    placeholder="Upload profile photo"
+                    className="mt-2 w-full p-4 border rounded-md bg-white border-blue-500 "
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <Label
+                    htmlFor="role"
+                    className="block text-sm font-semibold text-gray-700">
+                    Role
+                  </Label>
+                  <Select
+                    value={formData.role}
+                    onValueChange={(value: "admin" | "author" | "user") =>
+                      setFormData({ ...formData, role: value })
+                    }>
+                    <SelectTrigger>
+                      <SelectValue />
+                    </SelectTrigger>
+                    <SelectContent className="!bg-whtie">
+                      <SelectItem value="admin">Admin</SelectItem>
+                      <SelectItem value="author">Author</SelectItem>
+                      <SelectItem value="user">User</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="active"
+                    checked={formData.isActive}
+                    onChange={(e) =>
+                      setFormData({ ...formData, isActive: e.target.checked })
+                    }
+                    className="rounded border-gray-300"
+                  />
+                  <Label htmlFor="active" className="text-sm text-gray-700">
+                    Active
+                  </Label>
+                </div>
+
+                <div className="flex justify-end space-x-4">
+                  <Button
+                    type="button"
+                    variant="outline"
+                    onClick={() => setShowCreateDialog(false)}
+                    className="text-white hover:text-white !w-auto px-4">
+                    Cancel
+                  </Button>
+                  <Button
+                    type="submit"
+                    disabled={isCreating}
+                    className="bg-blue-700 text-white hover:bg-blue-800 !w-auto px-4">
+                    {isCreating ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      "Create User"
+                    )}
+                  </Button>
+                </div>
+              </form>
+            </DialogContent>
+          </Dialog>
+        </div>
+
         {error && (
           <Alert variant="destructive" className="mb-4">
             <AlertDescription>{error}</AlertDescription>

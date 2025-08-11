@@ -391,11 +391,10 @@ export function RichTextEditor({
         <div className="flex items-center gap-1 border-r pr-2">
           <Button
             type="button"
-            variant={editor.isActive("bold") ? "outline" : "ghost"}
             className={`${
               editor.isActive("bold")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleBold().run()}
@@ -405,11 +404,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={editor.isActive("italic") ? "outline" : "ghost"}
             className={`${
               editor.isActive("italic")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleItalic().run()}
@@ -419,11 +417,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={editor.isActive("underline") ? "outline" : "ghost"}
             className={`${
               editor.isActive("underline")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleUnderline().run()}
@@ -432,11 +429,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={editor.isActive("strike") ? "outline" : "ghost"}
             className={`${
               editor.isActive("strike")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleStrike().run()}
@@ -449,13 +445,10 @@ export function RichTextEditor({
         <div className="flex items-center gap-1 border-r pr-2">
           <Button
             type="button"
-            variant={
-              editor.isActive("heading", { level: 1 }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive("heading", { level: 1 })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() =>
@@ -466,13 +459,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={
-              editor.isActive("heading", { level: 2 }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive("heading", { level: 2 })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() =>
@@ -483,13 +473,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={
-              editor.isActive("heading", { level: 3 }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive("heading", { level: 3 })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() =>
@@ -504,11 +491,10 @@ export function RichTextEditor({
         <div className="flex items-center gap-1 border-r pr-2">
           <Button
             type="button"
-            variant={editor.isActive("bulletList") ? "outline" : "ghost"}
             className={`${
               editor.isActive("bulletList")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -517,11 +503,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={editor.isActive("orderedList") ? "outline" : "ghost"}
             className={`${
               editor.isActive("orderedList")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleOrderedList().run()}
@@ -530,11 +515,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={editor.isActive("blockquote") ? "outline" : "ghost"}
             className={`${
               editor.isActive("blockquote")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleBlockquote().run()}
@@ -543,11 +527,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={editor.isActive("codeBlock") ? "outline" : "ghost"}
             className={`${
               editor.isActive("codeBlock")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().toggleCodeBlock().run()}
@@ -560,13 +543,10 @@ export function RichTextEditor({
         <div className="flex items-center gap-1 border-r pr-2">
           <Button
             type="button"
-            variant={
-              editor.isActive({ textAlign: "left" }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive({ textAlign: "left" })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().setTextAlign("left").run()}
@@ -575,13 +555,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={
-              editor.isActive({ textAlign: "center" }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive({ textAlign: "center" })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().setTextAlign("center").run()}
@@ -590,13 +567,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={
-              editor.isActive({ textAlign: "right" }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive({ textAlign: "right" })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().setTextAlign("right").run()}
@@ -605,13 +579,10 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant={
-              editor.isActive({ textAlign: "justify" }) ? "outline" : "ghost"
-            }
             className={`${
               editor.isActive({ textAlign: "justify" })
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => editor.chain().focus().setTextAlign("justify").run()}
@@ -624,11 +595,10 @@ export function RichTextEditor({
         <div className="flex items-center gap-1 border-r pr-2">
           <Button
             type="button"
-            variant={editor.isActive("link") ? "outline" : "ghost"}
             className={`${
               editor.isActive("link")
-                ? "text-white hover:text-white hover:bg-black"
-                : ""
+                ? "bg-black text-white hover:bg-black hover:text-white"
+                : "bg-transparent text-black hover:bg-black hover:text-white"
             } border border-black !w-auto`}
             size="sm"
             onClick={() => setShowLinkInput(!showLinkInput)}
@@ -638,8 +608,7 @@ export function RichTextEditor({
           {editor.isActive("link") && (
             <Button
               type="button"
-              variant="ghost"
-              className="border border-black !w-auto"
+              className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
               size="sm"
               onClick={removeLink}
               title="Remove Link">
@@ -648,8 +617,7 @@ export function RichTextEditor({
           )}
           <Button
             type="button"
-            variant="ghost"
-            className="border border-black !w-auto"
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
             size="sm"
             onClick={() => setShowImageInput(!showImageInput)}
             title="Add Image URL">
@@ -670,8 +638,7 @@ export function RichTextEditor({
           />
           <Button
             type="button"
-            variant="ghost"
-            className="border border-black !w-auto"
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
             size="sm"
             onClick={() => document.getElementById("image-upload")?.click()}
             title="Upload Image">
@@ -679,8 +646,7 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant="ghost"
-            className="border border-black !w-auto"
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
             size="sm"
             onClick={() => {
               // Test with a sample image
@@ -697,8 +663,7 @@ export function RichTextEditor({
           </Button>
           <Button
             type="button"
-            variant="ghost"
-            className="border border-black !w-auto"
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
             size="sm"
             onClick={addTable}
             title="Add Table">
@@ -711,7 +676,6 @@ export function RichTextEditor({
           <div className="flex items-center gap-1">
             <Button
               type="button"
-              variant="ghost"
               size="sm"
               onClick={() => setTextColor("#000000")}
               title="Black"
@@ -719,7 +683,6 @@ export function RichTextEditor({
             />
             <Button
               type="button"
-              variant="ghost"
               size="sm"
               onClick={() => setTextColor("#3B82F6")}
               title="Blue"
@@ -727,7 +690,6 @@ export function RichTextEditor({
             />
             <Button
               type="button"
-              variant="ghost"
               size="sm"
               onClick={() => setTextColor("#EF4444")}
               title="Red"
@@ -735,7 +697,6 @@ export function RichTextEditor({
             />
             <Button
               type="button"
-              variant="ghost"
               size="sm"
               onClick={() => setTextColor("#10B981")}
               title="Green"
@@ -744,8 +705,7 @@ export function RichTextEditor({
           </div>
           <Button
             type="button"
-            variant="outline"
-            className="text-white hover:text-white border border-black !w-auto"
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
             size="sm"
             onClick={() => setHighlight("#FEF3C7")}
             title="Highlight">
@@ -757,22 +717,20 @@ export function RichTextEditor({
         <div className="flex items-center gap-1">
           <Button
             type="button"
-            variant="outline"
             size="sm"
             onClick={() => editor.chain().focus().undo().run()}
             disabled={!editor.can().chain().focus().undo().run()}
             title="Undo (Ctrl+Z)"
-            className="text-white hover:text-white border border-black !w-auto">
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
             <Undo className="h-4 w-4" />
           </Button>
           <Button
             type="button"
-            variant="outline"
             size="sm"
             onClick={() => editor.chain().focus().redo().run()}
             disabled={!editor.can().chain().focus().redo().run()}
             title="Redo (Ctrl+Y)"
-            className="text-white hover:text-white border border-black !w-auto">
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
             <Redo className="h-4 w-4" />
           </Button>
         </div>
@@ -781,9 +739,8 @@ export function RichTextEditor({
         <div className="flex items-center gap-1">
           <Button
             type="button"
-            variant="outline"
             size="sm"
-            className="text-white hover:text-white border border-black !w-auto"
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
             onClick={() => {
               toast({
                 title: "Keyboard Shortcuts",
@@ -828,17 +785,20 @@ export function RichTextEditor({
             placeholder="Enter URL..."
             value={linkUrl}
             onChange={(e) => setLinkUrl(e.target.value)}
-            className="flex-1 px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-3 py-2 border rounded-md bg-white text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             onKeyDown={(e) => e.key === "Enter" && addLink()}
             autoFocus
           />
-          <Button size="sm" onClick={addLink}>
+          <Button
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
+            size="sm"
+            onClick={addLink}>
             Add
           </Button>
           <Button
             size="sm"
-            variant="outline"
-            onClick={() => setShowLinkInput(false)}>
+            onClick={() => setShowLinkInput(false)}
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
             Cancel
           </Button>
         </div>
@@ -852,17 +812,20 @@ export function RichTextEditor({
             placeholder="Enter image URL..."
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            className="flex-1 px-3 py-2 border rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 px-3 py-2 border rounded-md text-sm bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
             onKeyDown={(e) => e.key === "Enter" && addImage()}
             autoFocus
           />
-          <Button size="sm" onClick={addImage}>
+          <Button
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto"
+            size="sm"
+            onClick={addImage}>
             Add
           </Button>
           <Button
             size="sm"
-            variant="outline"
-            onClick={() => setShowImageInput(false)}>
+            onClick={() => setShowImageInput(false)}
+            className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
             Cancel
           </Button>
         </div>

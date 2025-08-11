@@ -432,7 +432,7 @@ function ProjectsContent() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
+            <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
               <DialogHeader>
                 <DialogTitle className="text-xl font-semibold">
                   Create New Project
@@ -616,7 +616,7 @@ function ProjectsContent() {
                         />
                         <Button
                           type="button"
-                          className="!w-auto px-4 text-red-800 hover:text-hover bg-transparent"
+                          className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
                           onClick={() => removeTechnology(index)}>
                           <Trash2 className="w-4 h-4" />
                         </Button>
@@ -625,7 +625,7 @@ function ProjectsContent() {
                     <Button
                       type="button"
                       onClick={() => addTechnology()}
-                      className="w-full text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
+                      className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                       <Plus className="w-4 h-4 mr-2" />
                       Add Technology
                     </Button>
@@ -651,7 +651,7 @@ function ProjectsContent() {
                   <Button
                     type="button"
                     onClick={() => setShowCreateDialog(false)}
-                    className="text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
+                    className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                     Cancel
                   </Button>
                   <Button
@@ -819,12 +819,12 @@ function ProjectsContent() {
                               <DialogTrigger asChild>
                                 <Button
                                   size="sm"
-                                  className="!w-auto px-4 text-blue-700 hover:text-hover bg-transparent"
+                                  className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent"
                                   onClick={() => openEditDialog(project)}>
                                   <Edit className="w-4 h-4" />
                                 </Button>
                               </DialogTrigger>
-                              <DialogContent className="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
+                              <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
                                 <DialogHeader>
                                   <DialogTitle className="text-xl font-semibold">
                                     Edit Project
@@ -1044,7 +1044,7 @@ function ProjectsContent() {
                                             />
                                             <Button
                                               type="button"
-                                              className="!w-auto px-4 text-red-800 hover:text-hover bg-transparent"
+                                              className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
                                               onClick={() =>
                                                 removeTechnology(index, true)
                                               }>
@@ -1056,7 +1056,7 @@ function ProjectsContent() {
                                       <Button
                                         type="button"
                                         onClick={() => addTechnology(true)}
-                                        className="w-full text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
+                                        className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                                         <Plus className="w-4 h-4 mr-2" />
                                         Add Technology
                                       </Button>
@@ -1087,7 +1087,7 @@ function ProjectsContent() {
                                     <Button
                                       type="button"
                                       onClick={() => setShowEditDialog(null)}
-                                      className="text-white hover:text-white !w-auto px-4">
+                                      className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                                       Cancel
                                     </Button>
                                     <Button
@@ -1106,7 +1106,7 @@ function ProjectsContent() {
                             </Dialog>
                             <Button
                               size="sm"
-                              className="!w-auto px-4 text-red-800 hover:text-hover bg-transparent"
+                              className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
                               onClick={() => handleDeleteProject(project._id)}
                               disabled={isDeleting === project._id}>
                               {isDeleting === project._id ? (

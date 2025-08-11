@@ -493,7 +493,7 @@ export default function AboutPage() {
                           </div>
                           <Button
                             variant="ghost"
-                            className="text-white hover:bg-white/10">
+                            className="text-white hover:text-white hover:bg-white/10">
                             Learn More
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>

@@ -128,17 +128,21 @@ export default function FeaturedProject({ project }: FeaturedProjectProps) {
 
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
-                  Start Project
-                  <ArrowRight
-                    className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
-                    aria-hidden="true"
-                  />
+                  <Link className="flex items-center gap-2" href="/contact-us">
+                    <span>Start Project</span>
+                    <ArrowRight
+                      className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"
+                      aria-hidden="true"
+                    />
+                  </Link>
                 </Button>
                 <Button
                   variant="outline"
-                  className="border-slate-300 border-whtie hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 bg-transparent text-black">
-                  <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
-                  Book a Call
+                  className="border border-black  hover:border-blue-500 hover:bg-blue-50 transition-all duration-300 bg-transparent text-black">
+                  <Link className="flex items-center gap-2" href="/contact-us">
+                    <ExternalLink className="mr-2 h-4 w-4" aria-hidden="true" />
+                    <span>Book a Call</span>
+                  </Link>
                 </Button>
               </div>
             </div>

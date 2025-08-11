@@ -317,7 +317,7 @@ function PodcastsContent() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
+            <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
               <DialogHeader>
                 <DialogTitle className="text-xl font-semibold">
                   Create New Podcast
@@ -513,7 +513,7 @@ function PodcastsContent() {
                   <Button
                     type="button"
                     onClick={() => setShowCreateDialog(false)}
-                    className="text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
+                    className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                     Cancel
                   </Button>
                   <Button
@@ -686,7 +686,7 @@ function PodcastsContent() {
                           <div className="flex items-center space-x-2">
                             <Button
                               size="sm"
-                              className="!w-auto px-4 text-blue-700 hover:text-hover bg-transparent"
+                              className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent"
                               onClick={() =>
                                 window.open(podcast.link, "_blank")
                               }
@@ -701,12 +701,12 @@ function PodcastsContent() {
                               <DialogTrigger asChild>
                                 <Button
                                   size="sm"
-                                  className="!w-auto px-4 text-blue-700 hover:text-hover bg-transparent"
+                                  className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent"
                                   onClick={() => openEditDialog(podcast)}>
                                   <Edit className="w-4 h-4" />
                                 </Button>
                               </DialogTrigger>
-                              <DialogContent className="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
+                              <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
                                 <DialogHeader>
                                   <DialogTitle className="text-xl font-semibold">
                                     Edit Podcast
@@ -927,7 +927,7 @@ function PodcastsContent() {
                                     <Button
                                       type="button"
                                       onClick={() => setShowEditDialog(null)}
-                                      className="text-white hover:text-white !w-auto px-4">
+                                      className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                                       Cancel
                                     </Button>
                                     <Button
@@ -946,7 +946,7 @@ function PodcastsContent() {
                             </Dialog>
                             <Button
                               size="sm"
-                              className="!w-auto px-4 text-red-800 hover:text-hover bg-transparent"
+                              className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
                               onClick={() => handleDeletePodcast(podcast._id)}
                               disabled={isDeleting === podcast._id}>
                               {isDeleting === podcast._id ? (

@@ -320,80 +320,90 @@ export default async function ProjectsPage() {
                   </div>
 
                   <CardHeader className="p-8">
-                    <div className="flex items-start justify-between mb-4">
-                      <div className="flex-1">
-                        <CardTitle className="text-2xl mb-3 text-blue-600 transition-colors">
-                          {project.title}
-                        </CardTitle>
-                        <CardDescription className="text-base leading-relaxed mb-4">
-                          {project.description}
-                        </CardDescription>
+                    <div className="flex flex-col justify-between h-full gap-4">
+                      <div>
+                        <div className="flex items-start justify-between mb-4">
+                          <div className="flex-1">
+                            <CardTitle className="text-2xl mb-3 text-black transition-colors">
+                              {project.title}
+                            </CardTitle>
+                            <CardDescription className="text-base leading-relaxed mb-4">
+                              {project.description}
+                            </CardDescription>
+                          </div>
+                        </div>
+                        {/* Tech Stack */}
+                        <div className="mb-6">
+                          <div className="flex flex-wrap gap-2">
+                            {project.technologies &&
+                              project.technologies.map((tag: string) => (
+                                <span
+                                  key={tag}
+                                  className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+                                  {tag}dfff
+                                </span>
+                              ))}
+                          </div>
+                        </div>
+                        {/* Metrics */}
+                        <div className="flex items-center justify-between gap-4 mb-6 p-4 ">
+                          {project.metrics &&
+                            Object.entries(project.metrics).map(
+                              ([key, value]: [string, any]) => (
+                                <div key={key} className="text-center">
+                                  <div className="text-lg font-bold text-blue-600">
+                                    {value}
+                                  </div>
+                                  <div className="text-xs text-slate-600 capitalize">
+                                    {key.replace(/([A-Z])/g, " $1")}
+                                  </div>
+                                </div>
+                              )
+                            )}
+                        </div>
                       </div>
-                    </div>
-
-                    {/* Tech Stack */}
-                    <div className="mb-6">
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies &&
-                          project.technologies.map((tag: string) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
-                              {tag}
-                            </span>
-                          ))}
-                      </div>
-                    </div>
-
-                    {/* Metrics */}
-                    <div className="flex items-center justify-between gap-4 mb-6 p-4 ">
-                      {project.metrics &&
-                        Object.entries(project.metrics).map(
-                          ([key, value]: [string, any]) => (
-                            <div key={key} className="text-center">
-                              <div className="text-lg font-bold text-blue-600">
-                                {value}
-                              </div>
-                              <div className="text-xs text-slate-600 capitalize">
-                                {key.replace(/([A-Z])/g, " $1")}
-                              </div>
+                      <div>
+                        {/* Project Info */}
+                        <div className="flex items-center justify-between mb-6 pb-2 text-sm text-slate-600">
+                          <div className="flex items-center gap-2">
+                            <div className="text-blue-600">
+                              <Users className="w-4 h-4" />
                             </div>
-                          )
-                        )}
-                    </div>
-
-                    {/* Project Info */}
-                    <div className="flex items-center justify-between mb-6 pb-2 text-sm text-slate-600">
-                      <div className="flex items-center gap-2">
-                        <div className="text-blue-600">
-                          <Users className="w-4 h-4" />
+                            <span>{project.teamSize || "8 developers"}</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="text-blue-600">
+                              <Calendar className="w-4 h-4" />
+                            </div>
+                            <span>{project.duration || "6 months"}</span>
+                          </div>
                         </div>
-                        <span>{project.teamSize || "8 developers"}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <div className="text-blue-600">
-                          <Calendar className="w-4 h-4" />
+                        {/* Actions */}
+                        <div className="flex gap-3">
+                          <Button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                            <Link
+                              className="flex items-center gap-2"
+                              href="/contact-us">
+                              <span>View Case Study</span>
+                              <ArrowRight className="ml-2 h-4 w-4" />
+                            </Link>
+                          </Button>
+                          <Button
+                            className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2"
+                            size="icon">
+                            <Link href="/contact-us">
+                              <ExternalLink className="h-4 w-4" />
+                            </Link>
+                          </Button>
+                          <Button
+                            className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2"
+                            size="icon">
+                            <Link href="/contact-us">
+                              <Github className="h-4 w-4" />
+                            </Link>
+                          </Button>
                         </div>
-                        <span>{project.duration || "6 months"}</span>
                       </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex gap-3">
-                      <Button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                        View Case Study
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                      <Button
-                        className=" bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 !w-auto px-5 py-2"
-                        size="icon">
-                        <ExternalLink className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        className=" bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 !w-auto px-5 py-2"
-                        size="icon">
-                        <Github className="h-4 w-4" />
-                      </Button>
                     </div>
                   </CardHeader>
                 </Card>
@@ -501,8 +511,12 @@ export default async function ProjectsPage() {
                       </div>
                     </div>
                     <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
-                      View Details
-                      <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      <Link
+                        className="flex items-center gap-2"
+                        href="/contact-us">
+                        View Details
+                        <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                      </Link>
                     </Button>
                   </div>
                 </CardHeader>

@@ -366,10 +366,8 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                 Share this article
               </h3>
               <div className="flex items-center space-x-4">
-                <Button
-                  variant="outline"
-                  className="flex items-center space-x-2 text-white hover:text-white">
-                  <Share2 className="w-4 h-4" />
+                <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Share2 className="mr-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                   <span>Share</span>
                 </Button>
               </div>
@@ -479,7 +477,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                     placeholder="Enter your email"
                     className="flex-1 px-4 py-2 border-0 bg-white/20 text-white placeholder:text-white/60 rounded-lg focus:outline-none focus:ring-2 focus:ring-white/50"
                   />
-                  <Button className="bg-white text-slate-900 hover:bg-white/90 px-6">
+                  <Button className="bg-white text-slate-900 hover:bg-white/90 px-6 !w-auto">
                     Subscribe
                   </Button>
                 </div>

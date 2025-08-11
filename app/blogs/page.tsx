@@ -418,7 +418,7 @@ export default function BlogsPage() {
                       </Badge>
                     </div>
                     <div className="absolute top-4 right-4">
-                      <Badge className="bg-white/90 text-slate-700">
+                      <Badge className="bg-gray-200 text-slate-700">
                         Featured
                       </Badge>
                     </div>
@@ -443,7 +443,7 @@ export default function BlogsPage() {
                       </div>
                     </div>
 
-                    <CardTitle className="text-2xl mb-3 text-blue-600 transition-colors line-clamp-3">
+                    <CardTitle className="text-2xl mb-3 text-black transition-colors line-clamp-3">
                       {blog.title}
                     </CardTitle>
 
@@ -507,9 +507,8 @@ export default function BlogsPage() {
                         </Link>
                       </Button>
                       <Button
-                        variant="outline"
                         size="icon"
-                        className="text-white hover:text-white px-6 !w-auto">
+                        className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2">
                         <Share2 className="h-4 w-4" />
                       </Button>
                     </div>
@@ -551,7 +550,8 @@ export default function BlogsPage() {
                     setSearchTerm("");
                     setSelectedCategory("All");
                   }}
-                  variant="outline">
+                  variant="outline"
+                  className="text-white hover:text-white">
                   Clear Filters
                 </Button>
               )}
@@ -642,7 +642,7 @@ export default function BlogsPage() {
                       <Button
                         asChild
                         variant="ghost"
-                        className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                        className="group text-white hover:text-white bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
                         <Link href={`/blogs/${blog.slug}`}>
                           Read More
                           <ArrowRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />

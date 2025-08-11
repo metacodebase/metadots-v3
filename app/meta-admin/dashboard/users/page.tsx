@@ -307,7 +307,7 @@ function UsersContent() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
+            <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
               <DialogHeader>
                 <DialogTitle className="text-xl font-semibold">
                   Create New User
@@ -447,9 +447,8 @@ function UsersContent() {
                 <div className="flex justify-end space-x-4">
                   <Button
                     type="button"
-                    variant="outline"
                     onClick={() => setShowCreateDialog(false)}
-                    className="text-white hover:text-white !w-auto px-4">
+                    className="text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
                     Cancel
                   </Button>
                   <Button
@@ -581,12 +580,12 @@ function UsersContent() {
                               <DialogTrigger asChild>
                                 <Button
                                   size="sm"
-                                  className="!w-auto px-4 text-blue-700 hover:text-hover bg-transparent"
+                                  className="!w-auto px-4 text-blue-700 hover:text-hover !bg-transparent hover:bg-transparent"
                                   onClick={() => openEditDialog(user)}>
                                   <Edit className="h-4 w-4" />
                                 </Button>
                               </DialogTrigger>
-                              <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
+                              <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
                                 <DialogHeader>
                                   <DialogTitle className="text-xl font-semibold">
                                     Edit User
@@ -756,9 +755,8 @@ function UsersContent() {
                                   <div className="flex justify-end space-x-4">
                                     <Button
                                       type="button"
-                                      variant="outline"
                                       onClick={() => setShowEditDialog(null)}
-                                      className="text-white hover:text-white !w-auto px-4">
+                                      className="text-white hover:text-black !w-auto px-4 bg-black hover:bg-transparent border border-black hover:border-black transition-colors duration-300">
                                       Cancel
                                     </Button>
                                     <Button
@@ -776,7 +774,7 @@ function UsersContent() {
                               </DialogContent>
                             </Dialog>
                             <Button
-                              className="!w-auto px-4 text-red-800 hover:text-hover bg-transparent"
+                              className="!w-auto px-4 text-red-800 hover:text-hover !bg-transparent hover:bg-transparent"
                               size="sm"
                               onClick={() => handleDeleteUser(user._id)}
                               disabled={isDeleting === user._id}>

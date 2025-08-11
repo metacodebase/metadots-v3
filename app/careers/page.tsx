@@ -631,80 +631,82 @@ export default function CareersPage() {
                   <Card
                     key={job._id}
                     className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
-                    <CardHeader className="p-8">
-                      <div className="flex items-start justify-between mb-6">
-                        <div className="flex items-center space-x-4">
-                          <div
-                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                            {renderIcon(job.icon)}
-                          </div>
-                          <div>
-                            <CardTitle className="text-2xl mb-2 group-hover:text-blue-600 transition-colors">
-                              {job.title}
-                            </CardTitle>
-                            <div className="flex items-center space-x-4 text-sm text-slate-600">
-                              <Badge className="bg-blue-100 text-blue-700">
-                                {job.department}
-                              </Badge>
-                              <Badge className="bg-green-100 text-green-700">
-                                Featured
-                              </Badge>
+                    <CardHeader className="flex flex-col gap-2 p-8">
+                      <div>
+                        <div className="flex items-start justify-between mb-6">
+                          <div className="flex items-center space-x-4">
+                            <div
+                              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                              {renderIcon(job.icon)}
+                            </div>
+                            <div>
+                              <CardTitle className="text-2xl mb-2 text-black transition-colors">
+                                {job.title}
+                              </CardTitle>
+                              <div className="flex items-center space-x-4 text-sm text-slate-600">
+                                <Badge className="bg-blue-100 text-blue-700">
+                                  {job.department}
+                                </Badge>
+                                <Badge className="bg-green-100 text-green-700">
+                                  Featured
+                                </Badge>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-
-                      <CardDescription className="text-base leading-relaxed mb-6">
-                        {job.description}
-                      </CardDescription>
-
-                      {/* Job Details */}
-                      <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
-                        <div className="flex items-center space-x-2 text-sm">
-                          <MapPin className="w-4 h-4 text-slate-500" />
-                          <span>{job.location}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 text-sm">
-                          <Clock className="w-4 h-4 text-slate-500" />
-                          <span>{job.type}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 text-sm">
-                          <Briefcase className="w-4 h-4 text-slate-500" />
-                          <span>{job.experience}</span>
-                        </div>
-                        <div className="flex items-center space-x-2 text-sm">
-                          <DollarSign className="w-4 h-4 text-slate-500" />
-                          <span>{job.salary}</span>
+                        <CardDescription className="text-base leading-relaxed mb-6 truncate">
+                          {job.description}
+                        </CardDescription>
+                        {/* Job Details */}
+                        <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 text-black rounded-xl">
+                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                            <MapPin className="w-4 h-4 text-slate-500" />
+                            <span>{job.location}</span>
+                          </div>
+                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                            <Clock className="w-4 h-4 text-slate-500" />
+                            <span>{job.type}</span>
+                          </div>
+                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                            <Briefcase className="w-4 h-4 text-slate-500" />
+                            <span>{job.experience}</span>
+                          </div>
+                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                            <DollarSign className="w-4 h-4 text-slate-500" />
+                            <span>{job.salary}</span>
+                          </div>
                         </div>
                       </div>
-
-                      {/* Tech Stack */}
-                      <div className="mb-6">
-                        <div className="text-sm font-medium text-slate-700 mb-3">
-                          Required Skills
+                      <div>
+                        {/* Tech Stack */}
+                        <div className="mb-6">
+                          <div className="text-sm font-medium text-slate-700 mb-3">
+                            Required Skills
+                          </div>
+                          <div className="flex flex-wrap gap-2">
+                            {job.tags.map((tag) => (
+                              <span
+                                key={tag}
+                                className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+                                {tag}
+                              </span>
+                            ))}
+                          </div>
                         </div>
-                        <div className="flex flex-wrap gap-2">
-                          {job.tags.map((tag) => (
-                            <span
-                              key={tag}
-                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
-                              {tag}
-                            </span>
-                          ))}
+                        {/* Actions */}
+                        <div className="flex gap-3">
+                          <Button
+                            onClick={openInquiryForm}
+                            className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                            Apply Now
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Button>
+                          <Button
+                            className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2"
+                            onClick={openInquiryForm}>
+                            Learn More
+                          </Button>
                         </div>
-                      </div>
-
-                      {/* Actions */}
-                      <div className="flex gap-3">
-                        <Button
-                          onClick={openInquiryForm}
-                          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                          Apply Now
-                          <ArrowRight className="ml-2 h-4 w-4" />
-                        </Button>
-                        <Button variant="outline" onClick={openInquiryForm}>
-                          Learn More
-                        </Button>
                       </div>
                     </CardHeader>
                   </Card>
@@ -742,80 +744,79 @@ export default function CareersPage() {
                 <Card
                   key={job._id}
                   className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
-                  <CardHeader className="p-8">
-                    <div className="flex items-start justify-between mb-6">
-                      <div className="flex items-center space-x-4">
-                        <div
-                          className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                          {renderIcon(job.icon)}
-                        </div>
-                        <div>
-                          <CardTitle className="text-2xl mb-2 group-hover:text-blue-600 transition-colors">
-                            {job.title}
-                          </CardTitle>
-                          <div className="flex items-center space-x-4 text-sm text-slate-600">
-                            <Badge className="bg-blue-100 text-blue-700">
-                              {job.department}
-                            </Badge>
+                  <CardHeader className="flex flex-col gap-2 h-full justify-between p-8">
+                    <div>
+                      <div className="flex items-start justify-between mb-6">
+                        <div className="flex items-center space-x-4">
+                          <div
+                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            {renderIcon(job.icon)}
+                          </div>
+                          <div>
+                            <CardTitle className="text-2xl mb-2 text-black transition-colors">
+                              {job.title}
+                            </CardTitle>
+                            <div className="flex items-center space-x-4 text-sm text-slate-600">
+                              <Badge className="bg-blue-100 text-blue-700">
+                                {job.department}
+                              </Badge>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-
-                    <CardDescription className="text-base leading-relaxed mb-6">
-                      {job.description}
-                    </CardDescription>
-
-                    {/* Job Details */}
-                    <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 rounded-xl">
-                      <div className="flex items-center space-x-2 text-sm">
-                        <MapPin className="w-4 h-4 text-slate-500" />
-                        <span>{job.location}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <Clock className="w-4 h-4 text-slate-500" />
-                        <span>{job.type}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <Briefcase className="w-4 h-4 text-slate-500" />
-                        <span>{job.experience}</span>
-                      </div>
-                      <div className="flex items-center space-x-2 text-sm">
-                        <DollarSign className="w-4 h-4 text-slate-500" />
-                        <span>{job.salary}</span>
+                      <CardDescription className="text-base leading-relaxed mb-6 truncate">
+                        {job.description}
+                      </CardDescription>
+                      {/* Job Details */}
+                      <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 text-black rounded-xl">
+                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <MapPin className="w-4 h-4 text-slate-500" />
+                          <span>{job.location}</span>
+                        </div>
+                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <Clock className="w-4 h-4 text-slate-500" />
+                          <span>{job.type}</span>
+                        </div>
+                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <Briefcase className="w-4 h-4 text-slate-500" />
+                          <span>{job.experience}</span>
+                        </div>
+                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <DollarSign className="w-4 h-4 text-slate-500" />
+                          <span>{job.salary}</span>
+                        </div>
                       </div>
                     </div>
-
-                    {/* Tech Stack */}
-                    <div className="mb-6">
-                      <div className="text-sm font-medium text-slate-700 mb-3">
-                        Required Skills
+                    <div>
+                      {/* Tech Stack */}
+                      <div className="mb-6">
+                        <div className="text-sm font-medium text-slate-700 mb-3">
+                          Required Skills
+                        </div>
+                        <div className="flex flex-wrap gap-2">
+                          {job.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        {job.tags.map((tag) => (
-                          <span
-                            key={tag}
-                            className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
-                            {tag}
-                          </span>
-                        ))}
+                      {/* Actions */}
+                      <div className="flex gap-3">
+                        <Button
+                          onClick={openInquiryForm}
+                          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                          Apply Now
+                          <ArrowRight className="ml-2 h-4 w-4" />
+                        </Button>
+                        <Button
+                          onClick={openInquiryForm}
+                          className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2">
+                          Learn More
+                        </Button>
                       </div>
-                    </div>
-
-                    {/* Actions */}
-                    <div className="flex gap-3">
-                      <Button
-                        onClick={openInquiryForm}
-                        className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
-                        Apply Now
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="outline"
-                        onClick={openInquiryForm}
-                        className="text-white hover:text-white px-6 !w-auto">
-                        Learn More
-                      </Button>
                     </div>
                   </CardHeader>
                 </Card>

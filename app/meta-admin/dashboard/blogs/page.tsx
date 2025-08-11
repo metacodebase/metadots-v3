@@ -387,7 +387,7 @@ function BlogsContent() {
               </Button>
             </DialogTrigger>
 
-            <DialogContent className="w-full max-w-2xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
+            <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black break-words">
               <DialogHeader>
                 <DialogTitle className="text-xl font-semibold">
                   Create New Blog Post
@@ -877,7 +877,7 @@ function BlogsContent() {
                                   <Edit className="w-4 h-4" />
                                 </Button>
                               </DialogTrigger>
-                              <DialogContent className="w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
+                              <DialogContent className="w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-[#f6f8fa] p-8 rounded-lg shadow-xl text-black">
                                 <DialogHeader>
                                   <DialogTitle className="text-xl font-semibold">
                                     Edit Blog Post
@@ -1110,9 +1110,8 @@ function BlogsContent() {
                                   <div className="flex justify-end space-x-4">
                                     <Button
                                       type="button"
-                                      variant="outline"
                                       onClick={() => setShowEditDialog(null)}
-                                      className="text-white hover:text-white !w-auto px-4">
+                                      className="bg-transparent text-black hover:bg-black hover:text-white border border-black !w-auto">
                                       Cancel
                                     </Button>
                                     <Button

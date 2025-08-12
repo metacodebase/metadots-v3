@@ -537,7 +537,7 @@ function CaseStudiesContent() {
           </div>
           <Dialog open={showCreateDialog} onOpenChange={setShowCreateDialog}>
             <DialogTrigger asChild>
-              <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-4 px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-auto">
+              <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 py-4 px-4 md:px-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 w-auto">
                 <Plus className="h-4 w-4 mr-2" />
                 New Case Study
               </Button>
@@ -556,7 +556,7 @@ function CaseStudiesContent() {
               <form
                 onSubmit={handleCreateCaseStudy}
                 className="space-y-6 !w-full">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="title"
@@ -593,7 +593,7 @@ function CaseStudiesContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="industry"
@@ -703,7 +703,7 @@ function CaseStudiesContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="challenge"
@@ -745,7 +745,7 @@ function CaseStudiesContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="status"
@@ -916,10 +916,10 @@ function CaseStudiesContent() {
 
         {/* Filters and Search */}
         <Card className="bg-[#f6f8fa] text-black border-none mb-6">
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4">
-              <div className="flex-1">
-                <div className="relative">
+          <CardContent className="p-3 md:p-6">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="flex-1 w-full">
+                <div className="relative w-full">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
                     placeholder="Search case studies..."
@@ -930,7 +930,7 @@ function CaseStudiesContent() {
                 </div>
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className="w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -942,7 +942,7 @@ function CaseStudiesContent() {
                 </SelectContent>
               </Select>
               <Select value={industryFilter} onValueChange={setIndustryFilter}>
-                <SelectTrigger className="w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className="w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by industry" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -1145,7 +1145,7 @@ function CaseStudiesContent() {
                                 <form
                                   onSubmit={handleUpdateCaseStudy}
                                   className="space-y-6">
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-title"
@@ -1186,7 +1186,7 @@ function CaseStudiesContent() {
                                     </div>
                                   </div>
 
-                                  <div className="grid grid-cols-3 gap-4">
+                                  <div className="grid md:grid-cols-3 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-industry"
@@ -1310,7 +1310,7 @@ function CaseStudiesContent() {
                                     />
                                   </div>
 
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-challenge"
@@ -1353,7 +1353,7 @@ function CaseStudiesContent() {
                                     </div>
                                   </div>
 
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-status"

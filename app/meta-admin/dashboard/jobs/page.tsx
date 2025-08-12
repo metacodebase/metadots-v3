@@ -652,7 +652,7 @@ function JobsContent() {
                   </Alert>
                 )}
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="title"
@@ -695,7 +695,7 @@ function JobsContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="location"
@@ -798,7 +798,7 @@ function JobsContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="requirements"
@@ -857,7 +857,7 @@ function JobsContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="icon"
@@ -892,7 +892,7 @@ function JobsContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="status"
@@ -930,7 +930,7 @@ function JobsContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-2">
                     <Switch
                       id="remoteWork"
@@ -1069,9 +1069,9 @@ function JobsContent() {
 
         {/* Filters */}
         <Card className="bg-[#f6f8fa] text-black border-none mb-6">
-          <CardContent className="p-6">
+          <CardContent className="p-3 md:p-6">
             <div className="flex flex-col lg:flex-row gap-4">
-              <div className="relative flex-1">
+              <div className="relative flex-1 w-full">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
                 <Input
                   placeholder="Search jobs..."
@@ -1081,7 +1081,7 @@ function JobsContent() {
                 />
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-48 h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className="w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -1096,7 +1096,7 @@ function JobsContent() {
               <Select
                 value={departmentFilter}
                 onValueChange={setDepartmentFilter}>
-                <SelectTrigger className="w-48 h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className="w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by department" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -1140,118 +1140,125 @@ function JobsContent() {
             </CardContent>
           </Card>
         ) : (
-          <div className="grid gap-4">
+          <div className="grid md:grid-cols-1 gap-4">
             {jobs.map((job) => (
-              <Card
-                key={job._id}
-                className="hover:shadow-md transition-shadow bg-[#f6f8fa] text-black border-none">
-                <CardHeader>
-                  <div className="flex items-start justify-between">
-                    <div className="flex items-start space-x-4">
-                      <div
-                        className={`w-12 h-12 rounded-lg bg-gradient-to-br ${job.color} flex items-center justify-center`}>
-                        <Briefcase className="w-6 h-6 text-white" />
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex items-center space-x-2 mb-2">
-                          <CardTitle className="text-lg">{job.title}</CardTitle>
-                          {job.featured && (
-                            <Badge className="bg-yellow-100 text-yellow-800">
-                              Featured
-                            </Badge>
-                          )}
-                          <Badge className={getStatusColor(job.status)}>
-                            {getStatusIcon(job.status)}
-                            <span className="ml-1">
-                              {job.status.charAt(0).toUpperCase() +
-                                job.status.slice(1)}
-                            </span>
-                          </Badge>
+              <div className="overflow-auto ">
+                <Card
+                  key={job._id}
+                  className="hover:shadow-md transition-shadow bg-[#f6f8fa] text-black border-none w-[600px] md:w-full">
+                  <CardHeader>
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-start space-x-4">
+                        <div
+                          className={`w-12 h-12 rounded-lg bg-gradient-to-br ${job.color} flex items-center justify-center`}>
+                          <Briefcase className="w-6 h-6 text-white" />
                         </div>
-                        <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
-                          <div className="flex items-center space-x-1">
-                            <MapPin className="w-4 h-4" />
-                            <span>{job.location}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <Clock className="w-4 h-4" />
-                            <span>{job.type}</span>
-                          </div>
-                          <div className="flex items-center space-x-1">
-                            <DollarSign className="w-4 h-4" />
-                            <span>{job.salary}</span>
-                          </div>
-                        </div>
-                        <div className="flex items-center space-x-2 text-sm text-gray-600">
-                          <Badge variant="outline" className="text-black">
-                            {job.department}
-                          </Badge>
-                          <span>•</span>
-                          <span>{job.experience}</span>
-                          {job.remoteWork && (
-                            <>
-                              <span>•</span>
-                              <Badge
-                                variant="outline"
-                                className="text-green-600">
-                                Remote
+                        <div className="flex-1">
+                          <div className="flex items-center space-x-2 mb-2">
+                            <CardTitle className="text-lg">
+                              {job.title}
+                            </CardTitle>
+                            {job.featured && (
+                              <Badge className="bg-yellow-100 text-yellow-800">
+                                Featured
                               </Badge>
-                            </>
-                          )}
+                            )}
+                            <Badge className={getStatusColor(job.status)}>
+                              {getStatusIcon(job.status)}
+                              <span className="ml-1">
+                                {job.status.charAt(0).toUpperCase() +
+                                  job.status.slice(1)}
+                              </span>
+                            </Badge>
+                          </div>
+                          <div className="flex items-center space-x-4 text-sm text-gray-600 mb-2">
+                            <div className="flex items-center space-x-1">
+                              <MapPin className="w-4 h-4" />
+                              <span>{job.location}</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <Clock className="w-4 h-4" />
+                              <span>{job.type}</span>
+                            </div>
+                            <div className="flex items-center space-x-1">
+                              <DollarSign className="w-4 h-4" />
+                              <span>{job.salary}</span>
+                            </div>
+                          </div>
+                          <div className="flex items-center space-x-2 text-sm text-gray-600">
+                            <Badge variant="outline" className="text-black">
+                              {job.department}
+                            </Badge>
+                            <span>•</span>
+                            <span>{job.experience}</span>
+                            {job.remoteWork && (
+                              <>
+                                <span>•</span>
+                                <Badge
+                                  variant="outline"
+                                  className="text-green-600">
+                                  Remote
+                                </Badge>
+                              </>
+                            )}
+                          </div>
                         </div>
                       </div>
+                      <div className="flex items-center space-x-2">
+                        <Button
+                          size="sm"
+                          className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent"
+                          onClick={() => openEditDialog(job)}>
+                          <Edit className="w-4 h-4" />
+                        </Button>
+                        <Button
+                          size="sm"
+                          className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
+                          onClick={() => handleDeleteJob(job._id)}
+                          disabled={isDeleting === job._id}>
+                          {isDeleting === job._id ? (
+                            <Loader2 className="w-4 h-4 animate-spin" />
+                          ) : (
+                            <Trash2 className="w-4 h-4" />
+                          )}
+                        </Button>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-2">
-                      <Button
-                        size="sm"
-                        className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent"
-                        onClick={() => openEditDialog(job)}>
-                        <Edit className="w-4 h-4" />
-                      </Button>
-                      <Button
-                        size="sm"
-                        className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
-                        onClick={() => handleDeleteJob(job._id)}
-                        disabled={isDeleting === job._id}>
-                        {isDeleting === job._id ? (
-                          <Loader2 className="w-4 h-4 animate-spin" />
-                        ) : (
-                          <Trash2 className="w-4 h-4" />
-                        )}
-                      </Button>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600 mb-4 line-clamp-2">
+                      {job.description}
+                    </p>
+                    <div className="flex flex-wrap gap-2">
+                      {job.tags.slice(0, 5).map((tag) => (
+                        <Badge
+                          key={tag}
+                          variant="secondary"
+                          className="text-xs">
+                          {tag}
+                        </Badge>
+                      ))}
+                      {job.tags.length > 5 && (
+                        <Badge variant="secondary" className="text-xs">
+                          +{job.tags.length - 5} more
+                        </Badge>
+                      )}
                     </div>
-                  </div>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-600 mb-4 line-clamp-2">
-                    {job.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {job.tags.slice(0, 5).map((tag) => (
-                      <Badge key={tag} variant="secondary" className="text-xs">
-                        {tag}
-                      </Badge>
-                    ))}
-                    {job.tags.length > 5 && (
-                      <Badge variant="secondary" className="text-xs">
-                        +{job.tags.length - 5} more
-                      </Badge>
-                    )}
-                  </div>
-                  <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
-                    <div className="flex items-center space-x-4">
-                      <span>Views: {job.stats.views}</span>
-                      <span>Applications: {job.stats.applications}</span>
+                    <div className="flex items-center justify-between mt-4 text-sm text-gray-500">
+                      <div className="flex items-center space-x-4">
+                        <span>Views: {job.stats.views}</span>
+                        <span>Applications: {job.stats.applications}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>
+                          Created {new Date(job.createdAt).toLocaleDateString()}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <Calendar className="w-4 h-4" />
-                      <span>
-                        Created {new Date(job.createdAt).toLocaleDateString()}
-                      </span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              </div>
             ))}
           </div>
         )}
@@ -1277,7 +1284,7 @@ function JobsContent() {
                   </Alert>
                 )}
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-title"
@@ -1323,7 +1330,7 @@ function JobsContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-3 gap-4">
+                <div className="grid md:grid-cols-3 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-location"
@@ -1432,7 +1439,7 @@ function JobsContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-requirements"
@@ -1494,7 +1501,7 @@ function JobsContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-icon"
@@ -1535,7 +1542,7 @@ function JobsContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="edit-status"
@@ -1575,7 +1582,7 @@ function JobsContent() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-2">
                     <Switch
                       id="edit-remoteWork"

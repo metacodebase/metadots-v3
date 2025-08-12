@@ -22,7 +22,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <link rel="icon" href="/images/metadots-logo.svg" />
+        <link
+          rel="shortcut icon"
+          href="/images/metadots-logo.svg"
+          type="image/x-icon"
+        />
       </Head>
       <body>
         <ThemeProvider

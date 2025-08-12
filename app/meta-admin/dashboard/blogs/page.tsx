@@ -494,7 +494,7 @@ function BlogsContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="tags"
@@ -665,10 +665,10 @@ function BlogsContent() {
 
         {/* Filters and Search */}
         <Card className="bg-[#f6f8fa] text-black border-none mb-6">
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4">
-              <div className="flex-1">
-                <div className="relative">
+          <CardContent className="p-3 md:p-6">
+            <div className="flex gap-4  flex-col md:flex-row items-center ">
+              <div className="flex-1 w-full">
+                <div className="relative w-full">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
                     placeholder="Search blog posts..."
@@ -679,7 +679,7 @@ function BlogsContent() {
                 </div>
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className=" w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -691,7 +691,7 @@ function BlogsContent() {
                 </SelectContent>
               </Select>
               <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-                <SelectTrigger className="w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className=" w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by category" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -855,7 +855,7 @@ function BlogsContent() {
                               <Button
                                 size="sm"
                                 asChild
-                                className="!w-auto px-4 text-blue-700 hover:text-hover bg-transparent">
+                                className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent">
                                 <a
                                   href={`/blogs/${blog.slug}`}
                                   target="_blank"
@@ -872,7 +872,7 @@ function BlogsContent() {
                               <DialogTrigger asChild>
                                 <Button
                                   size="sm"
-                                  className="!w-auto px-4 text-blue-700 hover:text-hover bg-transparent"
+                                  className="!w-auto px-4 text-blue-700  bg-transparent hover:bg-transparent"
                                   onClick={() => openEditDialog(blog)}>
                                   <Edit className="w-4 h-4" />
                                 </Button>
@@ -889,7 +889,7 @@ function BlogsContent() {
                                 <form
                                   onSubmit={handleUpdateBlog}
                                   className="space-y-6">
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-title"
@@ -1004,7 +1004,7 @@ function BlogsContent() {
                                     />
                                   </div>
 
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-tags"
@@ -1130,7 +1130,7 @@ function BlogsContent() {
                             </Dialog>
                             <Button
                               size="sm"
-                              className="!w-auto px-4 text-red-800 hover:text-hover bg-transparent"
+                              className="!w-auto px-4 text-red-800  bg-transparent hover:bg-transparent"
                               onClick={() => handleDeleteBlog(blog._id)}
                               disabled={isDeleting === blog._id}>
                               {isDeleting === blog._id ? (

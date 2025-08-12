@@ -323,7 +323,7 @@ function ReviewsContent() {
               </DialogHeader>
 
               <form onSubmit={handleCreateReview} className="space-y-6 !w-full">
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="clientName"
@@ -441,7 +441,7 @@ function ReviewsContent() {
                   />
                 </div>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <Label
                       htmlFor="status"
@@ -506,10 +506,10 @@ function ReviewsContent() {
         </div>
         {/* Filters and Search */}
         <Card className="bg-[#f6f8fa] text-black border-none mb-6">
-          <CardContent className="p-6">
-            <div className="flex items-center space-x-4">
-              <div className="flex-1">
-                <div className="relative">
+          <CardContent className="p-3 md:p-6">
+            <div className="flex flex-col md:flex-row items-center gap-4">
+              <div className="flex-1 w-full">
+                <div className="relative w-full">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
                   <Input
                     placeholder="Search reviews..."
@@ -520,7 +520,7 @@ function ReviewsContent() {
                 </div>
               </div>
               <Select value={statusFilter} onValueChange={setStatusFilter}>
-                <SelectTrigger className="w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
+                <SelectTrigger className="w-full md:w-[180px] h-12 border-slate-200 focus:border-blue-500 focus:ring-blue-500/20 transition-all duration-300">
                   <SelectValue placeholder="Filter by status" />
                 </SelectTrigger>
                 <SelectContent className="!bg-white">
@@ -669,7 +669,7 @@ function ReviewsContent() {
                                 <form
                                   onSubmit={handleUpdateReview}
                                   className="space-y-6">
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-clientName"
@@ -804,7 +804,7 @@ function ReviewsContent() {
                                     />
                                   </div>
 
-                                  <div className="grid grid-cols-2 gap-4">
+                                  <div className="grid md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
                                       <Label
                                         htmlFor="edit-status"

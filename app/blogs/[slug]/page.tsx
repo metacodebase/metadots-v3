@@ -205,7 +205,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
     headline: blog.title,
     description: blog.excerpt,
     image:
-      blog.featuredImage || "https://metadots.com/images/metadots-og-image.jpg",
+      blog.featuredImage || "dots.com/images/metadots-og-image.jpg",
     author: {
       "@type": "Person",
       name: getAuthorInfo(blog).name,

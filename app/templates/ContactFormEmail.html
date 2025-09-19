@@ -1,0 +1,36 @@
+<!-- ContactFormEmail.html: Sent to the contact person -->
+<html>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Thank You for Contacting Metadots</title>
+		<style>
+			body { font-family: 'Segoe UI', Arial, sans-serif; background: #f8fafc; margin: 0; padding: 0; }
+			.container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.07); padding: 32px; }
+			.header { text-align: center; margin-bottom: 24px; }
+			.header img { width: 64px; }
+			h1 { color: #0f172a; font-size: 1.7rem; margin-bottom: 8px; }
+			p { color: #334155; font-size: 1.1rem; line-height: 1.6; }
+			.footer { margin-top: 32px; text-align: center; color: #64748b; font-size: 0.95rem; }
+			.button { display: inline-block; margin-top: 18px; background: #2563eb; color: #fff; padding: 12px 28px; border-radius: 6px; text-decoration: none; font-weight: 500; }
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+<!-- <img src="https://metadots.co/images/metadots-logo.svg" alt="Metadots Logo" style="width:120px;max-width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;display:inline-block;" /> -->
+<img src="http://localhost:3000/images/metadots-logo.png" alt="Metadots Logo" style="width:120px;max-width:100%;height:auto;aspect-ratio:1/1;object-fit:contain;display:inline-block;" />
+			<h1>Thank You for Reaching out!</h1>
+			<p>
+				Dear <strong>{{firstName}} {{lastName}}</strong>,<br /><br />
+				Thank you for filling out the contact form on behalf of Metadots.<br />
+				Our team will contact you soon to discuss your project and requirements.<br /><br />
+				If you have any urgent queries, feel free to reply to this email.<br />
+			</p>
+			<a href="https://metadots.co" class="button" style="color:#fff;">Visit Metadots</a>
+			<div class="footer">
+				&copy; 2025 Metadots. All rights reserved.
+			</div>
+		</div>
+	</body>
+</html>

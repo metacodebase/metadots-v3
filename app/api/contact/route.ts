@@ -2,7 +2,19 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectMongo } from '@/lib/mongodb';
 import Contact from '@/models/Contact';
 
+
+
 export async function POST(request: NextRequest) {
+
+const SENDER_EMAIL=process.env.SENDER_EMAIL 
+const GMAIL_CLIENT_ID=process.env.GMAIL_CLIENT_ID 
+const GMAIL_CLIENT_SECRET=process.env.GMAIL_CLIENT_SECRET 
+const GMAIL_REFRESH_TOKEN=process.env.GMAIL_REFRESH_TOKEN 
+
+console.log("SENDER_EMAIL:",SENDER_EMAIL);
+console.log("GMAIL_CLIENT_ID:",GMAIL_CLIENT_ID);
+console.log("GMAIL_CLIENT_SECRET:",GMAIL_CLIENT_SECRET);
+console.log("GMAIL_REFRESH_TOKEN:",GMAIL_REFRESH_TOKEN);
   try {
     await connectMongo();
 
@@ -56,7 +68,67 @@ export async function POST(request: NextRequest) {
     });
 
     await contact.save();
+    console.log('New contact created:', contact.email);
 
+    // Send email to contact and owners using Nodemailer with OAuth2 and HTML templates
+    const nodemailer = (await import('nodemailer')).default;
+    const fs = await import('fs/promises');
+    const path = await import('path');
+
+    // Helper to inject variables into template
+    function injectTemplateVars(template: string, vars: Record<string, string>) {
+      return template.replace(/{{(\w+)}}/g, (_, key) => vars[key] || '');
+    }
+
+    // Load templates
+    const contactTemplatePath = path.join(process.cwd(), 'app', 'templates', 'ContactFormEmail.html');
+    const ownerTemplatePath = path.join(process.cwd(), 'app', 'templates', 'ContactFormSubmission.html');
+    const contactHtml = injectTemplateVars(
+      await fs.readFile(contactTemplatePath, 'utf8'),
+      { firstName, lastName }
+    );
+    const ownerHtml = injectTemplateVars(
+      await fs.readFile(ownerTemplatePath, 'utf8'),
+      { firstName, lastName, email, company: company || '', projectType, budgetRange: budgetRange || "Let's discuss", projectDetails, source, ipAddress, userAgent }
+    );
+
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        type: 'OAuth2',
+        user: SENDER_EMAIL,
+        clientId: GMAIL_CLIENT_ID,
+        clientSecret: GMAIL_CLIENT_SECRET,
+        refreshToken: GMAIL_REFRESH_TOKEN,
+      },
+    });
+
+    // Send to contact
+    try {
+      await transporter.sendMail({
+        from: process.env.SENDER_EMAIL,
+        to: email,
+        subject: 'Thank you for contacting Metadots!',
+        html: contactHtml,
+      });
+      console.log('Contact email sent to:', email);
+    } catch (err) {
+      console.error('Error sending contact email:', err);
+    }
+
+    // Send to owners
+    try {
+      await transporter.sendMail({
+        from: process.env.SENDER_EMAIL,
+        // to: ['usman@metadots.co', 'iqrar@metadots.co'],
+        to: ['bsef22m514@pucit.edu.pk'],
+        subject: 'New Contact Form Submission',
+        html: ownerHtml,
+      });
+      console.log('Owner email sent to: usman@metadots.co, iqrar@metadots.co');
+    } catch (err) {
+      console.error('Error sending owner email:', err);
+    }
     // Return success response
     return NextResponse.json(
       { 

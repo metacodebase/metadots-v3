@@ -12,6 +12,7 @@ export const metadata: Metadata = {
   description:
     "Transforming businesses through innovative technology solutions. We don't just build software—we architect the future of digital experiences.",
   generator: "Next.js",
+  
 };
 
 export default function RootLayout({

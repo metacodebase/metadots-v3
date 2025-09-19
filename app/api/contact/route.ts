@@ -80,15 +80,16 @@ console.log("GMAIL_REFRESH_TOKEN:",GMAIL_REFRESH_TOKEN);
       return template.replace(/{{(\w+)}}/g, (_, key) => vars[key] || '');
     }
 
-    // Load templates
-    const contactTemplatePath = path.join(process.cwd(), 'app', 'templates', 'ContactFormEmail.html');
-    const ownerTemplatePath = path.join(process.cwd(), 'app', 'templates', 'ContactFormSubmission.html');
+    // Load templates via HTTP for Vercel compatibility
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'https://metadots.co';
+    const contactRes = await fetch(`${baseUrl}/templates/ContactFormEmail.html`);
+    const ownerRes = await fetch(`${baseUrl}/templates/ContactFormSubmission.html`);
     const contactHtml = injectTemplateVars(
-      await fs.readFile(contactTemplatePath, 'utf8'),
+      await contactRes.text(),
       { firstName, lastName }
     );
     const ownerHtml = injectTemplateVars(
-      await fs.readFile(ownerTemplatePath, 'utf8'),
+      await ownerRes.text(),
       { firstName, lastName, email, company: company || '', projectType, budgetRange: budgetRange || "Let's discuss", projectDetails, source, ipAddress, userAgent }
     );
 
@@ -120,8 +121,8 @@ console.log("GMAIL_REFRESH_TOKEN:",GMAIL_REFRESH_TOKEN);
     try {
       await transporter.sendMail({
         from: process.env.SENDER_EMAIL,
-        // to: ['usman@metadots.co', 'iqrar@metadots.co'],
-        to: ['bsef22m514@pucit.edu.pk'],
+        to: ['usman@metadots.co', 'iqrar@metadots.co'],
+        // to: ['bsef22m514@pucit.edu.pk'],
         subject: 'New Contact Form Submission',
         html: ownerHtml,
       });

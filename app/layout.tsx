@@ -4,14 +4,18 @@ import { InquiryFormProvider } from "@/components/inquiry-form-provider";
 import { AuthProvider } from "@/contexts/AuthContext";
 import { Toaster } from "@/components/ui/sonner";
 import "./globals.css";
-import Head from "next/head";
-import Header from "./LandingLayout/Header";
+import ConditionalHeader from "@/components/ConditionalHeader";
 
 export const metadata: Metadata = {
   title: "Metadots - AI Solutions & Technology",
   description:
     "Transforming businesses through innovative technology solutions. We don't just build software—we architect the future of digital experiences.",
   generator: "Next.js",
+  icons: {
+    icon: "/images/metadots-logo.png",
+    shortcut: "/images/metadots-logo.png",
+    apple: "/images/metadots-logo.png",
+  },
 };
 
 export default function RootLayout({
@@ -21,13 +25,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <link
-          rel="shortcut icon"
-          href="/images/metadots-logo.svg"
-          type="image/x-icon"
-        />
-      </Head>
       <body>
         <ThemeProvider
           attribute="class"
@@ -36,7 +33,7 @@ export default function RootLayout({
           disableTransitionOnChange>
           <AuthProvider>
             <InquiryFormProvider>
-              {/* <Header /> */}
+              <ConditionalHeader />
               {children}
             </InquiryFormProvider>
           </AuthProvider>

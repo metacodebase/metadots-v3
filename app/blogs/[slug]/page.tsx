@@ -21,7 +21,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
-import Header from "../../LandingLayout/Header";
 
 interface BlogDetailPageProps {
   params: {
@@ -239,7 +238,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       />
       <div className="min-h-screen bg-white w-full overflow-x-hidden">
         {/* Article Content */}
-        <Header />
+        {/* <Header /> */}
         <article className="py-20">
           <div className="container max-w-4xl mx-auto">
             {/* Back Button */}

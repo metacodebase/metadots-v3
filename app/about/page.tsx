@@ -28,7 +28,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
-import Header from "../LandingLayout/Header";
 
 const teamMembers = [
   {
@@ -162,7 +161,6 @@ const workflowSteps = [
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      <Header />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         <div className="absolute inset-0 overflow-hidden">

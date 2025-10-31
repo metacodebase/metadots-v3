@@ -26,7 +26,6 @@ import Project from "@/models/Project";
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
-import Header from "../LandingLayout/Header";
 
 const categories = [
   "All",
@@ -62,7 +61,6 @@ export default async function ProjectsPage() {
   const { projects } = await getData();
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      <Header />
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
         {/* Animated Background Elements */}

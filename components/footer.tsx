@@ -10,6 +10,8 @@ import {
   Phone,
   Mail,
   Activity,
+  X,
+  Instagram,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -31,7 +33,7 @@ export default function Footer() {
             <div className="lg:col-span-2 space-y-6">
               <div className="space-y-4">
                 <Image
-                  src="/images/metadots-logo.svg"
+                  src="/images/metadots-logo.png"
                   alt="Metadots"
                   width={160}
                   height={40}
@@ -53,30 +55,50 @@ export default function Footer() {
                       name: "LinkedIn",
                       icon: Linkedin,
                       color: "hover:bg-blue-600",
+                      link: "https://www.linkedin.com/company/metadots",
                     },
                     {
-                      name: "Twitter",
-                      icon: Twitter,
-                      color: "hover:bg-blue-400",
+                      name: "X",
+                      icon: X,
+                      color: "hover:bg-slate-900",
+                      link: "https://x.com/Metadotsco",
                     },
+                    // {
+                    //   name: "Clutch",
+                    //   icon: Github,
+                    //   color: "hover:bg-slate-600",
+                    //   link: "https://www.clutch.co/profile/metadots",
+                    // },
                     {
-                      name: "GitHub",
-                      icon: Github,
-                      color: "hover:bg-slate-600",
-                    },
-                    {
-                      name: "Dribbble",
-                      icon: Dribbble,
+                      name: "Instagram",
+                      icon: Instagram,
                       color: "hover:bg-pink-500",
+                      link: "https://www.instagram.com/metadots.co",
                     },
                   ].map((social, index) => (
                     <div
                       key={social.name}
                       className={`w-12 h-12 rounded-xl bg-slate-800 flex items-center justify-center ${social.color} transition-all duration-300 cursor-pointer transform hover:scale-110 shadow-lg hover:shadow-xl`}>
-                      <social.icon className="w-5 h-5" aria-hidden="true" />
+                      <a href={social.link} target="_blank" rel="noopener noreferrer">
+                        <social.icon className="w-5 h-5" aria-hidden="true" />
+                      </a>
                       <span className="sr-only">{social.name}</span>
                     </div>
                   ))}
+                  <div 
+                      className={`w-12 h-12 rounded-xl hover:bg-slate-600 flex items-center justify-center  transition-all duration-300 cursor-pointer transform hover:scale-110 shadow-lg hover:shadow-xl`}>
+                      <a href={"https://www.clutch.co/profile/metadots"} target="_blank" rel="noopener noreferrer">
+                       <Image
+                          src="/images/clutch.png"
+                          alt="Clutch"
+                          width={140}
+                          height={32}
+                          className="h-8 w-8"
+                          priority
+                        />
+                      </a>
+                      <span className="sr-only"></span>
+                    </div>
                 </div>
               </div>
 

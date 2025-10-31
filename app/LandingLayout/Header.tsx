@@ -64,13 +64,13 @@ const Header = () => {
 
   return (
     <>
-      <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/100">
+      <header className="sticky top-0 z-50 w-full border-b border-white bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/100">
         <div className="container flex h-16 items-center justify-between">
           {/* Logo */}
           <div className="flex items-center space-x-2">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               <Image
-                src="/images/metadots-logo.svg"
+                src="/images/metadots-logo.png"
                 alt="Metadots"
                 width={140}
                 height={32}

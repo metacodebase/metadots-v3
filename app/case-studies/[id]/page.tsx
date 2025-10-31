@@ -42,7 +42,6 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
-import Header from "../../LandingLayout/Header";
 
 // Mock case study data - in real app this would come from API
 const caseStudyData = {
@@ -171,7 +170,7 @@ export default function CaseStudyPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      <Header />
+      {/* <Header /> */}
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 overflow-hidden">
         {/* Animated Background Elements */}

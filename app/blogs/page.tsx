@@ -29,7 +29,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import BlogSkeleton from "./BlogSkeleton";
-import Header from "../LandingLayout/Header";
 
 interface Blog {
   _id: string;
@@ -201,7 +200,6 @@ export default function BlogsPage() {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      <Header />
 
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">

@@ -143,7 +143,6 @@ import Image from "next/image";
 import Link from "next/link";
 import Footer from "@/components/footer";
 import ContactSection from "@/components/contact-section";
-import Header from "./LandingLayout/Header";
 
 async function getData() {
   try {
@@ -477,7 +476,6 @@ export default async function MetadotsLanding() {
 
   return (
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
-      <Header />
 
       {/* Enhanced Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-20">

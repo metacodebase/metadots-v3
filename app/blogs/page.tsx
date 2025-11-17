@@ -600,7 +600,7 @@ export default function BlogsPage() {
                         </div>
                       </div>
 
-                      <CardTitle className="text-lg mb-2 group-hover:text-blue-600 transition-colors line-clamp-2">
+                      <CardTitle className="text-lg mb-2 text-black group-hover:text-blue-600 transition-colors line-clamp-2">
                         {blog.title}
                       </CardTitle>
 

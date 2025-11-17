@@ -1205,21 +1205,28 @@ export default async function MetadotsLanding() {
           {/* Client Logos Carousel */}
           <div className="text-center space-y-8">
             <h3 className="text-xl font-semibold text-slate-700">
-              Trusted by industry leaders
+              Trusted by Industry Leaders
             </h3>
             <div className="flex items-center justify-center  flex-wrap gap-8 md:gap-12 opacity-60">
               {[
-                "TechCorp",
-                "StartupXYZ",
-                "InnovateLab",
-                "FutureAI",
-                "CloudTech",
+                "/images/BoiceVox-logo.png",
+                "/images/teammatch-logo.png",
+                "/images/fangenie-logo.png",
+                "/images/spectrum-logo.png",
+                "/images/haulos-logo.svg",
               ].map((company, index) => (
                 <div
                   key={company}
-                  className="text-sm md:text-2xl font-bold text-slate-400 hover:text-slate-600 transition-colors cursor-pointer transform hover:scale-110 duration-300"
+                  className={`text-sm md:text-2xl font-bold text-slate-400 hover:text-slate-600 transition-colors cursor-pointer transform hover:scale-110 duration-300 `}
                   style={{ animationDelay: `${index * 200}ms` }}>
-                  {company}
+                   <Image
+                      src={company}
+                      alt="Company Logo"
+                      width={140}
+                      height={32} 
+                      priority
+                    />
+                  
                 </div>
               ))}
             </div>

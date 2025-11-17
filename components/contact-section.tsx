@@ -213,9 +213,9 @@ export default function ContactSection() {
                     </div>
                     <span className="text-slate-700 text-base">
                       +44 7400 926311{" "}
-                      <span className="text-xs text-slate-400 ml-2">
+                      {/* <span className="text-xs text-slate-400 ml-2">
                         Mon-Fri 9AM-6PM PKT
-                      </span>
+                      </span> */}
                     </span>
                   </div>
                   {/* Phone US */}
@@ -228,9 +228,9 @@ export default function ContactSection() {
                     </div>
                     <span className="text-slate-700 text-base">
                       +1 (585) 928-3494{" "}
-                      <span className="text-xs text-slate-400 ml-2">
+                      {/* <span className="text-xs text-slate-400 ml-2">
                         Mon-Fri 9AM-6PM EST
-                      </span>
+                      </span> */}
                     </span>
                   </div>
                   {/* Email */}
@@ -241,7 +241,7 @@ export default function ContactSection() {
                     <span className="text-slate-700 text-base">
                       sales@metadots.co{" "}
                       <span className="text-xs text-slate-400 ml-2">
-                        We reply within 24 hours
+                        We reply within 1 hour
                       </span>
                     </span>
                   </div>
@@ -257,7 +257,7 @@ export default function ContactSection() {
                 </h3>
                 <div className="grid grid-cols-2 gap-4">
                   {[
-                    { label: "Response Time", value: "24hrs", icon: Clock },
+                    { label: "Response Time", value: "1 hour", icon: Clock },
                     {
                       label: "Project Success",
                       value: "98%",

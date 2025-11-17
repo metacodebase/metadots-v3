@@ -70,7 +70,7 @@ const Header = () => {
           <div className="flex items-center space-x-2">
             <Link href="/" className="hover:opacity-80 transition-opacity">
               <Image
-                src="/images/metadots-logo.png"
+                src="/images/metadots-logo.svg"
                 alt="Metadots"
                 width={140}
                 height={32}

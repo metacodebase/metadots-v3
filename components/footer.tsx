@@ -33,7 +33,7 @@ export default function Footer() {
             <div className="lg:col-span-2 space-y-6">
               <div className="space-y-4">
                 <Image
-                  src="/images/metadots-logo.png"
+                  src="/images/metadots-logo.svg"
                   alt="Metadots"
                   width={160}
                   height={40}

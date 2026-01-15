@@ -200,7 +200,7 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center gap-2 md:gap-6">
               <p className="text-slate-400 text-sm">
-                © 2026 Metadots. All rights reserved.
+                © {new Date().getFullYear()} Metadots. All rights reserved.
               </p>
               <div className="flex items-center space-x-4 text-slate-500">
                 <div className="flex items-center space-x-1">

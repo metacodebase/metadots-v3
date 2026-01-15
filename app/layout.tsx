@@ -12,9 +12,12 @@ export const metadata: Metadata = {
     "Transforming businesses through innovative technology solutions. We don't just build software—we architect the future of digital experiences.",
   generator: "Next.js",
   icons: {
-    icon: "/images/metadots-logo.png",
-    shortcut: "/images/metadots-logo.png",
-    apple: "/images/metadots-logo.png",
+    icon: [
+      { url: "/favicon.png", type: "image/png" },
+      { url: "/favicon.ico" },
+    ],
+    shortcut: "/favicon.ico",
+    apple: "/favicon.png",
   },
 };
 

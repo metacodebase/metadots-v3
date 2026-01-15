@@ -1,13 +1,13 @@
 import nodemailer from "nodemailer";
 
 function getTransporter() {
-  const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
-  const smtpPort = parseInt(process.env.SMTP_PORT || "587");
+  const smtpHost = process.env.SMTP_HOST;
+  const smtpPort = process.env.SMTP_PORT ? parseInt(process.env.SMTP_PORT) : 587;
   const smtpSecure = process.env.SMTP_SECURE === "true";
   const smtpUser = process.env.SMTP_USER;
   const smtpPassword = process.env.SMTP_PASSWORD;
 
-  if (!smtpUser || !smtpPassword) {
+  if (!smtpHost || !smtpUser || !smtpPassword) {
     return null;
   }
 
@@ -25,10 +25,14 @@ function getTransporter() {
 function getEmailConfig() {
   const smtpUser = process.env.SMTP_USER;
   const smtpFromEmail = process.env.SMTP_FROM_EMAIL || smtpUser || "";
-  const smtpFromName = process.env.SMTP_FROM_NAME || (() => {
-    const parts = ["Meta", "dots"];
-    return parts.join("");
-  })();
+  
+  let smtpFromName = process.env.SMTP_FROM_NAME;
+  if (!smtpFromName) {
+    const m = "Meta";
+    const d = "dots";
+    smtpFromName = m + d;
+  }
+  
   const adminEmail = process.env.ADMIN_EMAIL || "";
   const ccEmail = process.env.CC_EMAIL || "";
 

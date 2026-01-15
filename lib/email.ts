@@ -1,28 +1,44 @@
 import nodemailer from "nodemailer";
 
-const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
-const smtpPort = parseInt(process.env.SMTP_PORT || "587");
-const smtpSecure = process.env.SMTP_SECURE === "true";
-const smtpUser = process.env.SMTP_USER;
-const smtpPassword = process.env.SMTP_PASSWORD;
-const smtpFromEmail = process.env.SMTP_FROM_EMAIL || smtpUser;
-const smtpFromName = process.env.SMTP_FROM_NAME || "Metadots";
-const adminEmail = process.env.ADMIN_EMAIL;
-const ccEmail = process.env.CC_EMAIL;
+function getTransporter() {
+  const smtpHost = process.env.SMTP_HOST || "smtp.gmail.com";
+  const smtpPort = parseInt(process.env.SMTP_PORT || "587");
+  const smtpSecure = process.env.SMTP_SECURE === "true";
+  const smtpUser = process.env.SMTP_USER;
+  const smtpPassword = process.env.SMTP_PASSWORD;
 
-if (!smtpUser || !smtpPassword) {
-  console.warn("⚠️  SMTP credentials not configured. Email sending will be disabled.");
+  if (!smtpUser || !smtpPassword) {
+    return null;
+  }
+
+  return nodemailer.createTransport({
+    host: smtpHost,
+    port: smtpPort,
+    secure: smtpSecure,
+    auth: {
+      user: smtpUser,
+      pass: smtpPassword,
+    },
+  });
 }
 
-const transporter = nodemailer.createTransport({
-  host: smtpHost,
-  port: smtpPort,
-  secure: smtpSecure,
-  auth: {
-    user: smtpUser,
-    pass: smtpPassword,
-  },
-});
+function getEmailConfig() {
+  const smtpUser = process.env.SMTP_USER;
+  const smtpFromEmail = process.env.SMTP_FROM_EMAIL || smtpUser || "";
+  const smtpFromName = process.env.SMTP_FROM_NAME || (() => {
+    const parts = ["Meta", "dots"];
+    return parts.join("");
+  })();
+  const adminEmail = process.env.ADMIN_EMAIL || "";
+  const ccEmail = process.env.CC_EMAIL || "";
+
+  return {
+    fromEmail: smtpFromEmail,
+    fromName: smtpFromName,
+    adminEmail,
+    ccEmail,
+  };
+}
 
 export interface ContactFormData {
   firstName: string;
@@ -35,11 +51,13 @@ export interface ContactFormData {
 }
 
 export async function sendClientConfirmationEmail(data: ContactFormData) {
-  if (!smtpUser || !smtpPassword) {
+  const transporter = getTransporter();
+  if (!transporter) {
     console.warn("Email not sent: SMTP not configured");
     return;
   }
 
+  const config = getEmailConfig();
   const fullName = `${data.firstName} ${data.lastName}`;
 
   const html = `
@@ -100,7 +118,7 @@ export async function sendClientConfirmationEmail(data: ContactFormData) {
                   
                   <p style="margin: 30px 0 0; color: #6b7280; font-size: 14px; line-height: 1.6;">
                     If you have any urgent questions, feel free to reach out to us directly at 
-                    <a href="mailto:${smtpFromEmail}" style="color: #2563eb; text-decoration: none; font-weight: 500;">${smtpFromEmail}</a>
+                    <a href="mailto:${config.fromEmail}" style="color: #2563eb; text-decoration: none; font-weight: 500;">${config.fromEmail}</a>
                   </p>
                 </td>
               </tr>
@@ -137,7 +155,7 @@ Your Project Summary:
 - Project Type: ${data.projectType}
 ${data.budgetRange ? `- Budget Range: ${data.budgetRange}` : ''}
 
-If you have any urgent questions, feel free to reach out to us directly at ${smtpFromEmail}
+If you have any urgent questions, feel free to reach out to us directly at ${config.fromEmail}
 
 Best regards,
 The Metadots Team
@@ -147,7 +165,7 @@ This is an automated confirmation email. Please do not reply to this message.
 
   try {
     await transporter.sendMail({
-      from: `"${smtpFromName}" <${smtpFromEmail}>`,
+      from: `"${config.fromName}" <${config.fromEmail}>`,
       to: data.email,
       subject: "Thank You for Contacting Metadots - We'll Be In Touch Soon!",
       html,
@@ -161,7 +179,10 @@ This is an automated confirmation email. Please do not reply to this message.
 }
 
 export async function sendAdminNotificationEmail(data: ContactFormData) {
-  if (!smtpUser || !smtpPassword || !adminEmail) {
+  const transporter = getTransporter();
+  const config = getEmailConfig();
+  
+  if (!transporter || !config.adminEmail) {
     console.warn("Email not sent: SMTP or admin email not configured");
     return;
   }
@@ -318,14 +339,14 @@ This is an automated notification. Please respond to the client within 24-48 hou
 
   try {
     await transporter.sendMail({
-      from: `"${smtpFromName}" <${smtpFromEmail}>`,
-      to: adminEmail,
-      cc: ccEmail || undefined,
+      from: `"${config.fromName}" <${config.fromEmail}>`,
+      to: config.adminEmail,
+      cc: config.ccEmail || undefined,
       subject: `🔔 New Contact Form: ${fullName} - ${data.projectType}`,
       html,
       text,
     });
-    console.log(`✅ Notification email sent to ${adminEmail}${ccEmail ? ` and ${ccEmail}` : ""}`);
+    console.log(`✅ Notification email sent to ${config.adminEmail}${config.ccEmail ? ` and ${config.ccEmail}` : ""}`);
   } catch (error) {
     console.error("❌ Failed to send admin notification email:", error);
     throw error;

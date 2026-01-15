@@ -1,7 +1,13 @@
 import { NextRequest, NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || "changeme";
+function getJWTSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error("JWT_SECRET environment variable is required");
+  }
+  return secret;
+}
 
 export interface AuthUser {
   id: string;
@@ -12,7 +18,8 @@ export interface AuthUser {
 
 export function verifyToken(token: string): AuthUser | null {
   try {
-    const decoded = jwt.verify(token, JWT_SECRET) as AuthUser;
+    const secret = getJWTSecret();
+    const decoded = jwt.verify(token, secret) as AuthUser;
     return decoded;
   } catch (error) {
     return null;

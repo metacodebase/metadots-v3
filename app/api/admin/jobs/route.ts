@@ -1,19 +1,21 @@
 import { NextRequest, NextResponse } from 'next/server';
-import jwt from 'jsonwebtoken';
+import { verifyToken, getTokenFromRequest } from '@/lib/auth';
 import { connectMongo } from '@/lib/mongodb';
 import Job from '@/models/Job';
 import User from '@/models/User';
 
-// Helper function to verify JWT token
-async function verifyToken(request: NextRequest) {
+// Helper function to verify JWT token and get user
+async function verifyTokenAndGetUser(request: NextRequest) {
   try {
-    const authHeader = request.headers.get('authorization');
-    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+    const token = getTokenFromRequest(request);
+    if (!token) {
       return null;
     }
 
-    const token = authHeader.substring(7);
-    const decoded = jwt.verify(token, process.env.JWT_SECRET!) as any;
+    const decoded = verifyToken(token);
+    if (!decoded) {
+      return null;
+    }
     
     await connectMongo();
     const user = await User.findById(decoded.id);
@@ -31,7 +33,7 @@ async function verifyToken(request: NextRequest) {
 // GET /api/admin/jobs - List all jobs with filtering and pagination
 export async function GET(request: NextRequest) {
   try {
-    const user = await verifyToken(request);
+    const user = await verifyTokenAndGetUser(request);
     if (!user) {
       return NextResponse.json(
         { error: 'Unauthorized' },
@@ -139,7 +141,7 @@ export async function GET(request: NextRequest) {
 // POST /api/admin/jobs - Create new job
 export async function POST(request: NextRequest) {
   try {
-    const user = await verifyToken(request);
+    const user = await verifyTokenAndGetUser(request);
     if (!user) {
       return NextResponse.json(
         { error: 'Unauthorized' },

@@ -4,7 +4,13 @@ import User from "@/models/User";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-const JWT_SECRET = process.env.JWT_SECRET || "changeme";
+function getJWTSecret(): string {
+  const secret = process.env.JWT_SECRET;
+  if (!secret) {
+    throw new Error("JWT_SECRET environment variable is required");
+  }
+  return secret;
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -43,12 +49,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
     }
 
+    const secret = getJWTSecret();
     const token = jwt.sign({ 
       id: user._id, 
       email: user.email, 
       role: user.role,
       isActive: user.isActive
-    }, JWT_SECRET, { expiresIn: "7d" });
+    }, secret, { expiresIn: "7d" });
     
     return NextResponse.json({ 
       token, 

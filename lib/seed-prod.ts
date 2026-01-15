@@ -15,7 +15,7 @@ async function seedProd() {
     // Debug: Check if MONGODB_URI is available
     if (!process.env.MONGODB_URI) {
       console.error("MONGODB_URI environment variable is not set!");
-      console.log("Available environment variables:", Object.keys(process.env).filter(key => key.includes('MONGO')));
+      console.log("MongoDB environment variables check failed");
       process.exit(1);
     }
     

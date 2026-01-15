@@ -16,6 +16,7 @@ import {
   MessageSquare,
   Lock,
   Loader2,
+  X,
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { Select } from "antd";
@@ -23,6 +24,8 @@ import { Select } from "antd";
 export default function ContactSection() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [submittedName, setSubmittedName] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -106,10 +109,9 @@ export default function ContactSection() {
       const data = await response.json();
 
       if (response.ok) {
-        toast({
-          title: "Message Sent!",
-          description: data.message,
-        });
+        // Show success page
+        setSubmittedName(formData.firstName);
+        setShowSuccess(true);
 
         // Reset form
         setFormData({
@@ -451,6 +453,85 @@ export default function ContactSection() {
           </div>
         </div>
       </div>
+
+      {/* Success Modal */}
+      {showSuccess && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in">
+          <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden">
+            {/* Close Button */}
+            <button
+              onClick={() => setShowSuccess(false)}
+              className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 transition-colors z-10"
+              aria-label="Close">
+              <X className="w-5 h-5 text-slate-500" />
+            </button>
+
+            {/* Success Content */}
+            <div className="p-8 md:p-12">
+              {/* Success Icon */}
+              <div className="flex justify-center mb-6">
+                <div className="relative">
+                  <div className="absolute inset-0 bg-green-100 rounded-full animate-ping"></div>
+                  <div className="relative bg-gradient-to-br from-green-500 to-emerald-600 rounded-full p-6 shadow-lg">
+                    <CheckCircle className="w-16 h-16 text-white" />
+                  </div>
+                </div>
+              </div>
+
+              {/* Success Message */}
+              <div className="text-center space-y-4 mb-8">
+                <h3 className="text-3xl md:text-4xl font-bold text-slate-900">
+                  Thank You, {submittedName}! 🎉
+                </h3>
+                <p className="text-lg text-slate-600 max-w-md mx-auto">
+                  We've received your message and are excited about the possibility of working with you!
+                </p>
+              </div>
+
+              {/* What Happens Next */}
+              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+                <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
+                  <Clock className="w-5 h-5 mr-2 text-blue-600" />
+                  What happens next?
+                </h4>
+                <p className="text-slate-700 leading-relaxed">
+                  Our team will review your project details and get back to you within <strong>24-48 hours</strong>. 
+                  We're committed to providing you with the best solution for your needs.
+                </p>
+              </div>
+
+              {/* Email Confirmation */}
+              <div className="bg-slate-50 rounded-lg p-4 mb-8 border border-slate-200">
+                <p className="text-sm text-slate-600 text-center">
+                  <Mail className="w-4 h-4 inline mr-1" />
+                  We've also sent a confirmation email to your inbox. Please check your email for more details.
+                </p>
+              </div>
+
+              {/* Action Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button
+                  onClick={() => setShowSuccess(false)}
+                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                  Got it, thanks!
+                </Button>
+                <Button
+                  onClick={() => {
+                    setShowSuccess(false);
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  variant="outline"
+                  className="px-8 py-6 text-lg font-semibold border-2 hover:bg-slate-50">
+                  Back to Home
+                </Button>
+              </div>
+            </div>
+
+            {/* Decorative Bottom */}
+            <div className="h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

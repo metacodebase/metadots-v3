@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectMongo } from '@/lib/mongodb';
 import Contact from '@/models/Contact';
+import { sendClientConfirmationEmail, sendAdminNotificationEmail } from '@/lib/email';
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,11 +58,39 @@ export async function POST(request: NextRequest) {
 
     await contact.save();
 
+    // Send emails asynchronously (don't block the response)
+    Promise.all([
+      sendClientConfirmationEmail({
+        firstName,
+        lastName,
+        email,
+        company,
+        projectType,
+        budgetRange,
+        projectDetails,
+      }).catch((error) => {
+        console.error('Failed to send client confirmation email:', error);
+      }),
+      sendAdminNotificationEmail({
+        firstName,
+        lastName,
+        email,
+        company,
+        projectType,
+        budgetRange,
+        projectDetails,
+      }).catch((error) => {
+        console.error('Failed to send admin notification email:', error);
+      }),
+    ]).catch((error) => {
+      console.error('Error sending emails:', error);
+    });
+
     // Return success response
     return NextResponse.json(
       { 
         success: true, 
-        message: 'Thank you for your message! We will get back to you soon.',
+        message: 'Thank you for your message! We have received your inquiry and will respond to you soon.',
         contactId: contact._id 
       },
       { status: 201 }

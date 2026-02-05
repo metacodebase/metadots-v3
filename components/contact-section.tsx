@@ -154,26 +154,18 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="py-20 md:py-32 bg-gradient-to-br from-slate-50 to-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-      </div>
-
-      <div className="container relative z-10">
-        <div className="text-center space-y-6 mb-16">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
-            <MessageSquare className="w-5 h-5 mr-2" aria-hidden="true" />
+      className="relative overflow-hidden bg-slate-50 py-20 md:py-32">
+      <div className="container">
+        <div className="mb-16 space-y-6 text-center">
+          <div className="inline-flex items-center rounded-full bg-blue-100 px-6 py-3 text-sm font-medium text-blue-800 ring-1 ring-inset ring-blue-200">
+            <MessageSquare className="mr-2 h-5 w-5" aria-hidden="true" />
             Get in Touch
           </div>
-          <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl leading-tight">
-            <span className="block text-slate-900">Let's Build Something</span>
-            <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
-              Amazing Together
-            </span>
+          <h2 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+            <span className="block">Let's Build Something</span>
+            <span className="mt-1 block text-blue-700">Amazing Together</span>
           </h2>
-          <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+          <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
             Ready to transform your ideas into reality? Let's discuss your
             project and create something extraordinary.
           </p>
@@ -181,12 +173,12 @@ export default function ContactSection() {
 
         <div className="grid gap-12 lg:grid-cols-5">
           {/* Contact Info */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="space-y-8 lg:col-span-2">
             {/* Address Card (restored design) */}
-            <Card className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white mb-6">
+            <Card className="mb-6 bg-white shadow-sm">
               <CardHeader className="p-6 flex items-start space-x-4">
-                <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center shadow-lg">
-                  <MapPin className="h-7 w-7 text-white" aria-hidden="true" />
+                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                  <MapPin className="h-7 w-7" aria-hidden="true" />
                 </div>
                 <div className="flex-1">
                   <h3 className="font-semibold text-lg text-slate-900 mb-1">
@@ -203,13 +195,13 @@ export default function ContactSection() {
               <h2 className="text-3xl font-bold text-slate-900 mb-4">
                 Contact Us
               </h2>
-              <Card className="group border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white">
+              <Card className="bg-white shadow-sm">
                 <CardHeader className="p-6 space-y-4">
                   {/* Phone UK */}
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                       <Phone
-                        className="h-5 w-5 text-white"
+                        className="h-5 w-5"
                         aria-hidden="true"
                       />
                     </div>
@@ -222,9 +214,9 @@ export default function ContactSection() {
                   </div>
                   {/* Phone US */}
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center shadow-lg">
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
                       <Phone
-                        className="h-5 w-5 text-white"
+                        className="h-5 w-5"
                         aria-hidden="true"
                       />
                     </div>
@@ -237,8 +229,8 @@ export default function ContactSection() {
                   </div>
                   {/* Email */}
                   <div className="flex items-center space-x-4">
-                    <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center shadow-lg">
-                      <Mail className="h-5 w-5 text-white" aria-hidden="true" />
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                      <Mail className="h-5 w-5" aria-hidden="true" />
                     </div>
                     <span className="text-slate-700 text-base">
                       sales@metadots.co{" "}
@@ -252,12 +244,12 @@ export default function ContactSection() {
             </div>
 
             {/* Quick Stats */}
-            <Card className="bg-gradient-to-br from-blue-50 to-indigo-50 border-0 shadow-lg">
+            <Card className="border border-slate-200 bg-white shadow-sm">
               <CardHeader className="p-6">
                 <h3 className="font-semibold text-lg text-slate-900 mb-4">
                   Why Choose Us?
                 </h3>
-                <div className="grid grid-cols-2 gap-4">
+                  <div className="grid grid-cols-2 gap-4">
                   {[
                     { label: "Response Time", value: "1 hour", icon: Clock },
                     {
@@ -292,11 +284,8 @@ export default function ContactSection() {
 
           {/* Enhanced Contact Form */}
           <div className="lg:col-span-3">
-            <Card className="border-0 shadow-2xl bg-white relative overflow-hidden">
-              {/* Form Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 to-purple-50/50"></div>
-
-              <CardHeader className="relative z-10 p-8">
+            <Card className="relative overflow-hidden bg-white shadow-md">
+              <CardHeader className="p-8">
                 <div className="text-center mb-8">
                   <h3 className="text-2xl font-bold text-slate-900 mb-2">
                     Start Your Project
@@ -418,7 +407,7 @@ export default function ContactSection() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full h-12 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed">
+                    className="h-12 w-full bg-blue-600 text-white shadow-sm transition hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50">
                     {isSubmitting ? (
                       <>
                         <Loader2
@@ -456,8 +445,8 @@ export default function ContactSection() {
 
       {/* Success Modal */}
       {showSuccess && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm animate-in fade-in">
-          <div className="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl animate-in zoom-in-95 duration-300 overflow-hidden">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm animate-in fade-in">
+          <div className="relative w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl animate-in zoom-in-95 duration-300">
             {/* Close Button */}
             <button
               onClick={() => setShowSuccess(false)}
@@ -469,12 +458,9 @@ export default function ContactSection() {
             {/* Success Content */}
             <div className="p-8 md:p-12">
               {/* Success Icon */}
-              <div className="flex justify-center mb-6">
-                <div className="relative">
-                  <div className="absolute inset-0 bg-green-100 rounded-full animate-ping"></div>
-                  <div className="relative bg-gradient-to-br from-green-500 to-emerald-600 rounded-full p-6 shadow-lg">
-                    <CheckCircle className="w-16 h-16 text-white" />
-                  </div>
+              <div className="mb-6 flex justify-center">
+                <div className="rounded-full bg-emerald-100 p-6">
+                  <CheckCircle className="h-16 w-16 text-emerald-600" />
                 </div>
               </div>
 
@@ -489,7 +475,7 @@ export default function ContactSection() {
               </div>
 
               {/* What Happens Next */}
-              <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl p-6 mb-8 border border-blue-100">
+              <div className="mb-8 rounded-xl border border-blue-100 bg-blue-50 p-6">
                 <h4 className="text-lg font-semibold text-slate-900 mb-3 flex items-center">
                   <Clock className="w-5 h-5 mr-2 text-blue-600" />
                   What happens next?
@@ -501,7 +487,7 @@ export default function ContactSection() {
               </div>
 
               {/* Email Confirmation */}
-              <div className="bg-slate-50 rounded-lg p-4 mb-8 border border-slate-200">
+              <div className="mb-8 rounded-lg border border-slate-200 bg-slate-50 p-4">
                 <p className="text-sm text-slate-600 text-center">
                   <Mail className="w-4 h-4 inline mr-1" />
                   We've also sent a confirmation email to your inbox. Please check your email for more details.
@@ -512,7 +498,7 @@ export default function ContactSection() {
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button
                   onClick={() => setShowSuccess(false)}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white px-8 py-6 text-lg font-semibold shadow-lg hover:shadow-xl transition-all">
+                  className="px-8 py-6 text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 shadow-sm">
                   Got it, thanks!
                 </Button>
                 <Button
@@ -528,7 +514,7 @@ export default function ContactSection() {
             </div>
 
             {/* Decorative Bottom */}
-            <div className="h-2 bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600"></div>
+            <div className="h-1 bg-blue-600"></div>
           </div>
         </div>
       )}

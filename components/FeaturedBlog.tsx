@@ -35,7 +35,7 @@ interface FeaturedBlogProps {
 
 export default function FeaturedBlog({ blog }: FeaturedBlogProps) {
   return (
-    <Card className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 overflow-hidden">
+    <Card className="group overflow-hidden border border-slate-200 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
       <CardHeader className="p-0">
         <div className="relative">
           {/* Blog Header with Image or Gradient */}
@@ -43,34 +43,31 @@ export default function FeaturedBlog({ blog }: FeaturedBlogProps) {
             className={`${
               blog.featuredImage
                 ? "bg-cover bg-center"
-                : "bg-gradient-to-r from-blue-600 to-indigo-600"
-            } p-6 relative overflow-hidden`}
+                : "bg-slate-900"
+            } relative overflow-hidden p-6`}
             style={
               blog.featuredImage
                 ? { backgroundImage: `url(${blog.featuredImage})` }
                 : {}
             }>
-            <div className="absolute inset-0 bg-black/40"></div>
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-4">
-                <Badge className="bg-white/20 text-white backdrop-blur">
+              <div className="mb-4 flex items-center justify-between">
+                <Badge className="bg-slate-800 px-3 py-1 text-xs font-medium text-slate-50">
                   Featured Article
                 </Badge>
-                <div className="text-white/80 text-sm flex items-center">
-                  <Clock className="w-4 h-4 mr-1" />
+                <div className="flex items-center text-sm text-slate-200">
+                  <Clock className="mr-1 h-4 w-4" />
                   {blog.readTime}
                 </div>
               </div>
 
               {/* Abstract Pattern */}
-              <div className="flex items-center space-x-2 mb-4">
+              <div className="mb-4 flex items-center space-x-2">
                 {[...Array(6)].map((_, i) => (
                   <div
                     key={i}
-                    className="bg-white/30 rounded-full animate-pulse"
+                    className="h-2 w-2 rounded-full bg-blue-400/60"
                     style={{
-                      width: `${(i % 3) * 4 + 8}px`,
-                      height: `${(i % 3) * 4 + 8}px`,
                       animationDelay: `${i * 200}ms`,
                     }}></div>
                 ))}
@@ -80,7 +77,7 @@ export default function FeaturedBlog({ blog }: FeaturedBlogProps) {
               <Link href={`/blogs/${blog.slug}`}>
                 <Button
                   size="sm"
-                  className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur group-hover:bg-white/30 transition-all">
+                  className="border border-slate-600 bg-slate-800 text-slate-50 hover:bg-slate-700">
                   <span>Read Article</span>
                   <ArrowRight className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -89,17 +86,17 @@ export default function FeaturedBlog({ blog }: FeaturedBlogProps) {
           </div>
 
           <div className="p-6">
-            <CardTitle className="text-xl text-white mb-3 group-hover:text-blue-400 transition-colors">
+            <CardTitle className="mb-3 text-xl font-semibold text-slate-900">
               {blog.title}
             </CardTitle>
-            <CardDescription className="text-white/70 mb-4 leading-relaxed">
+            <CardDescription className="mb-4 leading-relaxed text-slate-600">
               {blog.excerpt}
             </CardDescription>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
                 {blog.author.avatar ? (
-                  <div className="w-8 h-8 rounded-full overflow-hidden">
+                  <div className="h-8 w-8 overflow-hidden rounded-full">
                     <Image
                       src={blog.author.avatar}
                       alt={blog.author.name}
@@ -109,23 +106,23 @@ export default function FeaturedBlog({ blog }: FeaturedBlogProps) {
                     />
                   </div>
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center">
-                    <span className="text-white text-sm font-bold">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                    <span className="text-sm font-bold">
                       {blog.author.name.charAt(0).toUpperCase()}
                     </span>
                   </div>
                 )}
                 <div>
-                  <div className="text-white text-sm font-medium">
+                  <div className="text-sm font-medium text-slate-900">
                     {blog.author.name}
                   </div>
-                  <div className="text-white/60 text-xs">
+                  <div className="text-xs text-slate-500">
                     {blog.author.designation || blog.author.role}
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 space-x-2 text-white/60 text-sm">
-                <Calendar className="w-4 h-4" />
+              <div className="flex items-center gap-2 space-x-2 text-sm text-slate-500">
+                <Calendar className="h-4 w-4" />
                 {blog.publishedAt
                   ? new Date(blog.publishedAt).toLocaleDateString("en-US", {
                       month: "short",

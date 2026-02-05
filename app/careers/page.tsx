@@ -361,30 +361,25 @@ export default function CareersPage() {
   };
 
   return (
-    <div className="min-h-screen bg-white w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+      <section className="border-b border-slate-100 bg-slate-50 py-20">
+        <div className="container">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Content Side */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-orange-500 to-red-600 text-white text-sm font-medium shadow-lg">
-                  <Briefcase className="w-4 h-4 mr-2" aria-hidden="true" />
+                <div className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+                  <Briefcase className="mr-2 h-4 w-4" aria-hidden="true" />
                   Join Our Team
                 </div>
-                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-white">
+                <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
                   <span className="block">Build the</span>
-                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <span className="mt-1 block text-blue-700">
                     Future with Us
                   </span>
                 </h1>
-                <p className="text-xl text-white/80 max-w-2xl leading-relaxed">
+                <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
                   Join a team of passionate innovators, engineers, and designers
                   who are transforming businesses through cutting-edge
                   technology.
@@ -393,23 +388,25 @@ export default function CareersPage() {
 
               {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-4">
-                <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <div className="text-3xl font-bold text-white">50+</div>
-                  <div className="text-sm text-white/70">Team Members</div>
+                <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+                  <div className="text-3xl font-semibold text-slate-900">
+                    50+
+                  </div>
+                  <div className="text-sm text-slate-500">Team Members</div>
                 </div>
-                <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <div className="text-3xl font-bold text-white">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+                  <div className="text-3xl font-semibold text-slate-900">
                     {jobs.length}
                   </div>
-                  <div className="text-sm text-white/70">Open Positions</div>
+                  <div className="text-sm text-slate-500">Open Positions</div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="/contact-us">
                   <Button
                     size="lg"
-                    className="bg-white text-slate-900 hover:bg-white/90 px-8">
+                    className="bg-blue-600 px-8 text-white hover:bg-blue-700">
                     View Open Roles
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -418,7 +415,7 @@ export default function CareersPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white/30 text-white hover:text-whtie hover:bg-white/10 bg-transparent">
+                    className="border border-blue-200 bg-white px-8 text-blue-700 hover:border-blue-400 hover:bg-blue-50">
                     Learn About Culture
                   </Button>
                 </Link>
@@ -427,16 +424,18 @@ export default function CareersPage() {
 
             {/* Visual Side - HR Dashboard */}
             <div className="relative">
-              <div className="relative rounded-3xl bg-white/10 backdrop-blur-sm p-8 shadow-2xl border border-white/20">
+              <div className="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-md">
                 <div className="space-y-6">
                   {/* Header */}
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                      <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-100"></div>
-                      <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse delay-200"></div>
+                    <div className="flex items-center space-x-2">
+                      <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-blue-500" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-blue-100" />
+                      <span className="h-2.5 w-2.5 rounded-full bg-blue-100" />
                     </div>
-                    <Badge className="bg-white/20 text-white backdrop-blur-sm">
+                    <Badge
+                      variant="outline"
+                      className="border-blue-100 bg-blue-50/60 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-blue-700">
                       Careers Hub
                     </Badge>
                   </div>
@@ -446,20 +445,16 @@ export default function CareersPage() {
                     {jobs.slice(0, 3).map((job, index) => (
                       <div
                         key={job._id}
-                        className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-white/20">
+                        className="rounded-lg border border-slate-200 bg-slate-50 p-3">
                         <div className="flex items-center justify-between">
                           <div className="flex items-center space-x-3">
                             {renderIcon(job.icon)}
-                            <span className="text-white text-sm">
+                            <span className="text-sm font-medium text-slate-900">
                               {job.title}
                             </span>
                           </div>
                           <Badge
-                            className={`${
-                              job.featured
-                                ? "bg-green-500/20 text-green-400"
-                                : "bg-blue-500/20 text-blue-400"
-                            } text-xs`}>
+                            className="border-blue-100 bg-blue-50 text-[11px] font-medium uppercase tracking-wide text-blue-700">
                             {job.featured ? "Featured" : "New"}
                           </Badge>
                         </div>
@@ -469,36 +464,42 @@ export default function CareersPage() {
 
                   {/* Team Stats */}
                   <div className="grid grid-cols-2 gap-3">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-white">98%</div>
-                      <div className="text-xs text-white/60">Satisfaction</div>
+                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center">
+                      <div className="text-lg font-semibold text-slate-900">
+                        98%
+                      </div>
+                      <div className="text-xs text-slate-500">
+                        Satisfaction
+                      </div>
                     </div>
-                    <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center">
-                      <div className="text-lg font-bold text-white">15+</div>
-                      <div className="text-xs text-white/60">Countries</div>
+                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-3 text-center">
+                      <div className="text-lg font-semibold text-slate-900">
+                        15+
+                      </div>
+                      <div className="text-xs text-slate-500">Countries</div>
                     </div>
                   </div>
 
                   {/* Benefits Preview */}
-                  <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                    <div className="flex items-center space-x-2 mb-3">
-                      <Heart className="w-4 h-4 text-red-400" />
-                      <span className="text-white font-medium text-sm">
+                  <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                    <div className="mb-3 flex items-center space-x-2">
+                      <Heart className="h-4 w-4 text-blue-500" />
+                      <span className="text-sm font-medium text-slate-800">
                         Benefits & Perks
                       </span>
                     </div>
                     <div className="grid grid-cols-3 gap-2">
-                      <div className="bg-white/5 rounded p-2 text-center">
-                        <Coffee className="w-3 h-3 text-yellow-400 mx-auto mb-1" />
-                        <div className="text-white/80 text-xs">Flexible</div>
+                      <div className="rounded p-2 bg-white text-center">
+                        <Coffee className="mx-auto mb-1 h-3 w-3 text-blue-500" />
+                        <div className="text-xs text-slate-700">Flexible</div>
                       </div>
-                      <div className="bg-white/5 rounded p-2 text-center">
-                        <TrendingUp className="w-3 h-3 text-green-400 mx-auto mb-1" />
-                        <div className="text-white/80 text-xs">Growth</div>
+                      <div className="rounded p-2 bg-white text-center">
+                        <TrendingUp className="mx-auto mb-1 h-3 w-3 text-blue-500" />
+                        <div className="text-xs text-slate-700">Growth</div>
                       </div>
-                      <div className="bg-white/5 rounded p-2 text-center">
-                        <Award className="w-3 h-3 text-purple-400 mx-auto mb-1" />
-                        <div className="text-white/80 text-xs">Rewards</div>
+                      <div className="rounded p-2 bg-white text-center">
+                        <Award className="mx-auto mb-1 h-3 w-3 text-blue-500" />
+                        <div className="text-xs text-slate-700">Rewards</div>
                       </div>
                     </div>
                   </div>
@@ -506,11 +507,11 @@ export default function CareersPage() {
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-br from-orange-400 to-red-500 rounded-xl shadow-xl flex items-center justify-center animate-float">
-                <Users className="w-6 h-6 text-white" />
+              <div className="absolute -top-4 -right-4 flex h-16 w-16 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
+                <Users className="h-6 w-6 text-blue-600" />
               </div>
-              <div className="absolute -bottom-4 -left-4 w-14 h-14 bg-gradient-to-br from-purple-400 to-pink-500 rounded-lg shadow-xl flex items-center justify-center animate-float delay-1000">
-                <Briefcase className="w-5 h-5 text-white" />
+              <div className="absolute -bottom-4 -left-4 flex h-14 w-14 items-center justify-center rounded-lg border border-slate-200 bg-white shadow-sm">
+                <Briefcase className="h-5 w-5 text-blue-600" />
               </div>
             </div>
           </div>
@@ -520,11 +521,11 @@ export default function CareersPage() {
       {/* Why Work With Us */}
       <section className="py-20 bg-white">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-slate-900 mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-4xl font-semibold text-slate-900">
               Why Work With Us?
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
               We've created an environment where talented people can do their
               best work and grow their careers
             </p>
@@ -534,15 +535,15 @@ export default function CareersPage() {
             {benefits.map((benefit, index) => (
               <Card
                 key={index}
-                className="group text-center border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white">
+                className="group border border-slate-100 bg-white text-center shadow-sm transition hover:border-blue-200 hover:shadow-md">
                 <CardHeader className="p-8">
-                  <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                    <benefit.icon className="w-8 h-8 text-white" />
+                  <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-600 transition-transform group-hover:scale-105">
+                    <benefit.icon className="h-8 w-8" />
                   </div>
-                  <CardTitle className="text-xl mb-4">
+                  <CardTitle className="mb-4 text-xl text-slate-900">
                     {benefit.title}
                   </CardTitle>
-                  <CardDescription className="text-base leading-relaxed">
+                  <CardDescription className="text-base leading-relaxed text-slate-600">
                     {benefit.description}
                   </CardDescription>
                 </CardHeader>
@@ -553,31 +554,29 @@ export default function CareersPage() {
       </section>
 
       {/* Job Search and Filters */}
-      <section className="py-12 bg-slate-100">
+      <section className="bg-slate-100 py-12">
         <div className="container">
-          <div className="flex  gap-6 items-center justify-between">
+          <div className="flex items-center justify-between gap-6">
             {/* Search */}
-            <div className="relative flex-1 w-full md:max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400  w-4 h-4" />
+            <div className="relative w-full flex-1 md:max-w-md">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-slate-400" />
               <Input
                 placeholder="Search positions..."
-                className="pl-10 h-12 border-slate-200 focus:border-blue-500 bg-white"
+                className="h-12 bg-white pl-10 border-slate-200 focus:border-blue-500"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
             </div>
 
-            {/* Department Filters */}
-
             {/* Sort */}
             <Button
               variant="outline"
-              className="flex items-center gap-2 bg-transparent hover:text-white !w-auto">
-              <Filter className="w-4 h-4" />
-              <span className="md:block hidden">Sort by Latest</span>
+              className="flex !w-auto items-center gap-2 border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700">
+              <Filter className="h-4 w-4" />
+              <span className="hidden md:block">Sort by Latest</span>
             </Button>
           </div>
-          <div className="flex items-center gap-2 flex-wrap mt-5">
+          <div className="mt-5 flex flex-wrap items-center gap-2">
             {departments.map((department) => (
               <Button
                 key={department}
@@ -589,8 +588,8 @@ export default function CareersPage() {
                 className={cn(
                   "!px-4 !py-2 !w-auto", // Add padding to maintain button size based on content
                   department === "All"
-                    ? "bg-blue-700 hover:bg-blue-700 text-white"
-                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 text-black hover:text-white focus:bg-blue-700 focus:text-white"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "border-blue-200 bg-white text-slate-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700"
                 )}>
                 {department}
               </Button>
@@ -600,25 +599,25 @@ export default function CareersPage() {
       </section>
 
       {/* Featured Positions */}
-      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+      <section className="bg-slate-50 py-20">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-semibold text-slate-900">
               Featured Positions
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
               High-impact roles that are critical to our mission and growth
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {isLoading ? (
-              <div className="col-span-2 flex items-center justify-center h-32">
-                <Loader2 className="w-8 h-8 animate-spin" />
+              <div className="col-span-2 flex h-32 items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin" />
               </div>
             ) : jobs.filter((job) => job.featured).length === 0 ? (
-              <div className="col-span-2 text-center py-12">
-                <p className="text-gray-500">
+              <div className="col-span-2 py-12 text-center">
+                <p className="text-slate-500">
                   No featured positions available at the moment.
                 </p>
               </div>
@@ -628,48 +627,47 @@ export default function CareersPage() {
                 .map((job) => (
                   <Card
                     key={job._id}
-                    className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
+                    className="group overflow-hidden border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
                     <CardHeader className="flex flex-col gap-2 p-8">
                       <div>
                         <div className="flex items-start justify-between mb-6">
                           <div className="flex items-center space-x-4">
-                            <div
-                              className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform group-hover:scale-105">
                               {renderIcon(job.icon)}
                             </div>
                             <div>
-                              <CardTitle className="text-2xl mb-2 text-black transition-colors">
+                              <CardTitle className="mb-2 text-2xl text-slate-900 transition-colors">
                                 {job.title}
                               </CardTitle>
                               <div className="flex items-center space-x-4 text-sm text-slate-600">
-                                <Badge className="bg-blue-100 text-blue-700">
+                                <Badge className="bg-blue-50 text-blue-700">
                                   {job.department}
                                 </Badge>
-                                <Badge className="bg-green-100 text-green-700">
+                                <Badge className="bg-blue-100 text-blue-800">
                                   Featured
                                 </Badge>
                               </div>
                             </div>
                           </div>
                         </div>
-                        <CardDescription className="text-base leading-relaxed mb-6 truncate">
+                        <CardDescription className="mb-6 truncate text-base leading-relaxed text-slate-600">
                           {job.description}
                         </CardDescription>
                         {/* Job Details */}
-                        <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 text-black rounded-xl">
-                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                        <div className="mb-6 grid grid-cols-2 gap-4 rounded-xl bg-slate-50 p-4 text-slate-800">
+                          <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                             <MapPin className="w-4 h-4 text-slate-500" />
                             <span>{job.location}</span>
                           </div>
-                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                             <Clock className="w-4 h-4 text-slate-500" />
                             <span>{job.type}</span>
                           </div>
-                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                             <Briefcase className="w-4 h-4 text-slate-500" />
                             <span>{job.experience}</span>
                           </div>
-                          <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                          <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                             <DollarSign className="w-4 h-4 text-slate-500" />
                             <span>{job.salary}</span>
                           </div>
@@ -695,12 +693,12 @@ export default function CareersPage() {
                         <div className="flex gap-3">
                           <Button
                             onClick={openInquiryForm}
-                            className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                            className="flex-1 bg-blue-600 hover:bg-blue-700">
                             Apply Now
                             <ArrowRight className="ml-2 h-4 w-4" />
                           </Button>
                           <Button
-                            className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2"
+                            className="!w-auto border border-blue-200 bg-white px-5 py-2 text-blue-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800"
                             onClick={openInquiryForm}>
                             Learn More
                           </Button>
@@ -717,23 +715,23 @@ export default function CareersPage() {
       {/* All Positions */}
       <section className="py-20 bg-white">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-semibold text-slate-900">
               All Open Positions
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
               Explore all the opportunities available at Metadots
             </p>
           </div>
 
           <div className="grid gap-8 lg:grid-cols-2">
             {isLoading ? (
-              <div className="col-span-2 flex items-center justify-center h-32">
-                <Loader2 className="w-8 h-8 animate-spin" />
+              <div className="col-span-2 flex h-32 items-center justify-center">
+                <Loader2 className="h-8 w-8 animate-spin" />
               </div>
             ) : jobs.length === 0 ? (
-              <div className="col-span-2 text-center py-12">
-                <p className="text-gray-500">
+              <div className="col-span-2 py-12 text-center">
+                <p className="text-slate-500">
                   No positions available at the moment. Please check back later.
                 </p>
               </div>
@@ -741,45 +739,44 @@ export default function CareersPage() {
               jobs.map((job) => (
                 <Card
                   key={job._id}
-                  className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
-                  <CardHeader className="flex flex-col gap-2 h-full justify-between p-8">
+                  className="group overflow-hidden border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
+                  <CardHeader className="flex h-full flex-col justify-between gap-2 p-8">
                     <div>
-                      <div className="flex items-start justify-between mb-6">
+                      <div className="mb-6 flex items-start justify-between">
                         <div className="flex items-center space-x-4">
-                          <div
-                            className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${job.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-blue-50 text-blue-700 transition-transform group-hover:scale-105">
                             {renderIcon(job.icon)}
                           </div>
                           <div>
-                            <CardTitle className="text-2xl mb-2 text-black transition-colors">
+                            <CardTitle className="mb-2 text-2xl text-slate-900 transition-colors">
                               {job.title}
                             </CardTitle>
                             <div className="flex items-center space-x-4 text-sm text-slate-600">
-                              <Badge className="bg-blue-100 text-blue-700">
+                              <Badge className="bg-blue-50 text-blue-700">
                                 {job.department}
                               </Badge>
                             </div>
                           </div>
                         </div>
                       </div>
-                      <CardDescription className="text-base leading-relaxed mb-6 truncate">
+                      <CardDescription className="mb-6 truncate text-base leading-relaxed text-slate-600">
                         {job.description}
                       </CardDescription>
                       {/* Job Details */}
-                      <div className="grid grid-cols-2 gap-4 mb-6 p-4 bg-slate-50 text-black rounded-xl">
-                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                      <div className="mb-6 grid grid-cols-2 gap-4 rounded-xl bg-slate-50 p-4 text-slate-800">
+                        <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                           <MapPin className="w-4 h-4 text-slate-500" />
                           <span>{job.location}</span>
                         </div>
-                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                        <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                           <Clock className="w-4 h-4 text-slate-500" />
                           <span>{job.type}</span>
                         </div>
-                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                        <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                           <Briefcase className="w-4 h-4 text-slate-500" />
                           <span>{job.experience}</span>
                         </div>
-                        <div className="flex items-center justify-center py-4 space-x-2 text-sm bg-gray-200 rounded-lg">
+                        <div className="flex items-center justify-center space-x-2 rounded-lg bg-white py-4 text-sm">
                           <DollarSign className="w-4 h-4 text-slate-500" />
                           <span>{job.salary}</span>
                         </div>
@@ -788,14 +785,14 @@ export default function CareersPage() {
                     <div>
                       {/* Tech Stack */}
                       <div className="mb-6">
-                        <div className="text-sm font-medium text-slate-700 mb-3">
+                        <div className="mb-3 text-sm font-medium text-slate-700">
                           Required Skills
                         </div>
                         <div className="flex flex-wrap gap-2">
                           {job.tags.map((tag) => (
                             <span
                               key={tag}
-                              className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+                              className="cursor-pointer rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 transition-colors hover:bg-blue-100 hover:text-blue-700">
                               {tag}
                             </span>
                           ))}
@@ -805,13 +802,13 @@ export default function CareersPage() {
                       <div className="flex gap-3">
                         <Button
                           onClick={openInquiryForm}
-                          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                          className="flex-1 bg-blue-600 hover:bg-blue-700">
                           Apply Now
                           <ArrowRight className="ml-2 h-4 w-4" />
                         </Button>
                         <Button
                           onClick={openInquiryForm}
-                          className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2">
+                          className="!w-auto border border-blue-200 bg-white px-5 py-2 text-blue-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800">
                           Learn More
                         </Button>
                       </div>

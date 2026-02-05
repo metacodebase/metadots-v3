@@ -38,38 +38,34 @@ export default function PodcastCard({
 
   return (
     <Card
-      className={`group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 overflow-hidden cursor-pointer ${
-        isOpen ? "bg-white/20" : ""
+      className={`group cursor-pointer overflow-hidden border border-slate-200 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md ${
+        isOpen ? "ring-1 ring-blue-200" : ""
       }`}
       onClick={onToggle}>
       <CardHeader className="p-0">
         <div className="relative">
           {/* Audio Waveform Visualization */}
           <div
-            className={`bg-gradient-to-r from-purple-600 to-pink-600 p-6 relative overflow-hidden transition-all duration-500 ${
+            className={`relative overflow-hidden bg-slate-900 p-6 transition-all duration-500 ${
               isOpen ? "h-auto" : "h-24"
             }`}>
-            <div className="absolute inset-0 bg-black/20"></div>
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-4">
-                <Badge className="bg-white/20 text-white backdrop-blur">
+              <div className="mb-4 flex items-center justify-between">
+                <Badge className="bg-slate-800 px-3 py-1 text-xs font-medium text-slate-50">
                   Episode
                 </Badge>
-                <div className="text-white/80 text-sm">{podcast.duration}</div>
+                <div className="text-sm text-slate-200">{podcast.duration}</div>
               </div>
 
               {/* Animated Waveform - Only show when open */}
               {isOpen && (
-                <div className="flex items-center space-x-1 mb-4">
+                <div className="mb-4 flex items-center space-x-1">
                   {[...Array(40)].map((_, i) => (
                     <div
                       key={i}
-                      className="bg-white/60 rounded-full animate-pulse"
+                      className="h-6 w-[3px] rounded-full bg-blue-400/60"
                       style={{
-                        width: "3px",
                         height: `${(i % 8) * 4 + 10}px`,
-                        animationDelay: `${i * 50}ms`,
-                        animationDuration: `${1000 + (i % 10) * 100}ms`,
                       }}></div>
                   ))}
                 </div>
@@ -80,26 +76,26 @@ export default function PodcastCard({
                 <div className="flex items-center space-x-4">
                   <Button
                     size="sm"
-                    className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur"
+                    className="border border-slate-600 bg-slate-800 text-slate-50 hover:bg-slate-700"
                     onClick={handlePlayClick}>
-                    <Play className="w-4 h-4" aria-hidden="true" />
+                    <Play className="h-4 w-4" aria-hidden="true" />
                     <span className="sr-only">Play episode</span>
                   </Button>
-                  <div className="flex-1 bg-white/20 rounded-full h-2">
+                  <div className="h-2 flex-1 rounded-full bg-slate-700">
                     <div
-                      className="bg-white h-2 rounded-full transition-all duration-300"
+                      className="h-2 w-1/3 rounded-full bg-blue-400 transition-all duration-300"
                       style={{ width: "35%" }}></div>
                   </div>
-                  <div className="text-white/80 text-sm">15:42</div>
+                  <div className="text-sm text-slate-200">15:42</div>
                 </div>
               )}
 
               {/* Toggle Icon */}
-              <div className="absolute top-10 right-0">
+              <div className="absolute right-0 top-10">
                 {isOpen ? (
-                  <ChevronUp className="w-5 h-5 text-white/80" />
+                  <ChevronUp className="h-5 w-5 text-slate-200" />
                 ) : (
-                  <ChevronDown className="w-5 h-5 text-white/80" />
+                  <ChevronDown className="h-5 w-5 text-slate-200" />
                 )}
               </div>
             </div>
@@ -107,13 +103,13 @@ export default function PodcastCard({
 
           <div
             className={`p-6 transition-all duration-500 ${
-              isOpen ? "opacity-100" : "opacity-70"
+              isOpen ? "opacity-100" : "opacity-80"
             }`}>
-            <CardTitle className="text-xl text-white mb-3 group-hover:text-purple-400 transition-colors">
+            <CardTitle className="mb-3 text-xl font-semibold text-slate-900">
               {podcast.name}
             </CardTitle>
             <CardDescription
-              className={`text-white/70 mb-4 leading-relaxed transition-all duration-500 ${
+              className={`mb-4 leading-relaxed text-slate-600 transition-all duration-500 ${
                 isOpen ? "max-h-32" : "max-h-0 overflow-hidden"
               }`}>
               {podcast.description}
@@ -121,16 +117,18 @@ export default function PodcastCard({
 
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500"></div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                  <Play className="h-4 w-4" aria-hidden="true" />
+                </div>
                 <div>
-                  <div className="text-white text-sm font-medium">
+                  <div className="text-sm font-medium text-slate-900">
                     {podcast.podcastName}
                   </div>
-                  <div className="text-white/60 text-xs">Podcast</div>
+                  <div className="text-xs text-slate-500">Podcast</div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 space-x-2 text-white/60 text-sm">
-                <Calendar className="w-4 h-4" aria-hidden="true" />
+              <div className="flex items-center gap-2 space-x-2 text-sm text-slate-500">
+                <Calendar className="h-4 w-4" aria-hidden="true" />
                 {new Date(podcast.date).toLocaleDateString("en-US", {
                   month: "short",
                   day: "numeric",

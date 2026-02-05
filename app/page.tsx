@@ -478,44 +478,35 @@ export default async function MetadotsLanding() {
     <div className="min-h-screen bg-white w-full overflow-x-hidden">
 
       {/* Enhanced Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 py-20">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl animate-ping delay-2000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
-            <div className="space-y-8 animate-fade-in-up">
+      <section className="border-b border-slate-100 bg-slate-50 py-20">
+        <div className="container">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+            <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-medium shadow-lg animate-bounce-subtle">
-                  <Zap className="w-4 h-4 mr-2" aria-hidden="true" />
+                <div className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+                  <Zap className="mr-2 h-4 w-4" aria-hidden="true" />
                   Where Ideas Meet Reality
                 </div>
-                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-tight">
-                  <span className="block text-slate-900">Transform Your</span>
-                  <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
-                    Digital Vision
-                  </span>
+                <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+                  <span className="block">Transform Your</span>
+                  <span className="mt-1 block text-blue-700">Digital Vision</span>
                 </h1>
-                <p className="text-xl text-slate-600 max-w-2xl leading-relaxed">
+                <p className="max-w-xl text-base leading-relaxed text-slate-600 sm:text-lg">
                   Empowering startups and enterprises with cutting-edge AI
                   solutions, from LLM integrations to intelligent automation. We
                   don't just build software—we architect the future.
                 </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Button
                   size="lg"
-                  className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                  className="group px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white shadow-sm hover:shadow-md"
                   asChild>
                   <Link href="/contact-us">
                     Start Building
                     <ArrowRight
-                      className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform"
+                      className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
                       aria-hidden="true"
                     />
                   </Link>
@@ -523,11 +514,11 @@ export default async function MetadotsLanding() {
                 <Button
                   size="lg"
                   variant="outline"
-                  className="group  px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="group px-8 py-4 border border-blue-200 bg-white text-blue-700 hover:border-blue-400 hover:bg-blue-50"
                   asChild>
                   <Link href="/contact-us">
                     <Play
-                      className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform"
+                      className="mr-2 h-5 w-5 transition-transform group-hover:scale-110"
                       aria-hidden="true"
                     />
                     Free AI Audit
@@ -535,133 +526,107 @@ export default async function MetadotsLanding() {
                 </Button>
               </div>
 
-              {/* Enhanced Stats */}
-              <div className="grid grid-cols-3 gap-8 pt-8">
-                <div className="text-center group cursor-pointer">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-6 pt-6">
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-slate-900">
                     500+
                   </div>
-                  <div className="text-sm text-slate-600 font-medium">
+                  <div className="text-xs font-medium text-slate-500 sm:text-sm">
                     AI Projects
                   </div>
                 </div>
-                <div className="text-center group cursor-pointer">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-slate-900">
                     98%
                   </div>
-                  <div className="text-sm text-slate-600 font-medium">
+                  <div className="text-xs font-medium text-slate-500 sm:text-sm">
                     Success Rate
                   </div>
                 </div>
-                <div className="text-center group cursor-pointer">
-                  <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
+                <div className="text-center">
+                  <div className="text-2xl font-semibold text-slate-900">
                     24/7
                   </div>
-                  <div className="text-sm text-slate-600 font-medium">
+                  <div className="text-xs font-medium text-slate-500 sm:text-sm">
                     AI Support
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Interactive Dashboard */}
-            <div className="relative animate-fade-in-right">
-              <div className="relative">
-                {/* Main Dashboard */}
-                <div className="relative rounded-3xl bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 p-8 shadow-2xl transform rotate-3 hover:rotate-0 transition-transform duration-500">
-                  <div className="absolute inset-0 bg-gradient-to-br from-blue-400/20 to-purple-400/20 rounded-3xl blur-xl"></div>
-                  <div className="relative space-y-6">
-                    {/* Header */}
-                    <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-100"></div>
-                        <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse delay-200"></div>
-                      </div>
-                      <Badge className="bg-white/20 text-white backdrop-blur-sm">
-                        AI Dashboard
-                      </Badge>
-                    </div>
+            {/* Dashboard preview */}
+            <div className="rounded-3xl border border-slate-200 bg-white/90 p-6 shadow-md ring-1 ring-slate-100 lg:p-8">
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex items-center gap-1.5">
+                  <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-blue-500" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-blue-100" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-blue-100" />
+                </div>
+                <Badge
+                  variant="outline"
+                  className="border-blue-100 bg-blue-50/60 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-blue-700">
+                  AI Dashboard
+                </Badge>
+              </div>
 
-                    {/* AI Metrics Cards */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 group">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/80 text-sm">
-                            LLM Processing
-                          </span>
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                        </div>
-                        <div className="text-2xl font-bold text-white group-hover:scale-105 transition-transform">
-                          94.7%
-                        </div>
-                        <div className="text-xs text-white/60">
-                          Accuracy Rate
-                        </div>
-                      </div>
-
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20 hover:bg-white/20 transition-all duration-300 group">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/80 text-sm">
-                            AI Models
-                          </span>
-                          <Zap
-                            className="w-4 h-4 text-yellow-400 animate-pulse"
-                            aria-hidden="true"
-                          />
-                        </div>
-                        <div className="text-2xl font-bold text-white group-hover:scale-105 transition-transform">
-                          12
-                        </div>
-                        <div className="text-xs text-white/60">
-                          Active Models
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* AI Visualization */}
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-white font-medium">
-                          Neural Network Activity
-                        </span>
-                        <div className="flex space-x-1">
-                          <div className="w-1 h-4 bg-blue-400 rounded animate-pulse"></div>
-                          <div className="w-1 h-6 bg-indigo-400 rounded animate-pulse delay-100"></div>
-                          <div className="w-1 h-3 bg-purple-400 rounded animate-pulse delay-200"></div>
-                          <div className="w-1 h-5 bg-blue-400 rounded animate-pulse delay-300"></div>
-                        </div>
-                      </div>
-                      <div className="space-y-2">
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-                          <span className="text-white/80 text-sm">
-                            GPT-4 Integration Active
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-ping delay-500"></div>
-                          <span className="text-white/80 text-sm">
-                            Computer Vision Processing
-                          </span>
-                        </div>
-                        <div className="flex items-center space-x-2">
-                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-ping delay-1000"></div>
-                          <span className="text-white/80 text-sm">
-                            ML Pipeline Optimized
-                          </span>
-                        </div>
-                      </div>
-                    </div>
+              <div className="grid gap-4 md:grid-cols-2">
+                <div className="rounded-xl border border-blue-100 bg-blue-50/70 p-4">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-xs font-medium text-slate-700">
+                      LLM Processing
+                    </span>
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-300/60" />
+                      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500" />
+                    </span>
                   </div>
+                  <div className="text-3xl font-semibold text-slate-900">
+                    94.7%
+                  </div>
+                  <div className="text-xs text-slate-600">Accuracy Rate</div>
                 </div>
 
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl shadow-xl flex items-center justify-center animate-float">
-                  <Code className="w-8 h-8 text-white" aria-hidden="true" />
+                <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                  <div className="mb-2 flex items-center justify-between">
+                    <span className="text-xs font-medium text-slate-700">
+                      AI Models
+                    </span>
+                    <Zap className="h-4 w-4 text-blue-500" aria-hidden="true" />
+                  </div>
+                  <div className="text-3xl font-semibold text-slate-900">12</div>
+                  <div className="text-xs text-slate-600">Active Models</div>
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl shadow-xl flex items-center justify-center animate-float delay-1000">
-                  <Smartphone className="w-6  text-white" aria-hidden="true" />
+              </div>
+
+              <div className="mt-6 rounded-xl border border-dashed border-slate-200 bg-slate-50/70 p-4">
+                <div className="mb-3 flex items-center justify-between">
+                  <span className="text-sm font-medium text-slate-800">
+                    Neural Network Activity
+                  </span>
+                  <span className="text-[11px] font-medium uppercase tracking-wide text-blue-500">
+                    Live
+                  </span>
+                </div>
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between text-xs text-slate-600">
+                    <span>GPT-4 Integration Active</span>
+                    <span className="h-1.5 w-28 overflow-hidden rounded-full bg-blue-50">
+                      <span className="block h-1.5 w-[70%] animate-[pulse_1.8s_ease-in-out_infinite] rounded-full bg-blue-500" />
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-slate-600">
+                    <span>Computer Vision Processing</span>
+                    <span className="h-1.5 w-28 overflow-hidden rounded-full bg-blue-50">
+                      <span className="block h-1.5 w-[55%] animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-blue-500" />
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-slate-600">
+                    <span>ML Pipeline Optimized</span>
+                    <span className="h-1.5 w-28 overflow-hidden rounded-full bg-blue-50">
+                      <span className="block h-1.5 w-[80%] animate-[pulse_2.2s_ease-in-out_infinite] rounded-full bg-blue-500" />
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -669,32 +634,21 @@ export default async function MetadotsLanding() {
         </div>
       </section>
 
-      {/* New "We Create Impact" Section */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-slate-50 relative overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fillRule='evenodd'%3E%3Cg fill='%23000000' fillOpacity='1'%3E%3Ccircle cx='30' cy='30' r='2'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
-            }}></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="text-center space-y-6 mb-20">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
-              <BarChart3 className="w-5 h-5 mr-2" aria-hidden="true" />
+      {/* "We Create Impact" Section */}
+      <section className="relative overflow-hidden bg-white py-20 md:py-32">
+        <div className="container">
+          <div className="mb-20 space-y-6 text-center">
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-6 py-3 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+              <BarChart3 className="mr-2 h-5 w-5" aria-hidden="true" />
               AI-Powered Innovation
             </div>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl leading-tight">
-              <span className="block text-slate-900">
-                Deep Domain Expertise
-              </span>
-              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
+            <h2 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+              <span className="block">Deep Domain Expertise</span>
+              <span className="mt-1 block text-blue-700">
                 in Leading Industries
               </span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-4xl text-lg leading-relaxed text-slate-600">
               From LLM integrations to computer vision, we're building the next
               generation of AI-powered solutions that transform how businesses
               operate, scale, and innovate.
@@ -702,43 +656,36 @@ export default async function MetadotsLanding() {
           </div>
 
           {/* AI Services Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4 mb-12">
+          <div className="mb-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             {aiServices.map((service) => {
               const IconComponent = service.icon;
 
               return (
                 <Card
                   key={service.id}
-                  className={`group relative overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-105 bg-gradient-to-br ${service.colors.background} p-2`}>
-                  <div
-                    className={`absolute inset-0 bg-gradient-to-br ${service.colors.hoverBackground} opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-
-                  <CardHeader className="relative z-10 p-4 flex flex-col gap-4 justify-between h-full">
+                  className="group flex h-full flex-col justify-between border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
+                  <CardHeader className="flex h-full flex-col justify-between gap-4 p-4">
                     <div>
-                      <div
-                        className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${service.colors.iconGradient} flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-blue-600">
                         <IconComponent
-                          className="h-6 w-6 text-white"
+                          className="h-6 w-6"
                           aria-hidden="true"
                         />
                       </div>
-                      <CardTitle
-                        className={`text-lg mb-2 ${service.colors.titleHoverColor} ${service.colors.titleColor} transition-colors`}>
+                      <CardTitle className="mb-2 text-base font-semibold text-slate-900">
                         {service.title}
                       </CardTitle>
-                      <CardDescription className="text-sm leading-relaxed">
+                      <CardDescription className="text-sm leading-relaxed text-slate-600">
                         {service.description}
                       </CardDescription>
                     </div>
 
-                    <div
-                      className={`mt-4 flex items-center ${service.colors.linkColor} font-medium group-hover:translate-x-2 transition-transform text-sm`}>
-                      <Link href="/contact-us" className="flex items-center">
-                        {service.linkText}{" "}
-                        <ArrowRight
-                          className="ml-2 h-4 w-4"
-                          aria-hidden="true"
-                        />
+                    <div className="mt-4 flex items-center text-sm font-medium text-blue-600">
+                      <Link
+                        href="/contact-us"
+                        className="flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                        {service.linkText}
+                        <ArrowRight className="h-4 w-4" aria-hidden="true" />
                       </Link>
                     </div>
                   </CardHeader>
@@ -749,24 +696,23 @@ export default async function MetadotsLanding() {
 
           {/* Interactive AI Demo Section */}
           <div className="relative">
-            <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 rounded-3xl p-8 md:p-12 shadow-2xl overflow-hidden">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-400/10 to-purple-400/10 rounded-3xl"></div>
-              <div className="relative z-10 grid gap-8 lg:grid-cols-2 items-center">
+            <div className="overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 p-8 shadow-lg md:p-12">
+              <div className="grid items-center gap-8 lg:grid-cols-2">
                 <div className="space-y-6">
-                  <Badge className="bg-white/20 text-white backdrop-blur-sm px-4 py-2">
+                  <Badge className="px-4 py-2 bg-slate-800 text-xs font-medium text-slate-50">
                     Live AI Demo
                   </Badge>
-                  <h3 className="text-3xl font-bold text-white">
+                  <h3 className="text-3xl font-semibold text-white">
                     Experience AI in Action
                   </h3>
-                  <p className="text-white/80 text-lg leading-relaxed">
+                  <p className="text-lg leading-relaxed text-slate-200">
                     See how our AI solutions process natural language, analyze
                     data, and generate insights in real-time. This isn't just a
                     demo—it's a glimpse into the future of intelligent software.
                   </p>
-                  <div className="flex flex-col sm:flex-row gap-4">
+                  <div className="flex flex-col gap-4 sm:flex-row">
                     <Button
-                      className="bg-white text-slate-900 hover:bg-white/90 font-medium px-6 py-3"
+                      className="bg-white px-6 py-3 font-medium text-slate-900 hover:bg-slate-100"
                       asChild>
                       <Link href="/contact-us">
                         <Play className="mr-2 h-5 w-5" aria-hidden="true" />
@@ -775,7 +721,7 @@ export default async function MetadotsLanding() {
                     </Button>
                     <Button
                       variant="outline"
-                      className="border-white/30 text-white hover:text-white hover:bg-white/10 px-6 py-3 bg-transparent"
+                      className="border-slate-600 bg-transparent px-6 py-3 text-slate-100 hover:bg-slate-800"
                       asChild>
                       <Link href="/contact-us">Schedule AI Consultation</Link>
                     </Button>
@@ -783,66 +729,53 @@ export default async function MetadotsLanding() {
                 </div>
 
                 {/* AI Processing Visualization */}
-                <div className="relative">
-                  <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-                    <div className="space-y-4">
-                      <div className="flex items-center justify-between">
-                        <span className="text-white font-medium">
-                          AI Processing Pipeline
-                        </span>
-                        <div className="flex space-x-1">
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse delay-200"></div>
-                          <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse delay-400"></div>
+                <div className="rounded-2xl border border-slate-700 bg-slate-800 p-6">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <span className="text-sm font-medium text-slate-50">
+                        AI Processing Pipeline
+                      </span>
+                    </div>
+
+                    <div className="space-y-3">
+                      <div className="flex items-center space-x-3 rounded-lg bg-slate-900/60 p-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-xs font-bold text-white">
+                          1
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-slate-50">
+                            Data Ingestion
+                          </div>
+                          <div className="text-xs text-slate-300">
+                            Processing 1.2M tokens/sec
+                          </div>
                         </div>
                       </div>
 
-                      <div className="space-y-3">
-                        <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg animate-fade-in-up">
-                          <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                            <span className="text-white text-xs font-bold">
-                              1
-                            </span>
+                      <div className="flex items-center space-x-3 rounded-lg bg-slate-900/60 p-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-500 text-xs font-bold text-white">
+                          2
+                        </div>
+                        <div>
+                          <div className="text-sm font-medium text-slate-50">
+                            AI Analysis
                           </div>
-                          <div>
-                            <div className="text-white text-sm font-medium">
-                              Data Ingestion
-                            </div>
-                            <div className="text-white/60 text-xs">
-                              Processing 1.2M tokens/sec
-                            </div>
+                          <div className="text-xs text-slate-300">
+                            Neural networks active
                           </div>
                         </div>
+                      </div>
 
-                        <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg animate-fade-in-up delay-300">
-                          <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-                            <span className="text-white text-xs font-bold">
-                              2
-                            </span>
-                          </div>
-                          <div>
-                            <div className="text-white text-sm font-medium">
-                              AI Analysis
-                            </div>
-                            <div className="text-white/60 text-xs">
-                              Neural networks active
-                            </div>
-                          </div>
+                      <div className="flex items-center space-x-3 rounded-lg bg-slate-900/60 p-3">
+                        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-400 text-xs font-bold text-white">
+                          3
                         </div>
-
-                        <div className="flex items-center space-x-3 p-3 bg-white/5 rounded-lg animate-fade-in-up delay-600">
-                          <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-                            <span className="text-white text-xs font-bold">
-                              3
-                            </span>
+                        <div>
+                          <div className="text-sm font-medium text-slate-50">
+                            Intelligent Output
                           </div>
-                          <div>
-                            <div className="text-white text-sm font-medium">
-                              Intelligent Output
-                            </div>
-                            <div className="text-white/60 text-xs">
-                              97.3% accuracy achieved
-                            </div>
+                          <div className="text-xs text-slate-300">
+                            97.3% accuracy achieved
                           </div>
                         </div>
                       </div>
@@ -855,30 +788,21 @@ export default async function MetadotsLanding() {
         </div>
       </section>
 
-      {/* Enhanced Portfolio Highlights */}
+      {/* Portfolio Highlights */}
       <section
         id="portfolio"
-        className="py-20 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
-          <div className="absolute top-40 right-20 w-1 h-1 bg-indigo-400 rounded-full animate-ping delay-1000"></div>
-          <div className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-purple-400 rounded-full animate-ping delay-2000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="text-center space-y-6 mb-20">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
-              <BarChart3 className="w-5 h-5 mr-2" aria-hidden="true" />
+        className="relative overflow-hidden bg-slate-50 py-20">
+        <div className="container">
+          <div className="mb-20 space-y-6 text-center">
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-6 py-3 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+              <BarChart3 className="mr-2 h-5 w-5" aria-hidden="true" />
               Featured Work
             </div>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl leading-tight">
-              <span className="block text-slate-900">Portfolio</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
-                Highlights
-              </span>
+            <h2 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+              <span className="block">Portfolio</span>
+              <span className="mt-1 block text-blue-700">Highlights</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-4xl text-lg leading-relaxed text-slate-600">
               Discover our award-winning projects that have transformed
               businesses and set new industry standards
             </p>
@@ -895,18 +819,18 @@ export default async function MetadotsLanding() {
           </div>
 
           {/* View All Case Studies Button */}
-          <div className="text-center mt-16">
+          <div className="mt-16 text-center">
             <Link href="/contact-us">
               <Button
                 size="lg"
-                className="group bg-gradient-to-r from-slate-900 to-slate-700 hover:from-slate-800 hover:to-slate-600 text-white shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 px-8 py-4">
+                className="group px-8 py-4 bg-slate-900 text-white shadow-sm hover:bg-slate-800 hover:shadow-md">
                 <BarChart3
-                  className="mr-2 h-5 w-5 group-hover:rotate-12 transition-transform"
+                  className="mr-2 h-5 w-5 transition-transform group-hover:rotate-6"
                   aria-hidden="true"
                 />
                 Explore All Case Studies
                 <ArrowRight
-                  className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform"
+                  className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1"
                   aria-hidden="true"
                 />
               </Button>
@@ -915,45 +839,37 @@ export default async function MetadotsLanding() {
         </div>
       </section>
 
-      {/* Enhanced Podcast & Blog Section */}
+      {/* Podcast & Blog Section */}
       <section
         id="blog"
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-        {/* Animated Background */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="text-center space-y-6 mb-20">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg animate-bounce-subtle">
-              <Play className="w-5 h-5 mr-2" aria-hidden="true" />
+        className="relative overflow-hidden bg-slate-900 py-20 md:py-32">
+        <div className="container">
+          <div className="mb-20 space-y-6 text-center">
+            <div className="inline-flex items-center rounded-full bg-slate-800 px-6 py-3 text-sm font-medium text-slate-50">
+              <Play className="mr-2 h-5 w-5" aria-hidden="true" />
               Content & Insights
             </div>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white leading-tight">
+            <h2 className="text-4xl font-semibold leading-tight tracking-tight text-white sm:text-5xl md:text-6xl">
               <span className="block">Podcast &</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient pb-2">
-                Blog Hub
-              </span>
+              <span className="mt-1 block text-blue-300">Blog Hub</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-4xl text-lg leading-relaxed text-slate-200">
               Dive deep into the latest tech trends, AI innovations, and
               industry insights through our premium content
             </p>
           </div>
 
           <div className="grid gap-12 lg:grid-cols-2">
-            {/* Enhanced Podcast Section */}
+            {/* Podcast Section */}
             <div className="space-y-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center shadow-lg">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-slate-50">
                   <Headphones
-                    className="w-6 h-6 text-white"
+                    className="h-6 w-6"
                     aria-hidden="true"
                   />
                 </div>
-                <h3 className="text-3xl font-bold text-white">
+                <h3 className="text-3xl font-semibold text-white">
                   Latest Episodes
                 </h3>
               </div>
@@ -975,13 +891,13 @@ export default async function MetadotsLanding() {
               )}
             </div>
 
-            {/* Enhanced Blog Section */}
+            {/* Blog Section */}
             <div className="space-y-8">
-              <div className="flex items-center space-x-4">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center shadow-lg">
-                  <BookOpen className="w-6 h-6 text-white" aria-hidden="true" />
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-800 text-slate-50">
+                  <BookOpen className="h-6 w-6" aria-hidden="true" />
                 </div>
-                <h3 className="text-3xl font-bold text-white">
+                <h3 className="text-3xl font-semibold text-white">
                   Latest Articles
                 </h3>
               </div>
@@ -1006,39 +922,31 @@ export default async function MetadotsLanding() {
         </div>
       </section>
 
-      {/* Enhanced Client Testimonials */}
-      <section className="py-20 md:py-32 bg-white relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-blue-400 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-purple-400 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="text-center space-y-6 mb-16">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
-              <Star className="w-5 h-5 mr-2" aria-hidden="true" />
+      {/* Client Testimonials */}
+      <section className="relative overflow-hidden bg-white py-20 md:py-32">
+        <div className="container">
+          <div className="mb-16 space-y-6 text-center">
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-6 py-3 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+              <Star className="mr-2 h-5 w-5" aria-hidden="true" />
               Client Success Stories
             </div>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl leading-tight">
-              <span className="block text-slate-900">What Our</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
-                Clients Say
-              </span>
+            <h2 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+              <span className="block">What Our</span>
+              <span className="mt-1 block text-blue-700">Clients Say</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
               Don't just take our word for it - hear from our satisfied clients
               about their transformative experiences
             </p>
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 mb-12">
+          <div className="mb-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {featuredReviews && featuredReviews.length > 0
               ? featuredReviews.map((review: any, index: number) => (
                   <Card
                     key={review._id}
-                    className="group bg-white border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 animate-fade-in-up"
+                    className="group bg-white border border-slate-100 shadow-sm hover:shadow-md transition"
                     style={{ animationDelay: `${index * 200}ms` }}>
                     <CardHeader className="p-8">
                       {/* Rating Stars */}
@@ -1075,20 +983,7 @@ export default async function MetadotsLanding() {
                               className="w-full h-full object-cover"
                             />
                           </div>
-                        ) : (
-                          <div
-                            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${
-                              index === 0
-                                ? "from-blue-500 to-indigo-600"
-                                : index === 1
-                                ? "from-purple-500 to-pink-600"
-                                : "from-green-500 to-emerald-600"
-                            } flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                            <span className="text-white font-bold text-lg">
-                              {review.clientName.charAt(0).toUpperCase()}
-                            </span>
-                          </div>
-                        )}
+                        ) : null}
                         <div>
                           <div className="font-semibold text-slate-900 text-lg">
                             {review.clientName}
@@ -1139,10 +1034,10 @@ export default async function MetadotsLanding() {
                     color: "from-green-500 to-emerald-600",
                     delay: "400",
                   },
-                ].map((testimonial, index) => (
+                ].map((testimonial) => (
                   <Card
-                    key={index}
-                    className="group bg-white border-0 shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:scale-105 animate-fade-in-up"
+                    key={testimonial.clientName}
+                    className="group bg-white border border-slate-100 shadow-sm hover:shadow-md transition"
                     style={{ animationDelay: `${testimonial.delay}ms` }}>
                     <CardHeader className="p-8">
                       {/* Rating Stars */}
@@ -1169,24 +1064,7 @@ export default async function MetadotsLanding() {
 
                       {/* Client Info */}
                       <div className="flex items-center space-x-4">
-                        {testimonial.clientAvatar ? (
-                          <div className="w-14 h-14 rounded-2xl overflow-hidden shadow-lg group-hover:scale-110 transition-transform duration-300">
-                            <Image
-                              src={testimonial.clientAvatar}
-                              alt={testimonial.clientName}
-                              width={56}
-                              height={56}
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                        ) : (
-                          <div
-                            className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${testimonial.color} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                            <span className="text-white font-bold text-lg">
-                              {testimonial.avatarInitials}
-                            </span>
-                          </div>
-                        )}
+                        {testimonial.clientAvatar ? null : null}
                         <div>
                           <div className="font-semibold text-slate-900 text-lg">
                             {testimonial.clientName}
@@ -1234,21 +1112,19 @@ export default async function MetadotsLanding() {
         </div>
       </section>
 
-      {/* Enhanced Technology Stack */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-slate-50 to-white">
+      {/* Technology Stack */}
+      <section className="bg-slate-50 py-20 md:py-32">
         <div className="container">
-          <div className="text-center space-y-6 mb-16">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-medium shadow-lg animate-bounce-subtle">
-              <Code className="w-5 h-5 mr-2" aria-hidden="true" />
+          <div className="mb-16 space-y-6 text-center">
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-6 py-3 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+              <Code className="mr-2 h-5 w-5" aria-hidden="true" />
               Technology Stack
             </div>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl leading-tight">
-              <span className="block text-slate-900">Cutting-Edge</span>
-              <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
-                Technologies
-              </span>
+            <h2 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+              <span className="block">Cutting-Edge</span>
+              <span className="mt-1 block text-blue-700">Technologies</span>
             </h2>
-            <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-3xl text-lg leading-relaxed text-slate-600">
               We leverage the most advanced tools and frameworks to build
               robust, scalable, and future-proof solutions
             </p>
@@ -1267,119 +1143,117 @@ export default async function MetadotsLanding() {
                   interactive user interfaces
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+                  <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                 {[
                   {
                     name: "React",
                     icon: SiReact,
-                    color: "from-blue-400 to-blue-600",
+                    color: "",
                     delay: 0,
                   },
                   {
                     name: "Next.js",
                     icon: SiNextdotjs,
-                    color: "from-slate-700 to-slate-900",
+                    color: "",
                     delay: 100,
                   },
                   {
                     name: "TypeScript",
                     icon: SiTypescript,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 200,
                   },
                   {
                     name: "JavaScript",
                     icon: SiJavascript,
-                    color: "from-yellow-400 to-yellow-600",
+                    color: "",
                     delay: 300,
                   },
                   {
                     name: "Vue.js",
                     icon: SiVuedotjs,
-                    color: "from-green-400 to-green-600",
+                    color: "",
                     delay: 400,
                   },
                   {
                     name: "Angular",
                     icon: SiAngular,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 500,
                   },
                   {
                     name: "Svelte",
                     icon: SiSvelte,
-                    color: "from-orange-400 to-orange-600",
+                    color: "",
                     delay: 600,
                   },
                   {
                     name: "Tailwind CSS",
                     icon: SiTailwindcss,
-                    color: "from-cyan-400 to-cyan-600",
+                    color: "",
                     delay: 700,
                   },
                   {
                     name: "Bootstrap",
                     icon: SiBootstrap,
-                    color: "from-purple-500 to-purple-700",
+                    color: "",
                     delay: 800,
                   },
                   {
                     name: "Material UI",
                     icon: SiBootstrap,
-                    color: "from-blue-600 to-blue-800",
+                    color: "",
                     delay: 900,
                   },
                   {
                     name: "React Native",
                     icon: SiReact,
-                    color: "from-blue-400 to-blue-600",
+                    color: "",
                     delay: 1000,
                   },
                   {
                     name: "Flutter",
                     icon: SiFlutter,
-                    color: "from-blue-300 to-blue-500",
+                    color: "",
                     delay: 1100,
                   },
                   {
                     name: "Ionic",
                     icon: SiIonic,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 1200,
                   },
                   {
                     name: "Expo",
                     icon: SiExpo,
-                    color: "from-slate-700 to-slate-900",
+                    color: "",
                     delay: 1300,
                   },
                   {
                     name: "Electron",
                     icon: SiElectron,
-                    color: "from-blue-400 to-blue-600",
+                    color: "",
                     delay: 1400,
                   },
                   {
                     name: "Tauri",
                     icon: SiTauri,
-                    color: "from-purple-500 to-purple-700",
+                    color: "",
                     delay: 1500,
                   },
                 ].map((tech) => (
                   <Card
                     key={tech.name}
-                    className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
+                    className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md"
                     style={{ animationDelay: `${tech.delay}ms` }}>
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                    <CardHeader className="p-4 text-center relative z-10">
-                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="relative z-10 p-4 text-center">
+                      <div className="mb-2 flex justify-center transition-transform group-hover:scale-105">
                         <tech.icon
                           className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
+                      <h4 className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-blue-600">
                         {tech.name}
                       </h4>
                     </CardHeader>
@@ -1398,137 +1272,135 @@ export default async function MetadotsLanding() {
                   Robust server-side technologies and data management solutions
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                 {[
                   {
                     name: "Node.js",
                     icon: SiNodedotjs,
-                    color: "from-green-500 to-green-700",
+                    color: "",
                     delay: 0,
                   },
                   {
                     name: "Python",
                     icon: SiPython,
-                    color: "from-yellow-400 to-yellow-600",
+                    color: "",
                     delay: 100,
                   },
                   {
                     name: "Java",
                     icon: SiPython,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 200,
                   },
                   {
                     name: "Go",
                     icon: SiGo,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 300,
                   },
                   {
                     name: "Rust",
                     icon: SiRust,
-                    color: "from-orange-500 to-orange-700",
+                    color: "",
                     delay: 400,
                   },
                   {
                     name: "PHP",
                     icon: SiPhp,
-                    color: "from-purple-500 to-purple-700",
+                    color: "",
                     delay: 500,
                   },
                   {
                     name: "Laravel",
                     icon: SiLaravel,
-                    color: "from-red-400 to-red-600",
+                    color: "",
                     delay: 600,
                   },
                   {
                     name: "Django",
                     icon: SiDjango,
-                    color: "from-green-600 to-green-800",
+                    color: "",
                     delay: 700,
                   },
                   {
                     name: "Express.js",
                     icon: SiExpress,
-                    color: "from-gray-600 to-gray-800",
+                    color: "",
                     delay: 800,
                   },
                   {
                     name: "NestJS",
                     icon: SiNestjs,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 900,
                   },
                   {
                     name: "PostgreSQL",
                     icon: SiPostgresql,
-                    color: "from-blue-600 to-blue-800",
+                    color: "",
                     delay: 1000,
                   },
                   {
                     name: "MongoDB",
                     icon: SiMongodb,
-                    color: "from-green-600 to-green-800",
+                    color: "",
                     delay: 1100,
                   },
                   {
                     name: "Redis",
                     icon: SiRedis,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 1200,
                   },
                   {
                     name: "MySQL",
                     icon: SiMysql,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 1300,
                   },
                   {
                     name: "GraphQL",
                     icon: SiGraphql,
-                    color: "from-pink-500 to-pink-700",
+                    color: "",
                     delay: 1400,
                   },
                   {
                     name: "Prisma",
                     icon: SiPrisma,
-                    color: "from-slate-700 to-slate-900",
+                    color: "",
                     delay: 1500,
                   },
                   {
                     name: "Sequelize",
                     icon: SiSequelize,
-                    color: "from-blue-400 to-blue-600",
+                    color: "",
                     delay: 1600,
                   },
                   {
                     name: "Firebase",
                     icon: SiFirebase,
-                    color: "from-orange-400 to-orange-600",
+                    color: "",
                     delay: 1700,
                   },
                   {
                     name: "Supabase",
                     icon: SiSupabase,
-                    color: "from-green-500 to-green-700",
+                    color: "",
                     delay: 1800,
                   },
                 ].map((tech) => (
                   <Card
                     key={tech.name}
-                    className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
+                    className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md"
                     style={{ animationDelay: `${tech.delay}ms` }}>
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                    <CardHeader className="p-4 text-center relative z-10">
-                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="relative z-10 p-4 text-center">
+                      <div className="mb-2 flex justify-center transition-transform group-hover:scale-105">
                         <tech.icon
                           className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
+                      <h4 className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-blue-600">
                         {tech.name}
                       </h4>
                     </CardHeader>
@@ -1547,7 +1419,7 @@ export default async function MetadotsLanding() {
                   Scalable cloud infrastructure and development operations tools
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                 {[
                   {
                     name: "AWS",
@@ -1642,7 +1514,7 @@ export default async function MetadotsLanding() {
                   {
                     name: "Twilio",
                     icon: SiTwilio,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 1500,
                   },
                 ].map((tech) => (
@@ -1689,60 +1561,58 @@ export default async function MetadotsLanding() {
                   {
                     name: "Cypress",
                     icon: SiCypress,
-                    color: "from-green-500 to-green-700",
+                    color: "",
                     delay: 100,
                   },
                   {
                     name: "Playwright",
                     icon: SiCypress,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 200,
                   },
                   {
                     name: "Webpack",
                     icon: SiWebpack,
-                    color: "from-blue-400 to-blue-600",
+                    color: "",
                     delay: 300,
                   },
                   {
                     name: "Vite",
                     icon: SiVite,
-                    color: "from-purple-500 to-purple-700",
+                    color: "",
                     delay: 400,
                   },
                   {
                     name: "NPM",
                     icon: SiNpm,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 500,
                   },
                   {
                     name: "Yarn",
                     icon: SiYarn,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 600,
                   },
                   {
                     name: "PNPM",
                     icon: SiPnpm,
-                    color: "from-orange-500 to-orange-700",
+                    color: "",
                     delay: 700,
                   },
                 ].map((tech) => (
                   <Card
                     key={tech.name}
-                    className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
+                    className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md"
                     style={{ animationDelay: `${tech.delay}ms` }}>
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                    <CardHeader className="p-4 text-center relative z-10">
-                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="relative z-10 p-4 text-center">
+                      <div className="mb-2 flex justify-center transition-transform group-hover:scale-105">
                         <tech.icon
                           className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
+                      <h4 className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-blue-600">
                         {tech.name}
                       </h4>
                     </CardHeader>
@@ -1761,95 +1631,93 @@ export default async function MetadotsLanding() {
                   Professional design tools and team collaboration platforms
                 </p>
               </div>
-              <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-6">
+              <div className="grid grid-cols-2 gap-6 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8">
                 {[
                   {
                     name: "Figma",
                     icon: SiFigma,
-                    color: "from-purple-500 to-purple-700",
+                    color: "",
                     delay: 0,
                   },
                   {
                     name: "Adobe",
                     icon: SiAdobe,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 100,
                   },
                   {
                     name: "Sketch",
                     icon: SiSketch,
-                    color: "from-yellow-400 to-yellow-600",
+                    color: "",
                     delay: 200,
                   },
                   {
                     name: "Slack",
                     icon: SiSlack,
-                    color: "from-purple-500 to-purple-700",
+                    color: "",
                     delay: 300,
                   },
                   {
                     name: "Discord",
                     icon: SiDiscord,
-                    color: "from-indigo-500 to-indigo-700",
+                    color: "",
                     delay: 400,
                   },
                   {
                     name: "Notion",
                     icon: SiNotion,
-                    color: "from-gray-700 to-gray-900",
+                    color: "",
                     delay: 500,
                   },
                   {
                     name: "Linear",
                     icon: SiLinear,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 600,
                   },
                   {
                     name: "Jira",
                     icon: SiJira,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 700,
                   },
                   {
                     name: "Trello",
                     icon: SiTrello,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 800,
                   },
                   {
                     name: "Asana",
                     icon: SiAsana,
-                    color: "from-red-500 to-red-700",
+                    color: "",
                     delay: 900,
                   },
                   {
                     name: "Airtable",
                     icon: SiAirtable,
-                    color: "from-blue-500 to-blue-700",
+                    color: "",
                     delay: 1000,
                   },
                   {
                     name: "Zapier",
                     icon: SiZapier,
-                    color: "from-orange-500 to-orange-700",
+                    color: "",
                     delay: 1100,
                   },
                 ].map((tech) => (
                   <Card
                     key={tech.name}
-                    className="group relative overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-500 transform hover:scale-105 bg-white animate-fade-in-up"
+                    className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md"
                     style={{ animationDelay: `${tech.delay}ms` }}>
-                    <div
-                      className={`absolute inset-0 bg-gradient-to-br ${tech.color} opacity-0 group-hover:opacity-10 transition-opacity duration-300`}></div>
-                    <CardHeader className="p-4 text-center relative z-10">
-                      <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                    <CardHeader className="relative z-10 p-4 text-center">
+                      <div className="mb-2 flex justify-center transition-transform group-hover:scale-105">
                         <tech.icon
                           className="w-8 h-8 text-slate-600 group-hover:text-blue-600 transition-colors"
                           aria-hidden="true"
                         />
                       </div>
-                      <h4 className="font-semibold text-slate-800 group-hover:text-blue-600 transition-colors text-sm">
+                      <h4 className="text-sm font-semibold text-slate-800 transition-colors group-hover:text-blue-600">
                         {tech.name}
                       </h4>
                     </CardHeader>
@@ -1861,46 +1729,38 @@ export default async function MetadotsLanding() {
         </div>
       </section>
 
-      {/* Enhanced About Section - Service Offerings */}
+      {/* About Section - Service Offerings */}
       <section
         id="about"
-        className="py-20 md:py-32 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="text-center space-y-6 mb-20">
-            <div className="inline-flex items-center px-6 py-3 rounded-full bg-gradient-to-r from-purple-600 to-pink-600 text-white font-medium shadow-lg animate-bounce-subtle">
-              <Users className="w-5 h-5 mr-2" aria-hidden="true" />
+        className="relative overflow-hidden bg-white py-20 md:py-32">
+        <div className="container">
+          <div className="mb-20 space-y-6 text-center">
+            <div className="inline-flex items-center rounded-full bg-blue-50 px-6 py-3 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+              <Users className="mr-2 h-5 w-5" aria-hidden="true" />
               How We Work
             </div>
-            <h2 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl text-white leading-tight">
+            <h2 className="text-4xl font-semibold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
               <span className="block">Innovating the Future</span>
-              <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient pb-2">
-                of Technology
-              </span>
+              <span className="mt-1 block text-blue-700">of Technology</span>
             </h2>
-            <p className="text-xl text-white/80 max-w-4xl mx-auto leading-relaxed">
+            <p className="mx-auto max-w-4xl text-lg leading-relaxed text-slate-600">
               Choose the perfect engagement model that fits your project needs
               and business goals
             </p>
           </div>
 
           {/* Service Models */}
-          <div className="grid gap-8 lg:grid-cols-3 mb-16">
+          <div className="mb-16 grid gap-8 lg:grid-cols-3">
             {/* Dedicated Team */}
-            <Card className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
+            <Card className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
               <CardHeader className="p-8 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-blue-500 to-indigo-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Users className="h-10 w-10 text-white" aria-hidden="true" />
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                  <Users className="h-10 w-10" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-2xl text-white mb-4 group-hover:text-blue-400 transition-colors">
+                <CardTitle className="mb-4 text-2xl text-slate-900">
                   Dedicated Team
                 </CardTitle>
-                <CardDescription className="text-white/70 text-base leading-relaxed mb-6">
+                <CardDescription className="mb-6 text-base leading-relaxed text-slate-600">
                   Get a full-stack team of experts dedicated exclusively to your
                   project. Perfect for long-term partnerships and complex
                   enterprise solutions.
@@ -1914,18 +1774,16 @@ export default async function MetadotsLanding() {
                     "Flexible team scaling",
                     "Long-term partnership focus",
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div
-                        className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"
-                        style={{ animationDelay: `${index * 200}ms` }}></div>
-                      <span className="text-white/80 text-sm">{feature}</span>
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      <span className="text-sm text-slate-700">{feature}</span>
                     </div>
                   ))}
                 </div>
 
                 <div className="mt-6 text-left">
                   <Button
-                    className="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white"
+                    className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-700"
                     asChild>
                     <Link href="/contact-us">
                       Learn More
@@ -1937,15 +1795,15 @@ export default async function MetadotsLanding() {
             </Card>
 
             {/* Fixed Price Projects */}
-            <Card className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
+            <Card className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
               <CardHeader className="p-8 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Target className="h-10 w-10 text-white" aria-hidden="true" />
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                  <Target className="h-10 w-10" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-2xl text-white mb-4 group-hover:text-green-400 transition-colors">
+                <CardTitle className="mb-4 text-2xl text-slate-900">
                   Fixed Price Projects
                 </CardTitle>
-                <CardDescription className="text-white/70 text-base leading-relaxed mb-6">
+                <CardDescription className="mb-6 text-base leading-relaxed text-slate-600">
                   Well-defined projects with clear scope and deliverables. Ideal
                   for startups and businesses with specific requirements and
                   budget constraints.
@@ -1959,17 +1817,15 @@ export default async function MetadotsLanding() {
                     "Milestone-based delivery",
                     "Quality assurance included",
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div
-                        className="w-2 h-2 bg-green-400 rounded-full animate-pulse"
-                        style={{ animationDelay: `${index * 200}ms` }}></div>
-                      <span className="text-white/80 text-sm">{feature}</span>
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      <span className="text-sm text-slate-700">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-6 text-left">
                   <Button
-                    className="w-full mt-6 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white"
+                    className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-700"
                     asChild>
                     <Link href="/contact-us">
                       Get Quote
@@ -1981,15 +1837,15 @@ export default async function MetadotsLanding() {
             </Card>
 
             {/* Forward Deployed Engineers */}
-            <Card className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 transform hover:scale-105">
+            <Card className="group border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
               <CardHeader className="p-8 text-center">
-                <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-600 flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300 shadow-lg">
-                  <Users className="h-10 w-10 text-white" aria-hidden="true" />
+                <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-blue-50 text-blue-700">
+                  <Users className="h-10 w-10" aria-hidden="true" />
                 </div>
-                <CardTitle className="text-2xl text-white mb-4 group-hover:text-purple-400 transition-colors">
+                <CardTitle className="mb-4 text-2xl text-slate-900">
                   Forward Deployed Engineers
                 </CardTitle>
-                <CardDescription className="text-white/70 text-base leading-relaxed mb-6">
+                <CardDescription className="mb-6 text-base leading-relaxed text-slate-600">
                   Our engineers work directly with your team, ensuring rapid
                   delivery, deep integration, and hands-on support for
                   mission-critical projects.
@@ -2002,17 +1858,15 @@ export default async function MetadotsLanding() {
                     "Seamless integration with your team",
                     "Continuous support & optimization",
                   ].map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3">
-                      <div
-                        className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"
-                        style={{ animationDelay: `${index * 200}ms` }}></div>
-                      <span className="text-white/80 text-sm">{feature}</span>
+                    <div key={index} className="flex items-center gap-3">
+                      <div className="h-1.5 w-1.5 rounded-full bg-blue-500" />
+                      <span className="text-sm text-slate-700">{feature}</span>
                     </div>
                   ))}
                 </div>
                 <div className="mt-6 text-left">
                   <Button
-                    className="w-full mt-6 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white"
+                    className="mt-6 w-full bg-blue-600 text-white hover:bg-blue-700"
                     asChild>
                     <Link href="/contact-us">
                       Meet Our Engineers
@@ -2025,7 +1879,7 @@ export default async function MetadotsLanding() {
           </div>
 
           {/* Company Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-2 gap-8 text-center md:grid-cols-4">
             {[
               { number: "10+", label: "Years Experience", icon: Award },
               { number: "500+", label: "Projects Delivered", icon: Rocket },
@@ -2033,16 +1887,16 @@ export default async function MetadotsLanding() {
               { number: "25+", label: "Countries Served", icon: Globe },
             ].map((stat, index) => (
               <div key={index} className="group">
-                <div className="mb-2 group-hover:scale-110 transition-transform duration-300 flex justify-center">
+                <div className="mb-2 flex justify-center transition-transform group-hover:scale-105">
                   <stat.icon
-                    className="w-10 h-10 text-white/80 group-hover:text-blue-400 transition-colors"
+                    className="h-10 w-10 text-blue-600"
                     aria-hidden="true"
                   />
                 </div>
-                <div className="text-3xl font-bold text-white mb-2 group-hover:text-blue-400 transition-colors">
+                <div className="mb-2 text-3xl font-bold text-slate-900">
                   {stat.number}
                 </div>
-                <div className="text-white/70 text-sm">{stat.label}</div>
+                <div className="text-sm text-slate-600">{stat.label}</div>
               </div>
             ))}
           </div>

@@ -32,31 +32,27 @@ export default function FeaturedPodcast({ podcast }: FeaturedPodcastProps) {
   };
 
   return (
-    <Card className="group bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 transition-all duration-500 overflow-hidden">
+    <Card className="group overflow-hidden border border-slate-200 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
       <CardHeader className="p-0">
         <div className="relative">
           {/* Audio Waveform Visualization */}
-          <div className="bg-gradient-to-r from-purple-600 to-pink-600 p-6 relative overflow-hidden">
-            <div className="absolute inset-0 bg-black/20"></div>
+          <div className="relative overflow-hidden bg-slate-900 p-6">
             <div className="relative z-10">
-              <div className="flex items-center justify-between mb-4">
-                <Badge className="bg-white/20 text-white backdrop-blur">
+              <div className="mb-4 flex items-center justify-between">
+                <Badge className="bg-slate-800 px-3 py-1 text-xs font-medium text-slate-50">
                   Featured Episode
                 </Badge>
-                <div className="text-white/80 text-sm">{podcast.duration}</div>
+                <div className="text-sm text-slate-200">{podcast.duration}</div>
               </div>
 
               {/* Animated Waveform */}
-              <div className="flex items-center space-x-1 mb-4">
+              <div className="mb-4 flex items-center space-x-1">
                 {[...Array(40)].map((_, i) => (
                   <div
                     key={i}
-                    className="bg-white/60 rounded-full animate-pulse"
+                    className="h-6 w-[3px] rounded-full bg-blue-400/60"
                     style={{
-                      width: "3px",
                       height: `${(i % 8) * 4 + 10}px`,
-                      animationDelay: `${i * 50}ms`,
-                      animationDuration: `${1000 + (i % 10) * 100}ms`,
                     }}></div>
                 ))}
               </div>
@@ -65,42 +61,44 @@ export default function FeaturedPodcast({ podcast }: FeaturedPodcastProps) {
               <div className="flex items-center space-x-4">
                 <Button
                   size="sm"
-                  className="bg-white/20 hover:bg-white/30 text-white border-0 backdrop-blur !w-auto"
+                  className="!w-auto border border-slate-600 bg-slate-800 text-slate-50 hover:bg-slate-700"
                   onClick={handlePlayClick}>
-                  <Play className="w-4 h-4" aria-hidden="true" />
+                  <Play className="h-4 w-4" aria-hidden="true" />
                   <span className="sr-only">Play episode</span>
                 </Button>
-                <div className="flex-1 bg-white/20 rounded-full h-2">
+                <div className="h-2 flex-1 rounded-full bg-slate-700">
                   <div
-                    className="bg-white h-2 rounded-full transition-all duration-300"
+                    className="h-2 w-1/3 rounded-full bg-blue-400 transition-all duration-300"
                     style={{ width: "35%" }}></div>
                 </div>
-                <div className="text-white/80 text-sm">15:42</div>
+                <div className="text-sm text-slate-200">15:42</div>
               </div>
             </div>
           </div>
 
           <div className="p-6">
-            <CardTitle className="text-xl text-white mb-3 group-hover:text-purple-400 transition-colors">
+            <CardTitle className="mb-3 text-xl font-semibold text-slate-900">
               {podcast.name}
             </CardTitle>
-            <CardDescription className="text-white/70 mb-4 leading-relaxed">
+            <CardDescription className="mb-4 leading-relaxed text-slate-600">
               {podcast.description}
             </CardDescription>
 
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500"></div>
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-blue-50 text-blue-700">
+                  <Headphones className="h-4 w-4" aria-hidden="true" />
+                </div>
                 <div>
-                  <div className="text-white text-sm font-medium">
+                  <div className="text-sm font-medium text-slate-900">
                     {podcast.podcastName}
                   </div>
-                  <div className="text-white/60 text-xs">Podcast</div>
+                  <div className="text-xs text-slate-500">Podcast</div>
                 </div>
               </div>
-              <div className="flex items-center gap-2 text-white/60 text-sm">
+              <div className="flex items-center gap-2 text-sm text-slate-500">
                 <div>
-                  <Calendar className="w-4 h-4" aria-hidden="true" />
+                  <Calendar className="h-4 w-4" aria-hidden="true" />
                 </div>
                 {new Date(podcast.date).toLocaleDateString("en-US", {
                   month: "short",

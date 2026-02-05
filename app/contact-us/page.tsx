@@ -1,94 +1,90 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 import Footer from "@/components/footer";
 import ContactSection from "@/components/contact-section";
 
 export default function ContactUsPage() {
   return (
-    <div className="min-h-screen bg-white w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl animate-ping delay-2000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="text-center space-y-8 animate-fade-in-up">
+      <section className="border-b border-slate-100 bg-slate-50 py-20">
+        <div className="container">
+          <div className="space-y-10 text-center">
             <div className="space-y-6">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white text-sm font-medium shadow-lg animate-bounce-subtle">
-                <span className="mr-2">📞</span>
-                Get In Touch
+              <div className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+                <Phone className="mr-2 h-4 w-4" aria-hidden="true" />
+                Get in touch
               </div>
-              <h1 className="text-5xl font-bold tracking-tight sm:text-6xl md:text-7xl lg:text-8xl leading-tight">
-                <span className="block text-slate-900">Ready to Start</span>
-                <span className="block bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient pb-2">
-                  Your Project?
-                </span>
+              <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
+                <span className="block">Ready to Start</span>
+                <span className="mt-1 block text-blue-700">Your Project?</span>
               </h1>
-              <p className="text-xl text-slate-600 max-w-3xl mx-auto leading-relaxed">
+              <p className="mx-auto max-w-3xl text-base leading-relaxed text-slate-600 sm:text-lg">
                 Let's discuss your vision and turn it into reality. Our team is
                 ready to help you build something amazing.
               </p>
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Button
                 size="lg"
-                className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105"
+                className="px-8 py-4 bg-blue-600 text-white shadow-sm hover:bg-blue-700"
                 onClick={() =>
                   document
                     .getElementById("contact")
                     ?.scrollIntoView({ behavior: "smooth" })
                 }>
                 Start Your Project
-                <span className="ml-2 group-hover:translate-x-1 transition-transform">
-                  →
-                </span>
+                <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
               </Button>
               <Button
                 size="lg"
                 variant="outline"
-                className="group  px-8 py-4 border-2 border-slate-300 hover:border-blue-500 hover:bg-blue-50 bg-white/80 backdrop-blur-sm shadow-lg hover:shadow-xl transition-all duration-300">
-                <span className="mr-2">📧</span>
-                Send Email
+                className="border border-blue-200 bg-white px-8 py-4 text-blue-700 hover:border-blue-400 hover:bg-blue-50"
+                asChild>
+                <a href="mailto:sales@metadots.co">
+                  <Mail className="mr-2 h-5 w-5" aria-hidden="true" />
+                  Send Email
+                </a>
               </Button>
             </div>
 
             {/* Quick Contact Info */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 max-w-4xl mx-auto">
-              <div className="text-center group cursor-pointer">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-                  📞
+            <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 pt-6 md:grid-cols-3">
+              <div className="rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  <Phone className="h-5 w-5" aria-hidden="true" />
                 </div>
-                <div className="text-sm text-slate-600 font-medium mt-2">
+                <div className="text-sm font-medium text-slate-900">
                   Call Us
                 </div>
-                <div className="text-xs text-slate-500">+44 7400 926311</div>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-                  📧
+                <div className="mt-1 text-sm text-slate-600">
+                  +44 7400 926311
                 </div>
-                <div className="text-sm text-slate-600 font-medium mt-2">
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  <Mail className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div className="text-sm font-medium text-slate-900">
                   Email Us
                 </div>
-                <div className="text-xs text-slate-500">sales@metadots.co</div>
-              </div>
-              <div className="text-center group cursor-pointer">
-                <div className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent group-hover:scale-110 transition-transform">
-                  🏢
+                <div className="mt-1 text-sm text-slate-600">
+                  sales@metadots.co
                 </div>
-                <div className="text-sm text-slate-600 font-medium mt-2">
+              </div>
+              <div className="rounded-xl border border-slate-200 bg-white p-4 text-left shadow-sm">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-blue-50 text-blue-700">
+                  <MapPin className="h-5 w-5" aria-hidden="true" />
+                </div>
+                <div className="text-sm font-medium text-slate-900">
                   Visit Us
                 </div>
-                <div className="text-xs text-slate-500">Lahore, Pakistan</div>
+                <div className="mt-1 text-sm text-slate-600">
+                  Lahore, Pakistan
+                </div>
               </div>
             </div>
           </div>

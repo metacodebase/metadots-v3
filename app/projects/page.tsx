@@ -60,32 +60,25 @@ async function getData() {
 export default async function ProjectsPage() {
   const { projects } = await getData();
   return (
-    <div className="min-h-screen bg-white w-full overflow-x-hidden">
+    <div className="min-h-screen w-full overflow-x-hidden bg-white">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-indigo-400/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-300/10 rounded-full blur-3xl animate-ping delay-2000"></div>
-        </div>
-
-        <div className="container relative z-10">
-          <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+      <section className="border-b border-slate-100 bg-slate-50 py-20">
+        <div className="container">
+          <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
             {/* Content Side */}
             <div className="space-y-8">
               <div className="space-y-6">
-                <div className="inline-flex items-center px-4 py-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white text-sm font-medium shadow-lg animate-bounce-subtle">
-                  <BarChart3 className="w-4 h-4 mr-2" aria-hidden="true" />
+                <div className="inline-flex items-center rounded-full bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700 ring-1 ring-inset ring-blue-100">
+                  <BarChart3 className="mr-2 h-4 w-4" aria-hidden="true" />
                   Our Portfolio
                 </div>
-                <h1 className="text-5xl font-bold tracking-tight sm:text-6xl text-white leading-tight">
+                <h1 className="text-balance text-4xl font-semibold tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
                   <span className="block">Transformative</span>
-                  <span className="block bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent pb-2 ">
+                  <span className="mt-1 block text-blue-700">
                     Digital Solutions
                   </span>
                 </h1>
-                <p className="text-xl text-white/80 max-w-2xl leading-relaxed">
+                <p className="max-w-2xl text-base leading-relaxed text-slate-600 sm:text-lg">
                   Explore our comprehensive portfolio of cutting-edge projects
                   that have revolutionized businesses across industries. From
                   AI-powered platforms to enterprise solutions.
@@ -94,26 +87,30 @@ export default async function ProjectsPage() {
 
               {/* Stats */}
               <div className="grid grid-cols-2 gap-6">
-                <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <div className="text-3xl font-bold text-white">500+</div>
-                  <div className="text-sm text-white/70">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+                  <div className="text-3xl font-semibold text-slate-900">
+                    500+
+                  </div>
+                  <div className="text-sm text-slate-500">
                     Projects Delivered
                   </div>
                 </div>
-                <div className="text-center p-4 bg-white/10 backdrop-blur-sm rounded-xl border border-white/20">
-                  <div className="text-3xl font-bold text-white">98%</div>
-                  <div className="text-sm text-white/70">
+                <div className="rounded-xl border border-slate-200 bg-white p-4 text-center shadow-sm">
+                  <div className="text-3xl font-semibold text-slate-900">
+                    98%
+                  </div>
+                  <div className="text-sm text-slate-500">
                     Client Satisfaction
                   </div>
                 </div>
               </div>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="/contact-us">
                   <Button
                     size="lg"
-                    className="bg-white text-slate-900 hover:bg-white/90 px-8 py-4 shadow-xl">
+                    className="bg-blue-600 px-8 py-4 text-white hover:bg-blue-700">
                     Explore Projects
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
@@ -122,7 +119,7 @@ export default async function ProjectsPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="border-white/30 text-white hover:text-white hover:bg-white/10 px-8 py-4 bg-transparent">
+                    className="border border-blue-200 bg-white px-8 py-4 text-blue-700 hover:border-blue-400 hover:bg-blue-50">
                     View Case Studies
                   </Button>
                 </Link>
@@ -133,48 +130,53 @@ export default async function ProjectsPage() {
             <div className="relative">
               <div className="relative">
                 {/* Main Dashboard */}
-                <div className="relative rounded-3xl bg-white/10 backdrop-blur-sm p-8 shadow-2xl border border-white/20">
+                <div className="relative rounded-3xl border border-slate-200 bg-white p-8 shadow-md">
                   <div className="space-y-6">
                     {/* Header */}
                     <div className="flex items-center justify-between">
-                      <div className="flex items-center space-x-3">
-                        <div className="w-3 h-3 bg-green-400 rounded-full animate-pulse"></div>
-                        <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse delay-100"></div>
-                        <div className="w-3 h-3 bg-red-400 rounded-full animate-pulse delay-200"></div>
+                      <div className="flex items-center space-x-2">
+                        <span className="h-2.5 w-2.5 animate-pulse rounded-full bg-blue-500" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-blue-100" />
+                        <span className="h-2.5 w-2.5 rounded-full bg-blue-100" />
                       </div>
-                      <Badge className="bg-white/20 text-white backdrop-blur-sm">
+                      <Badge
+                        variant="outline"
+                        className="border-blue-100 bg-blue-50/60 px-3 py-1 text-[11px] font-medium uppercase tracking-wide text-blue-700">
                         Project Dashboard
                       </Badge>
                     </div>
 
                     {/* Project Cards */}
                     <div className="grid grid-cols-2 gap-4">
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/80 text-sm">
+                      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <div className="mb-2 flex items-center justify-between">
+                          <span className="text-sm font-medium text-slate-700">
                             AI Platform
                           </span>
-                          <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                          <span className="relative flex h-2.5 w-2.5">
+                            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-300/60" />
+                            <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-blue-500" />
+                          </span>
                         </div>
-                        <div className="text-2xl font-bold text-white">
+                        <div className="text-2xl font-semibold text-slate-900">
                           94.7%
                         </div>
-                        <div className="text-xs text-white/60">
+                        <div className="text-xs text-slate-600">
                           Success Rate
                         </div>
                       </div>
 
-                      <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                        <div className="flex items-center justify-between mb-2">
-                          <span className="text-white/80 text-sm">
+                      <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
+                        <div className="mb-2 flex items-center justify-between">
+                          <span className="text-sm font-medium text-slate-700">
                             E-commerce
                           </span>
-                          <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></div>
+                          <span className="h-2.5 w-2.5 rounded-full bg-blue-400" />
                         </div>
-                        <div className="text-2xl font-bold text-white">
+                        <div className="text-2xl font-semibold text-slate-900">
                           $2.4M
                         </div>
-                        <div className="text-xs text-white/60">
+                        <div className="text-xs text-slate-600">
                           Revenue Generated
                         </div>
                       </div>
@@ -183,24 +185,24 @@ export default async function ProjectsPage() {
                     {/* Progress Bars */}
                     <div className="space-y-3">
                       <div>
-                        <div className="flex justify-between text-white/80 text-sm mb-1">
+                        <div className="mb-1 flex justify-between text-sm text-slate-700">
                           <span>Project Completion</span>
                           <span>87%</span>
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
+                        <div className="h-2 w-full rounded-full bg-blue-50">
                           <div
-                            className="bg-gradient-to-r from-blue-400 to-purple-400 h-2 rounded-full"
+                            className="h-2 animate-[pulse_2s_ease-in-out_infinite] rounded-full bg-blue-500"
                             style={{ width: "87%" }}></div>
                         </div>
                       </div>
                       <div>
-                        <div className="flex justify-between text-white/80 text-sm mb-1">
+                        <div className="mb-1 flex justify-between text-sm text-slate-700">
                           <span>Client Satisfaction</span>
                           <span>98%</span>
                         </div>
-                        <div className="w-full bg-white/20 rounded-full h-2">
+                        <div className="h-2 w-full rounded-full bg-blue-50">
                           <div
-                            className="bg-gradient-to-r from-green-400 to-emerald-400 h-2 rounded-full"
+                            className="h-2 animate-[pulse_2.2s_ease-in-out_infinite] rounded-full bg-blue-500"
                             style={{ width: "98%" }}></div>
                         </div>
                       </div>
@@ -209,11 +211,11 @@ export default async function ProjectsPage() {
                 </div>
 
                 {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-20 h-20 bg-gradient-to-br from-blue-400 to-indigo-500 rounded-2xl shadow-xl flex items-center justify-center animate-float">
-                  <BarChart3 className="w-8 h-8 text-white" />
+                <div className="absolute -top-4 -right-4 flex h-20 w-20 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-sm">
+                  <BarChart3 className="h-8 w-8 text-blue-600" />
                 </div>
-                <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-gradient-to-br from-purple-400 to-pink-500 rounded-xl shadow-xl flex items-center justify-center animate-float delay-1000">
-                  <Star className="w-6 h-6 text-white" />
+                <div className="absolute -bottom-4 -left-4 flex h-16 w-16 items-center justify-center rounded-xl border border-slate-200 bg-white shadow-sm">
+                  <Star className="h-6 w-6 text-blue-600" />
                 </div>
               </div>
             </div>
@@ -222,15 +224,15 @@ export default async function ProjectsPage() {
       </section>
 
       {/* Filters and Search */}
-      <section className="py-12 bg-white border-b">
+      <section className="border-b bg-white py-12">
         <div className="container">
-          <div className="flex  gap-6 items-center justify-between">
+          <div className="flex items-center justify-between gap-6">
             {/* Search */}
-            <div className="relative flex-1 w-full md:max-w-md">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-slate-400 w-4 h-4" />
+            <div className="relative w-full flex-1 md:max-w-md">
+              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 transform text-slate-400" />
               <Input
                 placeholder="Search projects..."
-                className="pl-10 h-12 border-slate-300 focus:border-blue-500"
+                className="h-12 border-slate-300 bg-white pl-10 focus:border-blue-500"
               />
             </div>
 
@@ -239,13 +241,13 @@ export default async function ProjectsPage() {
             {/* Sort */}
             <Button
               variant="outline"
-              className="flex items-center gap-2 bg-transparent hover:text-white !w-auto">
-              <Filter className="w-4 h-4" />
-              <span className="md:block hidden">Sort by Latest</span>
+              className="flex !w-auto items-center gap-2 border-slate-200 bg-white text-slate-700 hover:border-blue-300 hover:bg-blue-50 hover:text-blue-700">
+              <Filter className="h-4 w-4" />
+              <span className="hidden md:block">Sort by Latest</span>
             </Button>
           </div>
 
-          <div className="flex items-center gap-2 flex-wrap mt-5">
+          <div className="mt-5 flex flex-wrap items-center gap-2">
             {categories.map((category) => (
               <Button
                 key={category}
@@ -254,8 +256,8 @@ export default async function ProjectsPage() {
                 className={cn(
                   "!px-4 !py-2 !w-auto", // Add padding to maintain button size based on content
                   category === "All"
-                    ? "bg-blue-700 hover:bg-blue-700"
-                    : "bg-blue-50 border-blue-700 hover:bg-blue-700 hover:text-white"
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "border-blue-200 bg-white text-slate-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-700"
                 )}>
                 {category}
               </Button>
@@ -265,16 +267,13 @@ export default async function ProjectsPage() {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-gradient-to-b from-white to-slate-50">
+      <section className="bg-slate-50 py-20">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
-                Featured
-              </span>{" "}
-              Projects
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-semibold text-slate-900">
+              Featured Projects
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
               Our most impactful and innovative solutions that have set new
               industry standards
             </p>
@@ -286,7 +285,7 @@ export default async function ProjectsPage() {
               .map((project: any) => (
                 <Card
                   key={project._id}
-                  className="group overflow-hidden border-0 shadow-xl hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.02] bg-white">
+                  className="group overflow-hidden border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
                   <div className="relative">
                     <div className="aspect-video overflow-hidden">
                       <Image
@@ -298,18 +297,18 @@ export default async function ProjectsPage() {
                       />
                     </div>
                     <div className="absolute top-4 left-4 flex gap-2">
-                      <Badge className="bg-white/90 text-slate-700">
+                      <Badge className="bg-white text-slate-700">
                         {project.category}
                       </Badge>
                       {project.featured && (
-                        <Badge className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+                        <Badge className="bg-blue-600 text-white">
                           Featured
                         </Badge>
                       )}
                     </div>
                     <div className="absolute top-4 right-4">
-                      <div className="flex items-center space-x-1 bg-white/90 rounded-full px-2 py-1">
-                        <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                      <div className="flex items-center space-x-1 rounded-full bg-white px-2 py-1">
+                        <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                         <span className="text-xs font-medium">
                           {project.rating || 5.0}
                         </span>
@@ -318,14 +317,14 @@ export default async function ProjectsPage() {
                   </div>
 
                   <CardHeader className="p-8">
-                    <div className="flex flex-col justify-between h-full gap-4">
+                    <div className="flex h-full flex-col justify-between gap-4">
                       <div>
-                        <div className="flex items-start justify-between mb-4">
+                        <div className="mb-4 flex items-start justify-between">
                           <div className="flex-1">
-                            <CardTitle className="text-2xl mb-3 text-black transition-colors">
+                            <CardTitle className="mb-3 text-2xl text-slate-900 transition-colors">
                               {project.title}
                             </CardTitle>
-                            <CardDescription className="text-base leading-relaxed mb-4">
+                            <CardDescription className="mb-4 text-base leading-relaxed text-slate-600">
                               {project.description}
                             </CardDescription>
                           </div>
@@ -337,14 +336,14 @@ export default async function ProjectsPage() {
                               project.technologies.map((tag: string) => (
                                 <span
                                   key={tag}
-                                  className="px-3 py-1 bg-slate-100 text-slate-700 rounded-full text-sm font-medium hover:bg-blue-100 hover:text-blue-700 transition-colors cursor-pointer">
+                                  className="cursor-pointer rounded-full bg-slate-100 px-3 py-1 text-sm font-medium text-slate-700 transition-colors hover:bg-blue-100 hover:text-blue-700">
                                   {tag}dfff
                                 </span>
                               ))}
                           </div>
                         </div>
                         {/* Metrics */}
-                        <div className="flex items-center justify-between gap-4 mb-6 p-4 ">
+                        <div className="mb-6 flex items-center justify-between gap-4 p-4">
                           {project.metrics &&
                             Object.entries(project.metrics).map(
                               ([key, value]: [string, any]) => (
@@ -362,7 +361,7 @@ export default async function ProjectsPage() {
                       </div>
                       <div>
                         {/* Project Info */}
-                        <div className="flex items-center justify-between mb-6 pb-2 text-sm text-slate-600">
+                        <div className="mb-6 flex items-center justify-between pb-2 text-sm text-slate-600">
                           <div className="flex items-center gap-2">
                             <div className="text-blue-600">
                               <Users className="w-4 h-4" />
@@ -378,7 +377,7 @@ export default async function ProjectsPage() {
                         </div>
                         {/* Actions */}
                         <div className="flex gap-3">
-                          <Button className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700">
+                          <Button className="flex-1 bg-blue-600 hover:bg-blue-700">
                             <Link
                               className="flex items-center gap-2"
                               href="/contact-us">
@@ -387,14 +386,14 @@ export default async function ProjectsPage() {
                             </Link>
                           </Button>
                           <Button
-                            className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2"
+                            className="!w-auto border border-blue-200 bg-white px-5 py-2 text-blue-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800"
                             size="icon">
                             <Link href="/contact-us">
                               <ExternalLink className="h-4 w-4" />
                             </Link>
                           </Button>
                           <Button
-                            className="!bg-white border border-blue-700 text-blue-700 hover:!bg-blue-700 hover:text-white !w-auto px-5 py-2"
+                            className="!w-auto border border-blue-200 bg-white px-5 py-2 text-blue-700 hover:border-blue-400 hover:bg-blue-50 hover:text-blue-800"
                             size="icon">
                             <Link href="/contact-us">
                               <Github className="h-4 w-4" />
@@ -413,14 +412,11 @@ export default async function ProjectsPage() {
       {/* All Projects Grid */}
       <section className="py-20 bg-white">
         <div className="container">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">
-              <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent animate-gradient">
-                All
-              </span>{" "}
-              Projects
+          <div className="mb-16 text-center">
+            <h2 className="mb-4 text-3xl font-semibold text-slate-900">
+              All Projects
             </h2>
-            <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+            <p className="mx-auto max-w-2xl text-lg text-slate-600">
               Comprehensive showcase of our diverse portfolio across multiple
               industries and technologies
             </p>
@@ -430,7 +426,7 @@ export default async function ProjectsPage() {
             {projects.map((project: any) => (
               <Card
                 key={project._id}
-                className="group overflow-hidden border-0 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 bg-white">
+                className="group overflow-hidden border border-slate-100 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
                 <div className="relative">
                   <div className="aspect-video overflow-hidden">
                     <Image
@@ -442,16 +438,13 @@ export default async function ProjectsPage() {
                     />
                   </div>
                   <div className="absolute top-3 left-3">
-                    <Badge
-                      className={`bg-gradient-to-r ${
-                        project.color || "from-blue-500 to-indigo-600"
-                      } text-white`}>
+                    <Badge className="bg-blue-50 text-blue-700">
                       {project.category}
                     </Badge>
                   </div>
                   <div className="absolute top-3 right-3">
-                    <div className="flex items-center space-x-1 bg-white/90 rounded-full px-2 py-1">
-                      <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
+                    <div className="flex items-center space-x-1 rounded-full bg-white px-2 py-1">
+                      <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                       <span className="text-xs font-medium">
                         {project.rating || 5.0}
                       </span>
@@ -460,31 +453,31 @@ export default async function ProjectsPage() {
                 </div>
 
                 <CardHeader className="p-6 ">
-                  <div className="flex flex-col justify-between h-full gap-2">
+                  <div className="flex h-full flex-col justify-between gap-2">
                     <div>
-                      <CardTitle className="text-lg mb-2 text-blue-600 transition-colors line-clamp-2">
+                      <CardTitle className="mb-2 line-clamp-2 text-lg text-blue-700 transition-colors">
                         {project.title}
                       </CardTitle>
-                      <CardDescription className="text-sm leading-relaxed mb-4 line-clamp-3">
+                      <CardDescription className="mb-4 line-clamp-3 text-sm leading-relaxed text-slate-600">
                         {project.description}
                       </CardDescription>
                     </div>
                     {/* Tech Tags */}
                     <div className="h-[120px]">
-                      <div className="flex flex-wrap gap-1 mb-4">
+                      <div className="mb-4 flex flex-wrap gap-1">
                         {project.technologies &&
                           project.technologies
                             .slice(0, 3)
                             .map((tag: string) => (
                               <span
                                 key={tag}
-                                className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
+                                className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">
                                 {tag}
                               </span>
                             ))}
                         {project.technologies &&
                           project.technologies.length > 3 && (
-                            <span className="px-2 py-1 bg-slate-100 text-slate-600 rounded text-xs">
+                            <span className="rounded bg-slate-100 px-2 py-1 text-xs text-slate-600">
                               +{project.technologies.length - 3} more
                             </span>
                           )}
@@ -497,7 +490,7 @@ export default async function ProjectsPage() {
                             .map(([key, value]: [string, any]) => (
                               <div
                                 key={key}
-                                className="text-center p-2 bg-slate-50 rounded">
+                                className="rounded bg-slate-50 p-2 text-center">
                                 <div className="font-bold text-blue-600">
                                   {value}
                                 </div>
@@ -508,7 +501,7 @@ export default async function ProjectsPage() {
                             ))}
                       </div>
                     </div>
-                    <Button className="group bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700  px-8 py-4 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+                    <Button className="group px-8 py-4 bg-blue-600 text-white shadow-sm hover:bg-blue-700">
                       <Link
                         className="flex items-center gap-2"
                         href="/contact-us">
@@ -523,12 +516,12 @@ export default async function ProjectsPage() {
           </div>
 
           {/* Load More */}
-          <div className="text-center mt-12">
+          <div className="mt-12 text-center">
             <Link href="/contact-us">
               <Button
                 size="lg"
                 variant="outline"
-                className="px-8 bg-transparent hover:text-white">
+                className="px-8 bg-transparent">
                 Load More Projects
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
@@ -538,17 +531,17 @@ export default async function ProjectsPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900">
+      <section className="bg-slate-900 py-20">
         <div className="container">
-          <div className="text-center space-y-8 max-w-3xl mx-auto">
-            <h2 className="text-4xl font-bold text-white">
+          <div className="mx-auto max-w-3xl space-y-8 text-center">
+            <h2 className="text-4xl font-semibold text-white">
               Ready to Start Your Project?
             </h2>
-            <p className="text-xl text-white/80 leading-relaxed">
+            <p className="text-xl leading-relaxed text-slate-200">
               Let's discuss how we can transform your ideas into reality with
               cutting-edge technology solutions.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col justify-center gap-4 sm:flex-row">
               <Link href="/contact-us">
                 <Button
                   size="lg"

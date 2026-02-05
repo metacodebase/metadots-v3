@@ -1,6 +1,7 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { connectMongo } from '@/lib/mongodb';
-import Blog from '@/models/Blog';
+import { NextRequest, NextResponse } from "next/server";
+import { connectMongo } from "@/lib/mongodb";
+import Blog from "@/models/Blog";
+import "@/models/User";
 
 // GET /api/blogs - Get published blogs for public view
 export async function GET(request: NextRequest) {

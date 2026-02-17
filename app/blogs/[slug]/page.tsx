@@ -22,21 +22,24 @@ import Link from "next/link";
 import Footer from "@/components/footer";
 import { Metadata } from "next";
 
+interface BlogDetailPageParams {
+  slug: string;
+}
+
 interface BlogDetailPageProps {
-  params: {
-    slug: string;
-  };
+  params: Promise<BlogDetailPageParams>;
 }
 
 // Generate metadata for the page
-export async function generateMetadata({
-  params,
-}: BlogDetailPageProps): Promise<Metadata> {
+export async function generateMetadata(
+  props: BlogDetailPageProps
+): Promise<Metadata> {
+  const { slug } = await props.params;
   try {
     await connectMongo();
 
     const blog = await Blog.findOne({
-      slug: params.slug,
+      slug,
       status: "published",
     }).populate("author.id", "name email designation role avatar");
 
@@ -176,8 +179,9 @@ async function getData(slug: string) {
   }
 }
 
-export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
-  const { blog, relatedBlogs } = await getData(params.slug);
+export default async function BlogDetailPage(props: BlogDetailPageProps) {
+  const { slug } = await props.params;
+  const { blog, relatedBlogs } = await getData(slug);
 
   // Helper function to get author info
   const getAuthorInfo = (blog: any) => {

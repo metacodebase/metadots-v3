@@ -516,7 +516,7 @@ export default async function MetadotsLanding() {
                   variant="outline"
                   className="group px-8 py-4 border border-blue-200 bg-white text-blue-700 hover:border-blue-400 hover:bg-blue-50"
                   asChild>
-                  <Link href="/contact-us">
+                  <Link href="/ai-audit">
                     <Play
                       className="mr-2 h-5 w-5 transition-transform group-hover:scale-110"
                       aria-hidden="true"

@@ -31,7 +31,13 @@ const contactSchema = new mongoose.Schema({
       'AI/ML Solution',
       'E-commerce Platform',
       'Custom Software',
-      'Consulting'
+      'Consulting',
+      'Revenue Optimization',
+      'Operations Automation',
+      'Customer Support AI',
+      'Pricing Intelligence',
+      'Forecasting & Demand',
+      'Data Strategy'
     ]
   },
   budgetRange: {
@@ -56,7 +62,7 @@ const contactSchema = new mongoose.Schema({
   },
   source: {
     type: String,
-    enum: ['homepage', 'contact-page', 'other'],
+    enum: ['homepage', 'contact-page', 'ai-audit', 'other'],
     default: 'contact-page'
   },
   ipAddress: {

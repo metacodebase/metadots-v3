@@ -61,7 +61,7 @@ interface Contact {
   budgetRange: string;
   projectDetails: string;
   status: "new" | "contacted" | "qualified" | "proposal" | "closed";
-  source: "homepage" | "contact-page" | "other";
+  source: "homepage" | "contact-page" | "ai-audit" | "other";
   ipAddress: string;
   userAgent: string;
   notes: string;
@@ -507,7 +507,9 @@ function ContactsContent() {
                           <Badge variant="secondary">
                             {contact.source === "homepage"
                               ? "Homepage"
-                              : "Contact Page"}
+                              : contact.source === "ai-audit"
+                                ? "AI Audit"
+                                : "Contact Page"}
                           </Badge>
                         </td>
                         <td className="py-4 px-4 text-sm text-gray-600">
@@ -613,7 +615,9 @@ function ContactsContent() {
                                       <p className="text-sm text-gray-900">
                                         {contact.source === "homepage"
                                           ? "Homepage"
-                                          : "Contact Page"}
+                                          : contact.source === "ai-audit"
+                                            ? "AI Audit"
+                                            : "Contact Page"}
                                       </p>
                                     </div>
                                   </div>
